@@ -1,0 +1,55 @@
+---
+interface Props {
+  accent?: boolean;
+  glow?: boolean;
+  class?: string;
+  padding?: 'sm' | 'md' | 'lg';
+}
+
+const {
+  accent = false,
+  glow = false,
+  class: className = '',
+  padding = 'md',
+} = Astro.props;
+---
+
+<div class:list={[
+  'glass-card',
+  accent ? 'glass-card--accent' : '',
+  glow ? 'glass-card--glow' : '',
+  `glass-card--pad-${padding}`,
+  className,
+]}>
+  <slot />
+</div>
+
+<style>
+  .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-xl);
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .glass-card--accent {
+    background: var(--accent-dim);
+    border-color: var(--accent-border);
+  }
+
+  .glass-card--glow {
+    box-shadow: var(--glow-sm);
+  }
+
+  .glass-card--glow:hover {
+    box-shadow: var(--glow-md);
+    border-color: var(--glass-border-accent);
+    transform: translateY(-2px);
+  }
+
+  .glass-card--pad-sm { padding: var(--space-4); }
+  .glass-card--pad-md { padding: var(--space-6); }
+  .glass-card--pad-lg { padding: var(--space-8); }
+</style>

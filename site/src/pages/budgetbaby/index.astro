@@ -1,0 +1,694 @@
+---
+import Layout from '../../layouts/LayoutCore.astro';
+import GlassCard from '../../components/GlassCard.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const features = [
+  {
+    icon: '🎯',
+    title: 'Safe to Spend',
+    desc: 'A single daily number that tells you exactly how much you can spend without missing bills or breaking your savings plan. Green means go. Red means stop.',
+  },
+  {
+    icon: '💸',
+    title: 'Money Pools',
+    desc: 'Track Cash, Debit, Credit, and Savings as separate pools. Understand where your money actually lives, not just what the total says.',
+  },
+  {
+    icon: '🏷️',
+    title: 'Priority Categories',
+    desc: 'Color-code every expense: Critical (rent, insurance), Important (groceries, gas), Discretionary (dining, hobbies). See your spending for what it actually is.',
+  },
+  {
+    icon: '📋',
+    title: 'Recurring Bills',
+    desc: 'Log every fixed expense once. BudgetBaby tracks due dates, sends reminders up to a week in advance, and factors upcoming bills into your Safe to Spend.',
+  },
+  {
+    icon: '🎯',
+    title: 'Savings Goals',
+    desc: 'Set a target, track progress with visual rings, and celebrate milestones at 25%, 50%, 75%, and 100%. Your savings budget is reserved and not counted as spending.',
+  },
+  {
+    icon: '☁️',
+    title: 'Cloud Backup',
+    desc: 'Your data is AES-256 encrypted before it leaves your device. Restore to any device in seconds with no app restart needed.',
+  },
+];
+
+const steps = [
+  {
+    num: '01',
+    title: 'Set your budget',
+    desc: 'Tell BudgetBaby your pay frequency and income. The 8-step onboarding takes about 3 minutes.',
+  },
+  {
+    num: '02',
+    title: 'Track as you spend',
+    desc: 'Log expenses with a tap. Assign to a category, choose your payment pool, and keep moving.',
+  },
+  {
+    num: '03',
+    title: 'Know your number',
+    desc: 'The Safe to Spend figure updates in real time. Open the app, glance at the number, make the call.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'What is Safe to Spend?',
+    a: 'Safe to Spend is a daily number. It takes your remaining budget, subtracts upcoming bill obligations and your savings reserve, then divides by the days remaining in your period. It updates every time you log a transaction.',
+  },
+  {
+    q: 'Does my data stay on my device?',
+    a: 'Yes. All budget data is stored locally using SwiftData. Cloud sync and backup are optional features that require you to sign in. They are never on by default.',
+  },
+  {
+    q: 'What\'s the difference between free and premium?',
+    a: 'The free tier is fully usable: Safe to Spend, unlimited transactions, 3 savings goals, 5 recurring bills, 5 subscriptions. Premium ($4.99/mo or $39.99/yr) removes all limits and adds advanced insights, calendar sync, household sharing, data export, and up to 5 cloud backup slots.',
+  },
+  {
+    q: 'How does Household Sharing work?',
+    a: 'One premium member creates a household and generates a 6-character invite code. Members join and contribute to a shared budget. The admin has full control; members can add transactions and view shared data.',
+  },
+  {
+    q: 'Does BudgetBaby connect to my bank?',
+    a: 'No. BudgetBaby is intentionally manual. You log what you spend. That means no bank credentials ever touch the app, and no third-party data sharing.',
+  },
+  {
+    q: 'What happens when my budget period ends?',
+    a: 'BudgetBaby archives the finished period (read-only) and opens a new one. Any surplus budget optionally carries over. Your Cash and Debit balances always carry forward automatically.',
+  },
+  {
+    q: 'Can I export my data?',
+    a: 'Premium users can export a full CSV (transactions, categories, bills, subscriptions, savings goals) and a PDF summary report with spending breakdowns and progress bars.',
+  },
+  {
+    q: 'What iOS version does BudgetBaby require?',
+    a: 'iOS 17.0 or later. BudgetBaby is built with SwiftUI and SwiftData, modern iOS-only technologies that allow it to be fast, private, and responsive.',
+  },
+];
+---
+
+<Layout
+  title="BudgetBaby: Know Your Safe to Spend"
+  description="BudgetBaby is a premium iOS budgeting app built for simplicity and clarity. Know what's safe to spend today. Track your Money Pools. Never miss a bill."
+  canonical="/budgetbaby"
+>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "BudgetBaby",
+    "operatingSystem": "iOS 17.0+",
+    "applicationCategory": "FinanceApplication",
+    "offers": [
+      {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "description": "Free tier with core budgeting features"
+      },
+      {
+        "@type": "Offer",
+        "price": "4.99",
+        "priceCurrency": "USD",
+        "description": "Premium monthly subscription"
+      },
+      {
+        "@type": "Offer",
+        "price": "39.99",
+        "priceCurrency": "USD",
+        "description": "Premium annual subscription"
+      }
+    ],
+    "description": "A premium iOS budgeting app built for simplicity and clarity. Know what's safe to spend today.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Intriguing Insight",
+      "parentOrganization": {
+        "@type": "Organization",
+        "name": "Intrigue MMC LLC"
+      }
+    }
+  })} />
+
+  <!-- Hero -->
+  <section class="bb-hero section">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <div class="label-chip">Now on the App Store</div>
+          <h1>Know what's safe<br /><span class="text-gradient">to spend today.</span></h1>
+          <p>
+            BudgetBaby tracks your money across every pool: Cash, Debit, Credit, and Savings.
+            One number tells you how much you can spend right now without jeopardising your bills or goals.
+          </p>
+          <div class="hero-actions">
+            <a href="#app-store" class="btn btn-primary btn-lg">
+              Download on the App Store
+            </a>
+            <a href="/budgetbaby/features" class="btn btn-secondary btn-lg">
+              See all features
+            </a>
+          </div>
+          <p class="hero-note">Free to download · iOS 17+ · Premium from $4.99/mo</p>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="phone-mockup glass">
+            <div class="safe-to-spend-mock">
+              <div class="mock-label">Safe to Spend Today</div>
+              <div class="mock-amount">$42<span class="mock-cents">.50</span></div>
+              <div class="mock-bar">
+                <div class="mock-bar-fill" style="width: 62%"></div>
+              </div>
+              <div class="mock-pools">
+                <div class="mock-pool">
+                  <span class="mock-pool-icon">💵</span>
+                  <span>Cash</span>
+                  <span class="mock-pool-amount">$124</span>
+                </div>
+                <div class="mock-pool">
+                  <span class="mock-pool-icon">🏦</span>
+                  <span>Debit</span>
+                  <span class="mock-pool-amount">$843</span>
+                </div>
+                <div class="mock-pool">
+                  <span class="mock-pool-icon">💳</span>
+                  <span>Credit</span>
+                  <span class="mock-pool-amount">$210</span>
+                </div>
+                <div class="mock-pool">
+                  <span class="mock-pool-icon">🔒</span>
+                  <span>Savings</span>
+                  <span class="mock-pool-amount">$1,200</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature Grid -->
+  <section class="features section">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="eyebrow">Core Features</span>
+        <h2>Everything you need.<br />Nothing you don't.</h2>
+        <p>BudgetBaby is built around how people actually think about money. Not how accountants do.</p>
+      </div>
+
+      <div class="feature-grid">
+        {features.map((f) => (
+          <GlassCard glow>
+            <div class="feature-item">
+              <div class="feature-icon">{f.icon}</div>
+              <h3>{f.title}</h3>
+              <p>{f.desc}</p>
+            </div>
+          </GlassCard>
+        ))}
+      </div>
+
+      <div class="features-link-row">
+        <a href="/budgetbaby/features" class="btn btn-secondary">
+          Deep dive into every feature →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Free vs Premium -->
+  <section class="pricing-section section-sm">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="eyebrow">Pricing</span>
+        <h2>Free is real. Premium is more.</h2>
+        <p>The free tier is a complete budgeting app. Premium removes limits and adds power features.</p>
+      </div>
+
+      <div class="pricing-table-wrap glass">
+        <table class="pricing-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Free</th>
+              <th class="premium-col">Premium</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Safe to Spend</td>
+              <td class="check">Yes</td>
+              <td class="check">Yes</td>
+            </tr>
+            <tr>
+              <td>Transactions</td>
+              <td>Unlimited</td>
+              <td>Unlimited</td>
+            </tr>
+            <tr>
+              <td>Money Pools (Cash, Debit, Credit, Savings)</td>
+              <td class="check">Yes</td>
+              <td class="check">Yes</td>
+            </tr>
+            <tr>
+              <td>Priority Categories</td>
+              <td class="check">Yes</td>
+              <td class="check">Yes</td>
+            </tr>
+            <tr>
+              <td>Savings Goals</td>
+              <td>3</td>
+              <td>Unlimited</td>
+            </tr>
+            <tr>
+              <td>Recurring Bills</td>
+              <td>5</td>
+              <td>Unlimited</td>
+            </tr>
+            <tr>
+              <td>Subscriptions</td>
+              <td>5</td>
+              <td>Unlimited</td>
+            </tr>
+            <tr>
+              <td>Cloud Backup Slots</td>
+              <td>1</td>
+              <td>5</td>
+            </tr>
+            <tr>
+              <td>Bill Reminders</td>
+              <td>1 day before</td>
+              <td>1, 3, or 7 days</td>
+            </tr>
+            <tr>
+              <td>Advanced Insights + Trends</td>
+              <td class="dash"></td>
+              <td class="check">Yes</td>
+            </tr>
+            <tr>
+              <td>Calendar Sync</td>
+              <td class="dash"></td>
+              <td class="check">Yes</td>
+            </tr>
+            <tr>
+              <td>Household Sharing</td>
+              <td class="dash"></td>
+              <td class="check">Yes</td>
+            </tr>
+            <tr>
+              <td>Data Export (CSV + PDF)</td>
+              <td class="dash"></td>
+              <td class="check">Yes</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="pricing-note">
+        Premium: $4.99/month or $39.99/year. Cancel anytime in iOS Settings.
+      </p>
+    </div>
+  </section>
+
+  <!-- How it Works -->
+  <section class="how-it-works section-sm">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="eyebrow">How It Works</span>
+        <h2>Three steps. That's it.</h2>
+      </div>
+
+      <div class="steps-grid">
+        {steps.map((s) => (
+          <div class="step glass">
+            <span class="step-num">{s.num}</span>
+            <h3>{s.title}</h3>
+            <p>{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust paragraph -->
+  <section class="designed-for section-sm">
+    <div class="container-sm">
+      <GlassCard accent padding="lg">
+        <div class="designed-inner">
+          <h2>Designed for clarity, not complexity.</h2>
+          <p>
+            BudgetBaby doesn't try to replace your bank or automate your finances.
+            It gives you one honest number, Safe to Spend, and the context to trust it.
+            Your data stays on your device. Cloud features are always opt-in.
+            No ads, no data brokering, no algorithmic nudges.
+          </p>
+          <p>
+            Built by <strong>Intriguing Insight</strong>, focused on building software that respects the people who use it.
+          </p>
+          <a href="/about" class="btn btn-ghost" style="margin-top: var(--space-2);">
+            Learn about BabyBlocks →
+          </a>
+        </div>
+      </GlassCard>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section section">
+    <div class="container-sm">
+      <div class="section-header">
+        <span class="eyebrow">FAQ</span>
+        <h2>Common questions</h2>
+      </div>
+
+      <div class="faq-list">
+        {faqs.map((item) => (
+          <details class="faq-item glass" name="faq">
+            <summary class="faq-question">
+              <span>{item.q}</span>
+              <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </summary>
+            <div class="faq-answer">
+              <p>{item.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+
+      <p class="faq-footer">
+        Still have questions? <a href="/budgetbaby/support">Contact support</a> or read the <a href="/budgetbaby/documentation">documentation</a>.
+      </p>
+    </div>
+  </section>
+
+  <CTASection />
+</Layout>
+
+<style>
+  /* Hero */
+  .bb-hero { padding-top: calc(var(--space-20) + var(--space-8)); }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: var(--space-16);
+    align-items: center;
+  }
+
+  .hero-copy {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(var(--text-4xl), 6vw, var(--text-6xl));
+    letter-spacing: -0.03em;
+  }
+
+  .hero-copy p {
+    font-size: var(--text-lg);
+    max-width: 48ch;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .hero-note {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  /* Phone Mockup */
+  .phone-mockup {
+    border-radius: var(--radius-2xl);
+    padding: var(--space-6);
+    background: rgba(30, 8, 69, 0.35);
+    border-color: rgba(139, 92, 246, 0.2);
+    box-shadow: var(--glow-md), var(--shadow-xl);
+  }
+
+  .safe-to-spend-mock {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .mock-label {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .mock-amount {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--green);
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .mock-cents { font-size: 2rem; opacity: 0.7; }
+
+  .mock-bar {
+    height: 6px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .mock-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--purple-500), var(--purple-400));
+    border-radius: 3px;
+  }
+
+  .mock-pools {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding-top: var(--space-2);
+    border-top: 1px solid var(--glass-border);
+  }
+
+  .mock-pool {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+  }
+
+  .mock-pool-icon { font-size: 1rem; }
+
+  .mock-pool-amount {
+    margin-left: auto;
+    font-weight: var(--weight-semibold);
+    color: var(--text-primary);
+    font-size: var(--text-sm);
+  }
+
+  /* Features */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+  }
+
+  .feature-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .feature-icon { font-size: 2rem; line-height: 1; }
+
+  .feature-item h3 {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-semibold);
+  }
+
+  .feature-item p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  .features-link-row {
+    margin-top: var(--space-10);
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Steps */
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+  }
+
+  .step {
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .step-num {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-bold);
+    color: var(--accent-light);
+    letter-spacing: 0.06em;
+  }
+
+  .step h3 { font-size: var(--text-xl); }
+
+  .step p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+  }
+
+  /* Designed for */
+  .designed-inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .designed-inner h2 { font-size: var(--text-2xl); }
+  .designed-inner p { font-size: var(--text-base); }
+
+  /* FAQ */
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+  }
+
+  .faq-item {
+    border-radius: var(--radius-lg) !important;
+    overflow: hidden;
+  }
+
+  .faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-5) var(--space-6);
+    font-size: var(--text-base);
+    font-weight: var(--weight-semibold);
+    color: var(--text-primary);
+    cursor: pointer;
+    list-style: none;
+    transition: background 0.15s;
+  }
+
+  .faq-question::-webkit-details-marker { display: none; }
+  .faq-question::marker { display: none; }
+
+  .faq-question:hover { background: var(--glass-bg-hover); }
+
+  .faq-chevron { transition: transform 0.2s ease; flex-shrink: 0; color: var(--text-muted); }
+
+  details[open] .faq-chevron { transform: rotate(180deg); }
+
+  .faq-answer {
+    padding: 0 var(--space-6) var(--space-5);
+  }
+
+  .faq-answer p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  .faq-footer {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    text-align: center;
+  }
+
+  /* Pricing table */
+  .pricing-table-wrap {
+    overflow-x: auto;
+    border-radius: var(--radius-xl);
+    padding: 0;
+  }
+
+  .pricing-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+  }
+
+  .pricing-table th {
+    padding: var(--space-4) var(--space-5);
+    text-align: left;
+    font-weight: var(--weight-semibold);
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: var(--text-xs);
+    border-bottom: 1px solid var(--glass-border);
+  }
+
+  .pricing-table th.premium-col {
+    color: var(--accent);
+  }
+
+  .pricing-table td {
+    padding: var(--space-3) var(--space-5);
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--glass-border);
+  }
+
+  .pricing-table tr:last-child td { border-bottom: none; }
+
+  .pricing-table td:first-child {
+    font-weight: var(--weight-medium);
+    color: var(--text-primary);
+  }
+
+  .pricing-table td.check {
+    color: var(--green);
+    font-weight: var(--weight-semibold);
+  }
+
+  .pricing-table td.dash::before {
+    content: '\2014';
+    color: var(--text-faint);
+  }
+
+  .pricing-note {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: var(--space-6);
+  }
+
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-visual { order: -1; max-width: 360px; }
+    .feature-grid { grid-template-columns: repeat(2, 1fr); }
+    .steps-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .feature-grid { grid-template-columns: 1fr; }
+    .hero-actions { flex-direction: column; }
+    .hero-actions .btn { justify-content: center; }
+  }
+</style>

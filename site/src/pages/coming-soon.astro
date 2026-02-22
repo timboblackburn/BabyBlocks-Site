@@ -1,0 +1,361 @@
+---
+import LayoutCore from '../layouts/LayoutCore.astro';
+import GlassCard from '../components/GlassCard.astro';
+---
+
+<LayoutCore
+  title="What's Coming | BabyBlocks"
+  description="See what's next in the BabyBlocks ecosystem. PantryBaby and BabyBlocks Core are in the pipeline. Here's what we're building."
+  canonical="/coming-soon"
+>
+  <section class="coming-hero section">
+    <div class="container">
+      <div class="coming-copy">
+        <div class="label-chip">On the horizon</div>
+        <h1>What's next<br /><span class="text-gradient">from BabyBlocks.</span></h1>
+        <p class="coming-sub">
+          We build one thing at a time, and we build it right. Here's where the ecosystem is headed.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Apps in pipeline -->
+  <section class="pipeline section-sm">
+    <div class="container">
+      <div class="pipeline-grid">
+        <!-- PantryBaby — In Development -->
+        <a href="/coming-soon/pantrybaby" class="pipeline-card glass pipeline-card--pantry">
+          <div class="pipeline-top">
+            <div class="pipeline-icon">🥗</div>
+            <span class="pipeline-status status-active">In Development</span>
+          </div>
+          <h2>PantryBaby</h2>
+          <p class="pipeline-tagline">Your grocery list + pantry memory.</p>
+          <p class="pipeline-desc">
+            Track what you have, what's running low, and what you need to buy. All in one place.
+            Never forget your pantry inventory at the store again.
+          </p>
+          <div class="pipeline-features">
+            <span class="pf-tag">Pantry inventory</span>
+            <span class="pf-tag">Smart shopping lists</span>
+            <span class="pf-tag">14 storage areas</span>
+            <span class="pf-tag">Expiry tracking</span>
+          </div>
+          <div class="pipeline-cta">
+            Learn more about PantryBaby →
+          </div>
+        </a>
+
+        <!-- BabyBlocks Core — In Planning -->
+        <a href="/coming-soon/babyblocks-core" class="pipeline-card glass pipeline-card--core">
+          <div class="pipeline-top">
+            <div class="pipeline-icon">🧩</div>
+            <span class="pipeline-status status-planning">In Planning</span>
+          </div>
+          <h2>BabyBlocks Core</h2>
+          <p class="pipeline-tagline">The hub that ties it all together.</p>
+          <p class="pipeline-desc">
+            One unified dashboard for your entire BabyBlocks life. Budget, pantry, and more,
+            surfaced in a single daily view with cross-app insights and Home Screen widgets.
+          </p>
+          <div class="pipeline-features">
+            <span class="pf-tag">Unified dashboard</span>
+            <span class="pf-tag">Cross-app insights</span>
+            <span class="pf-tag">Home Screen widgets</span>
+            <span class="pf-tag">Shared account</span>
+          </div>
+          <div class="pipeline-cta">
+            Learn more about BabyBlocks Core →
+          </div>
+        </a>
+      </div>
+
+      <p class="pipeline-note">
+        More apps are in the ideation stage. The ecosystem grows one problem at a time.
+        <a href="https://babyblocks.canny.io/feature-requests" target="_blank" rel="noopener noreferrer">Vote on what comes next →</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Philosophy bridge -->
+  <section class="philosophy section-sm">
+    <div class="container-sm">
+      <GlassCard accent padding="lg">
+        <div class="philosophy-inner">
+          <div class="philosophy-copy">
+            <h2>One problem at a time.</h2>
+            <p>
+              Every app in the BabyBlocks ecosystem is built around a single, well-defined problem.
+              We don't ship half-built feature sets or bundle things together just to look more valuable.
+              When PantryBaby ships, it will do one thing exceptionally well: help you know what's in your kitchen.
+            </p>
+            <p>
+              The ecosystem grows slowly and deliberately. That's the point.
+            </p>
+          </div>
+        </div>
+      </GlassCard>
+    </div>
+  </section>
+
+  <!-- BudgetBaby already here -->
+  <section class="live-now section-sm">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="eyebrow">Available now</span>
+        <h2>The flagship is already here.</h2>
+        <p>BudgetBaby is live on the App Store right now and ready to go.</p>
+      </div>
+
+      <div class="live-grid">
+        <GlassCard glow>
+          <div class="live-item">
+            <div class="live-icon">💰</div>
+            <h3>Know your Safe to Spend</h3>
+            <p>One number that tells you exactly how much you can spend today without breaking your budget.</p>
+          </div>
+        </GlassCard>
+        <GlassCard glow>
+          <div class="live-item">
+            <div class="live-icon">💸</div>
+            <h3>Money Pools</h3>
+            <p>Track Cash, Debit, Credit, and Savings as separate pools. See where your money actually lives, not just a single bank balance.</p>
+          </div>
+        </GlassCard>
+        <GlassCard glow>
+          <div class="live-item">
+            <div class="live-icon">🔒</div>
+            <h3>Privacy by default</h3>
+            <p>Your budget data stays on your device. Cloud backup is optional and encrypted before it ever leaves. We can't read it.</p>
+          </div>
+        </GlassCard>
+      </div>
+
+      <div class="live-cta">
+        <a href="/budgetbaby" class="btn btn-primary btn-lg">Explore BudgetBaby →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Roadmap teaser -->
+  <section class="roadmap-teaser section-sm">
+    <div class="container-sm">
+      <GlassCard>
+        <div class="roadmap-teaser-inner">
+          <div class="roadmap-teaser-icon">🗺️</div>
+          <div>
+            <h3>See what's coming to BudgetBaby.</h3>
+            <p>
+              Household budgets, Android, a web dashboard, and more are on the roadmap.
+              The full breakdown lives on the roadmap page, along with where each app fits into the bigger picture.
+            </p>
+            <a href="/coming-soon/roadmap" class="btn btn-secondary" style="margin-top: var(--space-4);">
+              View the full roadmap →
+            </a>
+          </div>
+        </div>
+      </GlassCard>
+    </div>
+  </section>
+</LayoutCore>
+
+<style>
+  .coming-hero {
+    padding-top: calc(var(--space-24) + var(--space-8));
+    padding-bottom: var(--space-12);
+  }
+
+  .coming-copy {
+    max-width: 680px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .coming-copy h1 {
+    font-size: clamp(var(--text-4xl), 7vw, var(--text-7xl));
+    line-height: var(--leading-tight);
+    letter-spacing: -0.03em;
+  }
+
+  .coming-sub {
+    font-size: var(--text-xl);
+    color: var(--text-secondary);
+    max-width: 52ch;
+  }
+
+  /* Pipeline */
+  .pipeline-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-5);
+    align-items: start;
+    margin-bottom: var(--space-6);
+  }
+
+  .pipeline-card {
+    padding: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .pipeline-card--pantry {
+    border-color: rgba(74, 123, 110, 0.22);
+    background: rgba(74, 123, 110, 0.07);
+  }
+
+  .pipeline-card--core {
+    border-color: var(--glass-border-accent);
+    background: var(--accent-dim);
+    opacity: 0.88;
+  }
+
+  .pipeline-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--glow-md);
+    opacity: 1;
+  }
+
+  .pipeline-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .pipeline-icon { font-size: 2.4rem; line-height: 1; }
+
+  .pipeline-status {
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-full);
+  }
+
+  .status-active {
+    background: rgba(52, 211, 153, 0.12);
+    color: var(--green);
+    border: 1px solid rgba(52, 211, 153, 0.22);
+  }
+
+  .status-planning {
+    background: rgba(107, 95, 199, 0.1);
+    color: var(--accent);
+    border: 1px solid rgba(107, 95, 199, 0.2);
+  }
+
+  .pipeline-card h2 {
+    font-size: var(--text-2xl);
+    letter-spacing: -0.02em;
+  }
+
+  .pipeline-tagline {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-semibold);
+    color: var(--text-primary) !important;
+    margin: 0 !important;
+  }
+
+  .pipeline-desc {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  .pipeline-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-2);
+  }
+
+  .pf-tag {
+    font-size: var(--text-xs);
+    padding: var(--space-1) var(--space-3);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-full);
+    color: var(--text-muted);
+  }
+
+  .pipeline-cta {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    color: var(--accent);
+    margin-top: var(--space-2);
+  }
+
+  .pipeline-note {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    text-align: center;
+    line-height: var(--leading-relaxed);
+  }
+
+  /* Philosophy */
+  .philosophy-inner { display: flex; flex-direction: column; gap: var(--space-4); }
+  .philosophy-copy h2 { font-size: var(--text-2xl); margin-bottom: var(--space-4); }
+  .philosophy-copy p {
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* Live now */
+  .live-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+    margin-bottom: var(--space-10);
+  }
+
+  .live-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .live-icon { font-size: 2rem; line-height: 1; }
+  .live-item h3 { font-size: var(--text-lg); }
+
+  .live-item p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  .live-cta {
+    display: flex;
+    justify-content: center;
+  }
+
+  .roadmap-teaser-inner {
+    display: flex;
+    gap: var(--space-6);
+    align-items: flex-start;
+  }
+
+  .roadmap-teaser-icon { font-size: 2.5rem; line-height: 1; flex-shrink: 0; }
+
+  .roadmap-teaser-inner h3 { font-size: var(--text-xl); margin-bottom: var(--space-3); }
+
+  .roadmap-teaser-inner p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  @media (max-width: 860px) {
+    .pipeline-grid { grid-template-columns: 1fr; }
+    .live-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 600px) {
+    .live-grid { grid-template-columns: 1fr; }
+    .roadmap-teaser-inner { flex-direction: column; }
+  }
+</style>

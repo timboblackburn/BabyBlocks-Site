@@ -1,0 +1,563 @@
+---
+import LayoutCore from '../../layouts/LayoutCore.astro';
+import GlassCard from '../../components/GlassCard.astro';
+---
+
+<LayoutCore
+  title="BabyBlocks Core: Coming Soon | BabyBlocks"
+  description="BabyBlocks Core is the unified hub of the BabyBlocks ecosystem. One dashboard for your entire daily life: budget, pantry, and everything that comes next. Coming after PantryBaby."
+  canonical="/coming-soon/babyblocks-core"
+>
+  <!-- Hero -->
+  <section class="core-hero section">
+    <div class="container">
+      <div class="core-inner">
+        <div class="core-copy">
+          <div class="label-chip">In Planning</div>
+          <h1>BabyBlocks<br /><span class="text-gradient">Core</span></h1>
+          <p class="core-tagline">The hub that ties it all together.</p>
+          <p class="core-desc">
+            As the BabyBlocks ecosystem grows, so does the need for a single place to see the whole picture.
+            BabyBlocks Core is that place. A unified daily view that brings your budget, pantry,
+            and every future app into one calm, coherent dashboard.
+          </p>
+          <div class="core-timeline">
+            <div class="timeline-item timeline-done">
+              <span class="tl-dot"></span>
+              <div>
+                <p class="tl-label">BudgetBaby</p>
+                <p class="tl-status">Live on the App Store</p>
+              </div>
+            </div>
+            <div class="timeline-item timeline-active">
+              <span class="tl-dot"></span>
+              <div>
+                <p class="tl-label">PantryBaby</p>
+                <p class="tl-status">In development</p>
+              </div>
+            </div>
+            <div class="timeline-item timeline-next">
+              <span class="tl-dot"></span>
+              <div>
+                <p class="tl-label">BabyBlocks Core</p>
+                <p class="tl-status">After PantryBaby ships</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="core-visual" aria-hidden="true">
+          <div class="core-mock glass">
+            <div class="mock-header">
+              <span class="mock-icon">🧩</span>
+              <span class="mock-name">BabyBlocks Core</span>
+            </div>
+
+            <div class="mock-greeting">
+              <p class="mock-date">Good morning</p>
+              <p class="mock-sub">Here's your day at a glance</p>
+            </div>
+
+            <div class="mock-cards">
+              <div class="mock-card mock-card--budget">
+                <div class="mc-header">
+                  <span class="mc-icon">💰</span>
+                  <span class="mc-app">BudgetBaby</span>
+                </div>
+                <p class="mc-value">$47<span class="mc-unit">/day</span></p>
+                <p class="mc-label">Safe to Spend</p>
+                <div class="mc-bar">
+                  <div class="mc-bar-fill" style="width: 62%"></div>
+                </div>
+              </div>
+
+              <div class="mock-card mock-card--pantry">
+                <div class="mc-header">
+                  <span class="mc-icon">🥗</span>
+                  <span class="mc-app">PantryBaby</span>
+                </div>
+                <p class="mc-value">8<span class="mc-unit"> items low</span></p>
+                <p class="mc-label">Shopping list ready</p>
+                <div class="mc-tags">
+                  <span class="mc-tag">Milk</span>
+                  <span class="mc-tag">Coffee</span>
+                  <span class="mc-tag">+6</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mock-insight">
+              <span class="mock-insight-icon">💡</span>
+              <p>You usually spend £90 at the supermarket. Your budget allows £104 this week.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What Core does -->
+  <section class="what-core section-sm">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="eyebrow">The concept</span>
+        <h2>One screen. Every app.</h2>
+        <p>BabyBlocks Core doesn't replace your individual apps. It amplifies them. It's the layer that sees the whole picture and tells you what matters today.</p>
+      </div>
+
+      <div class="core-features">
+        <GlassCard glow>
+          <div class="cf-item">
+            <div class="cf-icon">📊</div>
+            <h3>Unified daily dashboard</h3>
+            <p>
+              Your BudgetBaby Safe to Spend, PantryBaby shopping list status, and data from every
+              future BabyBlocks app, surfaced in one place every morning. No app-switching to get the big picture.
+            </p>
+          </div>
+        </GlassCard>
+
+        <GlassCard glow>
+          <div class="cf-item">
+            <div class="cf-icon">🔗</div>
+            <h3>Cross-app insights</h3>
+            <p>
+              When BudgetBaby and PantryBaby know about each other, things get smarter.
+              Core can flag that your grocery budget is healthy but your pantry suggests a big shop coming,
+              so you can plan ahead instead of being surprised.
+            </p>
+          </div>
+        </GlassCard>
+
+        <GlassCard glow>
+          <div class="cf-item">
+            <div class="cf-icon">📱</div>
+            <h3>Home Screen widgets</h3>
+            <p>
+              See your Safe to Spend and pantry status from the iOS Home Screen without opening a single app.
+              Small, medium, and large widget options for whatever fits your lock screen or Home Screen layout.
+            </p>
+          </div>
+        </GlassCard>
+
+        <GlassCard glow>
+          <div class="cf-item">
+            <div class="cf-icon">🔔</div>
+            <h3>Unified notification centre</h3>
+            <p>
+              All BabyBlocks notifications in one place. Budget period ending, items running low, bills due.
+              One notification centre with control over what matters to you, not a flood from three separate apps.
+            </p>
+          </div>
+        </GlassCard>
+
+        <GlassCard glow>
+          <div class="cf-item">
+            <div class="cf-icon">🔑</div>
+            <h3>Single shared account</h3>
+            <p>
+              One BabyBlocks account. One sign-in. Your data across every app, with household sharing,
+              cloud sync, and backup managed from a single settings panel instead of per-app configuration.
+            </p>
+          </div>
+        </GlassCard>
+
+        <GlassCard glow>
+          <div class="cf-item">
+            <div class="cf-icon">🎯</div>
+            <h3>Life goals, not just app goals</h3>
+            <p>
+              Budget less and eat better. Save £200 before the summer holiday. Reduce food waste this month.
+              Core lets you set goals that span multiple apps and tracks progress across all of them together.
+            </p>
+          </div>
+        </GlassCard>
+      </div>
+    </div>
+  </section>
+
+  <!-- The philosophy -->
+  <section class="philosophy section-sm">
+    <div class="container-sm">
+      <div class="section-header centered">
+        <span class="eyebrow">Why now</span>
+        <h2>The ecosystem needs a home.</h2>
+      </div>
+
+      <div class="phil-grid">
+        <GlassCard padding="lg">
+          <div class="phil-item">
+            <h3>Built last, not first</h3>
+            <p>
+              We deliberately didn't build Core first. A hub app with nothing to connect is just a marketing page.
+              We're building the individual apps first, each one complete and valuable on its own,
+              then connecting them when there's actually something worth connecting.
+            </p>
+            <p>
+              BabyBlocks Core ships after PantryBaby because that's when the connection becomes real.
+              Two apps. Real cross-app data. Genuine insight.
+            </p>
+          </div>
+        </GlassCard>
+
+        <GlassCard padding="lg">
+          <div class="phil-item">
+            <h3>Clarity at scale</h3>
+            <p>
+              Every individual app is designed to answer one question clearly. BabyBlocks Core is
+              designed to answer a bigger question: <em>"How am I actually doing today?"</em>
+            </p>
+            <p>
+              As the ecosystem grows, Core grows with it. Each new app adds a new dimension to the daily
+              picture without ever turning it into a dashboard you have to decode.
+            </p>
+          </div>
+        </GlassCard>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stay in the loop -->
+  <section class="notify-section section-sm">
+    <div class="container-sm">
+      <GlassCard accent padding="lg">
+        <div class="notify-inner">
+          <div>
+            <p class="notify-label">Stay in the loop</p>
+            <h2>First, let's ship PantryBaby.</h2>
+            <p>
+              BabyBlocks Core comes after PantryBaby. The best thing you can do right now is
+              follow along as PantryBaby develops, and let us know what you want Core to do.
+            </p>
+            <div class="notify-actions">
+              <a href="/coming-soon/pantrybaby" class="btn btn-primary">
+                Follow PantryBaby →
+              </a>
+              <a href="https://babyblocks.canny.io/feature-requests" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+                Request a Core feature →
+              </a>
+            </div>
+          </div>
+          <div class="notify-icon" aria-hidden="true">🧩</div>
+        </div>
+      </GlassCard>
+    </div>
+  </section>
+</LayoutCore>
+
+<style>
+  /* Hero */
+  .core-hero {
+    padding-top: calc(var(--space-20) + var(--space-8));
+  }
+
+  .core-inner {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: var(--space-16);
+    align-items: center;
+  }
+
+  .core-copy {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .core-copy h1 {
+    font-size: clamp(var(--text-5xl), 8vw, var(--text-7xl));
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+  }
+
+  .core-tagline {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-semibold);
+    color: var(--text-primary) !important;
+    margin: 0 !important;
+  }
+
+  .core-desc {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    max-width: 52ch;
+    line-height: var(--leading-relaxed);
+  }
+
+  /* Timeline */
+  .core-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding-top: var(--space-2);
+  }
+
+  .timeline-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .tl-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .timeline-done .tl-dot   { background: var(--green); }
+  .timeline-active .tl-dot { background: #C8922A; box-shadow: 0 0 0 3px rgba(200, 146, 42, 0.2); }
+  .timeline-next .tl-dot   { background: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
+
+  .tl-label {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  .tl-status {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  .timeline-done  .tl-label { color: var(--text-secondary); }
+  .timeline-active .tl-label { color: #C8922A; }
+  .timeline-next  .tl-label { color: var(--accent); }
+
+  /* Mock UI */
+  .core-mock {
+    padding: var(--space-6);
+    background: rgba(255, 255, 255, 0.78) !important;
+    border-color: var(--glass-border-accent) !important;
+    box-shadow: 0 0 40px rgba(107, 95, 199, 0.1), var(--shadow-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .mock-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-base);
+    font-weight: var(--weight-bold);
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+
+  .mock-icon { font-size: 1.3rem; }
+
+  .mock-greeting { padding: var(--space-1) 0; }
+
+  .mock-date {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-bold);
+    color: var(--text-primary);
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .mock-sub {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  .mock-cards {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .mock-card {
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--glass-border);
+    background: rgba(0,0,0,0.02);
+  }
+
+  .mc-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-2);
+  }
+
+  .mc-icon { font-size: 1rem; }
+
+  .mc-app {
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .mc-value {
+    font-size: var(--text-2xl);
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1;
+    margin: 0 0 var(--space-1);
+    letter-spacing: -0.02em;
+  }
+
+  .mc-unit {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    color: var(--text-muted);
+  }
+
+  .mc-label {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    margin: 0 0 var(--space-3);
+  }
+
+  .mc-bar {
+    height: 4px;
+    background: var(--glass-border);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+  }
+
+  .mc-bar-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: var(--radius-full);
+  }
+
+  .mock-card--pantry .mc-bar-fill { background: #4A7B6E; }
+
+  .mc-tags {
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+  }
+
+  .mc-tag {
+    font-size: var(--text-2xs);
+    padding: 2px var(--space-2);
+    background: rgba(74, 123, 110, 0.1);
+    border: 1px solid rgba(74, 123, 110, 0.18);
+    border-radius: var(--radius-full);
+    color: #4A7B6E;
+    font-weight: var(--weight-semibold);
+  }
+
+  .mock-insight {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    background: rgba(107, 95, 199, 0.07);
+    border: 1px solid rgba(107, 95, 199, 0.15);
+    border-radius: var(--radius-md);
+  }
+
+  .mock-insight-icon { font-size: 1rem; flex-shrink: 0; line-height: 1.4; }
+
+  .mock-insight p {
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  /* Features */
+  .core-features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+  }
+
+  .cf-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .cf-icon { font-size: 2rem; line-height: 1; }
+  .cf-item h3 { font-size: var(--text-lg); }
+
+  .cf-item p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* Philosophy */
+  .phil-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-5);
+  }
+
+  .phil-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .phil-item h3 { font-size: var(--text-xl); }
+
+  .phil-item p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* Notify */
+  .notify-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-8);
+  }
+
+  .notify-label {
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: var(--space-2) !important;
+  }
+
+  .notify-inner h2 { font-size: var(--text-2xl); margin-bottom: var(--space-3); }
+
+  .notify-inner > div > p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-5);
+    line-height: var(--leading-relaxed);
+    max-width: 46ch;
+  }
+
+  .notify-actions {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+
+  .notify-icon { font-size: 4rem; line-height: 1; flex-shrink: 0; opacity: 0.45; }
+
+  @media (max-width: 1000px) {
+    .core-inner { grid-template-columns: 1fr; }
+    .core-visual { order: -1; max-width: 400px; }
+  }
+
+  @media (max-width: 900px) {
+    .core-features { grid-template-columns: repeat(2, 1fr); }
+    .phil-grid { grid-template-columns: 1fr; }
+    .notify-inner { flex-direction: column; align-items: flex-start; }
+    .notify-icon { display: none; }
+  }
+
+  @media (max-width: 600px) {
+    .core-features { grid-template-columns: 1fr; }
+    .notify-actions { flex-direction: column; }
+  }
+</style>

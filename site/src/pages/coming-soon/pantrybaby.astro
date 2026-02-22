@@ -1,0 +1,397 @@
+---
+import LayoutPantry from '../../layouts/LayoutPantry.astro';
+import GlassCard from '../../components/GlassCard.astro';
+---
+
+<LayoutPantry
+  title="PantryBaby: Coming Soon | BabyBlocks"
+  description="PantryBaby is coming soon from BabyBlocks: your grocery list and pantry memory. Track what you have, what's running low, and what you need. Get notified when it launches."
+  canonical="/coming-soon/pantrybaby"
+>
+  <section class="coming-hero section">
+    <div class="container">
+      <div class="coming-inner">
+        <div class="coming-copy">
+          <div class="label-chip">Coming Soon</div>
+          <h1>PantryBaby</h1>
+          <p class="coming-tagline">Your grocery list + pantry memory.</p>
+          <p class="coming-desc">
+            Never forget what you have. Never forget what you need. PantryBaby gives you a single,
+            always-up-to-date view of your pantry inventory and shopping list, so you can stop
+            doing that mental inventory check every time you're at the store.
+          </p>
+
+          <!-- Notify CTA -->
+          <div class="notify-section">
+            <h2 class="notify-heading">Get notified at launch.</h2>
+            <p class="notify-sub">No spam. Just a single email when PantryBaby is available.</p>
+            <GlassCard padding="md">
+              <div class="form-placeholder-inner">
+                <span class="form-placeholder-icon">📬</span>
+                <div>
+                  <p class="form-placeholder-label">Email signup coming soon</p>
+                  <p class="form-placeholder-note">
+                    We'll be setting up our notification list shortly.<br />
+                    In the meantime, send us a note at <a href="mailto:support@babyblocks.io">support@babyblocks.io</a> to be added manually.
+                  </p>
+                </div>
+              </div>
+            </GlassCard>
+          </div>
+        </div>
+
+        <div class="coming-visual" aria-hidden="true">
+          <div class="pantry-mock glass">
+            <div class="mock-header">
+              <span class="mock-app-icon">🥗</span>
+              <span class="mock-app-name">PantryBaby</span>
+            </div>
+            <div class="mock-status-row">
+              <div class="mock-stat">
+                <span class="mock-stat-val">12</span>
+                <span class="mock-stat-label">On list</span>
+              </div>
+              <div class="mock-stat">
+                <span class="mock-stat-val status-low">8</span>
+                <span class="mock-stat-label">Running low</span>
+              </div>
+              <div class="mock-stat">
+                <span class="mock-stat-val status-out">3</span>
+                <span class="mock-stat-label">Out of stock</span>
+              </div>
+            </div>
+            <div class="mock-items">
+              <div class="mock-item">
+                <span class="mock-item-dot dot-low"></span>
+                <span>Whole milk</span>
+                <span class="mock-item-loc">Refrigerator</span>
+              </div>
+              <div class="mock-item">
+                <span class="mock-item-dot dot-out"></span>
+                <span>Pasta</span>
+                <span class="mock-item-loc">Pantry</span>
+              </div>
+              <div class="mock-item">
+                <span class="mock-item-dot dot-ok"></span>
+                <span>Olive oil</span>
+                <span class="mock-item-loc">Kitchen</span>
+              </div>
+              <div class="mock-item">
+                <span class="mock-item-dot dot-low"></span>
+                <span>Coffee</span>
+                <span class="mock-item-loc">Pantry</span>
+              </div>
+              <div class="mock-item">
+                <span class="mock-item-dot dot-out"></span>
+                <span>Paper towels</span>
+                <span class="mock-item-loc">Utilities</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What's coming -->
+  <section class="whats-coming section-sm">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="eyebrow">What to expect</span>
+        <h2>Built for real kitchens.</h2>
+        <p>PantryBaby tracks your inventory across 14 home storage areas, helps you build smarter shopping lists, and reduces the food you waste.</p>
+      </div>
+
+      <div class="coming-features">
+        <GlassCard glow>
+          <div class="cf-item">
+            <div class="cf-icon">📦</div>
+            <h3>Pantry inventory</h3>
+            <p>Track every item in your kitchen, pantry, fridge, freezer, and more with In Stock / Low / Out status at a glance. Expiration date tracking and alerts included.</p>
+          </div>
+        </GlassCard>
+
+        <GlassCard glow>
+          <div class="cf-item">
+            <div class="cf-icon">🛒</div>
+            <h3>Smart shopping lists</h3>
+            <p>Build a list manually or let PantryBaby generate one from your low-stock and out-of-stock items. Per-item store preferences included.</p>
+          </div>
+        </GlassCard>
+
+        <GlassCard glow>
+          <div class="cf-item">
+            <div class="cf-icon">🏪</div>
+            <h3>Store-sorted shopping</h3>
+            <p>Map aisles as you shop, and your list auto-sorts by aisle next time. Shop faster, backtrack less. (Premium feature.)</p>
+          </div>
+        </GlassCard>
+
+        <GlassCard glow>
+          <div class="cf-item">
+            <div class="cf-icon">🔄</div>
+            <h3>Recurring items</h3>
+            <p>Set weekly milk and monthly cleaning supplies to auto-add to your list on schedule. Never forget the basics again.</p>
+          </div>
+        </GlassCard>
+
+        <GlassCard glow>
+          <div class="cf-item">
+            <div class="cf-icon">🌍</div>
+            <h3>18-region store support</h3>
+            <p>Pre-loaded with region-specific store lists for 18 regions worldwide, from the UAE to the USA to Australia. Local shopping, simplified.</p>
+          </div>
+        </GlassCard>
+
+        <GlassCard glow>
+          <div class="cf-item">
+            <div class="cf-icon">🧠</div>
+            <h3>Smart suggestions</h3>
+            <p>Based on your purchase history, PantryBaby notices when you're overdue for something you usually buy and adds it to your list automatically. (Premium feature.)</p>
+          </div>
+        </GlassCard>
+      </div>
+    </div>
+  </section>
+
+  <!-- BudgetBaby link -->
+  <section class="bb-cta section-sm">
+    <div class="container-sm">
+      <GlassCard accent padding="lg">
+        <div class="bb-cta-inner">
+          <div>
+            <p class="bb-cta-label">Available now</p>
+            <h2>Looking for the budgeting app?</h2>
+            <p>BudgetBaby, the BabyBlocks flagship, is available on the App Store today.</p>
+            <a href="/budgetbaby" class="btn btn-primary" style="margin-top: var(--space-4);">
+              Explore BudgetBaby →
+            </a>
+          </div>
+          <div class="bb-icon" aria-hidden="true">💰</div>
+        </div>
+      </GlassCard>
+    </div>
+  </section>
+</LayoutPantry>
+
+<style>
+  .coming-hero {
+    padding-top: calc(var(--space-20) + var(--space-8));
+  }
+
+  .coming-inner {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: var(--space-16);
+    align-items: center;
+  }
+
+  .coming-copy {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .coming-copy h1 {
+    font-size: clamp(var(--text-5xl), 8vw, var(--text-7xl));
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+    background: linear-gradient(135deg, #4A7B6E, #3D9970, #6AAF96);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .coming-tagline {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-semibold);
+    color: var(--text-primary) !important;
+    margin: 0 !important;
+  }
+
+  .coming-desc {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    max-width: 50ch;
+  }
+
+  /* Notify section */
+  .notify-section { display: flex; flex-direction: column; gap: var(--space-3); }
+
+  .notify-heading {
+    font-size: var(--text-xl);
+    font-weight: var(--weight-semibold);
+  }
+
+  .notify-sub {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    margin: 0 !important;
+  }
+
+  .form-placeholder-inner {
+    display: flex;
+    gap: var(--space-4);
+    align-items: flex-start;
+  }
+
+  .form-placeholder-icon { font-size: 1.8rem; line-height: 1; flex-shrink: 0; }
+
+  .form-placeholder-label {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    color: var(--text-primary) !important;
+    margin-bottom: var(--space-2) !important;
+  }
+
+  .form-placeholder-note {
+    font-size: var(--text-xs) !important;
+    color: var(--text-muted) !important;
+    line-height: var(--leading-relaxed) !important;
+    margin: 0 !important;
+  }
+
+  /* Pantry mock */
+  .pantry-mock {
+    padding: var(--space-6);
+    background: rgba(255, 255, 255, 0.75) !important;
+    border-color: rgba(74, 123, 110, 0.2) !important;
+    box-shadow: 0 0 40px rgba(74, 123, 110, 0.1), var(--shadow-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .mock-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-base);
+    font-weight: var(--weight-semibold);
+    color: var(--text-primary);
+  }
+
+  .mock-app-icon { font-size: 1.3rem; }
+
+  .mock-status-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+    padding: var(--space-3);
+    background: rgba(0,0,0,0.03);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--glass-border);
+  }
+
+  .mock-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-1);
+  }
+
+  .mock-stat-val {
+    font-size: var(--text-2xl);
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1;
+  }
+
+  .mock-stat-val.status-low { color: var(--yellow); }
+  .mock-stat-val.status-out { color: var(--red); }
+
+  .mock-stat-label {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    text-align: center;
+  }
+
+  .mock-items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    border-top: 1px solid var(--glass-border);
+    padding-top: var(--space-3);
+  }
+
+  .mock-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+  }
+
+  .mock-item-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .dot-ok  { background: var(--green); }
+  .dot-low { background: var(--yellow); }
+  .dot-out { background: var(--red); }
+
+  .mock-item-loc {
+    margin-left: auto;
+    font-size: var(--text-xs);
+    color: var(--text-faint);
+  }
+
+  /* Coming features */
+  .coming-features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+  }
+
+  .cf-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .cf-icon { font-size: 2rem; line-height: 1; }
+
+  .cf-item h3 { font-size: var(--text-lg); }
+
+  .cf-item p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* BB CTA */
+  .bb-cta-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-8);
+  }
+
+  .bb-cta-label {
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: var(--space-2) !important;
+  }
+
+  .bb-cta-inner h2 { font-size: var(--text-2xl); margin-bottom: var(--space-2); }
+  .bb-cta-inner > div > p { font-size: var(--text-sm); color: var(--text-secondary); margin: 0; }
+
+  .bb-icon { font-size: 4rem; line-height: 1; flex-shrink: 0; opacity: 0.5; }
+
+  @media (max-width: 900px) {
+    .coming-inner { grid-template-columns: 1fr; }
+    .coming-visual { order: -1; max-width: 340px; }
+    .coming-features { grid-template-columns: repeat(2, 1fr); }
+    .bb-cta-inner { flex-direction: column; }
+    .bb-icon { display: none; }
+  }
+
+  @media (max-width: 600px) {
+    .coming-features { grid-template-columns: 1fr; }
+  }
+</style>

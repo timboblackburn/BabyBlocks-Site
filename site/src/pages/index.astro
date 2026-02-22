@@ -1,0 +1,442 @@
+---
+import Layout from '../layouts/LayoutCore.astro';
+import GlassCard from '../components/GlassCard.astro';
+import CTASection from '../components/CTASection.astro';
+---
+
+<Layout
+  title="BabyBlocks: Simple iOS Apps for a Calmer Life"
+  description="BabyBlocks is a suite of simple, visual iOS apps designed to bring clarity and calm to everyday life. BudgetBaby is the flagship, now available on the App Store."
+  canonical="/"
+>
+  <!-- Hero -->
+  <section class="hero section">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <div class="label-chip">Now on the App Store</div>
+          <h1>Know what's safe<br /><span class="text-gradient">to spend today.</span></h1>
+          <p class="hero-sub">
+            BudgetBaby gives you one clear number every day. It factors in your bills, your savings goals,
+            and your remaining budget so you never have to guess. Set up in 3 minutes.
+          </p>
+          <div class="hero-actions">
+            <a href="/budgetbaby" class="btn btn-primary btn-lg">
+              Explore BudgetBaby
+            </a>
+            <a href="/budgetbaby/features" class="btn btn-secondary btn-lg">
+              See all features
+            </a>
+          </div>
+          <p class="hero-note">Free to download · iOS 17+ · Premium from $4.99/mo</p>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="phone-mockup glass">
+            <div class="sts-mock">
+              <div class="sts-label">Safe to Spend Today</div>
+              <div class="sts-amount">$42<span class="sts-cents">.50</span></div>
+              <div class="sts-bar">
+                <div class="sts-bar-fill" style="width: 62%"></div>
+              </div>
+              <div class="sts-pools">
+                <div class="sts-pool">
+                  <span>💵</span>
+                  <span>Cash</span>
+                  <span class="sts-pool-val">$124</span>
+                </div>
+                <div class="sts-pool">
+                  <span>🏦</span>
+                  <span>Debit</span>
+                  <span class="sts-pool-val">$843</span>
+                </div>
+                <div class="sts-pool">
+                  <span>💳</span>
+                  <span>Credit</span>
+                  <span class="sts-pool-val">$210</span>
+                </div>
+                <div class="sts-pool">
+                  <span>🔒</span>
+                  <span>Savings</span>
+                  <span class="sts-pool-val">$1,200</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Apps Grid -->
+  <section class="apps-section section-sm">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="eyebrow">The Ecosystem</span>
+        <h2>Apps built for real life</h2>
+        <p>Each BabyBlocks app solves one problem well. No feature sprawl. No subscription bundles for things you don't need.</p>
+      </div>
+
+      <div class="apps-grid">
+        <!-- BudgetBaby — Live -->
+        <a href="/budgetbaby" class="app-card glass app-card--featured">
+          <div class="app-card-header">
+            <div class="app-icon app-icon--budget">💰</div>
+            <div class="app-status app-status--live">Available Now</div>
+          </div>
+          <h3>BudgetBaby</h3>
+          <p>See where your money goes. Know what's safe to spend today. Plan without the stress.</p>
+          <div class="app-meta">
+            <span>iOS 17+</span>
+            <span>·</span>
+            <span>Free to start</span>
+            <span>·</span>
+            <span>Premium $4.99/mo</span>
+          </div>
+          <div class="app-cta">
+            Explore BudgetBaby →
+          </div>
+        </a>
+
+        <!-- PantryBaby — Coming Soon -->
+        <div class="app-card glass app-card--soon">
+          <div class="app-card-header">
+            <div class="app-icon app-icon--pantry">🥗</div>
+            <div class="app-status app-status--soon">Coming Soon</div>
+          </div>
+          <h3>PantryBaby</h3>
+          <p>Your grocery list and pantry memory. Track what you have, what's running low, and what you need. Without having to think about it.</p>
+          <div class="app-meta">
+            <span>In development</span>
+          </div>
+          <a href="/coming-soon/pantrybaby" class="app-cta-link">
+            Get notified →
+          </a>
+        </div>
+
+        <!-- Future -->
+        <div class="app-card glass app-card--future">
+          <div class="app-card-header">
+            <div class="app-icon app-icon--future">🧩</div>
+            <div class="app-status app-status--future">In Planning</div>
+          </div>
+          <h3>More coming</h3>
+          <p>The ecosystem is expanding. Each new app will follow the same principle: one problem, solved simply.</p>
+          <div class="app-meta">
+            <span>Stay tuned</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Philosophy -->
+  <section class="philosophy section-sm">
+    <div class="container-sm">
+      <div class="section-header centered">
+        <span class="eyebrow">Our Approach</span>
+        <h2>Built on one principle</h2>
+      </div>
+      <div class="principles-grid">
+        <GlassCard glow>
+          <div class="principle">
+            <div class="principle-icon">🎯</div>
+            <h3>One problem at a time</h3>
+            <p>Every app in the ecosystem tackles a single, well-defined problem. No sprawling all-in-one tools that do everything poorly.</p>
+          </div>
+        </GlassCard>
+        <GlassCard glow>
+          <div class="principle">
+            <div class="principle-icon">👁️</div>
+            <h3>Clarity over cleverness</h3>
+            <p>Design that shows you what you need to see, instantly. No dashboards full of charts you'll never read.</p>
+          </div>
+        </GlassCard>
+        <GlassCard glow>
+          <div class="principle">
+            <div class="principle-icon">🔒</div>
+            <h3>Privacy by default</h3>
+            <p>Your data lives on your device. Cloud features are optional and always opt-in. We don't sell your information.</p>
+          </div>
+        </GlassCard>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    heading="Start with BudgetBaby."
+    subheading="The flagship app is live on the App Store. Know your Safe to Spend number today."
+    primaryLabel="Download BudgetBaby"
+    primaryHref="#app-store"
+    secondaryLabel="Learn more"
+    secondaryHref="/budgetbaby"
+  />
+</Layout>
+
+<style>
+  /* Hero */
+  .hero { padding-top: calc(var(--space-20) + var(--space-8)); padding-bottom: var(--space-16); }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: var(--space-16);
+    align-items: center;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .hero-content h1 {
+    font-size: clamp(var(--text-4xl), 6vw, var(--text-6xl));
+    line-height: var(--leading-tight);
+    letter-spacing: -0.03em;
+  }
+
+  .hero-sub {
+    font-size: clamp(var(--text-base), 2vw, var(--text-lg));
+    color: var(--text-secondary);
+    max-width: 48ch;
+    line-height: var(--leading-relaxed);
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .hero-note {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  /* Phone mockup */
+  .phone-mockup {
+    border-radius: var(--radius-2xl);
+    padding: var(--space-6);
+    background: var(--accent-dim);
+    border-color: var(--accent-border);
+    box-shadow: var(--glow-md), var(--shadow-xl);
+  }
+
+  .sts-mock { display: flex; flex-direction: column; gap: var(--space-4); }
+
+  .sts-label {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .sts-amount {
+    font-size: 3.2rem;
+    font-weight: 800;
+    color: var(--green);
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .sts-cents { font-size: 1.8rem; opacity: 0.7; }
+
+  .sts-bar {
+    height: 6px;
+    background: var(--glass-border);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .sts-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-light));
+    border-radius: 3px;
+  }
+
+  .sts-pools {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding-top: var(--space-2);
+    border-top: 1px solid var(--glass-border);
+  }
+
+  .sts-pool {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+  }
+
+  .sts-pool-val {
+    margin-left: auto;
+    font-weight: var(--weight-semibold);
+    color: var(--text-primary);
+    font-size: var(--text-sm);
+  }
+
+  /* Apps Grid */
+  .apps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+  }
+
+  .app-card {
+    padding: var(--space-6);
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    transition: all 0.2s ease;
+  }
+
+  .app-card:hover { transform: translateY(-3px); }
+
+  .app-card--featured {
+    border-color: var(--accent-border);
+    background: var(--accent-dim);
+  }
+
+  .app-card--featured:hover {
+    border-color: rgba(139, 92, 246, 0.35);
+    box-shadow: var(--glow-md);
+  }
+
+  .app-card--soon, .app-card--future {
+    opacity: 0.75;
+  }
+
+  .app-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-2);
+  }
+
+  .app-icon {
+    width: 52px; height: 52px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+  }
+
+  .app-icon--budget { background: rgba(139, 92, 246, 0.15); }
+  .app-icon--pantry { background: rgba(52, 211, 153, 0.12); }
+  .app-icon--future { background: rgba(255,255,255,0.05); }
+
+  .app-status {
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-full);
+    letter-spacing: 0.04em;
+  }
+
+  .app-status--live {
+    background: rgba(52, 211, 153, 0.15);
+    color: var(--green);
+    border: 1px solid rgba(52, 211, 153, 0.25);
+  }
+
+  .app-status--soon {
+    background: rgba(251, 191, 36, 0.12);
+    color: var(--yellow);
+    border: 1px solid rgba(251, 191, 36, 0.2);
+  }
+
+  .app-status--future {
+    background: var(--glass-bg);
+    color: var(--text-muted);
+    border: 1px solid var(--glass-border);
+  }
+
+  .app-card h3 {
+    font-size: var(--text-xl);
+    color: var(--text-primary);
+  }
+
+  .app-card p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    flex: 1;
+    line-height: var(--leading-relaxed);
+  }
+
+  .app-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    margin-top: auto;
+  }
+
+  .app-cta {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    color: var(--accent-light);
+    margin-top: var(--space-2);
+  }
+
+  .app-cta-link {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    color: var(--text-muted);
+    text-decoration: none;
+    margin-top: var(--space-2);
+    display: inline-block;
+    transition: color 0.15s;
+  }
+
+  .app-cta-link:hover { color: var(--text-secondary); }
+
+  /* Principles */
+  .principles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+  }
+
+  .principle {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .principle-icon {
+    font-size: 2rem;
+    line-height: 1;
+    margin-bottom: var(--space-1);
+  }
+
+  .principle h3 {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-semibold);
+  }
+
+  .principle p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-visual { order: -1; max-width: 320px; }
+    .apps-grid { grid-template-columns: 1fr; }
+    .principles-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .hero-actions { flex-direction: column; }
+    .hero-actions .btn { text-align: center; justify-content: center; }
+  }
+</style>

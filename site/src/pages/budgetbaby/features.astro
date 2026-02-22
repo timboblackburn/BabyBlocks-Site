@@ -1,0 +1,314 @@
+---
+import Layout from '../../layouts/LayoutCore.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const features = [
+  {
+    icon: '🎯',
+    tag: 'Core',
+    title: 'Safe to Spend',
+    what: 'A single daily number that answers the question: "How much can I spend right now without breaking my budget?"',
+    why: 'Most budgeting apps show you what you\'ve spent. BudgetBaby shows you what you have left, adjusted for upcoming bills and your savings reserve, divided by days remaining. It\'s actionable, not historical.',
+    replaces: 'Mentally doing math before every purchase. Checking your bank balance and guessing whether it\'s "safe."',
+    detail: 'Calculated as: (Remaining Budget − Unpaid Bills − Savings Reserve) ÷ Days Remaining. Visual indicators: green (healthy), yellow (moderate), orange (limited), red (critical).',
+  },
+  {
+    icon: '💸',
+    tag: 'Core',
+    title: 'Money Pools',
+    what: 'Four distinct pools for tracking where your money physically lives: Cash, Debit, Credit, and Savings.',
+    why: 'A bank balance doesn\'t tell the whole story. You might have $900 in your debit account but $600 of it earmarked for rent and $200 on a credit card you need to pay off. Money Pools make all of that visible at once.',
+    replaces: 'Opening three apps (bank, credit card, notes) to piece together your real financial picture.',
+    detail: 'Cash and Debit affect immediate liquidity. Credit spending counts toward your budget but doesn\'t reduce your pool balance today. Savings is protected and not counted in Safe to Spend.',
+  },
+  {
+    icon: '🏷️',
+    tag: 'Core',
+    title: 'Priority Categories',
+    what: 'Color-coded spending categories organised by financial importance: Critical (red), Important (yellow), Discretionary (green), and Buffer (gray).',
+    why: 'Not all spending is equal. Rent and groceries are different from dining and hobbies. Priority categories help you see your spending for what it actually is: obligations, necessities, and choices. Not just a list of numbers.',
+    replaces: 'Wondering if you "should" have bought something. Trying to categorise spending in your head after the fact.',
+    detail: 'Over 100 SF Symbol icons available. Each category supports an optional monthly budget. Context-aware status text shows "Budgeted," "Available to spend," or "Buffer available" depending on priority type.',
+  },
+  {
+    icon: '📋',
+    tag: 'Bills',
+    title: 'Recurring Bills',
+    what: 'Track every fixed expense (rent, utilities, insurance, subscriptions) with due dates, auto-pay tracking, and reminders.',
+    why: 'Bills exist whether you think about them or not. BudgetBaby factors your upcoming bills into Safe to Spend automatically. You\'ll never overspend because you forgot rent was coming.',
+    replaces: 'Calendar reminders that don\'t connect to your budget. Spreadsheet rows for bills that never get updated.',
+    detail: 'Frequencies: weekly, bi-weekly, monthly, quarterly, semi-annually, annually. Reminders: 1, 3, or 7 days before. Status: Upcoming, Due, Paid. Payment history tracked per bill.',
+  },
+  {
+    icon: '📱',
+    tag: 'Bills',
+    title: 'Subscription Tracking',
+    what: 'A dedicated tracker for subscription services with pre-populated providers (Netflix, Spotify, and more) and custom entry.',
+    why: 'Subscriptions are the hidden drain. Most people underestimate their monthly subscription spend by 40 to 60 percent. BudgetBaby gives you a single view of every subscription, its billing date, and monthly/annual cost.',
+    replaces: 'The vague sense that you\'re paying for something you don\'t use but can\'t remember what.',
+    detail: 'Next billing date tracking, monthly and annual cost calculations, subscription audit insights. Premium feature: full subscription analytics in Insights.',
+  },
+  {
+    icon: '🎯',
+    tag: 'Savings',
+    title: 'Savings Goals',
+    what: 'Visual progress rings for financial goals (emergency fund, vacation, large purchase, or custom) with milestone celebrations.',
+    why: 'Saving money without a target is hard. BudgetBaby reserves your savings budget from Safe to Spend so it doesn\'t accidentally get spent. Then it makes progress visible so you stay motivated.',
+    replaces: 'A savings account with no label. Transferring "whatever\'s left" at the end of the month (usually nothing).',
+    detail: 'Goal types: Emergency Fund, Vacation, Large Purchase, or Custom. Progress rings with milestone celebrations at 25%, 50%, 75%, 100%. Target date countdown. Full contribution history.',
+  },
+  {
+    icon: '💰',
+    tag: 'Savings',
+    title: 'Savings Transfers',
+    what: 'Move money to and from your Savings pool with a tap, choosing the source or destination (Cash or Debit).',
+    why: 'Tracking a savings goal is one thing. Actually moving money to it is another. BudgetBaby\'s transfer system validates your available balance before allowing the transfer. No over-committing.',
+    replaces: 'Manual bank transfers that break your budget tracking. Forgetting to actually fund the goal you set.',
+    detail: '"Add to Savings" selects source (Cash or Debit) and reduces that pool balance. "Use All" quick action for full transfers. Full audit trail via MoneyTransfer records.',
+  },
+  {
+    icon: '📅',
+    tag: 'Planning',
+    title: 'Monthly Archive',
+    what: 'A read-only history of every past budget period: what you spent, on what, how your pools ended, and whether you met your savings target.',
+    why: 'You can\'t improve what you don\'t measure. The archive lets you compare this month to last month, spot patterns, and understand how your decisions played out over time.',
+    replaces: 'Nothing, really. Most people just forget what they spent. This is the accountability view you never had.',
+    detail: 'Archived periods show: summary card (budget, spent, remaining), Pool Snapshot (Cash/Debit/Credit at close), Savings Recap, spending breakdown by priority, and transaction list. All read-only.',
+  },
+  {
+    icon: '📊',
+    tag: 'Insights',
+    title: 'Analytics & Insights',
+    what: 'Spending breakdown by category and priority, plus premium month-over-month trends and predictions.',
+    why: 'Good data leads to good decisions. The insights view helps you understand where your money habitually goes. Not just where it went this month.',
+    replaces: 'A spreadsheet you\'d have to build yourself. Or just guessing.',
+    detail: 'Free: spending by category, priority distribution, recent activity. Premium: month-over-month trends, spending predictions, subscription audit, budget health score.',
+  },
+  {
+    icon: '🗓️',
+    tag: 'Planning',
+    title: 'Calendar View',
+    what: 'A visual timeline of every financial obligation: bill due dates, subscription renewals, important expenses, and pay dates.',
+    why: 'Knowing that rent is due on the 1st is different from seeing it on a calendar next to everything else coming up that week. The calendar view makes financial collisions visible before they happen.',
+    replaces: 'Adding financial events to your personal calendar by hand.',
+    detail: 'Monthly overview, weekly detail, and day-specific views. Premium: sync to iOS Calendar for system-level visibility.',
+  },
+  {
+    icon: '🏠',
+    tag: 'Premium',
+    title: 'Household Sharing',
+    what: 'Collaborative family budgeting with role-based permissions: Admin, Member, and Viewer.',
+    why: 'Shared finances require shared visibility. Household sharing lets couples and families work from the same budget without one person guessing what the other spent.',
+    replaces: 'Texting each other "how much do we have left?" Multiple apps that don\'t talk to each other.',
+    detail: 'Admin: full management + invite members. Member: add transactions + view shared data. Viewer: read-only. Invite via 6-character code. Shared goals, shared bills, individual contribution tracking.',
+  },
+  {
+    icon: '☁️',
+    tag: 'Premium',
+    title: 'Cloud Backup & Restore',
+    what: 'Full encrypted backup of all your budget data to the cloud, with instant restore and no app restart required.',
+    why: 'Your budget is months of careful tracking. Losing it to a broken phone shouldn\'t wipe that out. AES-256-GCM encryption means your financial data is secure before it ever leaves your device.',
+    replaces: 'Fear of losing your data. The frustration of starting over on a new device.',
+    detail: 'Free: 1 backup slot. Premium: 5 slots. Backup contents: all periods, transactions, categories, bills, subscriptions, savings, transfers, settings. Safety backup auto-created before any restore.',
+  },
+];
+
+const grouped = features.reduce((acc, f) => {
+  if (!acc[f.tag]) acc[f.tag] = [];
+  acc[f.tag].push(f);
+  return acc;
+}, {} as Record<string, typeof features>);
+
+const tagOrder = ['Core', 'Bills', 'Savings', 'Planning', 'Insights', 'Premium'];
+---
+
+<Layout
+  title="BudgetBaby Features"
+  description="A deep dive into every BudgetBaby feature: Safe to Spend, Money Pools, Priority Categories, Recurring Bills, Savings Goals, Cloud Backup, and more."
+  canonical="/budgetbaby/features"
+>
+  <section class="features-hero section">
+    <div class="container">
+      <div class="label-chip">BudgetBaby</div>
+      <h1>Every feature,<br /><span class="text-gradient">explained.</span></h1>
+      <p>
+        This page covers every feature in BudgetBaby: what it does, why it exists,
+        and what problem it replaces. No marketing fluff.
+      </p>
+      <div class="hero-pills">
+        {tagOrder.map(tag => (
+          <a href={`#${tag.toLowerCase()}`} class="pill">{tag}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {tagOrder.map(tag => grouped[tag] && (
+    <section class="feature-group section-sm" id={tag.toLowerCase()}>
+      <div class="container">
+        <div class="group-header">
+          <span class="group-tag label-chip">{tag}</span>
+        </div>
+
+        <div class="feature-cards">
+          {grouped[tag].map((f) => (
+            <div class="feature-card glass">
+              <div class="feature-card-top">
+                <div class="feature-card-icon">{f.icon}</div>
+                <h2 class="feature-card-title">{f.title}</h2>
+              </div>
+
+              <div class="feature-card-body">
+                <div class="feature-block">
+                  <h3>What it does</h3>
+                  <p>{f.what}</p>
+                </div>
+                <div class="feature-block">
+                  <h3>Why it matters</h3>
+                  <p>{f.why}</p>
+                </div>
+                <div class="feature-block">
+                  <h3>What it replaces</h3>
+                  <p class="feature-replaces">{f.replaces}</p>
+                </div>
+                <div class="feature-block feature-detail-block">
+                  <p class="feature-detail">{f.detail}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <CTASection
+    heading="Ready to try BudgetBaby?"
+    subheading="Everything described on this page is available in the app today."
+    primaryLabel="Download on the App Store"
+    secondaryLabel="Read the documentation"
+    secondaryHref="/budgetbaby/documentation"
+  />
+</Layout>
+
+<style>
+  .features-hero {
+    padding-top: calc(var(--space-20) + var(--space-8));
+  }
+
+  .features-hero h1 {
+    font-size: clamp(var(--text-4xl), 6vw, var(--text-6xl));
+    letter-spacing: -0.03em;
+    margin-top: var(--space-4);
+    margin-bottom: var(--space-4);
+    max-width: 12ch;
+  }
+
+  .features-hero p {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    max-width: 52ch;
+    margin-bottom: var(--space-8);
+  }
+
+  .hero-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .pill {
+    display: inline-block;
+    padding: var(--space-1) var(--space-3);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-full);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-medium);
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: all 0.15s;
+  }
+  .pill:hover {
+    color: var(--text-primary);
+    border-color: var(--accent-border);
+    background: var(--accent-dim);
+  }
+
+  .feature-group { padding-block: var(--space-12); }
+
+  .group-header {
+    margin-bottom: var(--space-8);
+  }
+
+  .feature-cards {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .feature-card {
+    padding: var(--space-8);
+  }
+
+  .feature-card-top {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-6);
+    border-bottom: 1px solid var(--glass-border);
+  }
+
+  .feature-card-icon {
+    font-size: 2.5rem;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .feature-card-title {
+    font-size: var(--text-2xl);
+  }
+
+  .feature-card-body {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+
+  .feature-block h3 {
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: var(--space-2);
+  }
+
+  .feature-block p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  .feature-replaces { font-style: italic; }
+
+  .feature-detail-block {
+    grid-column: 1 / -1;
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--glass-border);
+  }
+
+  .feature-detail {
+    font-size: var(--text-xs) !important;
+    color: var(--text-muted) !important;
+    font-family: var(--font-mono);
+    line-height: var(--leading-relaxed);
+  }
+
+  @media (max-width: 768px) {
+    .feature-card-body { grid-template-columns: 1fr; }
+    .feature-card { padding: var(--space-6); }
+    .feature-card-top { flex-direction: column; align-items: flex-start; }
+  }
+</style>

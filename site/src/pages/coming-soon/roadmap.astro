@@ -1,0 +1,475 @@
+---
+import LayoutCore from '../../layouts/LayoutCore.astro';
+import GlassCard from '../../components/GlassCard.astro';
+
+const budgetBabyItems = [
+  {
+    status: 'active',
+    statusLabel: 'In Development',
+    title: 'Household budgets',
+    desc: 'A shared budget two people can use together. Both partners log transactions, both see the same numbers in real time. Built for couples, roommates, and anyone managing money with someone else.',
+  },
+  {
+    status: 'planned',
+    statusLabel: 'Planned',
+    title: 'Android',
+    desc: 'BudgetBaby for Android. Same app, same philosophy, same privacy model. Nobody should have to choose an iPhone just to use good budgeting software.',
+  },
+  {
+    status: 'planned',
+    statusLabel: 'Planned',
+    title: 'Web dashboard',
+    desc: 'A browser-based view of your budget. Check your Safe to Spend, review transactions, and manage your pools from any device. Same encryption as the app, different screen.',
+  },
+  {
+    status: 'planned',
+    statusLabel: 'Planned',
+    title: 'Budget templates',
+    desc: 'Save your current budget setup and roll it forward each period without starting from scratch. Useful when your income and bills are consistent month to month.',
+  },
+  {
+    status: 'exploring',
+    statusLabel: 'Exploring',
+    title: 'Transaction import',
+    desc: 'Import transactions from a bank CSV export. Not a live bank connection (that stays out by design), just a way to catch up if you have a backlog to enter.',
+  },
+  {
+    status: 'exploring',
+    statusLabel: 'Exploring',
+    title: 'Apple Watch',
+    desc: 'Log a transaction from your wrist. Tap, enter an amount, done. For people who want faster capture than pulling out their phone.',
+  },
+];
+---
+
+<LayoutCore
+  title="Roadmap | BabyBlocks"
+  description="What we're building next across BudgetBaby, PantryBaby, and the BabyBlocks platform. Features in active development, planned releases, and where things are headed long-term."
+  canonical="/coming-soon/roadmap"
+>
+  <section class="roadmap-hero section">
+    <div class="container">
+      <div class="roadmap-copy">
+        <div class="label-chip">Roadmap</div>
+        <h1>What we're<br /><span class="text-gradient">building next.</span></h1>
+        <p class="roadmap-sub">
+          No dates, no promises. What you'll find here is an honest picture of what's in active development,
+          what's in the queue, and what we're still working through.
+          The <a href="https://babyblocks.canny.io/feature-requests" target="_blank" rel="noopener noreferrer">feature board</a> is where votes actually change the order things ship.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BudgetBaby features -->
+  <section class="feature-section section-sm">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label-row">
+          <span class="app-icon-sm">💰</span>
+          <span class="eyebrow">BudgetBaby</span>
+          <span class="live-badge">Live on App Store</span>
+        </div>
+        <h2>Features coming to the app.</h2>
+        <p>These are the additions and changes in the pipeline for BudgetBaby across iOS, Android, and web.</p>
+      </div>
+
+      <div class="roadmap-grid">
+        {budgetBabyItems.map((item) => (
+          <GlassCard>
+            <div class="roadmap-item">
+              <div class="roadmap-item-top">
+                <span class={`roadmap-status status-${item.status}`}>{item.statusLabel}</span>
+              </div>
+              <h3>{item.title}</h3>
+              <p>{item.desc}</p>
+            </div>
+          </GlassCard>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- New apps -->
+  <section class="apps-section section-sm">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">New apps</span>
+        <h2>Coming to the ecosystem.</h2>
+        <p>Apps that bring BabyBlocks into new parts of daily life. Each one built to stand alone, better together.</p>
+      </div>
+
+      <div class="apps-grid">
+        <GlassCard>
+          <div class="app-roadmap-item">
+            <div class="app-roadmap-top">
+              <span class="app-icon-lg">🥗</span>
+              <span class="roadmap-status status-active">In Development</span>
+            </div>
+            <h3>PantryBaby</h3>
+            <p>
+              Grocery lists and pantry inventory, together. Tracks what you have, what's running low, and what
+              needs to go on the list. Works completely independently of BudgetBaby.
+            </p>
+            <a href="/coming-soon/pantrybaby" class="roadmap-link">Learn more about PantryBaby →</a>
+          </div>
+        </GlassCard>
+
+        <GlassCard>
+          <div class="app-roadmap-item">
+            <div class="app-roadmap-top">
+              <span class="app-icon-lg">🧩</span>
+              <span class="roadmap-status status-planning">In Planning</span>
+            </div>
+            <h3>BabyBlocks Core</h3>
+            <p>
+              The unified hub for the whole ecosystem. One daily view pulling from every BabyBlocks app you use.
+              Shared account, cross-app insights, Home Screen widgets. It ships last because it depends on
+              everything else existing first.
+            </p>
+            <a href="/coming-soon/babyblocks-core" class="roadmap-link">Learn more about Core →</a>
+          </div>
+        </GlassCard>
+      </div>
+    </div>
+  </section>
+
+  <!-- Platform vision -->
+  <section class="platform-section section-sm">
+    <div class="container-sm">
+      <GlassCard accent padding="lg">
+        <div class="platform-inner">
+          <div class="platform-copy">
+            <span class="eyebrow" style="color: var(--accent-light);">Platform vision</span>
+            <h2>iOS, Android, and the web.</h2>
+            <p>
+              BabyBlocks started on iOS because that's where it was possible to ship something genuinely good
+              from the start. That's not changing. But the plan was never to stay iOS-only forever.
+            </p>
+            <p>
+              Android is on the roadmap for BudgetBaby. Not a stripped-down port, but the same app built properly
+              for the platform. Same privacy model, same pricing, same everything that matters.
+            </p>
+            <p>
+              Web is about observability. A browser-based dashboard where you can check your numbers,
+              review transactions, and manage your settings without your phone being in reach. It's not meant to
+              replace the native app. It's a window into the same data.
+            </p>
+            <p>
+              The long-term goal is a set of tools that work on any platform you're on, without you having to
+              think about which device you're holding. That's the direction everything is pointing.
+            </p>
+          </div>
+
+          <div class="platform-indicators">
+            <div class="platform-item platform-item--done">
+              <span class="platform-icon">📱</span>
+              <div>
+                <strong>iOS</strong>
+                <span>BudgetBaby live</span>
+              </div>
+            </div>
+            <div class="platform-item platform-item--next">
+              <span class="platform-icon">🤖</span>
+              <div>
+                <strong>Android</strong>
+                <span>On the roadmap</span>
+              </div>
+            </div>
+            <div class="platform-item platform-item--next">
+              <span class="platform-icon">🌐</span>
+              <div>
+                <strong>Web</strong>
+                <span>On the roadmap</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </GlassCard>
+    </div>
+  </section>
+
+  <!-- Vote CTA -->
+  <section class="vote-section section-sm">
+    <div class="container-sm">
+      <GlassCard>
+        <div class="vote-inner">
+          <div class="vote-icon">🗳️</div>
+          <div>
+            <h3>Your votes shape what ships next.</h3>
+            <p>
+              The feature board is public. You can see what others have asked for, vote on the things you want,
+              and submit your own ideas. Features with more votes get moved up. It's that direct.
+            </p>
+            <a href="https://babyblocks.canny.io/feature-requests" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+              Open the feature board →
+            </a>
+          </div>
+        </div>
+      </GlassCard>
+    </div>
+  </section>
+</LayoutCore>
+
+<style>
+  .roadmap-hero {
+    padding-top: calc(var(--space-24) + var(--space-8));
+    padding-bottom: var(--space-12);
+  }
+
+  .roadmap-copy {
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .roadmap-copy h1 {
+    font-size: clamp(var(--text-4xl), 7vw, var(--text-7xl));
+    line-height: var(--leading-tight);
+    letter-spacing: -0.03em;
+  }
+
+  .roadmap-sub {
+    font-size: var(--text-xl);
+    color: var(--text-secondary);
+    max-width: 56ch;
+    line-height: var(--leading-relaxed);
+  }
+
+  /* Section headers */
+  .section-header {
+    margin-bottom: var(--space-10);
+    max-width: 600px;
+  }
+
+  .section-label-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+  }
+
+  .app-icon-sm { font-size: 1.4rem; line-height: 1; }
+
+  .live-badge {
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    padding: var(--space-1) var(--space-2);
+    background: rgba(52, 211, 153, 0.12);
+    color: var(--green);
+    border: 1px solid rgba(52, 211, 153, 0.22);
+    border-radius: var(--radius-full);
+  }
+
+  .section-header h2 {
+    font-size: clamp(var(--text-2xl), 3vw, var(--text-4xl));
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-3);
+  }
+
+  .section-header p {
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* Roadmap grid */
+  .roadmap-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+  }
+
+  .roadmap-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .roadmap-item-top {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .roadmap-item h3 {
+    font-size: var(--text-lg);
+    letter-spacing: -0.01em;
+  }
+
+  .roadmap-item p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* Status badges */
+  .roadmap-status {
+    display: inline-block;
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-full);
+  }
+
+  .status-active {
+    background: rgba(52, 211, 153, 0.12);
+    color: var(--green);
+    border: 1px solid rgba(52, 211, 153, 0.22);
+  }
+
+  .status-planned {
+    background: rgba(107, 95, 199, 0.1);
+    color: var(--accent);
+    border: 1px solid rgba(107, 95, 199, 0.2);
+  }
+
+  .status-planning {
+    background: rgba(107, 95, 199, 0.08);
+    color: var(--accent);
+    border: 1px solid rgba(107, 95, 199, 0.15);
+  }
+
+  .status-exploring {
+    background: var(--glass-bg);
+    color: var(--text-muted);
+    border: 1px solid var(--glass-border);
+  }
+
+  /* Apps section */
+  .apps-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-5);
+  }
+
+  .app-roadmap-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .app-roadmap-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .app-icon-lg { font-size: 2.4rem; line-height: 1; }
+
+  .app-roadmap-item h3 {
+    font-size: var(--text-2xl);
+    letter-spacing: -0.02em;
+  }
+
+  .app-roadmap-item p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    flex: 1;
+  }
+
+  .roadmap-link {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .roadmap-link:hover { color: var(--accent-light); }
+
+  /* Platform section */
+  .platform-inner {
+    display: grid;
+    grid-template-columns: 1fr 220px;
+    gap: var(--space-12);
+    align-items: start;
+  }
+
+  .platform-copy h2 {
+    font-size: var(--text-2xl);
+    letter-spacing: -0.02em;
+    margin-top: var(--space-3);
+    margin-bottom: var(--space-5);
+  }
+
+  .platform-copy p {
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-4);
+  }
+
+  .platform-copy p:last-child { margin-bottom: 0; }
+
+  .platform-indicators {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding-top: var(--space-8);
+  }
+
+  .platform-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--glass-border);
+  }
+
+  .platform-item--done {
+    background: rgba(52, 211, 153, 0.06);
+    border-color: rgba(52, 211, 153, 0.18);
+  }
+
+  .platform-item--next { background: var(--glass-bg); }
+
+  .platform-icon { font-size: 1.6rem; line-height: 1; flex-shrink: 0; }
+
+  .platform-item strong {
+    display: block;
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    color: var(--text-primary);
+  }
+
+  .platform-item span {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+  }
+
+  /* Vote section */
+  .vote-inner {
+    display: flex;
+    gap: var(--space-6);
+    align-items: flex-start;
+  }
+
+  .vote-icon { font-size: 2.5rem; line-height: 1; flex-shrink: 0; }
+
+  .vote-inner h3 { font-size: var(--text-xl); margin-bottom: var(--space-3); }
+
+  .vote-inner p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-5);
+  }
+
+  @media (max-width: 960px) {
+    .roadmap-grid { grid-template-columns: repeat(2, 1fr); }
+    .platform-inner { grid-template-columns: 1fr; }
+    .platform-indicators { padding-top: 0; flex-direction: row; flex-wrap: wrap; }
+    .platform-item { flex: 1; min-width: 150px; }
+  }
+
+  @media (max-width: 680px) {
+    .roadmap-grid { grid-template-columns: 1fr; }
+    .apps-grid { grid-template-columns: 1fr; }
+    .vote-inner { flex-direction: column; }
+    .platform-indicators { flex-direction: column; }
+  }
+</style>

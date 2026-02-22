@@ -1,0 +1,23 @@
+# Dependencies
+site/node_modules/
+
+# Build output
+site/dist/
+
+# Astro cache
+site/.astro/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo

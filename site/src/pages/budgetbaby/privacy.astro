@@ -1,0 +1,398 @@
+---
+import Layout from '../../layouts/LayoutCore.astro';
+
+const lastUpdated = 'February 2026';
+---
+
+<Layout
+  title="BudgetBaby Privacy Policy"
+  description="BudgetBaby privacy policy: what data is collected, what is not collected, how data is stored, and your rights."
+  canonical="/budgetbaby/privacy"
+>
+  <div class="policy-layout">
+    <div class="container-sm">
+      <div class="policy-header">
+        <a href="/budgetbaby" class="policy-back">← BudgetBaby</a>
+        <div class="label-chip" style="margin-top: var(--space-4);">Legal</div>
+        <h1>Privacy Policy</h1>
+        <p class="policy-meta">Last updated: {lastUpdated} · Applies to BudgetBaby for iOS</p>
+        <p class="policy-summary">
+          We built BudgetBaby on a simple principle: your financial data is yours.
+          This page explains plainly what we collect, what we don't, and how we protect your information.
+          We don't use legal language to obscure what we do with your data.
+        </p>
+      </div>
+
+      <div class="policy-content">
+
+        <section class="policy-section">
+          <h2>1. What we collect</h2>
+          <p>When you use BudgetBaby without an account, we collect nothing. Your data is entirely local.</p>
+          <p>When you create an account or use cloud features, we collect:</p>
+          <ul>
+            <li><strong>Account information.</strong> Your email address and display name. If you use Sign in with Apple, Apple may provide a relay email. We never see your real email unless you choose to share it.</li>
+            <li><strong>Cloud backup data.</strong> Your budget data, encrypted with AES-256-GCM before it leaves your device. We cannot decrypt or read your backup data.</li>
+            <li><strong>Authentication tokens.</strong> Secure tokens used to verify your identity with Firebase Auth. These are stored in the iOS Keychain.</li>
+            <li><strong>Subscription status.</strong> Whether your account has an active Premium subscription, as verified by RevenueCat. We store this in the iOS Keychain, not on our servers.</li>
+            <li><strong>Crash and performance data.</strong> Anonymous crash reports via Firebase Crashlytics to help us fix bugs. This data contains no personal financial information.</li>
+            <li><strong>Basic analytics.</strong> Anonymised event data via Firebase Analytics (for example, which features are used and how often). No personal or financial data is included.</li>
+          </ul>
+        </section>
+
+        <section class="policy-section">
+          <h2>2. What we do not collect</h2>
+          <ul>
+            <li>The contents of your budget, including transactions, amounts, categories, or any financial data, unless you enable cloud backup.</li>
+            <li>Bank account numbers, credit card numbers, or any payment credentials.</li>
+            <li>Location data.</li>
+            <li>Contacts or calendar data, except when you use the optional Calendar Sync feature, which reads and writes only to your iOS Calendar with your explicit permission.</li>
+            <li>Your name or personal identity beyond what you provide during account creation.</li>
+            <li>Any data about your device beyond what Firebase anonymously collects for crash reporting.</li>
+          </ul>
+        </section>
+
+        <section class="policy-section">
+          <h2>3. How your data is stored</h2>
+
+          <h3>On-device storage</h3>
+          <p>
+            All budget data is stored locally on your device using SwiftData. It is encrypted by iOS device
+            encryption at rest. We have no access to locally stored data under any circumstances.
+          </p>
+
+          <h3>Cloud backup</h3>
+          <p>Cloud backup is entirely opt-in. If you choose to enable it, here is exactly what happens:</p>
+          <ol class="policy-steps">
+            <li>
+              <strong>Encryption on your device.</strong> Before any data leaves your phone, BudgetBaby encrypts
+              it using AES-256-GCM. This happens locally, before any network request is made.
+            </li>
+            <li>
+              <strong>Key storage in iCloud Keychain.</strong> The encryption key is generated on your device
+              and stored in your iOS Keychain, which syncs via iCloud Keychain. We never have access to the key.
+              Without the key, the encrypted data is unreadable, including by us.
+            </li>
+            <li>
+              <strong>Encrypted upload over TLS.</strong> The already-encrypted backup file is transmitted
+              over a TLS connection to Firebase Storage. It is stored there scoped to your user account.
+              No other user can access your storage path.
+            </li>
+            <li>
+              <strong>Restore on a new device.</strong> When you restore, your device fetches the encrypted file,
+              retrieves the key from iCloud Keychain, decrypts locally, and loads your data. The decryption
+              never happens on a server. It happens on your device.
+            </li>
+          </ol>
+          <p>
+            Free accounts have one backup slot. Premium accounts have multiple named backup slots and the ability
+            to schedule automatic backups.
+          </p>
+
+          <h3>Authentication data</h3>
+          <p>
+            Firebase Auth stores your email address and authentication credentials according to Google's Firebase
+            privacy policies. Authentication tokens on your device are stored in the iOS Keychain.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h2>4. Forms and in-app communications</h2>
+          <p>Here is a full list of every place BudgetBaby or this website collects information you provide directly.</p>
+
+          <h3>Account creation (in-app)</h3>
+          <p>
+            When you create an account inside BudgetBaby, we collect your email address and a display name.
+            These are stored via Firebase Auth. You can also sign in with Apple or Google, in which case your
+            credentials are handled by Apple or Google respectively and we receive only what those platforms
+            pass to us (typically an email and a user identifier).
+          </p>
+
+          <h3>Support contact</h3>
+          <p>
+            Support is handled by email at <a href="mailto:support@babyblocks.io">support@babyblocks.io</a>.
+            There is no in-app form. When you email us, we receive your email address and the contents of your message.
+            We use this only to respond to your request. We do not add you to any mailing list and we do not
+            share your email with third parties.
+          </p>
+
+          <h3>Notification waitlists (coming soon pages)</h3>
+          <p>
+            The website has placeholder pages for upcoming apps like PantryBaby. When notification signup forms
+            go live on those pages, they will collect your email address only, used for a single notification
+            email when the app launches. The form will make clear exactly what you are signing up for before
+            you submit it.
+          </p>
+
+          <h3>Feature requests (external)</h3>
+          <p>
+            The public feature board at <a href="https://babyblocks.canny.io" target="_blank" rel="noopener noreferrer">babyblocks.canny.io</a> is
+            operated by Canny. If you submit or vote on a feature request, your data is handled according to
+            Canny's own privacy policy. We receive feature request data from Canny but we do not control
+            how Canny handles your account.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h2>5. Third-party services</h2>
+          <p>BudgetBaby uses the following third-party services. We name them here because you deserve to know exactly what is running in the app.</p>
+          <div class="policy-table-wrap">
+            <table class="policy-table">
+              <thead>
+                <tr>
+                  <th>Service</th>
+                  <th>Purpose</th>
+                  <th>Data shared</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Firebase Auth (Google)</td>
+                  <td>Account authentication and identity</td>
+                  <td>Account email, authentication tokens</td>
+                </tr>
+                <tr>
+                  <td>Firebase Storage (Google)</td>
+                  <td>Cloud backup storage</td>
+                  <td>Encrypted backup files (we cannot decrypt them)</td>
+                </tr>
+                <tr>
+                  <td>Firebase Crashlytics (Google)</td>
+                  <td>Crash reporting and stability monitoring</td>
+                  <td>Anonymous crash logs, device OS version, app version</td>
+                </tr>
+                <tr>
+                  <td>Firebase Analytics (Google)</td>
+                  <td>Anonymised feature usage analytics</td>
+                  <td>Anonymous usage events. No financial data, no personal data</td>
+                </tr>
+                <tr>
+                  <td>RevenueCat</td>
+                  <td>Subscription management</td>
+                  <td>Subscription status, Apple-provided purchase receipts</td>
+                </tr>
+                <tr>
+                  <td>Apple StoreKit</td>
+                  <td>In-app purchases</td>
+                  <td>Purchase receipts processed and held by Apple</td>
+                </tr>
+                <tr>
+                  <td>Sign in with Apple</td>
+                  <td>Federated authentication</td>
+                  <td>Apple-controlled identity token. Your email is optional and may be relayed</td>
+                </tr>
+                <tr>
+                  <td>Sign in with Google</td>
+                  <td>Federated authentication</td>
+                  <td>Google account email and profile (limited scope, read-only)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>We do not sell your data to third parties. We do not use your data for advertising.</p>
+          <p>
+            We chose Firebase because it lets us implement strong encryption and access controls that work
+            well with the iOS Keychain model. The tradeoff is that your encrypted data is stored on Google
+            infrastructure. The encryption means Google cannot read your budget data. But if that tradeoff
+            is a concern for you, local-only mode with no account is always available.
+          </p>
+
+          <h3>Data Processing Agreements</h3>
+          <p>
+            Google processes data on our behalf under their <a href="https://firebase.google.com/terms/data-processing-terms" target="_blank" rel="noopener noreferrer">Firebase Data Processing and Security Terms</a>,
+            which incorporate Standard Contractual Clauses for international data transfers. RevenueCat processes
+            subscription data under their <a href="https://www.revenuecat.com/dpa" target="_blank" rel="noopener noreferrer">Data Processing Agreement</a>.
+            These agreements ensure that our third-party processors handle your data in compliance with GDPR and other applicable data protection regulations.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h2>6. Your rights and choices</h2>
+          <ul>
+            <li><strong>Access.</strong> You can export all your budget data in CSV or PDF format (Premium) at any time from within the app.</li>
+            <li><strong>Deletion.</strong> You can delete all local data via Settings, then About, then Reset All Data. To delete your account and cloud data, go to Settings, then Account, then Delete Account. When you delete your account, all cloud data (including backups) is permanently removed within 30 days.</li>
+            <li><strong>Analytics opt-out.</strong> We respect the iOS "Allow Apps to Request to Track" setting. Disabling this limits analytics collection.</li>
+            <li><strong>Portability.</strong> Your exported CSV data is in standard human-readable format compatible with any spreadsheet application.</li>
+          </ul>
+
+          <h3>For users in the European Economic Area (EEA)</h3>
+          <p>
+            If you are located in the EEA, you have additional rights under the General Data Protection Regulation (GDPR), including the right to access, rectify, erase, restrict processing of, and port your personal data. You also have the right to withdraw consent at any time and to lodge a complaint with your local supervisory authority.
+          </p>
+          <p>
+            Our legal basis for processing your data is: consent (for optional cloud features and analytics), contractual necessity (for account creation and subscription management), and legitimate interest (for crash reporting and app stability).
+          </p>
+
+          <h3>For users in California</h3>
+          <p>
+            If you are a California resident, you have rights under the California Consumer Privacy Act (CCPA), including the right to know what personal information we collect, the right to request deletion, and the right to opt out of the sale of personal information. We do not sell your personal information.
+          </p>
+
+          <h3>Cookies</h3>
+          <p>
+            This website does not use cookies. The BudgetBaby app does not use cookies. No tracking cookies, advertising cookies, or third-party cookies are set by any of our properties.
+          </p>
+
+          <h3>Data retention</h3>
+          <p>
+            Local data remains on your device until you delete it. Cloud backups are retained as long as your account is active. When you delete your account, all associated cloud data (backups, authentication records, and subscription metadata) is permanently deleted within 30 days. Anonymous crash reports and analytics data are retained for up to 90 days.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h2>7. Children's privacy</h2>
+          <p>BudgetBaby is not directed at children under 13. We do not knowingly collect personal information from children. If you believe a child has provided personal information, contact us at <a href="mailto:support@babyblocks.io">support@babyblocks.io</a>.</p>
+        </section>
+
+        <section class="policy-section">
+          <h2>8. Changes to this policy</h2>
+          <p>If we make material changes to this policy, we'll update the "last updated" date and notify users within the app. Continued use after changes constitutes acceptance.</p>
+        </section>
+
+        <section class="policy-section">
+          <h2>9. Contact</h2>
+          <p>
+            For privacy-related questions, data access requests, or to exercise any of your rights described above,
+            email us at <a href="mailto:support@babyblocks.io">support@babyblocks.io</a>. Please include "Privacy" in the subject line
+            so we can route your request appropriately.
+          </p>
+          <p>
+            <strong>Data Controller:</strong><br />
+            Intrigue MMC LLC, operating as Intriguing Insight<br />
+            Privacy contact: <a href="mailto:support@babyblocks.io">support@babyblocks.io</a>
+          </p>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .policy-layout {
+    padding-top: calc(var(--nav-height) + var(--space-12));
+    padding-bottom: var(--space-24);
+  }
+
+  .policy-back {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    text-decoration: none;
+    display: inline-block;
+    transition: color 0.15s;
+  }
+  .policy-back:hover { color: var(--text-secondary); }
+
+  .policy-header {
+    margin-bottom: var(--space-12);
+    padding-bottom: var(--space-8);
+    border-bottom: 1px solid var(--glass-border);
+  }
+
+  .policy-header h1 {
+    font-size: clamp(var(--text-3xl), 5vw, var(--text-5xl));
+    letter-spacing: -0.02em;
+    margin-top: var(--space-4);
+    margin-bottom: var(--space-2);
+  }
+
+  .policy-meta {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    margin-bottom: var(--space-4);
+  }
+
+  .policy-summary {
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    max-width: 64ch;
+  }
+
+  .policy-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-10);
+  }
+
+  .policy-section h2 {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-4);
+  }
+
+  .policy-section h3 {
+    font-size: var(--text-base);
+    font-weight: var(--weight-semibold);
+    margin-top: var(--space-5);
+    margin-bottom: var(--space-3);
+    color: var(--text-primary);
+  }
+
+  .policy-section p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-3);
+  }
+
+  .policy-section p:last-child { margin-bottom: 0; }
+
+  .policy-section ul {
+    list-style: disc;
+    padding-left: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  .policy-steps {
+    list-style: decimal;
+    padding-left: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin-block: var(--space-4);
+  }
+
+  .policy-steps li { padding-left: var(--space-2); }
+
+  .policy-table-wrap {
+    overflow-x: auto;
+    margin-block: var(--space-4);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--glass-border);
+  }
+
+  .policy-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-xs);
+  }
+
+  .policy-table th {
+    padding: var(--space-3) var(--space-4);
+    text-align: left;
+    font-weight: var(--weight-semibold);
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    background: var(--glass-bg);
+    border-bottom: 1px solid var(--glass-border);
+    white-space: nowrap;
+  }
+
+  .policy-table td {
+    padding: var(--space-3) var(--space-4);
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--glass-border);
+    vertical-align: top;
+    line-height: var(--leading-relaxed);
+  }
+
+  .policy-table tr:last-child td { border-bottom: none; }
+</style>
