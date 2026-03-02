@@ -1,4 +1,5 @@
 ---
+import Icon from './Icon.astro';
 const year = new Date().getFullYear();
 ---
 
@@ -7,7 +8,7 @@ const year = new Date().getFullYear();
     <div class="footer-top">
       <div class="footer-brand">
         <a href="/" class="footer-logo">
-          <span>🧩</span>
+          <Icon name="layers" size={20} />
           <span>BabyBlocks</span>
         </a>
         <p class="footer-tagline">
@@ -24,8 +25,10 @@ const year = new Date().getFullYear();
             <li><a href="/budgetbaby/features">Features</a></li>
             <li><a href="/budgetbaby/documentation">Documentation</a></li>
             <li><a href="/budgetbaby/support">Support</a></li>
+            <li><a href="/budgetbaby/trust">Trust &amp; Privacy</a></li>
             <li><a href="/budgetbaby/privacy">Privacy Policy</a></li>
             <li><a href="/budgetbaby/terms">Terms of Use</a></li>
+            <li><a href="/budgetbaby/delete-data">Delete Your Data</a></li>
           </ul>
         </div>
 
@@ -34,6 +37,9 @@ const year = new Date().getFullYear();
           <ul class="footer-links">
             <li><a href="/coming-soon">Coming Soon</a></li>
             <li><a href="/coming-soon/roadmap">Roadmap</a></li>
+            <li><a href="/changelog">Changelog</a></li>
+            <li><a href="/status">Status</a></li>
+            <li><a href="/security">Security</a></li>
             <li><a href="/about">About BabyBlocks</a></li>
           </ul>
         </div>

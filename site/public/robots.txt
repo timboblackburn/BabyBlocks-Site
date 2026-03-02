@@ -1,0 +1,6 @@
+# BabyBlocks - https://babyblocks.io
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://babyblocks.io/sitemap-index.xml

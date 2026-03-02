@@ -1,0 +1,349 @@
+---
+import Layout from '../layouts/Layout.astro';
+import GlassCard from '../components/GlassCard.astro';
+import Icon from '../components/Icon.astro';
+
+const lastChecked = 'March 1, 2026 at 05:00 UTC';
+
+const services = [
+  {
+    name: 'App Store Availability',
+    description: 'BudgetBaby is available for download on the iOS App Store globally.',
+    status: 'operational',
+  },
+  {
+    name: 'Cloud Sync & Backup',
+    description: 'Cloud backup and restore for signed-in users.',
+    status: 'operational',
+  },
+  {
+    name: 'Push Notifications',
+    description: 'Bill reminders, subscription reminders, and savings nudges.',
+    status: 'operational',
+  },
+  {
+    name: 'Authentication',
+    description: 'Sign-in for cloud features and household sharing.',
+    status: 'operational',
+  },
+];
+
+const statusLabels: Record<string, { label: string; color: string }> = {
+  operational: { label: 'Operational', color: 'green' },
+  degraded:    { label: 'Degraded',    color: 'yellow' },
+  outage:      { label: 'Outage',      color: 'red' },
+};
+---
+
+<Layout
+  title="Status — BabyBlocks"
+  description="Current operational status of BudgetBaby services: App Store, cloud sync, push notifications, and authentication."
+  canonical="/status"
+>
+  <section class="status-hero section">
+    <div class="container">
+      <div class="status-hero-inner">
+        <div class="label-chip">System Status</div>
+        <h1>All systems <span class="text-gradient">operational.</span></h1>
+        <p>Current status of BudgetBaby services. Last checked: {lastChecked}.</p>
+        <p class="status-note">
+          This page is manually updated. It reflects our best knowledge of service availability.
+          For live incidents, <a href="mailto:support@babyblocks.io">email support</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="status-section section-sm">
+    <div class="container-sm">
+
+      <!-- Overall indicator -->
+      <div class="overall-status glass">
+        <div class="overall-icon">
+          <Icon name="check" size={20} />
+        </div>
+        <div class="overall-text">
+          <strong>All services operational</strong>
+          <span>No known incidents as of {lastChecked}</span>
+        </div>
+      </div>
+
+      <!-- Service rows -->
+      <div class="services-list">
+        {services.map((svc) => {
+          const s = statusLabels[svc.status];
+          return (
+            <GlassCard>
+              <div class="svc-row">
+                <div class="svc-info">
+                  <h3>{svc.name}</h3>
+                  <p>{svc.description}</p>
+                </div>
+                <span class={`svc-badge svc-badge--${svc.status}`}>
+                  <span class={`svc-dot svc-dot--${svc.status}`}></span>
+                  {s.label}
+                </span>
+              </div>
+            </GlassCard>
+          );
+        })}
+      </div>
+
+      <!-- Footer note -->
+      <GlassCard>
+        <div class="status-footer">
+          <Icon name="bell" size={18} />
+          <div>
+            <h3>Incident notifications</h3>
+            <p>
+              If you're experiencing an issue not reflected here, contact us at
+              <a href="mailto:support@babyblocks.io">support@babyblocks.io</a>.
+              We respond within 1–2 business days. Data loss issues are flagged same day.
+            </p>
+          </div>
+        </div>
+      </GlassCard>
+
+    </div>
+  </section>
+
+  <!-- Incident history -->
+  <section class="history-section section-sm">
+    <div class="container-sm">
+      <h2 class="history-heading">Incident history</h2>
+      <p class="history-sub">Past 90 days — all times UTC</p>
+
+      <div class="history-empty glass">
+        <Icon name="check" size={20} />
+        <div>
+          <strong>No incidents in the past 90 days.</strong>
+          <p>All services have been fully operational since December 2024 launch.</p>
+        </div>
+      </div>
+
+      <p class="history-note">
+        This log is manually maintained. Major incidents affecting user data or availability
+        will be documented here within 24 hours of resolution, including root cause and remediation steps.
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .status-hero {
+    padding-top: calc(var(--space-20) + var(--space-8));
+  }
+
+  .status-hero-inner {
+    max-width: 640px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .status-hero-inner h1 {
+    font-size: clamp(var(--text-4xl), 6vw, var(--text-5xl));
+    letter-spacing: -0.03em;
+  }
+
+  .status-hero-inner p {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  .status-note {
+    font-size: var(--text-sm) !important;
+    color: var(--text-muted) !important;
+  }
+
+  .status-note a {
+    color: var(--accent-light);
+    text-decoration: none;
+  }
+
+  .status-section { padding-block: var(--space-4); }
+
+  /* Overall banner */
+  .overall-status {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-5) var(--space-6);
+    border-radius: var(--radius-xl);
+    margin-bottom: var(--space-5);
+    border-color: rgba(52, 211, 153, 0.2);
+  }
+
+  .overall-icon {
+    width: 40px; height: 40px;
+    border-radius: var(--radius-full);
+    background: rgba(52, 211, 153, 0.15);
+    color: var(--green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .overall-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .overall-text strong {
+    font-size: var(--text-base);
+    font-weight: var(--weight-semibold);
+    color: var(--text-primary);
+  }
+
+  .overall-text span {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+  }
+
+  /* Service list */
+  .services-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-bottom: var(--space-5);
+  }
+
+  .svc-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+
+  .svc-info { flex: 1; }
+
+  .svc-info h3 {
+    font-size: var(--text-base);
+    font-weight: var(--weight-semibold);
+    margin-bottom: var(--space-1);
+  }
+
+  .svc-info p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+  }
+
+  .svc-badge {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .svc-badge--operational {
+    background: rgba(52, 211, 153, 0.12);
+    color: var(--green);
+    border: 1px solid rgba(52, 211, 153, 0.2);
+  }
+
+  .svc-badge--degraded {
+    background: rgba(251, 191, 36, 0.12);
+    color: var(--yellow);
+    border: 1px solid rgba(251, 191, 36, 0.2);
+  }
+
+  .svc-badge--outage {
+    background: rgba(248, 113, 113, 0.12);
+    color: var(--red, #f87171);
+    border: 1px solid rgba(248, 113, 113, 0.2);
+  }
+
+  .svc-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .svc-dot--operational { background: var(--green); }
+  .svc-dot--degraded    { background: var(--yellow); }
+  .svc-dot--outage      { background: var(--red, #f87171); }
+
+  /* Footer card */
+  .status-footer {
+    display: flex;
+    gap: var(--space-4);
+    align-items: flex-start;
+  }
+
+  .status-footer svg { color: var(--accent-light); flex-shrink: 0; margin-top: 2px; }
+
+  .status-footer h3 {
+    font-size: var(--text-base);
+    font-weight: var(--weight-semibold);
+    margin-bottom: var(--space-2);
+  }
+
+  .status-footer p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  .status-footer a {
+    color: var(--accent-light);
+    text-decoration: none;
+  }
+
+  /* History section */
+  .history-section { padding-top: var(--space-2); padding-bottom: var(--space-24); }
+
+  .history-heading {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-1);
+  }
+
+  .history-sub {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    margin-bottom: var(--space-6);
+  }
+
+  .history-empty {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+    padding: var(--space-5) var(--space-6);
+    border-radius: var(--radius-xl);
+    border-color: rgba(52, 211, 153, 0.15);
+    margin-bottom: var(--space-5);
+  }
+
+  .history-empty svg { color: var(--green); flex-shrink: 0; margin-top: 2px; }
+
+  .history-empty strong {
+    display: block;
+    font-size: var(--text-base);
+    color: var(--text-primary);
+    margin-bottom: var(--space-1);
+  }
+
+  .history-empty p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  .history-note {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    line-height: var(--leading-relaxed);
+    max-width: 56ch;
+  }
+
+  @media (max-width: 560px) {
+    .svc-row { flex-direction: column; align-items: flex-start; }
+  }
+</style>

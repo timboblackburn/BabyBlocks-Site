@@ -1,6 +1,7 @@
 ---
-import LayoutCore from '../../layouts/LayoutCore.astro';
+import Layout from '../../layouts/Layout.astro';
 import GlassCard from '../../components/GlassCard.astro';
+import AppIcon from '../../components/AppIcon.astro';
 
 const budgetBabyItems = [
   {
@@ -42,10 +43,11 @@ const budgetBabyItems = [
 ];
 ---
 
-<LayoutCore
+<Layout
   title="Roadmap | BabyBlocks"
   description="What we're building next across BudgetBaby, PantryBaby, and the BabyBlocks platform. Features in active development, planned releases, and where things are headed long-term."
   canonical="/coming-soon/roadmap"
+  theme="core"
 >
   <section class="roadmap-hero section">
     <div class="container">
@@ -66,7 +68,7 @@ const budgetBabyItems = [
     <div class="container">
       <div class="section-header">
         <div class="section-label-row">
-          <span class="app-icon-sm">💰</span>
+          <AppIcon app="budgetbaby" size={28} />
           <span class="eyebrow">BudgetBaby</span>
           <span class="live-badge">Live on App Store</span>
         </div>
@@ -103,7 +105,7 @@ const budgetBabyItems = [
         <GlassCard>
           <div class="app-roadmap-item">
             <div class="app-roadmap-top">
-              <span class="app-icon-lg">🥗</span>
+              <AppIcon app="pantrybaby" size={40} />
               <span class="roadmap-status status-active">In Development</span>
             </div>
             <h3>PantryBaby</h3>
@@ -118,7 +120,7 @@ const budgetBabyItems = [
         <GlassCard>
           <div class="app-roadmap-item">
             <div class="app-roadmap-top">
-              <span class="app-icon-lg">🧩</span>
+              <AppIcon app="babyblocks-core" size={40} />
               <span class="roadmap-status status-planning">In Planning</span>
             </div>
             <h3>BabyBlocks Core</h3>
@@ -209,7 +211,7 @@ const budgetBabyItems = [
       </GlassCard>
     </div>
   </section>
-</LayoutCore>
+</Layout>
 
 <style>
   .roadmap-hero {

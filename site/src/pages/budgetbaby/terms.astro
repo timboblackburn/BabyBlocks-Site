@@ -1,7 +1,7 @@
 ---
-import Layout from '../../layouts/LayoutCore.astro';
+import Layout from '../../layouts/Layout.astro';
 
-const lastUpdated = 'January 2026';
+const lastUpdated = 'March 1, 2026';
 ---
 
 <Layout
@@ -16,10 +16,17 @@ const lastUpdated = 'January 2026';
         <div class="label-chip" style="margin-top: var(--space-4);">Legal</div>
         <h1>Terms of Use</h1>
         <p class="policy-meta">Last updated: {lastUpdated} · Applies to BudgetBaby for iOS</p>
-        <p class="policy-summary">
-          These Terms of Use govern your use of BudgetBaby. By downloading or using the app,
-          you agree to these terms. We've kept them as clear and jargon-free as possible.
-        </p>
+      </div>
+
+      <div class="policy-summary glass">
+        <h2>The short version</h2>
+        <ul>
+          <li>BudgetBaby is a personal budgeting tool, not financial advice.</li>
+          <li>Your data is yours. We cannot read your encrypted cloud backups.</li>
+          <li>Premium is a subscription billed by Apple. Cancel anytime in iOS Settings.</li>
+          <li>We are not liable for financial decisions made based on app data.</li>
+        </ul>
+        <p class="policy-updated">Last updated: {lastUpdated}</p>
       </div>
 
       <div class="policy-content">
@@ -52,7 +59,7 @@ const lastUpdated = 'January 2026';
           <h2>3. Subscriptions</h2>
           <h3>Premium subscription</h3>
           <p>
-            BudgetBaby Premium is available as a monthly ($4.99/month) or annual ($39.99/year) auto-renewing subscription,
+            BudgetBaby Premium is available as a monthly ($7.99/month) or annual ($69.99/year) auto-renewing subscription,
             purchased through the Apple App Store.
           </p>
           <ul>

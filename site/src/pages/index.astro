@@ -1,13 +1,17 @@
 ---
-import Layout from '../layouts/LayoutCore.astro';
+import Layout from '../layouts/Layout.astro';
 import GlassCard from '../components/GlassCard.astro';
 import CTASection from '../components/CTASection.astro';
+import Icon from '../components/Icon.astro';
+import AppIcon from '../components/AppIcon.astro';
+import ScreenshotFrame from '../components/ScreenshotFrame.astro';
 ---
 
 <Layout
   title="BabyBlocks: Simple iOS Apps for a Calmer Life"
   description="BabyBlocks is a suite of simple, visual iOS apps designed to bring clarity and calm to everyday life. BudgetBaby is the flagship, now available on the App Store."
   canonical="/"
+  theme="core"
 >
   <!-- Hero -->
   <section class="hero section">
@@ -25,10 +29,10 @@ import CTASection from '../components/CTASection.astro';
               Explore BudgetBaby
             </a>
             <a href="/budgetbaby/features" class="btn btn-secondary btn-lg">
-              See all features
+              See how it works
             </a>
           </div>
-          <p class="hero-note">Free to download · iOS 17+ · Premium from $4.99/mo</p>
+          <p class="hero-note">Free to download · iOS 17+ · Premium from $7.99/mo</p>
         </div>
 
         <div class="hero-visual" aria-hidden="true">
@@ -41,22 +45,22 @@ import CTASection from '../components/CTASection.astro';
               </div>
               <div class="sts-pools">
                 <div class="sts-pool">
-                  <span>💵</span>
+                  <Icon name="dollar-sign" size={14} />
                   <span>Cash</span>
                   <span class="sts-pool-val">$124</span>
                 </div>
                 <div class="sts-pool">
-                  <span>🏦</span>
+                  <Icon name="credit-card" size={14} />
                   <span>Debit</span>
                   <span class="sts-pool-val">$843</span>
                 </div>
                 <div class="sts-pool">
-                  <span>💳</span>
+                  <Icon name="credit-card" size={14} />
                   <span>Credit</span>
                   <span class="sts-pool-val">$210</span>
                 </div>
                 <div class="sts-pool">
-                  <span>🔒</span>
+                  <Icon name="lock" size={14} />
                   <span>Savings</span>
                   <span class="sts-pool-val">$1,200</span>
                 </div>
@@ -67,6 +71,15 @@ import CTASection from '../components/CTASection.astro';
       </div>
     </div>
   </section>
+
+  <!-- Trust Strip -->
+  <div class="trust-strip container">
+    <span><Icon name="server" size={15} /> Local-first by default</span>
+    <span><Icon name="wifi-off" size={15} /> No bank connections</span>
+    <span><Icon name="cloud-upload" size={15} /> Optional encrypted backup</span>
+    <span><Icon name="smartphone" size={15} /> Built for iOS 17+</span>
+    <span><Icon name="message-circle" size={15} /> Human support</span>
+  </div>
 
   <!-- Apps Grid -->
   <section class="apps-section section-sm">
@@ -81,7 +94,7 @@ import CTASection from '../components/CTASection.astro';
         <!-- BudgetBaby — Live -->
         <a href="/budgetbaby" class="app-card glass app-card--featured">
           <div class="app-card-header">
-            <div class="app-icon app-icon--budget">💰</div>
+            <AppIcon app="budgetbaby" size={52} />
             <div class="app-status app-status--live">Available Now</div>
           </div>
           <h3>BudgetBaby</h3>
@@ -91,7 +104,7 @@ import CTASection from '../components/CTASection.astro';
             <span>·</span>
             <span>Free to start</span>
             <span>·</span>
-            <span>Premium $4.99/mo</span>
+            <span>Premium $7.99/mo</span>
           </div>
           <div class="app-cta">
             Explore BudgetBaby →
@@ -101,7 +114,7 @@ import CTASection from '../components/CTASection.astro';
         <!-- PantryBaby — Coming Soon -->
         <div class="app-card glass app-card--soon">
           <div class="app-card-header">
-            <div class="app-icon app-icon--pantry">🥗</div>
+            <AppIcon app="pantrybaby" size={52} />
             <div class="app-status app-status--soon">Coming Soon</div>
           </div>
           <h3>PantryBaby</h3>
@@ -117,7 +130,9 @@ import CTASection from '../components/CTASection.astro';
         <!-- Future -->
         <div class="app-card glass app-card--future">
           <div class="app-card-header">
-            <div class="app-icon app-icon--future">🧩</div>
+            <div class="app-icon app-icon--future">
+              <Icon name="box" size={28} />
+            </div>
             <div class="app-status app-status--future">In Planning</div>
           </div>
           <h3>More coming</h3>
@@ -126,6 +141,77 @@ import CTASection from '../components/CTASection.astro';
             <span>Stay tuned</span>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Screenshot Showcase -->
+  <section class="screenshots-section section-sm">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="eyebrow">BudgetBaby</span>
+        <h2>See it for yourself.</h2>
+        <p>Three views. Everything you need to understand your money today.</p>
+      </div>
+      <div class="screenshots-grid">
+        <ScreenshotFrame label="Safe to Spend" caption="Your number, right now">
+          <div class="mock-screen mock-sts">
+            <div class="ms-label">Safe to Spend Today</div>
+            <div class="ms-amount green">$42<span>.50</span></div>
+            <div class="ms-bar"><div class="ms-bar-fill" style="width:62%"></div></div>
+            <div class="ms-row"><span class="ms-row-label">Remaining</span><span>$312.00</span></div>
+            <div class="ms-row"><span class="ms-row-label">Bills due</span><span>$180.00</span></div>
+            <div class="ms-row"><span class="ms-row-label">Savings</span><span>$90.00</span></div>
+            <div class="ms-row"><span class="ms-row-label">Days left</span><span>5</span></div>
+          </div>
+        </ScreenshotFrame>
+
+        <ScreenshotFrame label="Money Pools" caption="See where it lives">
+          <div class="mock-screen mock-pools">
+            <div class="ms-label">Money Pools</div>
+            <div class="ms-pool-row">
+              <div class="ms-pool-icon"><Icon name="dollar-sign" size={13} /></div>
+              <div class="ms-pool-info"><span>Cash</span><span class="ms-val">$124</span></div>
+            </div>
+            <div class="ms-pool-row">
+              <div class="ms-pool-icon"><Icon name="credit-card" size={13} /></div>
+              <div class="ms-pool-info"><span>Debit</span><span class="ms-val">$843</span></div>
+            </div>
+            <div class="ms-pool-row">
+              <div class="ms-pool-icon"><Icon name="credit-card" size={13} /></div>
+              <div class="ms-pool-info"><span>Credit</span><span class="ms-val red">–$210</span></div>
+            </div>
+            <div class="ms-pool-row">
+              <div class="ms-pool-icon"><Icon name="lock" size={13} /></div>
+              <div class="ms-pool-info"><span>Savings</span><span class="ms-val">$1,200</span></div>
+            </div>
+          </div>
+        </ScreenshotFrame>
+
+        <ScreenshotFrame label="Insights" caption="Understand the pattern">
+          <div class="mock-screen mock-insights">
+            <div class="ms-label">This Month</div>
+            <div class="ms-bar-chart">
+              <div class="ms-chart-row">
+                <span class="ms-chart-label">Groceries</span>
+                <div class="ms-chart-bar" style="width:72%"></div>
+              </div>
+              <div class="ms-chart-row">
+                <span class="ms-chart-label">Dining</span>
+                <div class="ms-chart-bar" style="width:48%"></div>
+              </div>
+              <div class="ms-chart-row">
+                <span class="ms-chart-label">Transport</span>
+                <div class="ms-chart-bar" style="width:30%"></div>
+              </div>
+              <div class="ms-chart-row">
+                <span class="ms-chart-label">Health</span>
+                <div class="ms-chart-bar" style="width:20%"></div>
+              </div>
+            </div>
+            <div class="ms-row ms-total"><span class="ms-row-label">Total spent</span><span>$642</span></div>
+          </div>
+        </ScreenshotFrame>
       </div>
     </div>
   </section>
@@ -140,21 +226,27 @@ import CTASection from '../components/CTASection.astro';
       <div class="principles-grid">
         <GlassCard glow>
           <div class="principle">
-            <div class="principle-icon">🎯</div>
+            <div class="principle-icon">
+              <Icon name="target" size={28} />
+            </div>
             <h3>One problem at a time</h3>
             <p>Every app in the ecosystem tackles a single, well-defined problem. No sprawling all-in-one tools that do everything poorly.</p>
           </div>
         </GlassCard>
         <GlassCard glow>
           <div class="principle">
-            <div class="principle-icon">👁️</div>
+            <div class="principle-icon">
+              <Icon name="eye" size={28} />
+            </div>
             <h3>Clarity over cleverness</h3>
             <p>Design that shows you what you need to see, instantly. No dashboards full of charts you'll never read.</p>
           </div>
         </GlassCard>
         <GlassCard glow>
           <div class="principle">
-            <div class="principle-icon">🔒</div>
+            <div class="principle-icon">
+              <Icon name="lock" size={28} />
+            </div>
             <h3>Privacy by default</h3>
             <p>Your data lives on your device. Cloud features are optional and always opt-in. We don't sell your information.</p>
           </div>
@@ -167,7 +259,7 @@ import CTASection from '../components/CTASection.astro';
     heading="Start with BudgetBaby."
     subheading="The flagship app is live on the App Store. Know your Safe to Spend number today."
     primaryLabel="Download BudgetBaby"
-    primaryHref="#app-store"
+    primaryHref="https://apps.apple.com/app/id6756576123"
     secondaryLabel="Learn more"
     secondaryHref="/budgetbaby"
   />
@@ -272,6 +364,8 @@ import CTASection from '../components/CTASection.astro';
     color: var(--text-secondary);
   }
 
+  .sts-pool svg { color: var(--text-muted); flex-shrink: 0; }
+
   .sts-pool-val {
     margin-left: auto;
     font-weight: var(--weight-semibold);
@@ -308,9 +402,7 @@ import CTASection from '../components/CTASection.astro';
     box-shadow: var(--glow-md);
   }
 
-  .app-card--soon, .app-card--future {
-    opacity: 0.75;
-  }
+  .app-card--soon, .app-card--future { opacity: 0.75; }
 
   .app-card-header {
     display: flex;
@@ -325,12 +417,11 @@ import CTASection from '../components/CTASection.astro';
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.6rem;
   }
 
-  .app-icon--budget { background: rgba(139, 92, 246, 0.15); }
-  .app-icon--pantry { background: rgba(52, 211, 153, 0.12); }
-  .app-icon--future { background: rgba(255,255,255,0.05); }
+  .app-icon--budget { background: rgba(139, 92, 246, 0.15); color: var(--accent-light); }
+  .app-icon--pantry { background: rgba(52, 211, 153, 0.12); color: var(--green); }
+  .app-icon--future { background: rgba(255,255,255,0.05); color: var(--text-muted); }
 
   .app-status {
     font-size: var(--text-xs);
@@ -398,6 +489,127 @@ import CTASection from '../components/CTASection.astro';
 
   .app-cta-link:hover { color: var(--text-secondary); }
 
+  /* Screenshots section */
+  .screenshots-section .section-header { margin-bottom: var(--space-12); }
+
+  /* Mock screen content styles */
+  .mock-screen {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    font-size: 10px;
+    line-height: 1.4;
+    color: var(--text-secondary);
+    height: 100%;
+  }
+
+  .ms-label {
+    font-size: 8px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-bottom: var(--space-1);
+  }
+
+  .ms-amount {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .ms-amount.green { color: var(--green); }
+
+  .ms-amount span { font-size: 18px; opacity: 0.7; }
+
+  .ms-bar {
+    height: 4px;
+    background: var(--glass-border);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-block: 2px;
+  }
+
+  .ms-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-light));
+    border-radius: 2px;
+  }
+
+  .ms-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 10px;
+    color: var(--text-secondary);
+    padding: 2px 0;
+    border-bottom: 1px solid var(--glass-border);
+  }
+
+  .ms-row-label { color: var(--text-muted); }
+  .ms-total { margin-top: var(--space-2); border-bottom: none; font-weight: 600; }
+
+  /* Pool mock */
+  .ms-pool-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 0;
+    border-bottom: 1px solid var(--glass-border);
+    font-size: 10px;
+  }
+
+  .ms-pool-icon {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    background: var(--glass-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-light);
+    flex-shrink: 0;
+  }
+
+  .ms-pool-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+  }
+
+  .ms-val { font-weight: 600; color: var(--text-primary); }
+  .ms-val.red { color: var(--red); }
+
+  /* Bar chart mock */
+  .ms-bar-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1;
+    margin-top: var(--space-1);
+  }
+
+  .ms-chart-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .ms-chart-label {
+    font-size: 8px;
+    color: var(--text-muted);
+    width: 44px;
+    flex-shrink: 0;
+  }
+
+  .ms-chart-bar {
+    height: 8px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-light));
+    border-radius: 4px;
+    opacity: 0.75;
+  }
+
   /* Principles */
   .principles-grid {
     display: grid;
@@ -412,9 +624,9 @@ import CTASection from '../components/CTASection.astro';
   }
 
   .principle-icon {
-    font-size: 2rem;
-    line-height: 1;
+    color: var(--accent-light);
     margin-bottom: var(--space-1);
+    line-height: 1;
   }
 
   .principle h3 {

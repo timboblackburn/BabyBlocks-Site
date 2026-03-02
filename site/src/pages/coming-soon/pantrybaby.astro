@@ -1,12 +1,15 @@
 ---
-import LayoutPantry from '../../layouts/LayoutPantry.astro';
+import Layout from '../../layouts/Layout.astro';
 import GlassCard from '../../components/GlassCard.astro';
+import Icon from '../../components/Icon.astro';
+import AppIcon from '../../components/AppIcon.astro';
 ---
 
-<LayoutPantry
+<Layout
   title="PantryBaby: Coming Soon | BabyBlocks"
   description="PantryBaby is coming soon from BabyBlocks: your grocery list and pantry memory. Track what you have, what's running low, and what you need. Get notified when it launches."
   canonical="/coming-soon/pantrybaby"
+  theme="pantry"
 >
   <section class="coming-hero section">
     <div class="container">
@@ -27,7 +30,7 @@ import GlassCard from '../../components/GlassCard.astro';
             <p class="notify-sub">No spam. Just a single email when PantryBaby is available.</p>
             <GlassCard padding="md">
               <div class="form-placeholder-inner">
-                <span class="form-placeholder-icon">📬</span>
+                <div class="form-placeholder-icon"><Icon name="mail" size={24} /></div>
                 <div>
                   <p class="form-placeholder-label">Email signup coming soon</p>
                   <p class="form-placeholder-note">
@@ -43,7 +46,7 @@ import GlassCard from '../../components/GlassCard.astro';
         <div class="coming-visual" aria-hidden="true">
           <div class="pantry-mock glass">
             <div class="mock-header">
-              <span class="mock-app-icon">🥗</span>
+              <div class="mock-app-icon"><AppIcon app="pantrybaby" size={22} /></div>
               <span class="mock-app-name">PantryBaby</span>
             </div>
             <div class="mock-status-row">
@@ -105,7 +108,7 @@ import GlassCard from '../../components/GlassCard.astro';
       <div class="coming-features">
         <GlassCard glow>
           <div class="cf-item">
-            <div class="cf-icon">📦</div>
+            <div class="cf-icon"><Icon name="box" size={28} /></div>
             <h3>Pantry inventory</h3>
             <p>Track every item in your kitchen, pantry, fridge, freezer, and more with In Stock / Low / Out status at a glance. Expiration date tracking and alerts included.</p>
           </div>
@@ -113,7 +116,7 @@ import GlassCard from '../../components/GlassCard.astro';
 
         <GlassCard glow>
           <div class="cf-item">
-            <div class="cf-icon">🛒</div>
+            <div class="cf-icon"><Icon name="shopping-cart" size={28} /></div>
             <h3>Smart shopping lists</h3>
             <p>Build a list manually or let PantryBaby generate one from your low-stock and out-of-stock items. Per-item store preferences included.</p>
           </div>
@@ -121,7 +124,7 @@ import GlassCard from '../../components/GlassCard.astro';
 
         <GlassCard glow>
           <div class="cf-item">
-            <div class="cf-icon">🏪</div>
+            <div class="cf-icon"><Icon name="map-pin" size={28} /></div>
             <h3>Store-sorted shopping</h3>
             <p>Map aisles as you shop, and your list auto-sorts by aisle next time. Shop faster, backtrack less. (Premium feature.)</p>
           </div>
@@ -129,7 +132,7 @@ import GlassCard from '../../components/GlassCard.astro';
 
         <GlassCard glow>
           <div class="cf-item">
-            <div class="cf-icon">🔄</div>
+            <div class="cf-icon"><Icon name="refresh-cw" size={28} /></div>
             <h3>Recurring items</h3>
             <p>Set weekly milk and monthly cleaning supplies to auto-add to your list on schedule. Never forget the basics again.</p>
           </div>
@@ -137,7 +140,7 @@ import GlassCard from '../../components/GlassCard.astro';
 
         <GlassCard glow>
           <div class="cf-item">
-            <div class="cf-icon">🌍</div>
+            <div class="cf-icon"><Icon name="globe" size={28} /></div>
             <h3>18-region store support</h3>
             <p>Pre-loaded with region-specific store lists for 18 regions worldwide, from the UAE to the USA to Australia. Local shopping, simplified.</p>
           </div>
@@ -145,7 +148,7 @@ import GlassCard from '../../components/GlassCard.astro';
 
         <GlassCard glow>
           <div class="cf-item">
-            <div class="cf-icon">🧠</div>
+            <div class="cf-icon"><Icon name="zap" size={28} /></div>
             <h3>Smart suggestions</h3>
             <p>Based on your purchase history, PantryBaby notices when you're overdue for something you usually buy and adds it to your list automatically. (Premium feature.)</p>
           </div>
@@ -167,12 +170,12 @@ import GlassCard from '../../components/GlassCard.astro';
               Explore BudgetBaby →
             </a>
           </div>
-          <div class="bb-icon" aria-hidden="true">💰</div>
+          <div class="bb-icon" aria-hidden="true"><AppIcon app="budgetbaby" size={56} /></div>
         </div>
       </GlassCard>
     </div>
   </section>
-</LayoutPantry>
+</Layout>
 
 <style>
   .coming-hero {
@@ -235,7 +238,13 @@ import GlassCard from '../../components/GlassCard.astro';
     align-items: flex-start;
   }
 
-  .form-placeholder-icon { font-size: 1.8rem; line-height: 1; flex-shrink: 0; }
+  .form-placeholder-icon {
+    display: flex;
+    align-items: center;
+    color: var(--accent-light);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
 
   .form-placeholder-label {
     font-size: var(--text-sm);
@@ -271,7 +280,12 @@ import GlassCard from '../../components/GlassCard.astro';
     color: var(--text-primary);
   }
 
-  .mock-app-icon { font-size: 1.3rem; }
+  .mock-app-icon {
+    display: flex;
+    align-items: center;
+    color: #4A7B6E;
+    flex-shrink: 0;
+  }
 
   .mock-status-row {
     display: grid;
@@ -351,7 +365,12 @@ import GlassCard from '../../components/GlassCard.astro';
     gap: var(--space-3);
   }
 
-  .cf-icon { font-size: 2rem; line-height: 1; }
+  .cf-icon {
+    display: flex;
+    align-items: center;
+    color: #4A7B6E;
+    line-height: 1;
+  }
 
   .cf-item h3 { font-size: var(--text-lg); }
 
@@ -381,7 +400,13 @@ import GlassCard from '../../components/GlassCard.astro';
   .bb-cta-inner h2 { font-size: var(--text-2xl); margin-bottom: var(--space-2); }
   .bb-cta-inner > div > p { font-size: var(--text-sm); color: var(--text-secondary); margin: 0; }
 
-  .bb-icon { font-size: 4rem; line-height: 1; flex-shrink: 0; opacity: 0.5; }
+  .bb-icon {
+    display: flex;
+    align-items: center;
+    color: var(--accent-light);
+    flex-shrink: 0;
+    opacity: 0.4;
+  }
 
   @media (max-width: 900px) {
     .coming-inner { grid-template-columns: 1fr; }

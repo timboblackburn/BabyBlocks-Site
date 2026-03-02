@@ -1,38 +1,55 @@
 ---
-import Layout from '../../layouts/LayoutCore.astro';
+import Layout from '../../layouts/Layout.astro';
 import GlassCard from '../../components/GlassCard.astro';
 import CTASection from '../../components/CTASection.astro';
+import Icon from '../../components/Icon.astro';
+import ScreenshotFrame from '../../components/ScreenshotFrame.astro';
 
 const features = [
   {
-    icon: '🎯',
+    icon: 'target',
     title: 'Safe to Spend',
     desc: 'A single daily number that tells you exactly how much you can spend without missing bills or breaking your savings plan. Green means go. Red means stop.',
   },
   {
-    icon: '💸',
+    icon: 'layers',
     title: 'Money Pools',
     desc: 'Track Cash, Debit, Credit, and Savings as separate pools. Understand where your money actually lives, not just what the total says.',
   },
   {
-    icon: '🏷️',
+    icon: 'tag',
     title: 'Priority Categories',
     desc: 'Color-code every expense: Critical (rent, insurance), Important (groceries, gas), Discretionary (dining, hobbies). See your spending for what it actually is.',
   },
   {
-    icon: '📋',
+    icon: 'file-text',
     title: 'Recurring Bills',
     desc: 'Log every fixed expense once. BudgetBaby tracks due dates, sends reminders up to a week in advance, and factors upcoming bills into your Safe to Spend.',
   },
   {
-    icon: '🎯',
+    icon: 'star',
     title: 'Savings Goals',
     desc: 'Set a target, track progress with visual rings, and celebrate milestones at 25%, 50%, 75%, and 100%. Your savings budget is reserved and not counted as spending.',
   },
   {
-    icon: '☁️',
+    icon: 'cloud-upload',
     title: 'Cloud Backup',
     desc: 'Your data is AES-256 encrypted before it leaves your device. Restore to any device in seconds with no app restart needed.',
+  },
+  {
+    icon: 'bar-chart-2',
+    title: 'Insights Drill-Downs',
+    desc: 'Tap any category trend to see every transaction in that period. Premium users get full month analysis: budget stats, category breakdown, and all transactions in one view.',
+  },
+  {
+    icon: 'camera',
+    title: 'Receipt Attachments',
+    desc: 'Attach a photo receipt to any transaction from the activity log or detail view. Tap to expand full-screen. One tap to remove.',
+  },
+  {
+    icon: 'bell',
+    title: 'Advanced Reminders',
+    desc: 'Custom reminder schedules per bill and subscription, personalized message text, quiet hours, and a monthly savings nudge. All configurable, all premium.',
   },
 ];
 
@@ -65,7 +82,7 @@ const faqs = [
   },
   {
     q: 'What\'s the difference between free and premium?',
-    a: 'The free tier is fully usable: Safe to Spend, unlimited transactions, 3 savings goals, 5 recurring bills, 5 subscriptions. Premium ($4.99/mo or $39.99/yr) removes all limits and adds advanced insights, calendar sync, household sharing, data export, and up to 5 cloud backup slots.',
+    a: 'The free tier is fully usable: Safe to Spend, unlimited transactions, 3 savings goals, 3 recurring bills, 3 subscriptions, 5 custom categories, and 1 CSV export per month. Premium ($7.99/mo or $69.99/yr) removes all limits and adds advanced insights, calendar sync, household sharing, unlimited exports (CSV + PDF), and up to 5 cloud backup slots.',
   },
   {
     q: 'How does Household Sharing work?',
@@ -81,7 +98,7 @@ const faqs = [
   },
   {
     q: 'Can I export my data?',
-    a: 'Premium users can export a full CSV (transactions, categories, bills, subscriptions, savings goals) and a PDF summary report with spending breakdowns and progress bars.',
+    a: 'Free users get 1 CSV export per month. Premium users get unlimited exports in both CSV and PDF formats, including full spending breakdowns and progress bars.',
   },
   {
     q: 'What iOS version does BudgetBaby require?',
@@ -106,19 +123,19 @@ const faqs = [
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "USD",
-        "description": "Free tier with core budgeting features"
+        "description": "Free tier with 5 custom categories, 3 bills, 3 subscriptions, and 1 monthly CSV export"
       },
       {
         "@type": "Offer",
-        "price": "4.99",
+        "price": "7.99",
         "priceCurrency": "USD",
         "description": "Premium monthly subscription"
       },
       {
         "@type": "Offer",
-        "price": "39.99",
+        "price": "69.99",
         "priceCurrency": "USD",
-        "description": "Premium annual subscription"
+        "description": "Premium annual subscription with 7-day free trial"
       }
     ],
     "description": "A premium iOS budgeting app built for simplicity and clarity. Know what's safe to spend today.",
@@ -141,17 +158,17 @@ const faqs = [
           <h1>Know what's safe<br /><span class="text-gradient">to spend today.</span></h1>
           <p>
             BudgetBaby tracks your money across every pool: Cash, Debit, Credit, and Savings.
-            One number tells you how much you can spend right now without jeopardising your bills or goals.
+            One number tells you how much you can spend right now without jeopardizing your bills or goals.
           </p>
           <div class="hero-actions">
-            <a href="#app-store" class="btn btn-primary btn-lg">
+            <a href="https://apps.apple.com/app/id6756576123" class="btn btn-primary btn-lg">
               Download on the App Store
             </a>
             <a href="/budgetbaby/features" class="btn btn-secondary btn-lg">
-              See all features
+              See how it works
             </a>
           </div>
-          <p class="hero-note">Free to download · iOS 17+ · Premium from $4.99/mo</p>
+          <p class="hero-note">Free to download · iOS 17+ · Premium from $7.99/mo</p>
         </div>
 
         <div class="hero-visual" aria-hidden="true">
@@ -164,22 +181,22 @@ const faqs = [
               </div>
               <div class="mock-pools">
                 <div class="mock-pool">
-                  <span class="mock-pool-icon">💵</span>
+                  <span class="mock-pool-icon"><Icon name="dollar-sign" size={14} /></span>
                   <span>Cash</span>
                   <span class="mock-pool-amount">$124</span>
                 </div>
                 <div class="mock-pool">
-                  <span class="mock-pool-icon">🏦</span>
+                  <span class="mock-pool-icon"><Icon name="landmark" size={14} /></span>
                   <span>Debit</span>
                   <span class="mock-pool-amount">$843</span>
                 </div>
                 <div class="mock-pool">
-                  <span class="mock-pool-icon">💳</span>
+                  <span class="mock-pool-icon"><Icon name="credit-card" size={14} /></span>
                   <span>Credit</span>
                   <span class="mock-pool-amount">$210</span>
                 </div>
                 <div class="mock-pool">
-                  <span class="mock-pool-icon">🔒</span>
+                  <span class="mock-pool-icon"><Icon name="lock" size={14} /></span>
                   <span>Savings</span>
                   <span class="mock-pool-amount">$1,200</span>
                 </div>
@@ -204,7 +221,7 @@ const faqs = [
         {features.map((f) => (
           <GlassCard glow>
             <div class="feature-item">
-              <div class="feature-icon">{f.icon}</div>
+              <div class="feature-icon"><Icon name={f.icon} size={28} /></div>
               <h3>{f.title}</h3>
               <p>{f.desc}</p>
             </div>
@@ -216,6 +233,98 @@ const faqs = [
         <a href="/budgetbaby/features" class="btn btn-secondary">
           Deep dive into every feature →
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Screenshot Showcase -->
+  <section class="screenshots-section section-sm">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="eyebrow">The App</span>
+        <h2>See it in action.</h2>
+        <p>Every view is designed to give you exactly the information you need — nothing more.</p>
+      </div>
+
+      <div class="screenshots-grid">
+        <ScreenshotFrame caption="Know your number" label="Safe to Spend">
+          <div class="mock-screen-sts">
+            <div class="ss-label">Safe to Spend Today</div>
+            <div class="ss-amount green">$42<span>.50</span></div>
+            <div class="ss-bar"><div class="ss-bar-fill" style="width:62%"></div></div>
+            <div class="ss-row"><span>Period budget</span><span>$1,800</span></div>
+            <div class="ss-row"><span>Bills reserved</span><span class="red">-$320</span></div>
+            <div class="ss-row"><span>Savings reserved</span><span class="muted">-$150</span></div>
+            <div class="ss-row bold"><span>Left to spend</span><span class="green">$1,330</span></div>
+          </div>
+        </ScreenshotFrame>
+
+        <ScreenshotFrame caption="See where it lives" label="Money Pools">
+          <div class="mock-screen-pools">
+            <div class="ss-label">Your Pools</div>
+            <div class="ss-pool-row">
+              <span class="ss-pool-dot cash"></span>
+              <span class="ss-pool-name">Cash</span>
+              <span class="ss-pool-bar-wrap"><div class="ss-pool-bar" style="width:15%"></div></span>
+              <span class="ss-pool-amt">$124</span>
+            </div>
+            <div class="ss-pool-row">
+              <span class="ss-pool-dot debit"></span>
+              <span class="ss-pool-name">Debit</span>
+              <span class="ss-pool-bar-wrap"><div class="ss-pool-bar" style="width:78%"></div></span>
+              <span class="ss-pool-amt">$843</span>
+            </div>
+            <div class="ss-pool-row">
+              <span class="ss-pool-dot credit"></span>
+              <span class="ss-pool-name">Credit</span>
+              <span class="ss-pool-bar-wrap"><div class="ss-pool-bar" style="width:22%"></div></span>
+              <span class="ss-pool-amt">$210</span>
+            </div>
+            <div class="ss-pool-row">
+              <span class="ss-pool-dot savings"></span>
+              <span class="ss-pool-name">Savings</span>
+              <span class="ss-pool-bar-wrap"><div class="ss-pool-bar" style="width:100%"></div></span>
+              <span class="ss-pool-amt">$1,200</span>
+            </div>
+            <div class="ss-divider"></div>
+            <div class="ss-row bold"><span>Total</span><span class="green">$2,377</span></div>
+          </div>
+        </ScreenshotFrame>
+
+        <ScreenshotFrame caption="Understand the pattern" label="Spending Trends">
+          <div class="mock-screen-insights">
+            <div class="ss-label">Spending by Category</div>
+            <div class="ss-chart">
+              <div class="ss-bar-group">
+                <div class="ss-bar-vert" style="height:80%"></div>
+                <div class="ss-bar-label">Jan</div>
+              </div>
+              <div class="ss-bar-group">
+                <div class="ss-bar-vert" style="height:55%"></div>
+                <div class="ss-bar-label">Feb</div>
+              </div>
+              <div class="ss-bar-group">
+                <div class="ss-bar-vert active" style="height:65%"></div>
+                <div class="ss-bar-label">Mar</div>
+              </div>
+            </div>
+            <div class="ss-cat-row">
+              <span class="ss-cat-dot critical"></span>
+              <span class="ss-cat-name">Critical</span>
+              <span class="ss-cat-amt">$640</span>
+            </div>
+            <div class="ss-cat-row">
+              <span class="ss-cat-dot important"></span>
+              <span class="ss-cat-name">Important</span>
+              <span class="ss-cat-amt">$310</span>
+            </div>
+            <div class="ss-cat-row">
+              <span class="ss-cat-dot discretionary"></span>
+              <span class="ss-cat-name">Discretionary</span>
+              <span class="ss-cat-amt">$175</span>
+            </div>
+          </div>
+        </ScreenshotFrame>
       </div>
     </div>
   </section>
@@ -260,19 +369,29 @@ const faqs = [
               <td class="check">Yes</td>
             </tr>
             <tr>
+              <td>Custom Categories</td>
+              <td>5</td>
+              <td>Unlimited</td>
+            </tr>
+            <tr>
               <td>Savings Goals</td>
               <td>3</td>
               <td>Unlimited</td>
             </tr>
             <tr>
               <td>Recurring Bills</td>
-              <td>5</td>
+              <td>3</td>
               <td>Unlimited</td>
             </tr>
             <tr>
               <td>Subscriptions</td>
-              <td>5</td>
+              <td>3</td>
               <td>Unlimited</td>
+            </tr>
+            <tr>
+              <td>Data Export</td>
+              <td>1/mo CSV</td>
+              <td>Unlimited CSV + PDF</td>
             </tr>
             <tr>
               <td>Cloud Backup Slots</td>
@@ -283,6 +402,21 @@ const faqs = [
               <td>Bill Reminders</td>
               <td>1 day before</td>
               <td>1, 3, or 7 days</td>
+            </tr>
+            <tr>
+              <td>Subscription Reminders</td>
+              <td>1 day before</td>
+              <td>Custom messages + quiet hours</td>
+            </tr>
+            <tr>
+              <td>Receipt Attachments</td>
+              <td class="check">Yes</td>
+              <td class="check">Yes</td>
+            </tr>
+            <tr>
+              <td>Insights Drill-Downs</td>
+              <td>Category view</td>
+              <td>Full month analysis</td>
             </tr>
             <tr>
               <td>Advanced Insights + Trends</td>
@@ -299,17 +433,12 @@ const faqs = [
               <td class="dash"></td>
               <td class="check">Yes</td>
             </tr>
-            <tr>
-              <td>Data Export (CSV + PDF)</td>
-              <td class="dash"></td>
-              <td class="check">Yes</td>
-            </tr>
           </tbody>
         </table>
       </div>
 
       <p class="pricing-note">
-        Premium: $4.99/month or $39.99/year. Cancel anytime in iOS Settings.
+        Premium: $7.99/month or $69.99/year. 7-day free trial on annual plan. Cancel anytime in iOS Settings.
       </p>
     </div>
   </section>
@@ -490,7 +619,12 @@ const faqs = [
     color: var(--text-secondary);
   }
 
-  .mock-pool-icon { font-size: 1rem; }
+  .mock-pool-icon {
+    display: flex;
+    align-items: center;
+    color: var(--text-muted);
+    flex-shrink: 0;
+  }
 
   .mock-pool-amount {
     margin-left: auto;
@@ -512,7 +646,12 @@ const faqs = [
     gap: var(--space-3);
   }
 
-  .feature-icon { font-size: 2rem; line-height: 1; }
+  .feature-icon {
+    color: var(--accent-light);
+    line-height: 1;
+    width: var(--icon-lg, 28px);
+    height: var(--icon-lg, 28px);
+  }
 
   .feature-item h3 {
     font-size: var(--text-lg);
@@ -568,6 +707,147 @@ const faqs = [
 
   .designed-inner h2 { font-size: var(--text-2xl); }
   .designed-inner p { font-size: var(--text-base); }
+
+  /* Screenshots */
+  .mock-screen-sts,
+  .mock-screen-pools,
+  .mock-screen-insights {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    font-size: 10px;
+    width: 100%;
+  }
+
+  .ss-label {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: var(--space-1);
+  }
+
+  .ss-amount {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+  .ss-amount span { font-size: 1.2rem; opacity: 0.7; }
+  .ss-amount.green { color: var(--green); }
+
+  .ss-bar {
+    height: 4px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2px;
+    overflow: hidden;
+    margin: var(--space-1) 0;
+  }
+  .ss-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--purple-500), var(--purple-400));
+    border-radius: 2px;
+  }
+
+  .ss-row {
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-muted);
+    font-size: 10px;
+    padding: 2px 0;
+  }
+  .ss-row.bold { color: var(--text-primary); font-weight: 600; }
+  .ss-row .green { color: var(--green); }
+  .ss-row .red { color: var(--red, #f87171); }
+  .ss-row .muted { color: var(--text-muted); }
+
+  /* Pool mock */
+  .ss-pool-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    color: var(--text-secondary);
+  }
+  .ss-pool-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .ss-pool-dot.cash { background: #a78bfa; }
+  .ss-pool-dot.debit { background: #34d399; }
+  .ss-pool-dot.credit { background: #f59e0b; }
+  .ss-pool-dot.savings { background: #60a5fa; }
+  .ss-pool-name { width: 40px; flex-shrink: 0; }
+  .ss-pool-bar-wrap {
+    flex: 1;
+    height: 3px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .ss-pool-bar {
+    height: 100%;
+    background: var(--accent-light);
+    border-radius: 2px;
+    opacity: 0.6;
+  }
+  .ss-pool-amt {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 9px;
+    min-width: 30px;
+    text-align: right;
+  }
+  .ss-divider {
+    height: 1px;
+    background: var(--glass-border);
+    margin: var(--space-1) 0;
+  }
+
+  /* Insights mock */
+  .ss-chart {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 8px;
+    height: 60px;
+    padding: 0 var(--space-2);
+    margin-bottom: var(--space-2);
+  }
+  .ss-bar-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    flex: 1;
+  }
+  .ss-bar-vert {
+    width: 100%;
+    background: rgba(139, 92, 246, 0.3);
+    border-radius: 3px 3px 0 0;
+  }
+  .ss-bar-vert.active { background: var(--accent-light); opacity: 0.85; }
+  .ss-bar-label { font-size: 8px; color: var(--text-muted); }
+
+  .ss-cat-row {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    color: var(--text-secondary);
+    padding: 2px 0;
+  }
+  .ss-cat-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .ss-cat-dot.critical { background: #f87171; }
+  .ss-cat-dot.important { background: #f59e0b; }
+  .ss-cat-dot.discretionary { background: #34d399; }
+  .ss-cat-name { flex: 1; }
+  .ss-cat-amt { font-weight: 600; color: var(--text-primary); }
 
   /* FAQ */
   .faq-list {
@@ -668,7 +948,7 @@ const faqs = [
   }
 
   .pricing-table td.dash::before {
-    content: '\2014';
+    content: '\2212';
     color: var(--text-faint);
   }
 

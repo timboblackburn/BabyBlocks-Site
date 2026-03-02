@@ -1,12 +1,14 @@
 ---
-import LayoutCore from '../../layouts/LayoutCore.astro';
+import Layout from '../../layouts/Layout.astro';
 import GlassCard from '../../components/GlassCard.astro';
+import AppIcon from '../../components/AppIcon.astro';
 ---
 
-<LayoutCore
+<Layout
   title="BabyBlocks Core: Coming Soon | BabyBlocks"
   description="BabyBlocks Core is the unified hub of the BabyBlocks ecosystem. One dashboard for your entire daily life: budget, pantry, and everything that comes next. Coming after PantryBaby."
   canonical="/coming-soon/babyblocks-core"
+  theme="core"
 >
   <!-- Hero -->
   <section class="core-hero section">
@@ -61,7 +63,7 @@ import GlassCard from '../../components/GlassCard.astro';
             <div class="mock-cards">
               <div class="mock-card mock-card--budget">
                 <div class="mc-header">
-                  <span class="mc-icon">💰</span>
+                  <AppIcon app="budgetbaby" size={20} />
                   <span class="mc-app">BudgetBaby</span>
                 </div>
                 <p class="mc-value">$47<span class="mc-unit">/day</span></p>
@@ -73,7 +75,7 @@ import GlassCard from '../../components/GlassCard.astro';
 
               <div class="mock-card mock-card--pantry">
                 <div class="mc-header">
-                  <span class="mc-icon">🥗</span>
+                  <AppIcon app="pantrybaby" size={20} />
                   <span class="mc-app">PantryBaby</span>
                 </div>
                 <p class="mc-value">8<span class="mc-unit"> items low</span></p>
@@ -88,7 +90,7 @@ import GlassCard from '../../components/GlassCard.astro';
 
             <div class="mock-insight">
               <span class="mock-insight-icon">💡</span>
-              <p>You usually spend £90 at the supermarket. Your budget allows £104 this week.</p>
+              <p>You usually spend $90 at the supermarket. Your budget allows $104 this week.</p>
             </div>
           </div>
         </div>
@@ -243,7 +245,7 @@ import GlassCard from '../../components/GlassCard.astro';
       </GlassCard>
     </div>
   </section>
-</LayoutCore>
+</Layout>
 
 <style>
   /* Hero */

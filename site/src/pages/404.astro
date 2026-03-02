@@ -1,0 +1,113 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Page Not Found"
+  description="The page you're looking for doesn't exist. Head back to BabyBlocks."
+  theme="core"
+>
+  <section class="not-found">
+    <div class="container">
+      <span class="code">404</span>
+      <h1>Lost in the blocks</h1>
+      <p class="subtitle">The page you're looking for doesn't exist or has been moved.</p>
+
+      <div class="actions">
+        <a href="/" class="btn btn-primary btn-lg">Back to Home</a>
+        <a href="/budgetbaby" class="btn btn-secondary btn-lg">BudgetBaby</a>
+      </div>
+
+      <nav class="quick-links">
+        <span class="label">Quick links:</span>
+        <a href="/budgetbaby/features">Features</a>
+        <a href="/budgetbaby/support">Support</a>
+        <a href="/about">About</a>
+      </nav>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .not-found {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+    text-align: center;
+    padding: var(--space-16) var(--space-4);
+  }
+
+  .container {
+    max-width: 560px;
+  }
+
+  .code {
+    font-size: clamp(4rem, 12vw, 8rem);
+    font-weight: var(--weight-extrabold);
+    line-height: 1;
+    background: linear-gradient(135deg, var(--purple-400), var(--purple-600));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    opacity: 0.3;
+  }
+
+  h1 {
+    font-size: var(--text-4xl);
+    font-weight: var(--weight-bold);
+    color: var(--text-primary);
+    margin-top: var(--space-4);
+  }
+
+  .subtitle {
+    color: var(--text-secondary);
+    font-size: var(--text-lg);
+    margin-top: var(--space-3);
+    line-height: var(--leading-relaxed);
+  }
+
+  .actions {
+    display: flex;
+    gap: var(--space-3);
+    justify-content: center;
+    margin-top: var(--space-8);
+  }
+
+  .quick-links {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    align-items: center;
+    margin-top: var(--space-8);
+    flex-wrap: wrap;
+  }
+
+  .quick-links .label {
+    color: var(--text-muted);
+    font-size: var(--text-sm);
+  }
+
+  .quick-links a {
+    color: var(--accent-light);
+    font-size: var(--text-sm);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .quick-links a:hover {
+    color: var(--text-primary);
+  }
+
+  @media (max-width: 600px) {
+    .actions {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .actions .btn {
+      width: 100%;
+      max-width: 280px;
+    }
+  }
+</style>

@@ -124,6 +124,12 @@
   --header-border: rgba(255, 255, 255, 0.072);
   --mobile-nav-bg: rgba(9, 9, 15, 0.97);
   --cta-glow-color: rgba(139, 92, 246, 0.18);
+
+  /* ── Icon sizing ── */
+  --icon-sm:  16px;
+  --icon-md:  20px;
+  --icon-lg:  28px;
+  --icon-xl:  36px;
 }
 
 /* ── Reset ── */
@@ -582,6 +588,80 @@ strong { color: var(--text-primary); font-weight: var(--weight-semibold); }
 [data-theme="pantry"] .glass-accent {
   background: var(--accent-dim);
   border-color: var(--accent-border);
+}
+
+/* ── Trust Strip ── */
+.trust-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-5) var(--space-4);
+  border-top: 1px solid var(--glass-border);
+  border-bottom: 1px solid var(--glass-border);
+  margin-block: var(--space-2);
+}
+
+.trust-strip span {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.trust-strip svg {
+  color: var(--accent-light);
+  flex-shrink: 0;
+}
+
+/* ── Policy Summary Box ── */
+.policy-summary {
+  padding: var(--space-6);
+  margin-bottom: var(--space-8);
+  border-left: 3px solid var(--accent-border);
+}
+
+.policy-summary h2 {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-4);
+}
+
+.policy-summary ul {
+  padding-left: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  list-style: disc;
+}
+
+.policy-summary li {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+.policy-updated {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  margin-top: var(--space-4);
+  margin-bottom: 0;
+}
+
+/* ── Screenshot Showcase ── */
+.screenshots-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-8);
+  justify-items: center;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .trust-strip { gap: var(--space-4); }
+  .screenshots-grid { grid-template-columns: 1fr; }
 }
 
 /* ── Reduced Motion ── */

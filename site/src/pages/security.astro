@@ -1,0 +1,314 @@
+---
+import Layout from '../layouts/Layout.astro';
+import GlassCard from '../components/GlassCard.astro';
+import Icon from '../components/Icon.astro';
+
+const lastUpdated = 'March 1, 2026';
+---
+
+<Layout
+  title="Security — BabyBlocks"
+  description="BabyBlocks responsible disclosure policy. How to report a vulnerability and what to expect from our security response team."
+  canonical="/security"
+>
+  <!-- Hero -->
+  <section class="sec-hero section">
+    <div class="container">
+      <div class="sec-hero-inner">
+        <div class="label-chip">Security</div>
+        <h1>Responsible disclosure.<br /><span class="text-gradient">We take reports seriously.</span></h1>
+        <p>
+          If you discover a security vulnerability in BudgetBaby or our infrastructure,
+          we want to hear from you. This page describes how to report it and what happens next.
+        </p>
+        <p class="sec-updated">Last updated: {lastUpdated}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How to report -->
+  <section class="sec-section section-sm">
+    <div class="container-sm">
+      <GlassCard accent padding="lg">
+        <div class="sec-block">
+          <div class="sec-block-icon"><Icon name="mail" size={28} /></div>
+          <div>
+            <h2>How to report a vulnerability</h2>
+            <p>
+              Email your report to <a href="mailto:support@babyblocks.io">support@babyblocks.io</a>
+              with <strong>[Security]</strong> at the start of the subject line. We do not currently
+              operate a bug bounty program, but we will publicly acknowledge responsible disclosure
+              in our changelog when a fix is released (with your permission).
+            </p>
+            <p>Please include as much of the following as possible:</p>
+            <div class="report-template">
+              <pre>Subject: [Security] Brief description of issue
+Type: [Authentication / Data Exposure / Injection / Other]
+Severity: [Critical / High / Medium / Low / Informational]
+Affected: [App version X.X / API / Website]
+Steps to reproduce:
+  1.
+  2.
+  3.
+Proof of concept: [attach screenshot or screen recording]
+Impact: [what data or functionality is affected]
+Contact: [preferred contact for follow-up]</pre>
+            </div>
+          </div>
+        </div>
+      </GlassCard>
+    </div>
+  </section>
+
+  <!-- What we commit to -->
+  <section class="sec-section section-sm">
+    <div class="container-sm">
+      <GlassCard padding="lg">
+        <div class="sec-block">
+          <div class="sec-block-icon"><Icon name="check" size={28} /></div>
+          <div>
+            <h2>What you can expect from us</h2>
+            <ul class="sec-list">
+              <li><Icon name="check" size={14} /> Acknowledgment of your report within 2 business days</li>
+              <li><Icon name="check" size={14} /> A status update within 7 days confirming whether we can reproduce the issue</li>
+              <li><Icon name="check" size={14} /> Weekly updates until the issue is resolved or a decision is made</li>
+              <li><Icon name="check" size={14} /> We will not take legal action against researchers who follow this policy in good faith</li>
+              <li><Icon name="check" size={14} /> We will credit your disclosure in our changelog (with your permission)</li>
+            </ul>
+            <p class="sec-note">
+              Our target resolution time is 90 days for high-severity issues. We will notify you
+              if we need more time and explain why.
+            </p>
+          </div>
+        </div>
+      </GlassCard>
+    </div>
+  </section>
+
+  <!-- Scope -->
+  <section class="sec-section section-sm">
+    <div class="container-sm">
+      <div class="sec-grid">
+
+        <GlassCard padding="lg">
+          <div class="scope-block">
+            <h3 class="scope-heading in-scope">In scope</h3>
+            <ul class="sec-list">
+              <li><Icon name="check" size={14} /> BudgetBaby iOS app (current App Store version)</li>
+              <li><Icon name="check" size={14} /> BabyBlocks website (babyblocks.io)</li>
+              <li><Icon name="check" size={14} /> Cloud backup and authentication services</li>
+              <li><Icon name="check" size={14} /> Any vulnerability that could expose user financial data</li>
+            </ul>
+          </div>
+        </GlassCard>
+
+        <GlassCard padding="lg">
+          <div class="scope-block">
+            <h3 class="scope-heading out-scope">Out of scope</h3>
+            <ul class="sec-list muted">
+              <li><Icon name="x-circle" size={14} /> Denial-of-service attacks</li>
+              <li><Icon name="x-circle" size={14} /> Social engineering or phishing</li>
+              <li><Icon name="x-circle" size={14} /> Third-party services (Firebase, RevenueCat, Apple)</li>
+              <li><Icon name="x-circle" size={14} /> Physical attacks against user devices</li>
+            </ul>
+          </div>
+        </GlassCard>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- What we ask of researchers -->
+  <section class="sec-section section-sm">
+    <div class="container-sm">
+      <GlassCard padding="lg">
+        <div class="sec-block">
+          <div class="sec-block-icon"><Icon name="shield" size={28} /></div>
+          <div>
+            <h2>Our ask of security researchers</h2>
+            <ul class="sec-list">
+              <li><Icon name="check" size={14} /> Do not access, modify, or delete user data beyond what is needed to demonstrate the vulnerability</li>
+              <li><Icon name="check" size={14} /> Do not perform actions that could degrade service quality for other users</li>
+              <li><Icon name="check" size={14} /> Give us reasonable time to respond before public disclosure</li>
+              <li><Icon name="check" size={14} /> Do not share information about the vulnerability until we have released a fix</li>
+            </ul>
+            <p class="sec-note">
+              We follow a coordinated disclosure model. We ask for 90 days before public
+              disclosure of high-severity issues. We will work with you to meet your disclosure timeline.
+            </p>
+          </div>
+        </div>
+      </GlassCard>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="sec-section section-sm">
+    <div class="container-sm">
+      <GlassCard padding="lg">
+        <div class="sec-block">
+          <div class="sec-block-icon"><Icon name="mail" size={28} /></div>
+          <div>
+            <h2>Security contact</h2>
+            <p>
+              <a href="mailto:support@babyblocks.io" class="sec-email">support@babyblocks.io</a>
+            </p>
+            <p>
+              Use <strong>[Security]</strong> in the subject line. We read every email personally
+              and flag security reports for same-day triage.
+            </p>
+            <p>
+              A machine-readable version of this policy is available at
+              <a href="/.well-known/security.txt">/.well-known/security.txt</a>.
+            </p>
+            <p>
+              <strong>Intrigue MMC LLC</strong> &middot; operating as Intriguing Insight
+            </p>
+          </div>
+        </div>
+      </GlassCard>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .sec-hero {
+    padding-top: calc(var(--space-20) + var(--space-8));
+  }
+
+  .sec-hero-inner {
+    max-width: 720px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .sec-hero-inner h1 {
+    font-size: clamp(var(--text-4xl), 6vw, var(--text-6xl));
+    letter-spacing: -0.03em;
+  }
+
+  .sec-hero-inner p {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    max-width: 56ch;
+  }
+
+  .sec-updated {
+    font-size: var(--text-xs) !important;
+    color: var(--text-muted) !important;
+    max-width: none !important;
+  }
+
+  .sec-section { padding-block: var(--space-4); }
+
+  .sec-block {
+    display: flex;
+    gap: var(--space-6);
+  }
+
+  .sec-block-icon {
+    color: var(--accent-light);
+    flex-shrink: 0;
+    padding-top: var(--space-1);
+  }
+
+  .sec-block h2 {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-4);
+  }
+
+  .sec-block p {
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-4);
+  }
+
+  .sec-block p:last-child { margin-bottom: 0; }
+
+  .sec-block a {
+    color: var(--accent-light);
+    text-decoration: none;
+  }
+  .sec-block a:hover { text-decoration: underline; }
+
+  .sec-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+  }
+
+  .sec-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  .sec-list li svg { color: var(--green); flex-shrink: 0; margin-top: 2px; }
+  .sec-list.muted li svg { color: var(--red, #f87171); }
+
+  .sec-note {
+    font-size: var(--text-xs) !important;
+    color: var(--text-muted) !important;
+    margin-bottom: 0 !important;
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--glass-border);
+  }
+
+  .sec-email {
+    display: inline-block;
+    font-size: var(--text-xl);
+    font-weight: var(--weight-semibold);
+    margin-bottom: var(--space-3);
+  }
+
+  /* Scope grid */
+  .sec-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-5);
+  }
+
+  .scope-block h3 {
+    font-size: var(--text-base);
+    font-weight: var(--weight-semibold);
+    margin-bottom: var(--space-4);
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid var(--glass-border);
+  }
+
+  .scope-heading.in-scope { color: var(--green); }
+  .scope-heading.out-scope { color: var(--red, #f87171); }
+
+  /* Report template */
+  .report-template {
+    background: var(--bg-surface, rgba(0,0,0,0.2));
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-4);
+    overflow-x: auto;
+  }
+
+  .report-template pre {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin: 0;
+    white-space: pre;
+  }
+
+  @media (max-width: 640px) {
+    .sec-block { flex-direction: column; gap: var(--space-4); }
+    .sec-block-icon { display: none; }
+    .sec-grid { grid-template-columns: 1fr; }
+  }
+</style>

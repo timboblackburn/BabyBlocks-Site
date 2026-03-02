@@ -1,59 +1,69 @@
 ---
-import Layout from '../../layouts/LayoutCore.astro';
+import Layout from '../../layouts/Layout.astro';
 import GlassCard from '../../components/GlassCard.astro';
+import Icon from '../../components/Icon.astro';
 
 const sections = [
   {
-    id: 'getting-started',
-    label: 'Getting Started',
+    id: 'quickstart',
+    label: 'Quickstart',
     sub: [
-      { id: 'onboarding',            label: 'First launch & onboarding' },
-      { id: 'safe-to-spend',         label: 'Understanding Safe to Spend' },
-      { id: 'logging-transactions',  label: 'Logging a transaction' },
-      { id: 'budget-periods',        label: 'Budget periods' },
+      { id: 'onboarding',           label: 'First launch & onboarding' },
+      { id: 'logging-transactions', label: 'Logging a transaction' },
+      { id: 'budget-periods',       label: 'Budget periods' },
     ],
   },
   {
-    id: 'accounts-sync',
-    label: 'Accounts & Sync',
+    id: 'core-concepts',
+    label: 'Core Concepts',
     sub: [
-      { id: 'creating-account',   label: 'Creating an account' },
-      { id: 'cloud-sync',         label: 'Cloud sync' },
-      { id: 'household-sharing',  label: 'Household sharing' },
+      { id: 'safe-to-spend',       label: 'What is Safe to Spend?' },
+      { id: 'money-pools',         label: 'Money Pools' },
+      { id: 'priority-categories', label: 'Priority Categories' },
     ],
   },
   {
-    id: 'subscriptions',
-    label: 'Subscriptions & Billing',
+    id: 'advanced',
+    label: 'Advanced',
     sub: [
-      { id: 'free-vs-premium',       label: 'Free vs Premium' },
-      { id: 'purchasing-premium',    label: 'Purchasing Premium' },
-      { id: 'restoring-purchases',   label: 'Restoring purchases' },
-      { id: 'cancelling',            label: 'Cancelling' },
+      { id: 'creating-account',        label: 'Accounts & sign-in' },
+      { id: 'cloud-sync',              label: 'Cloud sync' },
+      { id: 'free-vs-premium',         label: 'Free vs Premium' },
+      { id: 'purchasing-premium',      label: 'Purchasing Premium' },
+      { id: 'restoring-purchases',     label: 'Restoring purchases' },
+      { id: 'cancelling',              label: 'Cancelling' },
+      { id: 'local-data',              label: 'Where your data lives' },
+      { id: 'cloud-backup',            label: 'Cloud backups' },
+      { id: 'restore-backup',          label: 'Restoring from backup' },
+      { id: 'export-data',             label: 'Exporting data (Premium)' },
+      { id: 'delete-data',             label: 'Deleting your data' },
+      { id: 'reminders-setup',         label: 'Reminders setup' },
+      { id: 'reminders-per-bill',      label: 'Per-bill settings' },
+      { id: 'reminders-per-sub',       label: 'Per-subscription (Premium)' },
+      { id: 'reminders-custom-msg',    label: 'Custom messages (Premium)' },
+      { id: 'reminders-quiet-hours',   label: 'Quiet hours (Premium)' },
+      { id: 'reminders-savings-nudge', label: 'Savings nudge (Premium)' },
     ],
   },
   {
-    id: 'data-backups',
-    label: 'Data & Backups',
+    id: 'coming-soon',
+    label: 'Coming Soon',
     sub: [
-      { id: 'local-data',      label: 'Where your data lives' },
-      { id: 'cloud-backup',    label: 'Cloud backups' },
-      { id: 'restore-backup',  label: 'Restoring from backup' },
-      { id: 'export-data',     label: 'Exporting data' },
-      { id: 'delete-data',     label: 'Deleting your data' },
+      { id: 'cs-household-sharing', label: 'Household sharing' },
     ],
   },
   {
     id: 'troubleshooting',
     label: 'Troubleshooting',
     sub: [
-      { id: 'ts-before-support',  label: 'Before contacting support' },
-      { id: 'ts-safe-to-spend',   label: 'Safe to Spend issues' },
-      { id: 'ts-premium',         label: 'Premium not unlocking' },
-      { id: 'ts-dates',           label: 'Transaction date issues' },
-      { id: 'ts-backup',          label: 'Backup fails' },
-      { id: 'ts-notifications',   label: 'Notifications' },
-      { id: 'ts-crashes',         label: 'App crashes on launch' },
+      { id: 'ts-before-support', label: 'Before contacting support' },
+      { id: 'ts-diagnostics',    label: 'Generating a support report' },
+      { id: 'ts-safe-to-spend',  label: 'Safe to Spend issues' },
+      { id: 'ts-premium',        label: 'Premium not unlocking' },
+      { id: 'ts-dates',          label: 'Transaction date issues' },
+      { id: 'ts-backup',         label: 'Backup fails' },
+      { id: 'ts-notifications',  label: 'Notifications' },
+      { id: 'ts-crashes',        label: 'App crashes on launch' },
     ],
   },
 ];
@@ -137,9 +147,40 @@ const sections = [
         </p>
       </div>
 
-      <!-- Getting Started -->
-      <section class="doc-section" id="getting-started">
-        <h2>Getting Started</h2>
+      <!-- Most common tasks -->
+      <div class="docs-quick-tasks glass">
+        <p class="docs-quick-label">Most common tasks</p>
+        <div class="docs-quick-grid">
+          <a href="#budget-periods" class="docs-quick-item">
+            <Icon name="calendar" size={16} />
+            <span>Set up a budget period</span>
+          </a>
+          <a href="#logging-transactions" class="docs-quick-item">
+            <Icon name="dollar-sign" size={16} />
+            <span>Log a transaction</span>
+          </a>
+          <a href="#restoring-purchases" class="docs-quick-item">
+            <Icon name="refresh-cw" size={16} />
+            <span>Restore a purchase</span>
+          </a>
+          <a href="#restore-backup" class="docs-quick-item">
+            <Icon name="cloud-upload" size={16} />
+            <span>Restore from backup</span>
+          </a>
+          <a href="#ts-diagnostics" class="docs-quick-item">
+            <Icon name="activity" size={16} />
+            <span>Generate support report</span>
+          </a>
+          <a href="#ts-safe-to-spend" class="docs-quick-item">
+            <Icon name="alert-circle" size={16} />
+            <span>Safe to Spend looks wrong</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quickstart -->
+      <section class="doc-section" id="quickstart">
+        <h2>Quickstart</h2>
 
         <div class="doc-block">
           <h3 id="onboarding">First launch & onboarding</h3>
@@ -164,37 +205,12 @@ const sections = [
         </div>
 
         <div class="doc-block">
-          <h3 id="safe-to-spend">Understanding Safe to Spend</h3>
-          <p>
-            Safe to Spend is the core number in BudgetBaby. It answers:
-            <em>"How much can I spend right now without breaking my budget?"</em>
-          </p>
-          <p>The calculation is straightforward:</p>
-          <div class="doc-formula glass">
-            <code>Safe to Spend = (Remaining Budget − Upcoming Bills − Savings Reserve) ÷ Days Remaining</code>
-          </div>
-          <ul class="doc-list">
-            <li><strong>Remaining Budget:</strong> Your total period budget minus everything already spent.</li>
-            <li><strong>Upcoming Bills:</strong> Only unpaid Critical (red) bills due in the current period.</li>
-            <li><strong>Savings Reserve:</strong> The savings portion of your budget allocation.</li>
-            <li><strong>Days Remaining:</strong> Calendar days left in the period (minimum 1).</li>
-          </ul>
-          <p>The indicator color tells you your status at a glance:</p>
-          <ul class="doc-list doc-status-list">
-            <li><span class="status-dot green"></span><strong>Green:</strong> Healthy. Spend with confidence.</li>
-            <li><span class="status-dot yellow"></span><strong>Yellow:</strong> Moderate. Be thoughtful.</li>
-            <li><span class="status-dot orange"></span><strong>Orange:</strong> Limited. Avoid non-essentials.</li>
-            <li><span class="status-dot red"></span><strong>Red:</strong> Critical or overspent. Pause discretionary spending.</li>
-          </ul>
-        </div>
-
-        <div class="doc-block">
           <h3 id="logging-transactions">Logging a transaction</h3>
           <ol class="doc-list numbered">
             <li>Tap the <strong>+</strong> button on the Home screen (or in any transaction view).</li>
             <li>Enter the amount.</li>
             <li>Add a description (optional but recommended).</li>
-            <li>Select a <strong>Category</strong> (this determines its priority colour and bucket).</li>
+            <li>Select a <strong>Category</strong> (this determines its priority color and bucket).</li>
             <li>Choose the <strong>Payment Method</strong>: Cash, Debit, Credit, or Savings.</li>
             <li>Confirm the date (defaults to today).</li>
             <li>Tap <strong>Save</strong>.</li>
@@ -221,6 +237,81 @@ const sections = [
 
       <hr class="divider" />
 
+      <!-- Core Concepts -->
+      <section class="doc-section" id="core-concepts">
+        <h2>Core Concepts</h2>
+
+        <div class="doc-block">
+          <h3 id="safe-to-spend">What is Safe to Spend?</h3>
+          <p>
+            Safe to Spend is the core number in BudgetBaby. It answers:
+            <em>"How much can I spend right now without breaking my budget?"</em>
+          </p>
+          <p>The calculation is straightforward:</p>
+          <div class="doc-formula glass">
+            <code>Safe to Spend = (Remaining Budget − Upcoming Bills − Savings Reserve) ÷ Days Remaining</code>
+          </div>
+          <ul class="doc-list">
+            <li><strong>Remaining Budget:</strong> Your total period budget minus everything already spent.</li>
+            <li><strong>Upcoming Bills:</strong> Only unpaid Critical (red) bills due in the current period.</li>
+            <li><strong>Savings Reserve:</strong> The savings portion of your budget allocation.</li>
+            <li><strong>Days Remaining:</strong> Calendar days left in the period (minimum 1).</li>
+          </ul>
+          <p>The indicator color tells you your status at a glance:</p>
+          <ul class="doc-list doc-status-list">
+            <li><span class="status-dot green"></span><strong>Green:</strong> Healthy. Spend with confidence.</li>
+            <li><span class="status-dot yellow"></span><strong>Yellow:</strong> Moderate. Be thoughtful.</li>
+            <li><span class="status-dot orange"></span><strong>Orange:</strong> Limited. Avoid non-essentials.</li>
+            <li><span class="status-dot red"></span><strong>Red:</strong> Critical or overspent. Pause discretionary spending.</li>
+          </ul>
+          <div class="doc-tip">
+            <strong>Tip:</strong> Tap the info button next to Safe to Spend on the home screen to see the full calculation breakdown with your actual numbers.
+          </div>
+        </div>
+
+        <div class="doc-block">
+          <h3 id="money-pools">Money Pools</h3>
+          <p>
+            BudgetBaby tracks your money across four distinct pools that reflect where it physically lives —
+            not just a single "balance" that hides the full picture.
+          </p>
+          <ul class="doc-list">
+            <li><strong>Cash:</strong> Physical cash or cash-equivalent spending. Logging a cash transaction reduces this pool immediately.</li>
+            <li><strong>Debit:</strong> Money in your bank account. Your day-to-day operating balance.</li>
+            <li><strong>Credit:</strong> Purchases on a credit card. Credit spending counts against your period budget but does not immediately reduce Cash or Debit — it's deferred liability you'll pay later.</li>
+            <li><strong>Savings:</strong> A protected pool for goal contributions. Never counted in Safe to Spend. Only moves when you explicitly transfer money in or out.</li>
+          </ul>
+          <p>
+            You might have $1,200 in your debit account, but $800 earmarked for rent and $200 already on a credit card.
+            Money Pools show you all of that at once. "How much is available?" becomes a question you can actually answer.
+          </p>
+          <div class="doc-tip">
+            <strong>Cash and Debit balances carry forward between periods automatically.</strong> Your ending balance becomes the next period's starting balance. Credit and Savings require manual management.
+          </div>
+        </div>
+
+        <div class="doc-block">
+          <h3 id="priority-categories">Priority Categories</h3>
+          <p>
+            Every category has a priority level that determines how BudgetBaby treats it in the Safe to Spend calculation
+            and how spending is displayed in breakdowns.
+          </p>
+          <ul class="doc-list doc-status-list">
+            <li><span class="status-dot red"></span><strong>Critical:</strong> Obligations you cannot skip. Rent, utilities, insurance, loan payments. Unpaid Critical bills are reserved in Safe to Spend — you can't accidentally spend rent money.</li>
+            <li><span class="status-dot yellow"></span><strong>Important:</strong> Needs that flex slightly. Groceries, gas, healthcare. These matter but can be adjusted when budgets are tight.</li>
+            <li><span class="status-dot green"></span><strong>Discretionary:</strong> Optional spending. Dining out, entertainment, hobbies, clothing.</li>
+            <li><span class="status-dot" style="background: var(--text-muted)"></span><strong>Buffer:</strong> A catch-all for miscellaneous spend you haven't categorized yet.</li>
+          </ul>
+          <p>
+            Priority is what separates BudgetBaby from a simple expense tracker. It gives spending moral weight —
+            you always know what you're choosing versus what you're obligated to.
+          </p>
+          <p>Free users get 12 default categories. Premium users can create unlimited custom categories, each with its own SF Symbol icon, color, and priority level.</p>
+        </div>
+      </section>
+
+      <hr class="divider" />
+
       <!-- Accounts & Sync -->
       <section class="doc-section" id="accounts-sync">
         <h2>Accounts & Sync</h2>
@@ -229,7 +320,7 @@ const sections = [
           <h3 id="creating-account">Creating an account</h3>
           <p>
             An account is not required to use BudgetBaby. All core features work without signing in.
-            An account is needed for cloud sync, cloud backup, and household sharing.
+            An account is needed for cloud sync and cloud backup.
           </p>
           <p>BudgetBaby supports three sign-in methods:</p>
           <ul class="doc-list">
@@ -254,18 +345,6 @@ const sections = [
           </div>
         </div>
 
-        <div class="doc-block">
-          <h3 id="household-sharing">Household sharing</h3>
-          <p>
-            Household sharing is a Premium feature that lets multiple people collaborate on a shared budget.
-          </p>
-          <ul class="doc-list">
-            <li><strong>Create a household:</strong> Settings → Household → Create. Requires Premium.</li>
-            <li><strong>Invite members:</strong> Generate a 6-character invite code. Valid for 48 hours.</li>
-            <li><strong>Join a household:</strong> Settings → Household → Join with Code. Free users can join; they cannot create.</li>
-            <li><strong>Roles:</strong> Admin (full control + invites), Member (contribute + view), Viewer (read-only).</li>
-          </ul>
-        </div>
       </section>
 
       <hr class="divider" />
@@ -283,19 +362,21 @@ const sections = [
             <li>Money Pools (Cash, Debit, Credit, Savings)</li>
             <li>Priority categories with color coding</li>
             <li>Up to 3 savings goals</li>
-            <li>Up to 5 recurring bills</li>
-            <li>Up to 5 subscriptions</li>
+            <li>Up to 3 recurring bills</li>
+            <li>Up to 3 subscriptions</li>
+            <li>Up to 5 custom categories</li>
             <li>Up to 3 important expenses</li>
+            <li>1 CSV export per month</li>
             <li>1 cloud backup slot</li>
             <li>Basic spending insights</li>
           </ul>
-          <p>Premium ($4.99/month or $39.99/year, saving 33%) unlocks:</p>
+          <p>Premium ($7.99/month or $69.99/year, saving 27%) unlocks:</p>
           <ul class="doc-list">
-            <li>Unlimited savings goals, bills, subscriptions, and expenses</li>
-            <li>Custom spending categories</li>
+            <li>Unlimited bills, subscriptions, categories, and expenses</li>
+            <li>Unlimited CSV and PDF exports</li>
             <li>Advanced insights: trends, predictions, analytics</li>
             <li>iOS Calendar sync</li>
-            <li>Household creation (up to 3 households)</li>
+            <li>Household sharing <span class="doc-badge-soon">Coming Soon</span></li>
             <li>CSV and PDF data export</li>
             <li>Advanced reminders with custom schedules</li>
             <li>5 cloud backup slots</li>
@@ -444,6 +525,73 @@ const sections = [
         </div>
 
         <div class="doc-block">
+          <h3 id="ts-diagnostics">Generating a support report</h3>
+          <p>
+            BudgetBaby has a built-in diagnostics engine that packages everything our support team needs to understand
+            what's happening on your device — without ever touching your financial data.
+            For anything beyond a simple question, attaching a support report dramatically speeds up resolution.
+          </p>
+
+          <h4 class="doc-sub-heading">How to generate a report</h4>
+          <p>Go to <strong>Settings → Support & Diagnostics</strong>. You have three options:</p>
+          <ul class="doc-list">
+            <li>
+              <strong>Report a Problem</strong> (recommended for bugs): Tap <strong>"Start Report"</strong>.
+              The guided 5-step flow asks which area is affected and roughly when it happened.
+              It then generates a full diagnostics bundle and prompts you to send it.
+              Choose your area from: Backup, Restore, Bills, Subscriptions, Spending Buckets, Money on Hand, Premium, or Other.
+            </li>
+            <li>
+              <strong>Export Diagnostics</strong> (quick, no prompts): One tap creates the bundle immediately.
+              Use this if you want to capture the current app state without going through the guided flow.
+            </li>
+            <li>
+              <strong>Copy Support Report</strong> (for pasting into emails): Copies a plain-text summary to your clipboard.
+              Useful if you're writing to us from a desktop or want to include the report inline in your message.
+            </li>
+          </ul>
+
+          <h4 class="doc-sub-heading">What's in the report</h4>
+          <p>The report is a bundle of structured files. It includes:</p>
+          <ul class="doc-list">
+            <li><strong>Events log</strong> — last 24 hours of app activity (up to 2,000 events). No financial data; only action types, screen names, and outcomes.</li>
+            <li><strong>Device snapshot</strong> — iPhone model, iOS version, locale, timezone, build type (App Store / TestFlight).</li>
+            <li><strong>App state</strong> — version, build number, onboarding status, premium status, backup count, last backup/restore dates.</li>
+            <li><strong>Data fingerprint</strong> — entity counts only (how many transactions, categories, bills, periods, goals). No amounts or descriptions.</li>
+            <li><strong>Support story</strong> — a human-readable narrative that summarises the event timeline and highlights anything anomalous.</li>
+            <li><strong>Issue fingerprint</strong> — a unique <code>BB-XXXX-XXXX</code> identifier for your report. Quote this in your email subject line.</li>
+          </ul>
+          <div class="doc-tip">
+            <strong>Your financial data is never included.</strong> No transaction amounts, no descriptions, no account names or balances, no budget values, no category names. Only anonymous counts and app-state metadata.
+          </div>
+
+          <h4 class="doc-sub-heading">How to send it</h4>
+          <p>
+            After generating the report, iOS presents a share sheet. The fastest route is <strong>Mail</strong> —
+            BudgetBaby pre-fills the subject line with your support code (<code>BB-XXXX-XXXX</code>)
+            and attaches the bundle automatically. Send to
+            <a href="mailto:support@babyblocks.io">support@babyblocks.io</a>.
+          </p>
+          <p>
+            If you don't have Mail configured, use AirDrop to your Mac and attach the file manually,
+            or use the <strong>Copy Support Report</strong> option to paste the text summary into your email.
+          </p>
+
+          <h4 class="doc-sub-heading">Report archive</h4>
+          <p>
+            Every report you generate is saved in the archive under Settings → Support & Diagnostics → View Archive.
+            Reports are kept for 90 days. You can re-share any archived report without regenerating it.
+          </p>
+
+          <h4 class="doc-sub-heading">File name and format</h4>
+          <p>The bundle file looks like:</p>
+          <div class="doc-formula glass">
+            <code>BudgetBaby_Diagnostics_2026-03-01_14-35_BB-9F3K-2A17.budgetbaby-diagnostics</code>
+          </div>
+          <p>It contains several JSON and text files our team uses to reconstruct exactly what the app was doing. You don't need to open or interpret any of them — just attach the whole bundle.</p>
+        </div>
+
+        <div class="doc-block">
           <h3 id="ts-safe-to-spend">Safe to Spend shows an unexpected number</h3>
           <ul class="doc-list">
             <li>Make sure your active budget period dates are correct (Settings → Budget Setup).</li>
@@ -520,6 +668,133 @@ const sections = [
             </div>
           </GlassCard>
         </div>
+      </section>
+
+      <!-- Reminders -->
+      <section class="doc-section" id="reminders">
+        <h2>Reminders</h2>
+
+        <div class="doc-block">
+          <h3 id="reminders-setup">Setting up reminders</h3>
+          <p>
+            BudgetBaby sends local push notifications to remind you about upcoming bills and subscriptions.
+            Reminders are a premium feature. To configure them, go to <strong>Settings → Reminders</strong>.
+          </p>
+          <p>
+            On first visit, BudgetBaby creates a default reminder configuration for your household and asks for
+            notification permission if you have not already granted it.
+          </p>
+          <ul class="doc-list">
+            <li><strong>Default reminder times</strong> — choose same day, 1, 3, or 7 days before a due date. You can select multiple.</li>
+            <li><strong>Reminder time</strong> — set the hour and minute notifications fire (default: 9:00 AM).</li>
+            <li><strong>Weekly bill summary</strong> — optional Monday morning digest listing bills due that week and their total.</li>
+          </ul>
+        </div>
+
+        <div class="doc-block">
+          <h3 id="reminders-per-bill">Per-bill settings</h3>
+          <p>
+            The <strong>Per-Bill Settings</strong> section lists every active recurring bill. Tap any bill card to expand it.
+          </p>
+          <ul class="doc-list">
+            <li>Toggle individual days (same day / 1 day / 3 days / 1 week) to override the global default for that bill.</li>
+            <li>Bills with a custom schedule show a purple "Custom" badge in the card header.</li>
+            <li>Tap <strong>Reset to Default</strong> to remove the override and use global settings again.</li>
+          </ul>
+          <p>
+            Changes take effect immediately — BudgetBaby cancels the old notifications and schedules new ones.
+          </p>
+        </div>
+
+        <div class="doc-block">
+          <h3 id="reminders-per-sub">Per-subscription reminders <span class="doc-badge-premium">Premium</span></h3>
+          <p>
+            The <strong>Per-Subscription Settings</strong> section appears below the per-bill section when you have active
+            subscriptions. It works identically to per-bill settings:
+          </p>
+          <ul class="doc-list">
+            <li>Expand any subscription card to choose reminder days.</li>
+            <li>The card subtitle shows the next billing date so you always know how far away it is.</li>
+            <li>Custom overrides show a "Custom" badge; reset clears them back to the global default.</li>
+          </ul>
+        </div>
+
+        <div class="doc-block">
+          <h3 id="reminders-custom-msg">Custom messages <span class="doc-badge-premium">Premium</span></h3>
+          <p>
+            Inside any expanded bill or subscription card, a <strong>Custom Message</strong> field lets you write
+            your own notification body text.
+          </p>
+          <p>Examples:</p>
+          <ul class="doc-list">
+            <li>"Check if we're still using this service before it renews"</li>
+            <li>"Transfer from savings to cover this"</li>
+            <li>"Expense this on the work card"</li>
+          </ul>
+          <p>
+            If you leave the field empty, BudgetBaby auto-generates the notification: e.g.
+            <em>"Netflix renews tomorrow for $15.99."</em>
+          </p>
+          <p>
+            Free users see a lock icon in place of the text field. Custom messages require a premium subscription.
+          </p>
+        </div>
+
+        <div class="doc-block">
+          <h3 id="reminders-quiet-hours">Quiet hours <span class="doc-badge-premium">Premium</span></h3>
+          <p>
+            The <strong>Quiet Hours</strong> section lets you suppress all BudgetBaby notifications during a time window.
+            Toggle "Enable Quiet Hours" then set the From and Until time using the wheel pickers.
+          </p>
+          <ul class="doc-list">
+            <li>Handles midnight wrap correctly — e.g. 10 PM to 8 AM works as expected.</li>
+            <li>Reminders that fall within the quiet window are held until the window ends.</li>
+            <li>Useful if you get bill reminders at midnight or before your alarm goes off.</li>
+          </ul>
+        </div>
+
+        <div class="doc-block">
+          <h3 id="reminders-savings-nudge">Monthly savings nudge <span class="doc-badge-premium">Premium</span></h3>
+          <p>
+            The <strong>Savings Reminders</strong> section sends a monthly notification reminding you to fund your
+            savings goals. Enable the toggle and use the day stepper to choose which day of the month to receive it (1–28).
+          </p>
+          <p>
+            The default is day 15 (mid-month), which works well if you're paid at the beginning of the month and want
+            a halfway reminder. The notification fires at your global reminder time.
+          </p>
+        </div>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- Coming Soon -->
+      <section class="doc-section" id="coming-soon">
+        <h2>Coming Soon</h2>
+        <p class="doc-section-intro">
+          These features are in active development and not yet available in the current App Store release.
+          The documentation below describes the intended behavior so you know what to expect when they ship.
+        </p>
+
+        <div class="doc-block">
+          <h3 id="cs-household-sharing">Household sharing <span class="doc-badge-soon">Coming Soon</span></h3>
+          <p>
+            Household sharing will let multiple people collaborate on a shared budget with role-based
+            permissions. It will require a signed-in account and an active Premium subscription for the household creator.
+          </p>
+          <ul class="doc-list">
+            <li><strong>Create a household:</strong> Settings → Household → Create. Requires Premium.</li>
+            <li><strong>Invite members:</strong> Generate a 6-character invite code. Valid for 48 hours.</li>
+            <li><strong>Join a household:</strong> Settings → Household → Join with Code. Free users will be able to join a household; they cannot create one.</li>
+            <li><strong>Roles:</strong> Admin (full management + invite members), Member (add transactions + view shared data), Viewer (read-only).</li>
+            <li><strong>Shared data:</strong> Goals, bills, and transaction history are visible to all household members according to their role.</li>
+          </ul>
+          <div class="doc-tip cs-tip">
+            Household sharing is planned for a future release. If you want to be notified when it launches,
+            vote on it at <a href="https://babyblocks.canny.io/feature-requests" target="_blank" rel="noopener noreferrer">babyblocks.canny.io</a>.
+          </div>
+        </div>
+
       </section>
     </main>
   </div>
@@ -692,6 +967,53 @@ const sections = [
     max-width: 52ch;
   }
 
+  /* Most common tasks */
+  .docs-quick-tasks {
+    margin-bottom: var(--space-12);
+    padding: var(--space-5) var(--space-6);
+    border-radius: var(--radius-xl);
+  }
+
+  .docs-quick-label {
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: var(--space-4);
+  }
+
+  .docs-quick-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-2);
+  }
+
+  .docs-quick-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+    border: 1px solid transparent;
+  }
+
+  .docs-quick-item svg { color: var(--accent-light); flex-shrink: 0; }
+
+  .docs-quick-item:hover {
+    background: var(--glass-bg-hover);
+    color: var(--text-primary);
+    border-color: var(--glass-border);
+  }
+
+  @media (max-width: 640px) {
+    .docs-quick-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
   .doc-section {
     margin-bottom: var(--space-8);
   }
@@ -758,6 +1080,15 @@ const sections = [
   .status-dot.orange { background: #F97316; }
   .status-dot.red    { background: var(--red); }
 
+  .doc-sub-heading {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    color: var(--text-primary);
+    margin-top: var(--space-6);
+    margin-bottom: var(--space-3);
+    letter-spacing: 0.01em;
+  }
+
   .doc-formula {
     padding: var(--space-4) var(--space-5);
     margin-block: var(--space-4);
@@ -781,6 +1112,20 @@ const sections = [
     line-height: var(--leading-relaxed);
   }
 
+  .doc-badge-premium {
+    display: inline-block;
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    color: var(--accent-light);
+    background: var(--accent-dim);
+    border: 1px solid var(--accent-border);
+    border-radius: var(--radius-full);
+    padding: 1px var(--space-2);
+    letter-spacing: 0.04em;
+    vertical-align: middle;
+    margin-left: var(--space-2);
+  }
+
   .doc-contact { margin-top: var(--space-8); }
 
   .doc-contact-inner {
@@ -797,6 +1142,39 @@ const sections = [
     border-top: 1px solid var(--glass-border);
     margin-block: var(--space-12);
   }
+
+  .doc-section-intro {
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-8);
+    max-width: 64ch;
+  }
+
+  .doc-badge-soon {
+    display: inline-block;
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    color: var(--yellow);
+    background: rgba(251, 191, 36, 0.1);
+    border: 1px solid rgba(251, 191, 36, 0.25);
+    border-radius: var(--radius-full);
+    padding: 1px var(--space-2);
+    letter-spacing: 0.04em;
+    vertical-align: middle;
+    margin-left: var(--space-2);
+  }
+
+  .cs-tip {
+    background: rgba(251, 191, 36, 0.04);
+    border-color: rgba(251, 191, 36, 0.18);
+  }
+
+  .cs-tip a {
+    color: var(--accent-light);
+    text-decoration: none;
+  }
+  .cs-tip a:hover { text-decoration: underline; }
 
   /* Mobile jump-to dropdown */
   .docs-mobile-jump {

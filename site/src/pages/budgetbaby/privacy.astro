@@ -1,7 +1,7 @@
 ---
-import Layout from '../../layouts/LayoutCore.astro';
+import Layout from '../../layouts/Layout.astro';
 
-const lastUpdated = 'February 2026';
+const lastUpdated = 'March 1, 2026';
 ---
 
 <Layout
@@ -16,11 +16,18 @@ const lastUpdated = 'February 2026';
         <div class="label-chip" style="margin-top: var(--space-4);">Legal</div>
         <h1>Privacy Policy</h1>
         <p class="policy-meta">Last updated: {lastUpdated} · Applies to BudgetBaby for iOS</p>
-        <p class="policy-summary">
-          We built BudgetBaby on a simple principle: your financial data is yours.
-          This page explains plainly what we collect, what we don't, and how we protect your information.
-          We don't use legal language to obscure what we do with your data.
-        </p>
+      </div>
+
+      <div class="policy-summary glass">
+        <h2>The short version</h2>
+        <ul>
+          <li>Your budget data lives on your device. We cannot access it unless you enable cloud backup.</li>
+          <li>Cloud backups are encrypted before leaving your device. We cannot read them.</li>
+          <li>We collect anonymous crash reports and basic analytics. Opt out via iOS App Tracking Transparency.</li>
+          <li>We don't sell data, serve ads, or connect to your bank.</li>
+          <li>Delete everything: Settings → About → Reset All Data.</li>
+        </ul>
+        <p class="policy-updated">Last updated: {lastUpdated}</p>
       </div>
 
       <div class="policy-content">
@@ -35,7 +42,7 @@ const lastUpdated = 'February 2026';
             <li><strong>Authentication tokens.</strong> Secure tokens used to verify your identity with Firebase Auth. These are stored in the iOS Keychain.</li>
             <li><strong>Subscription status.</strong> Whether your account has an active Premium subscription, as verified by RevenueCat. We store this in the iOS Keychain, not on our servers.</li>
             <li><strong>Crash and performance data.</strong> Anonymous crash reports via Firebase Crashlytics to help us fix bugs. This data contains no personal financial information.</li>
-            <li><strong>Basic analytics.</strong> Anonymised event data via Firebase Analytics (for example, which features are used and how often). No personal or financial data is included.</li>
+            <li><strong>Basic analytics.</strong> Anonymized event data via Firebase Analytics (for example, which features are used and how often). No personal or financial data is included.</li>
           </ul>
         </section>
 
@@ -151,6 +158,11 @@ const lastUpdated = 'February 2026';
                   <td>Account email, authentication tokens</td>
                 </tr>
                 <tr>
+                  <td>Firebase Firestore (Google)</td>
+                  <td>Cloud sync (optional)</td>
+                  <td>Sync data, encrypted in transit via TLS, stored encrypted at rest</td>
+                </tr>
+                <tr>
                   <td>Firebase Storage (Google)</td>
                   <td>Cloud backup storage</td>
                   <td>Encrypted backup files (we cannot decrypt them)</td>
@@ -162,7 +174,7 @@ const lastUpdated = 'February 2026';
                 </tr>
                 <tr>
                   <td>Firebase Analytics (Google)</td>
-                  <td>Anonymised feature usage analytics</td>
+                  <td>Anonymized feature usage analytics</td>
                   <td>Anonymous usage events. No financial data, no personal data</td>
                 </tr>
                 <tr>

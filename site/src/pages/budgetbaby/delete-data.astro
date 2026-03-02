@@ -1,0 +1,378 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import GlassCard from '../../components/GlassCard.astro';
+import CTASection from '../../components/CTASection.astro';
+import Icon from '../../components/Icon.astro';
+
+const lastUpdated = 'March 1, 2026';
+---
+
+<Layout
+  title="Delete Your Data — BudgetBaby"
+  description="How to delete your BudgetBaby data: local data, cloud backups, and your account. Complete instructions for removing all your information."
+  canonical="/budgetbaby/delete-data"
+>
+  <!-- Hero -->
+  <section class="del-hero section">
+    <div class="container">
+      <div class="del-hero-inner">
+        <a href="/budgetbaby" class="del-back">← BudgetBaby</a>
+        <div class="label-chip" style="margin-top: var(--space-4);">Data Control</div>
+        <h1>Your data.<br /><span class="text-gradient">Your choice.</span></h1>
+        <p>
+          You have complete control over your data in BudgetBaby. This page explains how
+          to delete your local data, cloud backups, and account. No email required. No waiting period.
+        </p>
+        <p class="del-updated">Last updated: {lastUpdated}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Export first -->
+  <section class="del-section section-sm">
+    <div class="container-sm">
+      <GlassCard padding="lg">
+        <div class="del-block">
+          <div class="del-block-icon"><Icon name="file-text" size={28} /></div>
+          <div>
+            <h2>Export your data first (recommended)</h2>
+            <p>
+              Before deleting, consider exporting your data as a CSV. This gives you a portable
+              record of your transactions and budgets.
+            </p>
+            <ol class="del-steps">
+              <li>Open BudgetBaby on your iPhone.</li>
+              <li>Go to <strong>Settings</strong> (gear icon, bottom right).</li>
+              <li>Tap <strong>Export Data</strong>.</li>
+              <li>Choose a format and destination (Files, email, AirDrop).</li>
+            </ol>
+            <p class="del-note">
+              Your export includes all transactions, categories, bills, and savings goals
+              for the selected budget period. Exports are plain CSV and can be opened in any spreadsheet app.
+            </p>
+          </div>
+        </div>
+      </GlassCard>
+    </div>
+  </section>
+
+  <!-- Delete local data -->
+  <section class="del-section section-sm">
+    <div class="container-sm">
+      <GlassCard accent padding="lg">
+        <div class="del-block">
+          <div class="del-block-icon"><Icon name="smartphone" size={28} /></div>
+          <div>
+            <h2>Delete all local data</h2>
+            <p>
+              This permanently removes all data stored on your device: transactions, budgets,
+              categories, bills, goals, and settings. This action cannot be undone.
+            </p>
+            <ol class="del-steps">
+              <li>Open BudgetBaby on your iPhone.</li>
+              <li>Go to <strong>Settings</strong> (gear icon, bottom right).</li>
+              <li>Tap <strong>About</strong>.</li>
+              <li>Tap <strong>Reset All Data</strong>.</li>
+              <li>Confirm the deletion when prompted.</li>
+            </ol>
+            <div class="del-what-happens">
+              <h3>What gets deleted</h3>
+              <ul class="del-list">
+                <li><Icon name="check" size={14} /> All transactions and budget periods</li>
+                <li><Icon name="check" size={14} /> All categories, bills, and savings goals</li>
+                <li><Icon name="check" size={14} /> All app settings and preferences</li>
+                <li><Icon name="check" size={14} /> Any imported or entered financial data</li>
+              </ul>
+              <h3>What does not get deleted</h3>
+              <ul class="del-list">
+                <li><Icon name="info" size={14} /> Cloud backups (delete those separately — see below)</li>
+                <li><Icon name="info" size={14} /> Your account (you can still sign in)</li>
+                <li><Icon name="info" size={14} /> Your subscription status (managed by Apple)</li>
+              </ul>
+            </div>
+            <p class="del-note">
+              Alternatively, you can uninstall BudgetBaby from your iPhone. iOS will delete all
+              locally stored app data automatically when the app is removed.
+            </p>
+          </div>
+        </div>
+      </GlassCard>
+    </div>
+  </section>
+
+  <!-- Delete cloud backups -->
+  <section class="del-section section-sm">
+    <div class="container-sm">
+      <GlassCard padding="lg">
+        <div class="del-block">
+          <div class="del-block-icon"><Icon name="cloud-upload" size={28} /></div>
+          <div>
+            <h2>Delete cloud backups</h2>
+            <p>
+              Cloud backups are encrypted and stored on our servers. You can delete individual
+              backups or all backups from within the app.
+            </p>
+            <ol class="del-steps">
+              <li>Open BudgetBaby on your iPhone.</li>
+              <li>Go to <strong>Settings</strong> → <strong>Account</strong>.</li>
+              <li>Tap <strong>Manage Backups</strong>.</li>
+              <li>Swipe left on a backup to delete it, or tap <strong>Delete All Backups</strong>.</li>
+              <li>Confirm when prompted.</li>
+            </ol>
+            <p class="del-note">
+              Deleting a backup is permanent and cannot be undone. Since backups are encrypted
+              with a key in your iCloud Keychain, even we cannot recover deleted backup data.
+            </p>
+          </div>
+        </div>
+      </GlassCard>
+    </div>
+  </section>
+
+  <!-- Delete account -->
+  <section class="del-section section-sm">
+    <div class="container-sm">
+      <GlassCard glow padding="lg">
+        <div class="del-block">
+          <div class="del-block-icon"><Icon name="users" size={28} /></div>
+          <div>
+            <h2>Delete your account</h2>
+            <p>
+              Deleting your account removes your authentication record and any associated cloud data.
+              This is the complete account deletion required by Apple's App Store guidelines.
+            </p>
+            <ol class="del-steps">
+              <li>Open BudgetBaby on your iPhone.</li>
+              <li>Go to <strong>Settings</strong> → <strong>Account</strong>.</li>
+              <li>Tap <strong>Delete Account</strong>.</li>
+              <li>Read the confirmation and tap <strong>Delete Account</strong> again.</li>
+            </ol>
+            <div class="del-what-happens">
+              <h3>What account deletion does</h3>
+              <ul class="del-list">
+                <li><Icon name="check" size={14} /> Deletes your authentication record from Firebase</li>
+                <li><Icon name="check" size={14} /> Deletes all cloud backups associated with your account</li>
+                <li><Icon name="check" size={14} /> Removes your email address from our systems</li>
+                <li><Icon name="check" size={14} /> Signs you out of the app on all devices</li>
+              </ul>
+              <h3>What account deletion does not do</h3>
+              <ul class="del-list">
+                <li><Icon name="info" size={14} /> It does not delete local data on your device (see above)</li>
+                <li><Icon name="info" size={14} /> It does not cancel your subscription (manage in iOS Settings)</li>
+                <li><Icon name="info" size={14} /> It does not affect anonymized crash/analytics data (not linked to your account)</li>
+              </ul>
+            </div>
+            <p class="del-note">
+              Account deletion is immediate and cannot be undone. Anonymized crash reports
+              submitted before deletion may be retained for debugging purposes; they contain no
+              personal or financial information and cannot be linked back to you.
+            </p>
+          </div>
+        </div>
+      </GlassCard>
+    </div>
+  </section>
+
+  <!-- Cancel subscription -->
+  <section class="del-section section-sm">
+    <div class="container-sm">
+      <GlassCard padding="lg">
+        <div class="del-block">
+          <div class="del-block-icon"><Icon name="refresh-cw" size={28} /></div>
+          <div>
+            <h2>Cancel your subscription</h2>
+            <p>
+              BudgetBaby Premium is billed by Apple. Subscriptions are managed entirely through iOS Settings.
+              We cannot cancel or refund subscriptions directly.
+            </p>
+            <ol class="del-steps">
+              <li>Open the iOS <strong>Settings</strong> app on your iPhone.</li>
+              <li>Tap your name at the top.</li>
+              <li>Tap <strong>Subscriptions</strong>.</li>
+              <li>Tap <strong>BudgetBaby Premium</strong>.</li>
+              <li>Tap <strong>Cancel Subscription</strong>.</li>
+            </ol>
+            <p class="del-note">
+              Cancellation takes effect at the end of your current billing period. You will retain
+              premium access until then. For refunds, visit
+              <a href="https://reportaproblem.apple.com" target="_blank" rel="noopener noreferrer">reportaproblem.apple.com</a>.
+            </p>
+          </div>
+        </div>
+      </GlassCard>
+    </div>
+  </section>
+
+  <!-- Need help -->
+  <section class="del-section section-sm">
+    <div class="container-sm">
+      <GlassCard padding="lg">
+        <div class="del-block">
+          <div class="del-block-icon"><Icon name="mail" size={28} /></div>
+          <div>
+            <h2>Need help? We'll assist directly.</h2>
+            <p>
+              If you're unable to delete your data through the app, or if you want confirmation
+              that your data has been removed, email us at
+              <a href="mailto:support@babyblocks.io">support@babyblocks.io</a>.
+            </p>
+            <p>
+              Include <strong>[Data Deletion Request]</strong> in the subject line. We will
+              manually verify and delete your data within 5 business days and confirm by email.
+            </p>
+            <p>
+              For full details on what data we hold and how it is handled, see our
+              <a href="/budgetbaby/privacy">Privacy Policy</a> and <a href="/budgetbaby/trust">Trust page</a>.
+            </p>
+          </div>
+        </div>
+      </GlassCard>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .del-hero {
+    padding-top: calc(var(--nav-height) + var(--space-12));
+    padding-bottom: var(--space-8);
+  }
+
+  .del-back {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    text-decoration: none;
+    display: inline-block;
+    transition: color 0.15s;
+  }
+  .del-back:hover { color: var(--text-secondary); }
+
+  .del-hero-inner {
+    max-width: 720px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .del-hero-inner h1 {
+    font-size: clamp(var(--text-4xl), 6vw, var(--text-6xl));
+    letter-spacing: -0.03em;
+  }
+
+  .del-hero-inner p {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    max-width: 56ch;
+  }
+
+  .del-updated {
+    font-size: var(--text-xs) !important;
+    color: var(--text-muted) !important;
+    max-width: none !important;
+  }
+
+  .del-section {
+    padding-block: var(--space-4);
+  }
+
+  .del-block {
+    display: flex;
+    gap: var(--space-6);
+  }
+
+  .del-block-icon {
+    color: var(--accent-light);
+    flex-shrink: 0;
+    padding-top: var(--space-1);
+  }
+
+  .del-block h2 {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-4);
+  }
+
+  .del-block p {
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-4);
+  }
+
+  .del-block p:last-child { margin-bottom: 0; }
+
+  .del-block a {
+    color: var(--accent-light);
+    text-decoration: none;
+  }
+  .del-block a:hover { text-decoration: underline; }
+
+  .del-steps {
+    padding-left: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-5);
+  }
+
+  .del-steps strong { color: var(--text-primary); }
+
+  .del-what-happens {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-5);
+    margin-bottom: var(--space-4);
+  }
+
+  .del-what-happens h3 {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: var(--space-3);
+    margin-top: var(--space-4);
+  }
+
+  .del-what-happens h3:first-child { margin-top: 0; }
+
+  .del-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .del-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  .del-list li svg { flex-shrink: 0; margin-top: 2px; }
+  .del-list li:has(svg[data-name="check"]) svg { color: var(--green); }
+  .del-list li:has(svg[data-name="info"]) svg { color: var(--accent-light); }
+
+  /* Simpler approach — all icons inherit text-secondary unless overridden */
+  .del-list li svg { color: var(--green); }
+
+  .del-note {
+    font-size: var(--text-xs) !important;
+    color: var(--text-muted) !important;
+    margin-bottom: 0 !important;
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--glass-border);
+    line-height: var(--leading-relaxed);
+  }
+
+  @media (max-width: 640px) {
+    .del-block { flex-direction: column; gap: var(--space-4); }
+    .del-block-icon { display: none; }
+  }
+</style>

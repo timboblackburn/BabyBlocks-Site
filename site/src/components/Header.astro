@@ -1,4 +1,5 @@
 ---
+import Icon from './Icon.astro';
 const navLinks = [
   {
     label: 'BudgetBaby',
@@ -14,9 +15,9 @@ const navLinks = [
     label: 'Coming Soon',
     href: '/coming-soon',
     sub: [
-      { label: 'PantryBaby 🥗', href: '/coming-soon/pantrybaby' },
-      { label: 'BabyBlocks Core 🧩', href: '/coming-soon/babyblocks-core' },
-      { label: 'Roadmap 🗺️', href: '/coming-soon/roadmap' },
+      { label: 'PantryBaby', href: '/coming-soon/pantrybaby' },
+      { label: 'BabyBlocks Core', href: '/coming-soon/babyblocks-core' },
+      { label: 'Roadmap', href: '/coming-soon/roadmap' },
     ],
   },
   { label: 'About', href: '/about' },
@@ -28,7 +29,7 @@ const currentPath = Astro.url.pathname;
 <header class="site-header">
   <div class="header-inner container">
     <a href="/" class="logo" aria-label="BabyBlocks home">
-      <span class="logo-icon" aria-hidden="true">🧩</span>
+      <Icon name="layers" size={20} aria-hidden="true" />
       <span class="logo-text">BabyBlocks</span>
     </a>
 
@@ -74,7 +75,7 @@ const currentPath = Astro.url.pathname;
     </nav>
 
     <div class="header-cta">
-      <a href="/budgetbaby" class="btn btn-primary" aria-label="Get BudgetBaby">
+      <a href="https://apps.apple.com/app/id6756576123" class="btn btn-primary" aria-label="Download BudgetBaby on the App Store">
         Get the App
       </a>
     </div>
@@ -94,12 +95,12 @@ const currentPath = Astro.url.pathname;
         <li><a href="/budgetbaby/documentation" class="mobile-nav-link mobile-sub">Documentation</a></li>
         <li><a href="/budgetbaby/support" class="mobile-nav-link mobile-sub">Support</a></li>
         <li><a href="/coming-soon" class="mobile-nav-link">Coming Soon</a></li>
-        <li><a href="/coming-soon/pantrybaby" class="mobile-nav-link mobile-sub">PantryBaby 🥗</a></li>
-        <li><a href="/coming-soon/babyblocks-core" class="mobile-nav-link mobile-sub">BabyBlocks Core 🧩</a></li>
-        <li><a href="/coming-soon/roadmap" class="mobile-nav-link mobile-sub">Roadmap 🗺️</a></li>
+        <li><a href="/coming-soon/pantrybaby" class="mobile-nav-link mobile-sub">PantryBaby</a></li>
+        <li><a href="/coming-soon/babyblocks-core" class="mobile-nav-link mobile-sub">BabyBlocks Core</a></li>
+        <li><a href="/coming-soon/roadmap" class="mobile-nav-link mobile-sub">Roadmap</a></li>
         <li><a href="/about" class="mobile-nav-link">About</a></li>
         <li class="mobile-cta">
-          <a href="/budgetbaby" class="btn btn-primary" style="width:100%; justify-content:center;">
+          <a href="https://apps.apple.com/app/id6756576123" class="btn btn-primary" style="width:100%; justify-content:center;">
             Get the App
           </a>
         </li>
@@ -133,8 +134,6 @@ const currentPath = Astro.url.pathname;
     text-decoration: none;
     flex-shrink: 0;
   }
-
-  .logo-icon { font-size: 1.4rem; line-height: 1; }
 
   .logo-text {
     font-size: var(--text-lg);

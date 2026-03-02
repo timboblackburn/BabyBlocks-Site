@@ -1,10 +1,11 @@
 ---
-import Layout from '../../layouts/LayoutCore.astro';
+import Layout from '../../layouts/Layout.astro';
 import CTASection from '../../components/CTASection.astro';
+import Icon from '../../components/Icon.astro';
 
 const features = [
   {
-    icon: '🎯',
+    icon: 'target',
     tag: 'Core',
     title: 'Safe to Spend',
     what: 'A single daily number that answers the question: "How much can I spend right now without breaking my budget?"',
@@ -13,7 +14,7 @@ const features = [
     detail: 'Calculated as: (Remaining Budget − Unpaid Bills − Savings Reserve) ÷ Days Remaining. Visual indicators: green (healthy), yellow (moderate), orange (limited), red (critical).',
   },
   {
-    icon: '💸',
+    icon: 'layers',
     tag: 'Core',
     title: 'Money Pools',
     what: 'Four distinct pools for tracking where your money physically lives: Cash, Debit, Credit, and Savings.',
@@ -22,34 +23,43 @@ const features = [
     detail: 'Cash and Debit affect immediate liquidity. Credit spending counts toward your budget but doesn\'t reduce your pool balance today. Savings is protected and not counted in Safe to Spend.',
   },
   {
-    icon: '🏷️',
+    icon: 'tag',
     tag: 'Core',
     title: 'Priority Categories',
-    what: 'Color-coded spending categories organised by financial importance: Critical (red), Important (yellow), Discretionary (green), and Buffer (gray).',
+    what: 'Color-coded spending categories organized by financial importance: Critical (red), Important (yellow), Discretionary (green), and Buffer (gray).',
     why: 'Not all spending is equal. Rent and groceries are different from dining and hobbies. Priority categories help you see your spending for what it actually is: obligations, necessities, and choices. Not just a list of numbers.',
-    replaces: 'Wondering if you "should" have bought something. Trying to categorise spending in your head after the fact.',
-    detail: 'Over 100 SF Symbol icons available. Each category supports an optional monthly budget. Context-aware status text shows "Budgeted," "Available to spend," or "Buffer available" depending on priority type.',
+    replaces: 'Wondering if you "should" have bought something. Trying to categorize spending in your head after the fact.',
+    detail: 'Over 100 SF Symbol icons available. Each category supports an optional monthly budget. Context-aware status text shows "Budgeted," "Available to spend," or "Buffer available" depending on priority type. Free: 12 default categories + 5 custom. Premium: unlimited custom categories.',
   },
   {
-    icon: '📋',
+    icon: 'zap',
+    tag: 'Core',
+    title: 'Custom Categories',
+    what: 'Create your own spending categories with custom icons and colors, beyond the 12 defaults.',
+    why: 'Everyone\'s budget is different. Custom categories let you track spending in a way that matches your life — whether that\'s "Uber Eats," "Side Hustle," or "Date Nights."',
+    replaces: 'Forcing everything into generic categories. Using "Other" for half your spending.',
+    detail: 'Free: 5 custom categories. Premium: unlimited. Over 100 SF Symbol icons. Assign any priority color. Set optional monthly budgets per category.',
+  },
+  {
+    icon: 'file-text',
     tag: 'Bills',
     title: 'Recurring Bills',
     what: 'Track every fixed expense (rent, utilities, insurance, subscriptions) with due dates, auto-pay tracking, and reminders.',
     why: 'Bills exist whether you think about them or not. BudgetBaby factors your upcoming bills into Safe to Spend automatically. You\'ll never overspend because you forgot rent was coming.',
     replaces: 'Calendar reminders that don\'t connect to your budget. Spreadsheet rows for bills that never get updated.',
-    detail: 'Frequencies: weekly, bi-weekly, monthly, quarterly, semi-annually, annually. Reminders: 1, 3, or 7 days before. Status: Upcoming, Due, Paid. Payment history tracked per bill.',
+    detail: 'Free: up to 3 bills. Premium: unlimited. Frequencies: weekly, bi-weekly, monthly, quarterly, semi-annually, annually. Reminders: 1, 3, or 7 days before. Status: Upcoming, Due, Paid. Payment history tracked per bill.',
   },
   {
-    icon: '📱',
+    icon: 'smartphone',
     tag: 'Bills',
     title: 'Subscription Tracking',
     what: 'A dedicated tracker for subscription services with pre-populated providers (Netflix, Spotify, and more) and custom entry.',
     why: 'Subscriptions are the hidden drain. Most people underestimate their monthly subscription spend by 40 to 60 percent. BudgetBaby gives you a single view of every subscription, its billing date, and monthly/annual cost.',
     replaces: 'The vague sense that you\'re paying for something you don\'t use but can\'t remember what.',
-    detail: 'Next billing date tracking, monthly and annual cost calculations, subscription audit insights. Premium feature: full subscription analytics in Insights.',
+    detail: 'Free: up to 3 subscriptions. Premium: unlimited with full analytics. Next billing date tracking, monthly and annual cost calculations, subscription audit insights.',
   },
   {
-    icon: '🎯',
+    icon: 'star',
     tag: 'Savings',
     title: 'Savings Goals',
     what: 'Visual progress rings for financial goals (emergency fund, vacation, large purchase, or custom) with milestone celebrations.',
@@ -58,7 +68,7 @@ const features = [
     detail: 'Goal types: Emergency Fund, Vacation, Large Purchase, or Custom. Progress rings with milestone celebrations at 25%, 50%, 75%, 100%. Target date countdown. Full contribution history.',
   },
   {
-    icon: '💰',
+    icon: 'dollar-sign',
     tag: 'Savings',
     title: 'Savings Transfers',
     what: 'Move money to and from your Savings pool with a tap, choosing the source or destination (Cash or Debit).',
@@ -67,7 +77,7 @@ const features = [
     detail: '"Add to Savings" selects source (Cash or Debit) and reduces that pool balance. "Use All" quick action for full transfers. Full audit trail via MoneyTransfer records.',
   },
   {
-    icon: '📅',
+    icon: 'refresh-cw',
     tag: 'Planning',
     title: 'Monthly Archive',
     what: 'A read-only history of every past budget period: what you spent, on what, how your pools ended, and whether you met your savings target.',
@@ -76,7 +86,7 @@ const features = [
     detail: 'Archived periods show: summary card (budget, spent, remaining), Pool Snapshot (Cash/Debit/Credit at close), Savings Recap, spending breakdown by priority, and transaction list. All read-only.',
   },
   {
-    icon: '📊',
+    icon: 'bar-chart-2',
     tag: 'Insights',
     title: 'Analytics & Insights',
     what: 'Spending breakdown by category and priority, plus premium month-over-month trends and predictions.',
@@ -85,7 +95,25 @@ const features = [
     detail: 'Free: spending by category, priority distribution, recent activity. Premium: month-over-month trends, spending predictions, subscription audit, budget health score.',
   },
   {
-    icon: '🗓️',
+    icon: 'search',
+    tag: 'Insights',
+    title: 'Insights Drill-Downs',
+    what: 'Tap any period in Spending Trends to see every transaction for that category in that month, newest to oldest. Premium users can tap any month in Month History for a complete budget and spending breakdown.',
+    why: 'Summary numbers only tell half the story. When you see "Dining: $420 last month," you should be able to tap that and see exactly what you bought, where, and when. No hunting through your full transaction list.',
+    replaces: 'Scrolling through hundreds of transactions to piece together what happened in a specific category during a specific month.',
+    detail: 'Free: category + period drill-down (transactions newest to oldest, each tappable for full detail). Premium: month drill-down with budget card (spent/budget/remaining/utilisation), category breakdown ranked by spend with fill bars, and full transaction list with date headers.',
+  },
+  {
+    icon: 'camera',
+    tag: 'Core',
+    title: 'Receipt Attachments',
+    what: 'Attach a photo receipt to any transaction directly from the activity log or transaction detail view. Tap the thumbnail to view full-screen. Remove with one tap.',
+    why: 'Evidence matters. Whether for expense reports, warranty claims, or just remembering what you bought, having the receipt attached to the transaction means it is always in context — no more hunting through your camera roll.',
+    replaces: 'A camera roll full of unlabelled receipt photos with no connection to your spending. Emailing receipts to yourself as reminders.',
+    detail: 'JPEG compressed at 70% quality for efficient storage. Attach via PhotosPicker from the activity log (inline receipt section between "View Transaction" and notes) or from full transaction detail. Tap thumbnail to expand full-screen. Remove with one destructive tap.',
+  },
+  {
+    icon: 'calendar',
     tag: 'Planning',
     title: 'Calendar View',
     what: 'A visual timeline of every financial obligation: bill due dates, subscription renewals, important expenses, and pay dates.',
@@ -94,7 +122,16 @@ const features = [
     detail: 'Monthly overview, weekly detail, and day-specific views. Premium: sync to iOS Calendar for system-level visibility.',
   },
   {
-    icon: '🏠',
+    icon: 'bell',
+    tag: 'Premium',
+    title: 'Advanced Reminders',
+    what: 'Fully customisable notification system for bills and subscriptions: per-item schedules, custom message text, quiet hours, and a monthly savings nudge.',
+    why: 'A reminder that says "Netflix renews tomorrow" is more useful than a generic "Subscription due." And a reminder at 11 PM is just annoying. Advanced Reminders gives you the control to make notifications work for your life, not against it.',
+    replaces: 'Generic bill-due notifications with no context. Calendar events you manually create for every renewal. Forgetting to fund your savings goals at the end of the month.',
+    detail: 'Per-bill and per-subscription reminder days (same day, 1, 3, or 7 days before). Custom notification body text per item. Quiet hours window (e.g. 10 PM – 8 AM — no late-night pings). Monthly savings goal nudge on a day you choose (1–28). Weekly bill summary. All premium.',
+  },
+  {
+    icon: 'users',
     tag: 'Premium',
     title: 'Household Sharing',
     what: 'Collaborative family budgeting with role-based permissions: Admin, Member, and Viewer.',
@@ -103,7 +140,7 @@ const features = [
     detail: 'Admin: full management + invite members. Member: add transactions + view shared data. Viewer: read-only. Invite via 6-character code. Shared goals, shared bills, individual contribution tracking.',
   },
   {
-    icon: '☁️',
+    icon: 'cloud-upload',
     tag: 'Premium',
     title: 'Cloud Backup & Restore',
     what: 'Full encrypted backup of all your budget data to the cloud, with instant restore and no app restart required.',
@@ -154,7 +191,7 @@ const tagOrder = ['Core', 'Bills', 'Savings', 'Planning', 'Insights', 'Premium']
           {grouped[tag].map((f) => (
             <div class="feature-card glass">
               <div class="feature-card-top">
-                <div class="feature-card-icon">{f.icon}</div>
+                <div class="feature-card-icon"><Icon name={f.icon} size={36} /></div>
                 <h2 class="feature-card-title">{f.title}</h2>
               </div>
 
@@ -261,9 +298,12 @@ const tagOrder = ['Core', 'Bills', 'Savings', 'Planning', 'Insights', 'Premium']
   }
 
   .feature-card-icon {
-    font-size: 2.5rem;
-    line-height: 1;
+    color: var(--accent-light);
     flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
   }
 
   .feature-card-title {

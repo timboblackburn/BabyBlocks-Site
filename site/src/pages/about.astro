@@ -1,11 +1,14 @@
 ---
-import Layout from '../layouts/LayoutCore.astro';
+import Layout from '../layouts/Layout.astro';
 import GlassCard from '../components/GlassCard.astro';
 import CTASection from '../components/CTASection.astro';
+import Icon from '../components/Icon.astro';
+import AppIcon from '../components/AppIcon.astro';
 
 const ecosystemApps = [
   {
-    icon: '💰',
+    appIcon: 'budgetbaby' as const,
+    iconColor: 'budget',
     name: 'BudgetBaby',
     status: 'live',
     statusLabel: 'Available Now',
@@ -13,7 +16,8 @@ const ecosystemApps = [
     href: '/budgetbaby',
   },
   {
-    icon: '🥗',
+    appIcon: 'pantrybaby' as const,
+    iconColor: 'pantry',
     name: 'PantryBaby',
     status: 'soon',
     statusLabel: 'Coming Soon',
@@ -21,7 +25,8 @@ const ecosystemApps = [
     href: '/coming-soon/pantrybaby',
   },
   {
-    icon: '🧩',
+    appIcon: null,
+    iconColor: 'future',
     name: 'More apps',
     status: 'future',
     statusLabel: 'In Planning',
@@ -35,6 +40,7 @@ const ecosystemApps = [
   title="About BabyBlocks"
   description="BabyBlocks is a suite of simple, visual iOS apps built by Intriguing Insight. Clarity, control, and calm. No unnecessary complexity."
   canonical="/about"
+  theme="core"
 >
   <!-- Hero -->
   <section class="about-hero section">
@@ -150,7 +156,10 @@ const ecosystemApps = [
         {ecosystemApps.map((app) => (
           <div class={`eco-card glass ${app.status === 'future' ? 'eco-card--future' : ''}`}>
             <div class="eco-card-top">
-              <div class="eco-icon">{app.icon}</div>
+              {app.appIcon
+                ? <AppIcon app={app.appIcon} size={44} />
+                : <div class={`eco-icon eco-icon--${app.iconColor}`}><Icon name="box" size={26} /></div>
+              }
               <span class={`eco-status eco-status--${app.status}`}>{app.statusLabel}</span>
             </div>
             <h3>{app.name}</h3>
@@ -177,7 +186,7 @@ const ecosystemApps = [
       <div class="trust-grid">
         <GlassCard>
           <div class="trust-item">
-            <div class="trust-icon">🔒</div>
+            <div class="trust-icon"><Icon name="lock" size={24} /></div>
             <h3>Privacy first</h3>
             <p>Local data by default. Cloud features opt-in only. We don't sell your information or use it for advertising. Full details in our <a href="/budgetbaby/privacy">Privacy Policy</a>.</p>
           </div>
@@ -185,7 +194,7 @@ const ecosystemApps = [
 
         <GlassCard>
           <div class="trust-item">
-            <div class="trust-icon">📬</div>
+            <div class="trust-icon"><Icon name="mail" size={24} /></div>
             <h3>Real support</h3>
             <p>Real humans read every support email. Reach us at <a href="mailto:support@babyblocks.io">support@babyblocks.io</a> and we'll respond within a couple of business days.</p>
           </div>
@@ -193,7 +202,7 @@ const ecosystemApps = [
 
         <GlassCard>
           <div class="trust-item">
-            <div class="trust-icon">🗺️</div>
+            <div class="trust-icon"><Icon name="map-pin" size={24} /></div>
             <h3>Transparent roadmap</h3>
             <p>Feature requests are public and voteable at <a href="https://babyblocks.canny.io/feature-requests" target="_blank" rel="noopener noreferrer">babyblocks.canny.io</a>. We build what you actually ask for.</p>
           </div>
@@ -231,7 +240,7 @@ const ecosystemApps = [
     heading="Start with BudgetBaby."
     subheading="The flagship app is available on the App Store now."
     primaryLabel="Download BudgetBaby"
-    primaryHref="#app-store"
+    primaryHref="https://apps.apple.com/app/id6756576123"
     secondaryLabel="Explore features"
     secondaryHref="/budgetbaby/features"
   />
@@ -330,7 +339,17 @@ const ecosystemApps = [
     margin-bottom: var(--space-2);
   }
 
-  .eco-icon { font-size: 2rem; line-height: 1; }
+  .eco-icon {
+    width: 48px; height: 48px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .eco-icon--budget { background: rgba(139, 92, 246, 0.15); color: var(--accent-light); }
+  .eco-icon--pantry { background: rgba(52, 211, 153, 0.12); color: var(--green); }
+  .eco-icon--future { background: rgba(255,255,255,0.05); color: var(--text-muted); }
 
   .eco-status {
     font-size: var(--text-xs);
@@ -397,7 +416,7 @@ const ecosystemApps = [
     gap: var(--space-3);
   }
 
-  .trust-icon { font-size: 2rem; line-height: 1; }
+  .trust-icon { color: var(--accent-light); line-height: 1; }
   .trust-item h3 { font-size: var(--text-lg); }
 
   .trust-item p {

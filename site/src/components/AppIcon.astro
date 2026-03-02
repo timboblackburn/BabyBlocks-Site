@@ -1,0 +1,37 @@
+---
+interface Props {
+  app: 'budgetbaby' | 'pantrybaby' | 'babyblocks-core';
+  size?: number;
+  class?: string;
+}
+
+const { app, size = 40, class: cls } = Astro.props;
+
+const meta: Record<string, { src: string; alt: string }> = {
+  'budgetbaby':      { src: '/icons/budgetbaby-icon.png',      alt: 'BudgetBaby' },
+  'pantrybaby':      { src: '/icons/pantrybaby-icon.png',      alt: 'PantryBaby' },
+  'babyblocks-core': { src: '/icons/babyblocks-core-icon.png', alt: 'BabyBlocks Core' },
+};
+
+const { src, alt } = meta[app];
+---
+
+<img
+  src={src}
+  alt={alt}
+  width={size}
+  height={size}
+  class:list={['app-icon-img', cls]}
+  style={`width:${size}px;height:${size}px;`}
+  loading="lazy"
+  decoding="async"
+/>
+
+<style>
+  .app-icon-img {
+    border-radius: 22%;
+    display: block;
+    flex-shrink: 0;
+    object-fit: cover;
+  }
+</style>

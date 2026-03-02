@@ -1,12 +1,15 @@
 ---
-import LayoutCore from '../layouts/LayoutCore.astro';
+import Layout from '../layouts/Layout.astro';
 import GlassCard from '../components/GlassCard.astro';
+import Icon from '../components/Icon.astro';
+import AppIcon from '../components/AppIcon.astro';
 ---
 
-<LayoutCore
+<Layout
   title="What's Coming | BabyBlocks"
   description="See what's next in the BabyBlocks ecosystem. PantryBaby and BabyBlocks Core are in the pipeline. Here's what we're building."
   canonical="/coming-soon"
+  theme="core"
 >
   <section class="coming-hero section">
     <div class="container">
@@ -27,7 +30,7 @@ import GlassCard from '../components/GlassCard.astro';
         <!-- PantryBaby — In Development -->
         <a href="/coming-soon/pantrybaby" class="pipeline-card glass pipeline-card--pantry">
           <div class="pipeline-top">
-            <div class="pipeline-icon">🥗</div>
+            <div class="pipeline-icon"><AppIcon app="pantrybaby" size={44} /></div>
             <span class="pipeline-status status-active">In Development</span>
           </div>
           <h2>PantryBaby</h2>
@@ -50,7 +53,7 @@ import GlassCard from '../components/GlassCard.astro';
         <!-- BabyBlocks Core — In Planning -->
         <a href="/coming-soon/babyblocks-core" class="pipeline-card glass pipeline-card--core">
           <div class="pipeline-top">
-            <div class="pipeline-icon">🧩</div>
+            <div class="pipeline-icon"><Icon name="home" size={32} /></div>
             <span class="pipeline-status status-planning">In Planning</span>
           </div>
           <h2>BabyBlocks Core</h2>
@@ -111,21 +114,21 @@ import GlassCard from '../components/GlassCard.astro';
       <div class="live-grid">
         <GlassCard glow>
           <div class="live-item">
-            <div class="live-icon">💰</div>
+            <div class="live-icon"><Icon name="target" size={28} /></div>
             <h3>Know your Safe to Spend</h3>
             <p>One number that tells you exactly how much you can spend today without breaking your budget.</p>
           </div>
         </GlassCard>
         <GlassCard glow>
           <div class="live-item">
-            <div class="live-icon">💸</div>
+            <div class="live-icon"><Icon name="layers" size={28} /></div>
             <h3>Money Pools</h3>
             <p>Track Cash, Debit, Credit, and Savings as separate pools. See where your money actually lives, not just a single bank balance.</p>
           </div>
         </GlassCard>
         <GlassCard glow>
           <div class="live-item">
-            <div class="live-icon">🔒</div>
+            <div class="live-icon"><Icon name="lock" size={28} /></div>
             <h3>Privacy by default</h3>
             <p>Your budget data stays on your device. Cloud backup is optional and encrypted before it ever leaves. We can't read it.</p>
           </div>
@@ -143,7 +146,7 @@ import GlassCard from '../components/GlassCard.astro';
     <div class="container-sm">
       <GlassCard>
         <div class="roadmap-teaser-inner">
-          <div class="roadmap-teaser-icon">🗺️</div>
+          <div class="roadmap-teaser-icon"><Icon name="map-pin" size={28} /></div>
           <div>
             <h3>See what's coming to BudgetBaby.</h3>
             <p>
@@ -158,7 +161,7 @@ import GlassCard from '../components/GlassCard.astro';
       </GlassCard>
     </div>
   </section>
-</LayoutCore>
+</Layout>
 
 <style>
   .coming-hero {
@@ -227,7 +230,7 @@ import GlassCard from '../components/GlassCard.astro';
     justify-content: space-between;
   }
 
-  .pipeline-icon { font-size: 2.4rem; line-height: 1; }
+  .pipeline-icon { display: flex; align-items: center; color: var(--accent-light); }
 
   .pipeline-status {
     font-size: var(--text-xs);
@@ -319,7 +322,7 @@ import GlassCard from '../components/GlassCard.astro';
     gap: var(--space-3);
   }
 
-  .live-icon { font-size: 2rem; line-height: 1; }
+  .live-icon { display: flex; align-items: center; color: var(--accent-light); }
   .live-item h3 { font-size: var(--text-lg); }
 
   .live-item p {
@@ -339,7 +342,7 @@ import GlassCard from '../components/GlassCard.astro';
     align-items: flex-start;
   }
 
-  .roadmap-teaser-icon { font-size: 2.5rem; line-height: 1; flex-shrink: 0; }
+  .roadmap-teaser-icon { display: flex; align-items: center; color: var(--accent-light); flex-shrink: 0; margin-top: 2px; }
 
   .roadmap-teaser-inner h3 { font-size: var(--text-xl); margin-bottom: var(--space-3); }
 

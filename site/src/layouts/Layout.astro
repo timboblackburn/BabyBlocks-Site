@@ -9,6 +9,8 @@ interface Props {
   ogTitle?: string;
   ogDescription?: string;
   canonical?: string;
+  /** 'dark' = BudgetBaby pages (default). 'core' = BabyBlocks brand (light). 'pantry' = PantryBaby (light/green). */
+  theme?: 'dark' | 'core' | 'pantry';
 }
 
 const {
@@ -17,17 +19,21 @@ const {
   ogTitle,
   ogDescription,
   canonical,
+  theme = 'dark',
 } = Astro.props;
+
+const isLight = theme === 'core' || theme === 'pantry';
+const themeColor = theme === 'pantry' ? '#F7F5F2' : theme === 'core' ? '#EEEEFC' : '#09090F';
 
 const pageTitle = title.includes('BabyBlocks') ? title : `${title} | BabyBlocks`;
 const ogT = ogTitle ?? pageTitle;
 const ogD = ogDescription ?? description;
 const siteURL = 'https://babyblocks.io';
-const canonicalURL = canonical ? `${siteURL}${canonical}` : siteURL;
+const canonicalURL = canonical ? `${siteURL}${canonical}` : null;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme={theme}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -35,30 +41,39 @@ const canonicalURL = canonical ? `${siteURL}${canonical}` : siteURL;
 
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonicalURL} />
+    {canonicalURL && <link rel="canonical" href={canonicalURL} />}
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonicalURL} />
+    {canonicalURL && <meta property="og:url" content={canonicalURL} />}
     <meta property="og:title" content={ogT} />
     <meta property="og:description" content={ogD} />
     <meta property="og:site_name" content="BabyBlocks" />
+
+    <!-- Open Graph Image -->
+    <meta property="og:image" content={`${siteURL}/og-image.png`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={ogT} />
     <meta name="twitter:description" content={ogD} />
+    <meta name="twitter:image" content={`${siteURL}/og-image.png`} />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
     <!-- Preconnect -->
     <link rel="dns-prefetch" href="https://babyblocks.canny.io" />
 
     <!-- Theme -->
-    <meta name="color-scheme" content="dark" />
-    <meta name="theme-color" content="#09090F" />
+    <meta name="color-scheme" content={isLight ? 'light' : 'dark'} />
+    <meta name="theme-color" content={themeColor} />
   </head>
   <body>
     <a href="#main-content" class="skip-link">Skip to content</a>
