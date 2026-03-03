@@ -1,0 +1,31 @@
+# Cloudflare Pages HTTP response headers
+
+# ── Security headers for all pages ──────────────────────────────────────────
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+  X-XSS-Protection: 1; mode=block
+
+# ── Long-lived cache for hashed static assets (JS, CSS, fonts, images) ──────
+# Astro appends a content hash to these filenames, so immutable is safe.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# ── Icons and images in /public (no hash, use a shorter TTL) ────────────────
+/icons/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=3600
+
+/BabyBlocksIcon/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=3600
+
+/*.png
+  Cache-Control: public, max-age=86400, stale-while-revalidate=3600
+
+/*.ico
+  Cache-Control: public, max-age=86400, stale-while-revalidate=3600
+
+# ── HTML pages — never cache (always fresh from Cloudflare edge) ─────────────
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate

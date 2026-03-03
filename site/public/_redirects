@@ -1,0 +1,3 @@
+# Cloudflare Pages redirect rules
+# Old documentation URL → new doc site (301 permanent)
+/budgetbaby/documentation  /budgetbaby/docs  301
