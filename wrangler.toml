@@ -1,0 +1,10 @@
+# Cloudflare Workers — static asset deployment for babyblocks.io
+# Deploy command: npx wrangler deploy
+# Build first with: cd site && npm ci && npm run build
+
+name = "babyblocks-site"
+compatibility_date = "2025-01-01"
+
+# Serve everything in site/dist as static assets (no Worker logic needed)
+[assets]
+directory = "./site/dist"
