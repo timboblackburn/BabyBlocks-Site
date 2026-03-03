@@ -1,0 +1,268 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+
+const headings = [
+  { id: 'before-you-open',      text: 'Before you open the app' },
+  { id: 'onboarding',           text: 'First launch and setup' },
+  { id: 'starting-balances',    text: 'Setting starting balances' },
+  { id: 'logging-a-transaction',text: 'Logging a transaction' },
+  { id: 'budget-periods',       text: 'Budget periods' },
+  { id: 'first-week',           text: 'Your first week' },
+  { id: 'common-mistakes',      text: 'Common mistakes' },
+  { id: 'next-steps',           text: 'Next steps' },
+];
+---
+
+<DocsLayout
+  title="Quickstart"
+  description="Get BudgetBaby working accurately in minutes. Preparation, the 8-step onboarding walkthrough, setting starting balances, logging your first transaction, and building a first-week habit."
+  canonical="/budgetbaby/docs/quickstart"
+  headings={headings}
+>
+  <div class="docs-content">
+    <h1>Quickstart</h1>
+    <p class="docs-summary">
+      BudgetBaby can be set up in about 5 minutes. The app will guide you through onboarding,
+      but the more accurate the numbers you enter, the more useful Safe to Spend will be
+      from day one. This guide covers the setup, first transactions, and first-week habits
+      that make BudgetBaby actually work.
+    </p>
+
+    <h2 id="before-you-open">Before you open the app</h2>
+    <p>
+      BudgetBaby calculates your Safe to Spend from the numbers you provide. The more accurate
+      those numbers, the more useful the app is from the first day. Before you start onboarding,
+      have three things ready:
+    </p>
+    <ol>
+      <li>
+        <strong>Your take-home pay for one pay period.</strong> This is your income after taxes and
+        any pre-tax deductions (401k, health insurance, etc.). Look at your last paycheck or your
+        bank deposit. Use the amount that actually hits your account, not your gross salary.
+      </li>
+      <li>
+        <strong>Your current checking account balance.</strong> This will become your starting Debit
+        pool balance. You can find it in your banking app. A rough estimate is fine for day one;
+        you can adjust it later.
+      </li>
+      <li>
+        <strong>Your biggest upcoming bill.</strong> Typically rent or a mortgage payment. Knowing
+        the amount and due date helps you configure it correctly during setup. If it is due soon,
+        BudgetBaby will factor it into Safe to Spend immediately.
+      </li>
+    </ol>
+    <p>You do not need your full list of expenses. You can add bills, categories, and subscriptions
+    at any time. Starting with accurate income and your checking balance is what matters most.</p>
+
+    <h2 id="onboarding">First launch and setup</h2>
+    <p>
+      The first time you open BudgetBaby, an 8-step guided setup walks you through everything
+      the app needs to calculate Safe to Spend. The whole process takes about 3 to 5 minutes.
+    </p>
+    <ol>
+      <li>
+        <strong>Welcome.</strong> A brief introduction to Safe to Spend and what the setup covers.
+        Read it to understand the approach before filling in numbers.
+      </li>
+      <li>
+        <strong>Pay Frequency.</strong> Choose how often you get paid: weekly, bi-weekly, twice
+        monthly, monthly, or a custom interval. This determines the length of your budget periods.
+        If you are paid bi-weekly, each period is 14 days. If monthly, each period is roughly 30 days.
+        Choose what matches your actual pay schedule.
+      </li>
+      <li>
+        <strong>Income / Budget.</strong> Enter your take-home pay per period. This is the single
+        most important number in the app. Everything else is calculated relative to this. Use the
+        number from the preparation step above.
+      </li>
+      <li>
+        <strong>Bucket Allocation.</strong> Split your budget into three buckets: Needs, Wants, and
+        Savings. The default is 50/30/20. Adjust the sliders to match your situation. If you have
+        high rent relative to income, you might need 60% for Needs. If you are aggressively saving,
+        push Savings above 20%. The three sliders always add up to 100%.
+      </li>
+      <li>
+        <strong>Bucket Naming.</strong> Rename the buckets if you prefer different labels. Some
+        people prefer "Bills / Fun / Future" or "Essential / Optional / Saving." The names are
+        cosmetic; the percentages are what matter.
+      </li>
+      <li>
+        <strong>Priority Colors.</strong> A brief explanation of how Critical, Important,
+        Discretionary, and Buffer categories work. Read this carefully. Understanding the priority
+        system is what makes Safe to Spend meaningful.
+      </li>
+      <li>
+        <strong>Default Categories.</strong> Choose which spending categories to pre-load. Select
+        all the ones you regularly use. You can always add, remove, or modify categories later.
+        More categories from the start means you can categorize transactions immediately without
+        stopping to create them mid-flow.
+      </li>
+      <li>
+        <strong>Review and Confirm.</strong> Review every setting. Tap "Start budgeting" when
+        everything looks right.
+      </li>
+    </ol>
+    <div class="doc-tip">
+      <strong>You can change any of this later.</strong> Settings → Budget Setup lets you edit your income, frequency, allocations, and bucket names at any time. Your existing budget history is preserved when you change settings. The new settings take effect for the current and future periods.
+    </div>
+
+    <h2 id="starting-balances">Setting starting balances</h2>
+    <p>
+      After onboarding, your Money Pool balances are all at zero. The app cannot know what is
+      in your bank account without you telling it. Setting your starting balances is the step
+      most new users skip, and it is the most common cause of pool balances looking wrong in
+      the first few days.
+    </p>
+    <p>To set your starting balances:</p>
+    <ol>
+      <li>Go to <strong>Settings → Accounts</strong>.</li>
+      <li>Tap <strong>Debit</strong> and enter your current checking account balance.</li>
+      <li>If you carry cash regularly, tap <strong>Cash</strong> and enter what you have on hand.</li>
+      <li>If you have money already set aside for savings goals, tap <strong>Savings</strong> and enter that amount.</li>
+    </ol>
+    <p>
+      You do not need to enter your credit card balance unless you want to reflect existing credit
+      card debt in the Credit pool. For most people, starting Credit at zero and logging new
+      purchases from today forward is the right approach.
+    </p>
+    <div class="doc-tip">
+      <strong>Why does starting balance matter?</strong> Safe to Spend is calculated from your budget allocation, not your bank balance. But the Debit pool balance is a running total of what you have in your account based on what you tell BudgetBaby. If it starts at zero, the pool goes negative as you log transactions, which is confusing. Set it once and it carries forward automatically each period.
+    </div>
+
+    <h2 id="logging-a-transaction">Logging a transaction</h2>
+    <p>
+      Every purchase you log reduces your Safe to Spend number in real time. The faster you
+      log transactions, the more accurate the number stays. Most people develop a habit of
+      logging immediately after paying, while the receipt is still in hand or the tap is still fresh.
+    </p>
+    <ol>
+      <li>Tap the <strong>+</strong> button on the Home screen, or in any transaction list view.</li>
+      <li>Enter the <strong>amount</strong>.</li>
+      <li>Add a <strong>description</strong>. Optional, but makes your history searchable and meaningful. "Groceries" is fine; "Trader Joe's, pre-dinner run" is even more useful when reviewing a month later.</li>
+      <li>Select a <strong>Category</strong>. This determines the priority color and which budget bucket the transaction counts against. If nothing fits, use "Buffer" for now and update it later.</li>
+      <li>Choose the <strong>Payment Method</strong>: Cash, Debit, Credit, or Savings. This determines which pool the transaction is logged to. Use what you actually paid with.</li>
+      <li>Confirm the <strong>date</strong>. It defaults to today. Adjust it if you are logging a past transaction.</li>
+      <li>Tap <strong>Save</strong>. Safe to Spend updates immediately.</li>
+    </ol>
+    <div class="doc-tip">
+      <strong>Choosing the right payment method.</strong> Use Cash if you paid with physical currency. Use Debit if you used your bank card or made a bank transfer. Use Credit if you charged it to a credit card. Use Savings only for withdrawals from your savings pool toward a specific goal. Getting this right keeps your pool balances accurate and meaningful.
+    </div>
+    <div class="doc-tip">
+      <strong>How credit purchases affect balances.</strong> When you log a Credit transaction, your Debit balance does not change immediately. The real transfer from your bank happens when you pay the credit card bill. At that point, log a transfer from Debit to Credit in BudgetBaby to keep both pool balances accurate.
+    </div>
+
+    <h2 id="budget-periods">Budget periods</h2>
+    <p>
+      A budget period is a fixed window of time that matches your pay frequency. When a period ends,
+      BudgetBaby archives it as read-only and opens a new one automatically. Understanding periods
+      helps you read your history and manage carryforward correctly.
+    </p>
+    <ul>
+      <li>
+        <strong>Cash and Debit balances always carry forward.</strong> Whatever your Debit and Cash
+        balances are at period end become the starting balances for the next period. This reflects
+        real money that stays in your account regardless of pay period boundaries. You do not need
+        to do anything.
+      </li>
+      <li>
+        <strong>Budget surplus can roll over.</strong> If you spend less than your budget, the unspent
+        remainder can carry into the next period as bonus budget. You can enable or disable this in
+        Settings → Budget Setup. When enabled, surplus is displayed separately so you can always tell
+        the difference between your regular income and accumulated surplus.
+      </li>
+      <li>
+        <strong>Bills regenerate each period.</strong> A bill due on the 1st appears in every period
+        that contains the 1st. You do not need to recreate bills each month. The recurring schedule
+        handles it automatically.
+      </li>
+      <li>
+        <strong>Archived periods are read-only and permanent.</strong> You can view every past period
+        from the History tab, including all transactions, pool balances, and Safe to Spend history
+        at any point. Nothing is deleted when a period closes.
+      </li>
+    </ul>
+
+    <h2 id="first-week">Your first week</h2>
+    <p>
+      The first week with BudgetBaby is when you build the habits that determine whether the app
+      stays useful long-term. The setup is fast; the habit takes a little longer.
+    </p>
+
+    <h3>Days 1 and 2: Set up and calibrate</h3>
+    <ul>
+      <li>Complete onboarding and set your starting Debit balance in Settings → Accounts.</li>
+      <li>Add your regular recurring bills: rent or mortgage, utilities, subscriptions. Give each the right priority level. Rent is Critical. Streaming services are Discretionary.</li>
+      <li>Log every purchase from today forward, even small ones. The first week of data is what makes Safe to Spend real and trustworthy.</li>
+      <li>Create a cloud backup right away: Settings → Backup and Restore → Create Backup. This protects the data you are starting to build.</li>
+    </ul>
+
+    <h3>Days 3 through 5: Learn to read Safe to Spend</h3>
+    <ul>
+      <li>Before any discretionary purchase, check the Safe to Spend number. Make a habit of consulting it the same way you check a bank balance before a significant spend.</li>
+      <li>Tap the info button next to Safe to Spend to see the full breakdown. Seeing the Bill Reserve and Savings Reserve helps you understand why the number is what it is, not just what it is.</li>
+      <li>Mark bills as paid when you pay them. This releases the Bill Reserve immediately and lets Safe to Spend go up to reflect the freed capacity.</li>
+    </ul>
+
+    <h3>Days 6 and 7: Review and adjust</h3>
+    <ul>
+      <li>Look at your spending breakdown so far. Are categories assigned correctly? Are any transactions in the wrong payment method? Fix anything that looks off.</li>
+      <li>If Safe to Spend seems wrong, check: Is your income entered correctly in Budget Setup? Are any bills incorrectly showing as unpaid? Is your starting Debit balance set?</li>
+      <li>Adjust settings that do not reflect your reality. The goal is a system you trust enough to actually consult before spending.</li>
+    </ul>
+
+    <h2 id="common-mistakes">Common mistakes</h2>
+    <ul>
+      <li>
+        <strong>Not setting starting balances.</strong> The most common reason pool balances look wrong
+        in week one. Go to Settings → Accounts and enter your current bank balance before logging
+        your first transaction.
+      </li>
+      <li>
+        <strong>Logging credit card purchases as Debit.</strong> If you paid with a credit card, log
+        it as Credit. Logging it as Debit reduces your Debit pool balance immediately, which is
+        inaccurate. The actual debit from your account happens when you pay the card bill.
+      </li>
+      <li>
+        <strong>Not marking bills as paid.</strong> An unpaid Critical bill stays reserved in Safe to
+        Spend. If you paid rent but left it marked unpaid in BudgetBaby, Safe to Spend shows a lower
+        number than it should. Mark every bill paid as soon as you pay it.
+      </li>
+      <li>
+        <strong>Comparing Safe to Spend to your bank balance.</strong> They measure different things.
+        Safe to Spend is a daily spending allowance from your budget. Your Debit pool balance is an
+        approximation of your checking account based on entries you make. They can and will differ,
+        especially if you have bills not yet marked paid.
+      </li>
+      <li>
+        <strong>Entering gross income instead of take-home pay.</strong> BudgetBaby is built around
+        take-home pay. If you enter your gross salary, Safe to Spend will be higher than your actual
+        spending capacity and the whole system will be calibrated wrong.
+      </li>
+      <li>
+        <strong>Skipping small purchases.</strong> The value of BudgetBaby increases with logging
+        completeness. Every unlogged $4 coffee is a gap in your data. Consider logging even small
+        purchases for the first month to build an accurate picture of where your money actually goes.
+      </li>
+    </ul>
+
+    <h2 id="next-steps">Next steps</h2>
+    <div class="docs-next-steps">
+      <a href="/budgetbaby/docs/core-concepts" class="docs-next-item">
+        <strong>How BudgetBaby Works</strong>
+        <span>Safe to Spend formula, Money Pools, and Priority Categories explained in depth with worked examples.</span>
+      </a>
+      <a href="/budgetbaby/docs/backup-and-restore" class="docs-next-item">
+        <strong>Backup and Restore</strong>
+        <span>Create an encrypted cloud backup so your data is protected before anything goes wrong.</span>
+      </a>
+      <a href="/budgetbaby/docs/reminders" class="docs-next-item">
+        <strong>Reminders</strong>
+        <span>Set up bill and subscription reminders so you never miss a payment.</span>
+      </a>
+      <a href="/budgetbaby/docs/subscriptions" class="docs-next-item">
+        <strong>Plans and Purchases</strong>
+        <span>What Premium unlocks and how to upgrade, restore, or cancel your subscription.</span>
+      </a>
+    </div>
+  </div>
+</DocsLayout>

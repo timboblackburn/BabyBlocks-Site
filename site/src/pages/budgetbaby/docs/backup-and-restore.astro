@@ -1,0 +1,219 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+
+const headings = [
+  { id: 'where-data-lives',   text: 'Where your data lives' },
+  { id: 'encryption-model',   text: 'Encryption model' },
+  { id: 'creating-a-backup',  text: 'Creating a backup' },
+  { id: 'restoring',          text: 'Restoring from backup' },
+  { id: 'safety-backups',     text: 'Safety backups' },
+  { id: 'new-device',         text: 'Moving to a new device' },
+  { id: 'keychain-loss',      text: 'If you lose iCloud Keychain access' },
+  { id: 'managing-backups',   text: 'Managing and deleting backups' },
+];
+---
+
+<DocsLayout
+  title="Backup and Restore"
+  description="How BudgetBaby stores, encrypts, and backs up your data. How to create a backup, restore safely, move to a new device, and what happens if you lose iCloud Keychain access."
+  canonical="/budgetbaby/docs/backup-and-restore"
+  headings={headings}
+>
+  <div class="docs-content">
+    <h1>Backup and Restore</h1>
+    <p class="docs-summary">
+      All BudgetBaby data lives on your device by default, encrypted by iOS. Cloud backups are
+      fully opt-in, encrypted before upload, and the encryption key never leaves your device.
+      Create a backup before switching devices, before reinstalling the app, or any time you want
+      to protect data you would not want to re-enter.
+    </p>
+
+    <h2 id="where-data-lives">Where your data lives</h2>
+    <p>
+      BudgetBaby stores all your data locally using SwiftData, Apple's native persistence framework.
+      Your data is encrypted at rest by iOS using your device passcode. It lives in the app's private
+      storage container on your iPhone, which is not accessible to other apps.
+    </p>
+    <p>Important implications:</p>
+    <ul>
+      <li>
+        <strong>No internet connection is required for any core budgeting feature.</strong> Safe to Spend,
+        Money Pools, transactions, bills, and insights all work completely offline.
+      </li>
+      <li>
+        <strong>Deleting the app permanently deletes your data.</strong> When iOS removes an app, it removes
+        all data in that app's private storage container. There is no recovery from this without a cloud backup.
+      </li>
+      <li>
+        <strong>iCloud Drive does not automatically back up BudgetBaby data.</strong> BudgetBaby uses its own
+        encrypted backup system. iPhone device backups (to iCloud or a Mac) do include app data, but restoring
+        a full device backup is a blunt instrument compared to a targeted BudgetBaby restore, and is not
+        a reliable substitute.
+      </li>
+      <li>
+        <strong>Data is encrypted on device by iOS.</strong> The app data is encrypted with keys derived from
+        your device passcode through the Secure Enclave. This protection is provided by iOS, not by BudgetBaby.
+        It means your data is protected even if someone physically obtains your iPhone without your passcode.
+      </li>
+    </ul>
+    <div class="doc-tip">
+      <strong>Create a backup before doing anything that might delete your data.</strong> This includes uninstalling the app, performing a factory reset, or switching to a new iPhone. A backup takes about 5 seconds and can restore months of financial data that would otherwise be gone.
+    </div>
+
+    <h2 id="encryption-model">Encryption model</h2>
+    <p>
+      BudgetBaby's cloud backup encryption is designed so that we genuinely cannot read your data,
+      not just as a policy, but as a technical fact.
+    </p>
+    <p>Here is how it works:</p>
+    <ol>
+      <li>
+        <strong>Key generation.</strong> A unique encryption key is generated on your device and stored
+        in your iOS Keychain. The Keychain is a secure, hardware-protected storage area managed by iOS.
+        When you enable iCloud Keychain, Apple syncs this key securely to your other devices using
+        end-to-end encryption that Apple itself cannot read.
+      </li>
+      <li>
+        <strong>On-device encryption.</strong> Before any data leaves your iPhone, BudgetBaby encrypts
+        the entire backup payload using AES-256-GCM with the key from your Keychain. The encryption
+        happens in memory on your device. The plaintext data never leaves.
+      </li>
+      <li>
+        <strong>Upload.</strong> The encrypted blob is transmitted over TLS to our servers. We receive
+        an encrypted file. We cannot decrypt it without the key, which we never have.
+      </li>
+      <li>
+        <strong>Restore.</strong> When you restore, the encrypted blob is downloaded and decrypted
+        on your device using the key from your Keychain. If the key is not present in your Keychain
+        (for example, on a new device where iCloud Keychain has not synced yet), decryption fails.
+      </li>
+    </ol>
+    <p>
+      This model means: even if our servers were compromised, an attacker would have access only to
+      encrypted blobs they cannot read without keys that exist only on your devices.
+    </p>
+    <div class="doc-tip">
+      <strong>AES-256-GCM provides both confidentiality and integrity.</strong> The GCM (Galois/Counter Mode) component of the encryption verifies that the backup has not been tampered with during storage or transmission. If any part of the backup is altered, decryption fails and the restore is rejected.
+    </div>
+
+    <h2 id="creating-a-backup">Creating a backup</h2>
+    <p>A BudgetBaby account is required to create a cloud backup. If you have not signed in, go to Settings → Account first.</p>
+    <ol>
+      <li>Go to <strong>Settings → Backup and Restore</strong>.</li>
+      <li>Tap <strong>Create Backup</strong>.</li>
+      <li>Wait for the backup to complete. For most users this takes 5 to 15 seconds.</li>
+    </ol>
+    <p>
+      The backup includes everything: all budget periods, transactions, categories, accounts, recurring
+      bills, subscriptions, savings goals, savings transactions, money transfers, and user settings.
+      Nothing is omitted.
+    </p>
+    <h3>Backup slots</h3>
+    <p>
+      Free users have 1 backup slot. Premium users have 5 slots. A slot holds one backup. Creating
+      a new backup when your slot is occupied (free) requires deleting the old one first. With 5
+      slots (Premium), you can maintain a history of recent backups and roll back to an earlier
+      snapshot if needed.
+    </p>
+    <h3>How often to back up</h3>
+    <p>
+      There is no automatic backup schedule. BudgetBaby does not back up in the background.
+      You create backups manually. Recommended practice:
+    </p>
+    <ul>
+      <li>Back up at the end of each budget period, after logging and reviewing the period's transactions.</li>
+      <li>Back up before making large changes: importing data, resetting categories, or changing budget settings significantly.</li>
+      <li>Back up before switching to a new iPhone or before uninstalling the app.</li>
+    </ul>
+
+    <h2 id="restoring">Restoring from backup</h2>
+    <ol>
+      <li>Go to <strong>Settings → Backup and Restore</strong>.</li>
+      <li>Select the backup you want to restore from the list. The list shows the creation date and time of each backup.</li>
+      <li>Tap <strong>Restore</strong>.</li>
+      <li>Read the confirmation dialog carefully. It explains what will happen and that a safety backup will be created first. Tap Confirm.</li>
+      <li>BudgetBaby creates a safety backup of your current data, then downloads and decrypts the selected backup, then replaces your current data with the restored data. No app restart is required.</li>
+    </ol>
+    <div class="doc-warning">
+      <strong>Restoring replaces all current local data.</strong> Everything on your device that is not in the selected backup will be overwritten. This includes any transactions you have logged since the backup was created. The safety backup (created automatically before restore begins) lets you undo the restore if needed.
+    </div>
+    <h3>What to do if restore fails</h3>
+    <p>
+      If the restore fails partway through, BudgetBaby automatically attempts to restore from the
+      safety backup it created before starting. If that also fails, contact support with your
+      iOS version, app version, and the approximate time of the failed restore attempt.
+    </p>
+
+    <h2 id="safety-backups">Safety backups</h2>
+    <p>
+      Before every restore operation, BudgetBaby automatically creates a local safety backup of your
+      current data. This is stored on your device and is not uploaded to the cloud.
+    </p>
+    <ul>
+      <li>Safety backups appear in the backup list labeled "Safety backup" with the timestamp of when the restore was initiated.</li>
+      <li>They can be used to undo a restore: go to Settings → Backup and Restore, select the safety backup, and restore from it.</li>
+      <li>Safety backups are local only. They will be deleted if you uninstall the app.</li>
+      <li>They do not count against your backup slot quota.</li>
+    </ul>
+    <p>
+      The safety backup ensures that even if you restore from the wrong backup, or the restored
+      data is not what you expected, you have a way back.
+    </p>
+
+    <h2 id="new-device">Moving to a new device</h2>
+    <p>
+      When you switch to a new iPhone, your BudgetBaby data does not transfer automatically.
+      Here is the reliable way to move it:
+    </p>
+    <ol>
+      <li>On your old iPhone, go to <strong>Settings → Backup and Restore</strong> and tap <strong>Create Backup</strong>.</li>
+      <li>Download BudgetBaby on your new iPhone from the App Store.</li>
+      <li>Sign in to the same BudgetBaby account on the new device: Settings → Account.</li>
+      <li>Make sure iCloud Keychain is enabled on the new device: iOS Settings → (your name) → iCloud → Keychain. The encryption key will sync to the new device.</li>
+      <li>Go to Settings → Backup and Restore on the new device. Your backup should appear in the list within a minute or two as the iCloud Keychain sync completes.</li>
+      <li>Tap the backup and restore from it.</li>
+    </ol>
+    <div class="doc-tip">
+      <strong>Why do you need to wait for iCloud Keychain?</strong> The decryption key is stored in your Keychain, not in the backup itself. Until iCloud Keychain syncs the key to your new device, the backup is downloaded but cannot be decrypted. Give it a few minutes after enabling iCloud Keychain before attempting the restore.
+    </div>
+
+    <h2 id="keychain-loss">If you lose iCloud Keychain access</h2>
+    <p>
+      This is the most serious data recovery scenario. If you cannot access your iCloud Keychain
+      (for example, if you were not using iCloud Keychain and lost your old device with no replacement),
+      the encryption key needed to decrypt your backups may not be recoverable.
+    </p>
+    <p>
+      Because we designed the encryption so that only you hold the key, we cannot decrypt backups on
+      your behalf even if you contact us. This is a deliberate privacy guarantee, not an accident.
+    </p>
+    <p>
+      Steps to try before concluding the key is gone:
+    </p>
+    <ul>
+      <li>Check whether your old iPhone still turns on. The Keychain key is on the device. You can sign in on the new device, enable iCloud Keychain, and let the old device sync the key while both devices are on the same iCloud account.</li>
+      <li>Check if you have an iPhone device backup from before the loss. Restoring that backup to a device and enabling BudgetBaby will restore the local Keychain, including the encryption key.</li>
+      <li>Contact Apple Support about Keychain recovery options. In some cases Apple can help recover iCloud Keychain contents through their account recovery process.</li>
+    </ul>
+    <p>
+      If the key truly cannot be recovered, your cloud backups are not accessible. However, if you
+      have a new device and re-install BudgetBaby, you can start a new account and begin fresh.
+      For future protection, always enable iCloud Keychain on all your devices.
+    </p>
+
+    <h2 id="managing-backups">Managing and deleting backups</h2>
+    <p>To view, manage, or delete your backups:</p>
+    <ol>
+      <li>Go to <strong>Settings → Account → Manage Backups</strong>.</li>
+      <li>Swipe left on any backup to reveal the Delete action. Tap <strong>Delete</strong> and confirm.</li>
+      <li>To delete all backups at once, tap <strong>Delete All Backups</strong> at the bottom and confirm.</li>
+    </ol>
+    <div class="doc-warning">
+      <strong>Backup deletion is permanent and cannot be undone.</strong> Because your backups are encrypted with a key only your device holds, neither you nor we can recover a deleted backup. The server-side encrypted blob and the on-device key are both required; deleting the blob makes the backup unrecoverable even if the key still exists.
+    </div>
+    <p>
+      For complete instructions on deleting your account and all associated data, see the
+      <a href="/budgetbaby/delete-data">Delete Your Data</a> page.
+    </p>
+  </div>
+</DocsLayout>

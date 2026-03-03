@@ -1,0 +1,490 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+
+const headings = [
+  { id: 'safe-to-spend',            text: 'Safe to Spend confusion' },
+  { id: 'sts-zero',                 text: 'Dropped to zero or went negative',          depth: 2 },
+  { id: 'sts-vs-bank',              text: 'Much lower than my bank balance',            depth: 2 },
+  { id: 'sts-no-change',            text: 'Did not change after marking bill paid',     depth: 2 },
+  { id: 'pool-balances',            text: 'Pool balance issues' },
+  { id: 'pool-debit-wrong',         text: 'Debit pool balance looks wrong',             depth: 2 },
+  { id: 'pool-wrong-method',        text: 'Logged with wrong payment method',           depth: 2 },
+  { id: 'pool-unknown-tx',          text: 'Transaction I did not create',               depth: 2 },
+  { id: 'bills',                    text: 'Bill and payment tracking' },
+  { id: 'bill-reappears',           text: 'Bill keeps appearing as unpaid',             depth: 2 },
+  { id: 'bill-missing',             text: 'Bill not appearing this period',             depth: 2 },
+  { id: 'premium-billing',          text: 'Premium and billing' },
+  { id: 'premium-locked',           text: 'Features still locked after upgrade',        depth: 2 },
+  { id: 'premium-expired',          text: 'Premium shows expired',                      depth: 2 },
+  { id: 'premium-new-phone',        text: 'Premium gone on new phone',                  depth: 2 },
+  { id: 'backup-restore',           text: 'Backup and restore' },
+  { id: 'backup-deleted-app',       text: 'Deleted app and lost data',                  depth: 2 },
+  { id: 'backup-new-device',        text: 'New iPhone, BudgetBaby is empty',            depth: 2 },
+  { id: 'backup-wrong-restore',     text: 'Restored from the wrong backup',             depth: 2 },
+  { id: 'notifications',            text: 'Notifications' },
+  { id: 'notif-stopped',            text: 'Reminders stopped arriving',                 depth: 2 },
+  { id: 'notif-paid-bills',         text: 'Reminders for already-paid bills',           depth: 2 },
+  { id: 'budget-setup',             text: 'Budget setup changes' },
+  { id: 'budget-new-job',           text: 'Changed jobs, update pay schedule',          depth: 2 },
+  { id: 'budget-calibration',       text: 'Budget feels too tight or too loose',        depth: 2 },
+];
+---
+
+<DocsLayout
+  title="Common Cases"
+  description="Scenario-by-scenario walkthroughs for the most common BudgetBaby situations: Safe to Spend confusion, pool balance issues, premium billing, backup recovery, and more."
+  canonical="/budgetbaby/docs/common-cases"
+  headings={headings}
+>
+  <div class="docs-content">
+    <h1>Common Cases</h1>
+    <p class="docs-summary">
+      Real-world situations and how to resolve them. Each case explains what is happening, why it
+      happens, and the exact steps to fix it — so you can understand the system, not just follow steps.
+    </p>
+
+    <!-- ─── SAFE TO SPEND ─────────────────────────────────────────────── -->
+    <h2 id="safe-to-spend">Safe to Spend confusion</h2>
+
+    <div class="case">
+      <div class="case-header">
+        <span class="case-label">Case</span>
+        <h3 id="sts-zero" class="case-title">Safe to Spend dropped to zero or went negative</h3>
+      </div>
+      <div class="case-body">
+        <p class="case-what"><strong>What is happening.</strong> Safe to Spend is calculated as
+        <em>(Remaining Budget − Bill Reserve − Savings Reserve) ÷ Days Remaining</em>. If it hits
+        zero or goes negative, one or more reserves are consuming more than your remaining budget.</p>
+        <p>Common causes:</p>
+        <ul>
+          <li>A large Critical bill is due very soon and its full amount is reserved.</li>
+          <li>You are close to period end with little budget remaining but several unpaid bills still reserved.</li>
+          <li>You have a Savings allocation (e.g. 20%) holding back more than what is left in the period.</li>
+          <li>Your income was entered incorrectly and is lower than your actual take-home pay.</li>
+        </ul>
+        <ol>
+          <li>Tap the info button next to Safe to Spend on the Home screen. This expands the full breakdown — Budget, Spent, Bill Reserve, Savings Reserve, Remaining, Days Remaining, and the resulting daily rate.</li>
+          <li>Look at Bill Reserve. If it is large, go to Settings → Bills. Any unpaid Critical bill is fully reserved. If you have already paid one of those bills externally, mark it paid in BudgetBaby. The reserve releases immediately and Safe to Spend rises.</li>
+          <li>If Savings Reserve is the issue, this is expected behavior — it is money committed to your savings allocation. To change it, go to Settings → Budget Setup and adjust the Savings slider.</li>
+          <li>If you are near period end with very few days remaining, the denominator is small. Even a modest reserve can push the daily rate to zero. Check the History tab to see what you have spent.</li>
+          <li>Verify your income: Settings → Budget Setup → Income per Period. Confirm it is your actual take-home pay, not gross salary.</li>
+        </ol>
+        <div class="case-tip">Once all Critical bills are marked paid and the period has reasonable days remaining, Safe to Spend will show a positive number reflecting your actual discretionary capacity.</div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-header">
+        <span class="case-label">Case</span>
+        <h3 id="sts-vs-bank" class="case-title">Safe to Spend is much lower than my bank balance</h3>
+      </div>
+      <div class="case-body">
+        <p class="case-what"><strong>What is happening.</strong> These two numbers measure completely different things and are not expected to match. Safe to Spend is a daily spending allowance from your remaining budget. Your bank balance is the actual dollars in your account. They diverge for several normal reasons.</p>
+        <ul>
+          <li><strong>Bills not yet marked paid.</strong> If rent ($2,000) is due this week but not marked paid in BudgetBaby, the full $2,000 is reserved from Safe to Spend. Your bank still shows that money because you have not paid yet — BudgetBaby is correctly anticipating the outflow.</li>
+          <li><strong>Carryover from previous periods.</strong> Your bank balance includes money from past months. Safe to Spend only works within the current budget period.</li>
+          <li><strong>Credit card float.</strong> Purchases charged to a credit card reduced Safe to Spend but have not yet cleared your bank. The bank balance looks higher than reality.</li>
+          <li><strong>Debit pool ≠ bank account.</strong> The Debit pool is what BudgetBaby calculates based on your starting balance plus income minus logged Debit transactions. It tracks what you tell BudgetBaby, not what the bank reports.</li>
+        </ul>
+        <ol>
+          <li>Accept that the discrepancy is normal. Safe to Spend is your budgeted daily allowance, not a mirror of your bank account.</li>
+          <li>To keep the Debit pool roughly aligned with your bank, log all Debit transactions promptly and mark bills paid when you pay them.</li>
+          <li>Once or twice a month, reconcile: compare your bank balance to your Debit pool and make a correction adjustment transaction if they have drifted due to unlogged purchases, fees, or bank rounding.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-header">
+        <span class="case-label">Case</span>
+        <h3 id="sts-no-change" class="case-title">Safe to Spend did not change after I marked a bill paid</h3>
+      </div>
+      <div class="case-body">
+        <p class="case-what"><strong>What is happening.</strong> Marking a bill paid removes it from the Bill Reserve, which should raise Safe to Spend. If it did not visibly change, one of the following is true.</p>
+        <ul>
+          <li>The bill's priority is not Critical. Only Critical bills are included in the Bill Reserve. Important, Discretionary, and Buffer bills are never reserved.</li>
+          <li>Another Critical bill is now the binding constraint — the reserve dropped for the paid bill, but another large Critical bill is still unpaid.</li>
+          <li>You are at period end with zero or near-zero days remaining. The daily rate denominator approaches 1, so even a large reserve change produces a tiny per-day change.</li>
+        </ul>
+        <ol>
+          <li>Check the bill's priority: Bills tab → tap the bill → Priority. If it is not Critical, no reserve was ever held for it.</li>
+          <li>Tap the info button on Safe to Spend to see the current Bill Reserve total. If it is still large, other Critical bills are still unpaid.</li>
+          <li>If days remaining is 0 or 1, Safe to Spend will be zero regardless of bill status. This resets when the next period starts.</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- ─── POOL BALANCES ─────────────────────────────────────────────── -->
+    <h2 id="pool-balances">Pool balance issues</h2>
+
+    <div class="case">
+      <div class="case-header">
+        <span class="case-label">Case</span>
+        <h3 id="pool-debit-wrong" class="case-title">My Debit pool balance looks completely wrong</h3>
+      </div>
+      <div class="case-body">
+        <p class="case-what"><strong>What is happening.</strong> The Debit pool balance is a running total computed from your starting balance + income logged + Debit transactions. If it is wrong, one of these inputs is off.</p>
+        <ol>
+          <li><strong>Check the starting balance.</strong> Go to Settings → Accounts → Debit. If this was never set (left at zero), every period started from zero and the balance has been drifting negative ever since. Set it to your current actual checking account balance. This corrects from today forward.</li>
+          <li><strong>Look for duplicate transactions.</strong> Transactions → All → filter by payment method Debit. Sort by date and look for any that appear twice. Delete the duplicate.</li>
+          <li><strong>Check for wrong payment method.</strong> Credit card purchases logged as Debit reduce the Debit pool incorrectly. Find them and edit each one to Credit.</li>
+          <li><strong>Verify income is being logged.</strong> Go to Settings → Budget Setup to confirm the income amount and that auto-income is enabled. If you log income manually, check that an income entry was created at the start of the current period.</li>
+        </ol>
+        <div class="case-tip">Once you set the correct starting balance in Settings → Accounts, future periods will carry it forward automatically.</div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-header">
+        <span class="case-label">Case</span>
+        <h3 id="pool-wrong-method" class="case-title">I logged a purchase with the wrong payment method</h3>
+      </div>
+      <div class="case-body">
+        <p class="case-what"><strong>What is happening.</strong> The transaction is affecting the wrong pool. A credit card purchase logged as Debit reduces your Debit balance immediately, but the real debit from your bank does not happen until you pay the credit card bill — so your Debit pool shows a lower balance than it should.</p>
+        <ol>
+          <li>Find the transaction in the Transactions tab or in the relevant period's history.</li>
+          <li>Tap it to open the detail view.</li>
+          <li>Tap Edit.</li>
+          <li>Change the Payment Method to the correct option.</li>
+          <li>Tap Save. Both pool balances update immediately.</li>
+        </ol>
+        <p>If this mistake spans many transactions, edit each affected one. Work backwards from the most recent and correct them in batches.</p>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-header">
+        <span class="case-label">Case</span>
+        <h3 id="pool-unknown-tx" class="case-title">I see a transaction I did not create</h3>
+      </div>
+      <div class="case-body">
+        <p class="case-what"><strong>What is happening.</strong> BudgetBaby does not connect to your bank and does not auto-import transactions. Every transaction was created by a user in your household. If you share a household, another household member may have logged it.</p>
+        <ol>
+          <li>Tap the transaction to see its details. Check the date and description. If it matches something a household member would have purchased, confirm with them.</li>
+          <li>If you live alone and do not recognize it, check whether a recent backup restore imported historical data you forgot about.</li>
+          <li>If the transaction is genuinely erroneous, tap Edit then tap Delete Transaction at the bottom and confirm.</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- ─── BILLS ──────────────────────────────────────────────────────── -->
+    <h2 id="bills">Bill and payment tracking</h2>
+
+    <div class="case">
+      <div class="case-header">
+        <span class="case-label">Case</span>
+        <h3 id="bill-reappears" class="case-title">A bill keeps appearing as unpaid even though I pay it every month</h3>
+      </div>
+      <div class="case-body">
+        <p class="case-what"><strong>What is happening.</strong> Bills in BudgetBaby are recurring — they regenerate each period. Marking a bill paid in one period clears it for that period only. The next period, the bill reappears unpaid because you have not paid it yet for the new period. This is correct behavior.</p>
+        <ol>
+          <li>When you pay a bill in the real world, open BudgetBaby and go to the Bills tab.</li>
+          <li>Find the bill and tap the checkmark or the Mark Paid button.</li>
+          <li>Optionally log the payment as a transaction too — this keeps your Debit pool accurate. Marking a bill paid releases the Bill Reserve; logging the transaction reduces the pool balance.</li>
+        </ol>
+        <div class="case-tip">The fastest workflow: as soon as a payment clears your bank, mark the bill paid and log the Debit transaction in one go. Both steps together keep Safe to Spend and your pool balance accurate simultaneously.</div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-header">
+        <span class="case-label">Case</span>
+        <h3 id="bill-missing" class="case-title">A bill is not appearing in the current period</h3>
+      </div>
+      <div class="case-body">
+        <p class="case-what"><strong>What is happening.</strong> A recurring bill only appears in a period if its due date falls within that period's date range. If the bill is due on the 1st and your current period runs from the 3rd to the 16th, it does not appear — its due date is outside the window.</p>
+        <ol>
+          <li>Go to Bills tab and tap the bill to see its due date and recurrence schedule.</li>
+          <li>Check the current period's date range in the Budget tab (the period header shows start and end dates).</li>
+          <li>If the bill's due date falls outside the current period, this is correct. It will appear in the next period that contains its due date.</li>
+          <li>If the due date is wrong, tap Edit on the bill and correct the day of month.</li>
+          <li>If the bill was recently created and never showed up, verify it is marked Active (not archived).</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- ─── PREMIUM AND BILLING ───────────────────────────────────────── -->
+    <h2 id="premium-billing">Premium and billing</h2>
+
+    <div class="case">
+      <div class="case-header">
+        <span class="case-label">Case</span>
+        <h3 id="premium-locked" class="case-title">I upgraded to Premium but features are still locked</h3>
+      </div>
+      <div class="case-body">
+        <p class="case-what"><strong>What is happening.</strong> BudgetBaby verifies subscription status with Apple through StoreKit. If the purchase completed on Apple's side but the app has not received confirmation yet, features appear locked until the receipt is verified.</p>
+        <ol>
+          <li>Go to Settings → Premium (or Settings → Subscription).</li>
+          <li>Tap <strong>Restore Purchases</strong>. This contacts Apple and refreshes subscription state immediately.</li>
+          <li>Wait 5–10 seconds for the verification to complete. Features should unlock without restarting the app.</li>
+          <li>If Restore Purchases shows "Nothing to restore," the purchase may not have gone through on Apple's side. Check your Apple ID email for a receipt. If no receipt arrived, go to iOS Settings → App Store → Apple ID → Subscriptions to confirm it is listed and active.</li>
+          <li>If the subscription is listed in iOS Settings as active but BudgetBaby still shows it locked, force-close the app and reopen it. StoreKit occasionally needs a fresh session to pick up the updated entitlement.</li>
+        </ol>
+        <div class="case-tip">Restore Purchases is always safe to tap. It does not create a duplicate charge — it only reads your existing purchase history from Apple.</div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-header">
+        <span class="case-label">Case</span>
+        <h3 id="premium-expired" class="case-title">Premium shows as expired but I did not cancel</h3>
+      </div>
+      <div class="case-body">
+        <p class="case-what"><strong>What is happening.</strong> Apple subscriptions renew automatically, but renewal fails if your payment method is declined, expired, or removed. Apple retries for a grace period (typically 6 days), but if payment is not collected, the subscription lapses.</p>
+        <ol>
+          <li>Go to iOS Settings → (your name) → Subscriptions. Find BudgetBaby Premium.</li>
+          <li>If it shows "Expired" or "Billing Issue," tap it and update your payment method.</li>
+          <li>Once the payment method is updated, Apple will retry the charge. The subscription should renew within 24 hours.</li>
+          <li>After renewal, return to BudgetBaby and tap Restore Purchases in Settings → Premium to update the app's subscription state.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-header">
+        <span class="case-label">Case</span>
+        <h3 id="premium-new-phone" class="case-title">I got a new phone and Premium is gone</h3>
+      </div>
+      <div class="case-body">
+        <p class="case-what"><strong>What is happening.</strong> Your Premium subscription is tied to your Apple ID, not to a specific device. As long as you are signed in to the same Apple ID on the new phone, you can restore it at no cost.</p>
+        <ol>
+          <li>On the new device, open BudgetBaby.</li>
+          <li>Go to Settings → Premium.</li>
+          <li>Tap <strong>Restore Purchases</strong>.</li>
+          <li>Confirm you are signed in to the correct Apple ID when prompted.</li>
+          <li>Within a few seconds, Premium should be active. Features unlock immediately.</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- ─── BACKUP AND RESTORE ────────────────────────────────────────── -->
+    <h2 id="backup-restore">Backup and restore</h2>
+
+    <div class="case">
+      <div class="case-header">
+        <span class="case-label">Case</span>
+        <h3 id="backup-deleted-app" class="case-title">I deleted the app and lost all my data</h3>
+      </div>
+      <div class="case-body">
+        <p class="case-what"><strong>What is happening.</strong> BudgetBaby stores all data locally on your device. When iOS removes an app, it removes the app's private data container. If no cloud backup was created before deletion, the data cannot be recovered.</p>
+        <ol>
+          <li>Reinstall BudgetBaby from the App Store.</li>
+          <li>Sign in to your BudgetBaby account: Settings → Account.</li>
+          <li>Go to Settings → Backup and Restore. If you had created a cloud backup before deleting, it should appear in the list. Tap it and restore.</li>
+          <li>If no backup appears, your data is not recoverable. Begin a fresh setup using onboarding.</li>
+        </ol>
+        <div class="case-tip">After rebuilding your data, create a backup immediately: Settings → Backup and Restore → Create Backup. Then create a new backup at the end of each budget period going forward.</div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-header">
+        <span class="case-label">Case</span>
+        <h3 id="backup-new-device" class="case-title">I switched to a new iPhone and BudgetBaby is empty</h3>
+      </div>
+      <div class="case-body">
+        <p class="case-what"><strong>What is happening.</strong> BudgetBaby data does not transfer automatically to a new device. You need to restore from a cloud backup. The decryption key must also sync to the new device via iCloud Keychain before the restore can complete.</p>
+        <ol>
+          <li>On the new iPhone, go to iOS Settings → (your name) → iCloud → Keychain. Ensure iCloud Keychain is enabled. This syncs the encryption key used to decrypt your backup.</li>
+          <li>Sign in to BudgetBaby: Settings → Account. Use the same account as the old device.</li>
+          <li>Go to Settings → Backup and Restore. Wait 1–2 minutes for the backup list to populate — iCloud Keychain may need a moment to deliver the key.</li>
+          <li>Tap the backup and tap Restore. Confirm the prompt.</li>
+          <li>If the backup list is empty after waiting, check that both iPhones are signed in to the same Apple ID and iCloud account.</li>
+        </ol>
+        <p>If you did not create a cloud backup before switching phones, data recovery options are very limited — see <a href="/budgetbaby/docs/backup-and-restore#keychain-loss">If you lose iCloud Keychain access</a>.</p>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-header">
+        <span class="case-label">Case</span>
+        <h3 id="backup-wrong-restore" class="case-title">I restored from the wrong backup</h3>
+      </div>
+      <div class="case-body">
+        <p class="case-what"><strong>What is happening.</strong> Before every restore, BudgetBaby automatically creates a safety backup of your current data stored locally on your device, labeled "Safety backup" with the timestamp of when you initiated the restore.</p>
+        <ol>
+          <li>Go to Settings → Backup and Restore.</li>
+          <li>In the backup list, find the entry labeled "Safety backup" with a recent timestamp.</li>
+          <li>Tap it and tap Restore. Confirm the prompt.</li>
+          <li>Your data returns to the state it was in immediately before the unwanted restore.</li>
+        </ol>
+        <div class="case-tip">Safety backups are local only — they will be lost if you uninstall the app. If you want to preserve it, create a regular cloud backup from it before doing anything else.</div>
+      </div>
+    </div>
+
+    <!-- ─── NOTIFICATIONS ─────────────────────────────────────────────── -->
+    <h2 id="notifications">Notifications</h2>
+
+    <div class="case">
+      <div class="case-header">
+        <span class="case-label">Case</span>
+        <h3 id="notif-stopped" class="case-title">Bill reminders suddenly stopped arriving</h3>
+      </div>
+      <div class="case-body">
+        <p class="case-what"><strong>What is happening.</strong> BudgetBaby uses iOS local notifications scheduled on your device — not a server. If they stop arriving, something changed on the iOS side: notification permission was revoked, a Focus mode was enabled, or the app needs to reschedule.</p>
+        <ol>
+          <li>Go to iOS Settings → BudgetBaby → Notifications. Verify Allow Notifications is on. Without this, no notifications can arrive.</li>
+          <li>Check iOS Settings → Focus. If any Focus mode is active, open it and ensure BudgetBaby is in the allowed apps list.</li>
+          <li>Open BudgetBaby → Settings → Reminders. Simply opening this screen triggers a full reschedule. Tap Save even if you changed nothing.</li>
+          <li>Check iOS Settings → Notifications → Scheduled Summary. If BudgetBaby is listed there, notifications are being batched for delivery at a summary time rather than immediately. Remove BudgetBaby from the summary list.</li>
+          <li>If you have not opened BudgetBaby in several weeks, open Settings → Reminders and tap Save. New bills added while the app was closed may not have been scheduled with iOS yet.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-header">
+        <span class="case-label">Case</span>
+        <h3 id="notif-paid-bills" class="case-title">I am getting reminders for bills I already paid</h3>
+      </div>
+      <div class="case-body">
+        <p class="case-what"><strong>What is happening.</strong> Notifications are scheduled in advance when you save your reminder settings. A notification already scheduled for a future date has no way to know the bill was paid after scheduling — it fires anyway.</p>
+        <ol>
+          <li>After marking a bill paid, go to Settings → Reminders and tap Save. This cancels all currently scheduled notifications and reschedules only for upcoming unpaid bills.</li>
+          <li>If this happens frequently, consider adjusting your reminder days to trigger earlier — for example, 3 days before instead of same day. This gives you time to mark the bill paid before the reminder fires.</li>
+        </ol>
+        <p>This is a known limitation of iOS local notification scheduling. The reschedule-on-save approach is the correct solution.</p>
+      </div>
+    </div>
+
+    <!-- ─── BUDGET SETUP CHANGES ──────────────────────────────────────── -->
+    <h2 id="budget-setup">Budget setup changes</h2>
+
+    <div class="case">
+      <div class="case-header">
+        <span class="case-label">Case</span>
+        <h3 id="budget-new-job" class="case-title">I changed jobs and need to update my pay schedule</h3>
+      </div>
+      <div class="case-body">
+        <p class="case-what"><strong>What is happening.</strong> Your pay frequency determines the length of budget periods. Changing from bi-weekly to monthly, for example, requires updating this so future periods have the right length and Safe to Spend is calibrated correctly.</p>
+        <ol>
+          <li>Go to Settings → Budget Setup.</li>
+          <li>Update <strong>Pay Frequency</strong> to match your new schedule.</li>
+          <li>Update <strong>Income per Period</strong> to your new take-home pay for one pay period.</li>
+          <li>Tap Save. The change takes effect at the start of the next budget period. Your current period continues with the old settings.</li>
+          <li>If you want the change to apply immediately, you can manually end the current period: Budget tab → Period Options → End Period Early. This archives the current period as-is and starts a new one with the updated settings.</li>
+        </ol>
+        <div class="case-tip">Always use your net take-home amount, not gross salary. Using gross salary makes Safe to Spend appear higher than your actual spending capacity and miscalibrates the entire system.</div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-header">
+        <span class="case-label">Case</span>
+        <h3 id="budget-calibration" class="case-title">My budget feels too tight (or too loose) even though the numbers look right</h3>
+      </div>
+      <div class="case-body">
+        <p class="case-what"><strong>What is happening.</strong> The 50/30/20 default split (Needs/Wants/Savings) is a starting point. If your real fixed costs consistently exceed 50% of take-home pay, your Needs bucket is too small and Safe to Spend will always feel insufficient.</p>
+        <ol>
+          <li>Go to Settings → Budget Setup → Bucket Allocation. Adjust the sliders to match your actual spending distribution. A high-cost-of-living split might be 65% Needs / 20% Wants / 15% Savings.</li>
+          <li>Review your bill priorities. Bills marked Critical are reserved in full. If you have discretionary bills (streaming, gym) marked Critical, change them to Discretionary — only reserve money for bills you absolutely must pay.</li>
+          <li>Check whether surplus carryover is enabled: Settings → Budget Setup → Roll over unspent budget. If you consistently come in under budget, enabling carryover lets accumulated surplus add to future periods' capacity.</li>
+          <li>Check the Insights tab for a Spending Breakdown by category. This shows where money actually goes vs. what you have allocated, which often reveals a mismatch between perceived and actual spending.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="docs-next-steps">
+      <a href="/budgetbaby/docs/troubleshooting" class="docs-next-item">
+        <strong>Troubleshooting</strong>
+        <span>Quick-fix table for specific symptoms, plus how to generate a support report if you need hands-on help.</span>
+      </a>
+      <a href="/budgetbaby/docs/contact-support" class="docs-next-item">
+        <strong>Contact Support</strong>
+        <span>If your issue is not listed here, reach a human who can investigate it with you.</span>
+      </a>
+    </div>
+  </div>
+</DocsLayout>
+
+<style>
+  /* ── Case block ─────────────────────────────────────────────────── */
+  .case {
+    margin-bottom: var(--space-6);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+  }
+
+  .case-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-5);
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid var(--glass-border);
+    /* Override global h3 margin so the header stays flush */
+    margin: 0;
+  }
+
+  .case-label {
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent-light);
+    background: var(--accent-dim);
+    border: 1px solid var(--accent-border);
+    border-radius: 100px;
+    padding: 2px 10px;
+    flex-shrink: 0;
+    line-height: 1.6;
+  }
+
+  .case-title {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: var(--text-base) !important;
+    font-weight: var(--weight-semibold) !important;
+    color: var(--text-primary) !important;
+    line-height: var(--leading-snug) !important;
+    border: none !important;
+    /* Preserve the scroll-margin-top from the global h3 rule for anchor links */
+    scroll-margin-top: calc(var(--nav-height) + var(--space-8));
+  }
+
+  .case-body {
+    padding: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .case-body p {
+    margin: 0;
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  .case-what {
+    color: var(--text-secondary) !important;
+    border-left: 2px solid var(--accent-border);
+    padding-left: var(--space-4);
+  }
+
+  .case-body ul,
+  .case-body ol {
+    margin: 0;
+    padding-left: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .case-body li {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  .case-tip {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    background: var(--accent-dim);
+    border: 1px solid var(--accent-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-3) var(--space-4);
+    line-height: var(--leading-relaxed);
+  }
+</style>

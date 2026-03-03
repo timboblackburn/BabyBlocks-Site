@@ -1,0 +1,157 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+
+const headings = [
+  { id: 'formats',          text: 'Export formats' },
+  { id: 'how-to-export',   text: 'How to export' },
+  { id: 'csv-columns',     text: 'CSV column reference' },
+  { id: 'deleting-data',   text: 'Deleting your data' },
+];
+---
+
+<DocsLayout
+  title="Exporting Data"
+  description="CSV and PDF export formats in BudgetBaby, how to export, and a full CSV column reference."
+  canonical="/budgetbaby/docs/exporting-and-data"
+  headings={headings}
+>
+  <div class="docs-content">
+    <h1>Exporting Data</h1>
+    <p class="docs-summary">
+      Premium users can export their BudgetBaby data as a CSV for spreadsheet analysis
+      or as a formatted PDF financial summary. Free users get one CSV export per month.
+    </p>
+
+    <h2 id="formats">Export formats</h2>
+    <h3>CSV</h3>
+    <p>
+      The CSV export is a plain-text file compatible with any spreadsheet application.
+    </p>
+    <ul>
+      <li><strong>What is included.</strong> Transactions, categories, recurring bills, subscriptions, savings goals, and budget periods.</li>
+      <li><strong>Date format.</strong> ISO 8601: YYYY-MM-DD. This format is reliably parsed by Excel, Numbers, and Google Sheets without needing a format conversion.</li>
+      <li><strong>Amount format.</strong> Pure numbers with no currency symbol. A separate Currency column contains the currency code (for example, USD). This makes sorting and arithmetic work correctly in a spreadsheet.</li>
+      <li><strong>Encoding.</strong> UTF-8 with a BOM header for maximum Excel compatibility.</li>
+    </ul>
+    <h3>PDF</h3>
+    <p>
+      The PDF export is a formatted financial summary report, not a raw data file. It includes:
+    </p>
+    <ul>
+      <li>Spending breakdown by priority level (Critical, Important, Discretionary, Buffer)</li>
+      <li>Monthly bills and subscriptions with amounts and due dates</li>
+      <li>Savings goals with current balance and progress toward the target</li>
+      <li>Budget period summary: income, total spent, remaining</li>
+    </ul>
+    <p>
+      The PDF is intended for sharing or printing, not for importing into another system.
+      Use CSV if you need the raw data.
+    </p>
+
+    <h2 id="how-to-export">How to export</h2>
+    <ol>
+      <li>Open BudgetBaby and go to <strong>Settings → Export Data</strong>.</li>
+      <li>Choose <strong>CSV</strong> or <strong>PDF</strong>.</li>
+      <li>Select the budget period or date range to export.</li>
+      <li>Tap <strong>Export</strong>. iOS presents a share sheet.</li>
+      <li>Choose a destination: Files, Mail, AirDrop, or any other app in the share sheet.</li>
+    </ol>
+    <div class="doc-tip">
+      <strong>Free tier limit.</strong> Free users can export as CSV once per month. Premium users have unlimited CSV and PDF exports. The export option in Settings shows how many exports remain for the current month.
+    </div>
+
+    <h2 id="csv-columns">CSV column reference</h2>
+    <p>
+      The transactions CSV includes the following columns. All columns are present in every row.
+      Empty values are represented by an empty field, not NULL or N/A.
+    </p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Column</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>id</code></td>
+            <td>UUID</td>
+            <td>Unique identifier for the transaction.</td>
+          </tr>
+          <tr>
+            <td><code>date</code></td>
+            <td>YYYY-MM-DD</td>
+            <td>The date the transaction was logged.</td>
+          </tr>
+          <tr>
+            <td><code>description</code></td>
+            <td>Text</td>
+            <td>User-entered description. May be empty.</td>
+          </tr>
+          <tr>
+            <td><code>amount</code></td>
+            <td>Decimal</td>
+            <td>Transaction amount. Always positive, regardless of type.</td>
+          </tr>
+          <tr>
+            <td><code>currency</code></td>
+            <td>Text</td>
+            <td>ISO 4217 currency code, e.g. USD.</td>
+          </tr>
+          <tr>
+            <td><code>payment_method</code></td>
+            <td>Enum</td>
+            <td>cash, debit, credit, or savings.</td>
+          </tr>
+          <tr>
+            <td><code>category_name</code></td>
+            <td>Text</td>
+            <td>The category name at the time of export.</td>
+          </tr>
+          <tr>
+            <td><code>category_priority</code></td>
+            <td>Enum</td>
+            <td>critical, important, discretionary, or buffer.</td>
+          </tr>
+          <tr>
+            <td><code>budget_bucket</code></td>
+            <td>Text</td>
+            <td>The bucket name (Needs, Wants, or Savings).</td>
+          </tr>
+          <tr>
+            <td><code>period_id</code></td>
+            <td>UUID</td>
+            <td>The budget period this transaction belongs to.</td>
+          </tr>
+          <tr>
+            <td><code>period_start</code></td>
+            <td>YYYY-MM-DD</td>
+            <td>Start date of the budget period.</td>
+          </tr>
+          <tr>
+            <td><code>period_end</code></td>
+            <td>YYYY-MM-DD</td>
+            <td>End date of the budget period.</td>
+          </tr>
+          <tr>
+            <td><code>notes</code></td>
+            <td>Text</td>
+            <td>Any notes attached to the transaction. May be empty.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="doc-tip">
+      <strong>Using the CSV in Excel.</strong> Open Excel, go to Data → From Text/CSV, select the file, and ensure the delimiter is set to comma. Excel should detect the UTF-8 encoding automatically. If date columns appear as text, use the Text to Columns wizard to convert them.
+    </div>
+
+    <h2 id="deleting-data">Deleting your data</h2>
+    <p>
+      If you want to reset BudgetBaby or remove your data entirely, see the dedicated
+      <a href="/budgetbaby/delete-data">Delete Your Data</a> page for complete instructions.
+      That page covers local data reset, cloud backup deletion, account deletion, and subscription cancellation.
+    </p>
+  </div>
+</DocsLayout>

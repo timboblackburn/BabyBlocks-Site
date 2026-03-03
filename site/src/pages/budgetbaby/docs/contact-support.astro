@@ -1,0 +1,106 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+
+const headings = [
+  { id: 'before-you-write', text: 'Before you write' },
+  { id: 'what-to-include',  text: 'What to include' },
+  { id: 'how-to-send',      text: 'Generating and sending a report' },
+  { id: 'response-times',   text: 'Response times' },
+];
+---
+
+<DocsLayout
+  title="Contact Support"
+  description="How to write an effective BudgetBaby support request, what to include, how to send a diagnostics report, and expected response times."
+  canonical="/budgetbaby/docs/contact-support"
+  headings={headings}
+>
+  <div class="docs-content">
+    <h1>Contact Support</h1>
+    <p class="docs-summary">
+      Our support team reads every email personally. Including the right information up front
+      means we can usually resolve your issue in one reply instead of several back-and-forth messages.
+    </p>
+
+    <h2 id="before-you-write">Before you write</h2>
+    <p>Most issues are resolved without needing to contact support. Please try these first:</p>
+    <ul>
+      <li><strong>Force-quit and reopen the app.</strong> Swipe up from the Home bar to open the app switcher, swipe BudgetBaby off the screen, then reopen it.</li>
+      <li><strong>Update the app.</strong> Open the App Store, tap your profile, and pull to refresh. Many reported issues are fixed in the latest version.</li>
+      <li><strong>Check your iOS version.</strong> BudgetBaby requires iOS 17.0 or later. Settings → General → About shows your current version.</li>
+      <li><strong>Search this documentation.</strong> The <a href="/budgetbaby/docs/troubleshooting">Troubleshooting</a> page covers the most common issues with step-by-step solutions.</li>
+      <li><strong>Restore Premium.</strong> If Premium features are not showing, try Settings → Premium → Restore Purchases before writing to us.</li>
+    </ul>
+
+    <h2 id="what-to-include">What to include</h2>
+    <p>
+      The more context you provide, the faster we can help. Please include all of the following
+      when you write:
+    </p>
+    <div class="doc-formula">
+Subject: [Brief description of your issue]
+
+App version: (Settings → About → Version number)
+iOS version: (Settings → General → About → iOS Version)
+Device: (iPhone model, e.g. iPhone 15 Pro)
+Account type: (free / Premium / not signed in)
+
+What happened:
+[Describe what you did and what you expected to happen]
+
+What you see instead:
+[Describe the unexpected behavior, error message, or symptom]
+
+Steps to reproduce:
+1.
+2.
+3.
+
+Screenshots or screen recording: (attached / not available)
+Support report attached: (yes — see below / no)
+    </div>
+    <div class="doc-tip">
+      <strong>Data loss issues.</strong> If you believe you have lost transactions or budget data, contact us before uninstalling or resetting the app. Include your app version and iOS version. We flag data loss reports for same-day triage and may be able to help recover data.
+    </div>
+
+    <h2 id="how-to-send">Generating and sending a report</h2>
+    <p>
+      For most issues, attaching a support report dramatically reduces resolution time.
+      The report contains no financial data — only app-state metadata and anonymous event logs.
+    </p>
+    <ol>
+      <li>Go to <strong>Settings → Support and Diagnostics</strong>.</li>
+      <li>Tap <strong>Report a Problem</strong> and follow the 5-step guided flow, or tap <strong>Export Diagnostics</strong> for an immediate capture.</li>
+      <li>When prompted, choose <strong>Mail</strong> from the share sheet. BudgetBaby pre-fills the subject line with your support code (<code>BB-XXXX-XXXX</code>) and attaches the report.</li>
+      <li>Add your description and send to <a href="mailto:support@babyblocks.io">support@babyblocks.io</a>.</li>
+    </ol>
+    <p>
+      If you do not have Mail configured, use AirDrop to transfer the file to your Mac and
+      attach it manually to your email, or use <strong>Copy Support Report</strong> to paste
+      a plain-text version inline.
+    </p>
+    <p>
+      All generated reports are saved to the archive at Settings → Support and Diagnostics → View Archive
+      for 90 days. You can re-share any archived report without regenerating it.
+    </p>
+    <p>
+      For a detailed explanation of what is included in the report, see
+      <a href="/budgetbaby/docs/troubleshooting#diagnostics">Generating a support report</a>
+      in the Troubleshooting guide.
+    </p>
+
+    <h2 id="response-times">Response times</h2>
+    <ul>
+      <li><strong>Standard issues:</strong> Reply within 1-2 business days.</li>
+      <li><strong>Data loss or corruption:</strong> Flagged for same-day triage. Reply within a few hours during business hours.</li>
+      <li><strong>Security reports:</strong> Acknowledgment within 2 business days. Use <strong>[Security]</strong> in the subject line. See the <a href="/security">Security page</a> for our full disclosure policy.</li>
+    </ul>
+    <p>
+      We are a small team. We do not have a live chat or phone line. Email is the only support channel,
+      and we commit to reading every message personally.
+    </p>
+    <p>
+      <strong>Support email:</strong> <a href="mailto:support@babyblocks.io">support@babyblocks.io</a>
+    </p>
+  </div>
+</DocsLayout>

@@ -1,0 +1,252 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+
+const headings = [
+  { id: 'setup',             text: 'Setting up reminders' },
+  { id: 'how-scheduling-works', text: 'How iOS scheduling works' },
+  { id: 'per-bill',          text: 'Per-bill settings' },
+  { id: 'per-subscription',  text: 'Per-subscription settings' },
+  { id: 'custom-messages',   text: 'Custom messages' },
+  { id: 'quiet-hours',       text: 'Quiet hours' },
+  { id: 'savings-nudge',     text: 'Monthly savings nudge' },
+  { id: 'not-arriving',      text: 'If notifications are not arriving' },
+];
+---
+
+<DocsLayout
+  title="Reminders"
+  description="Configure bill and subscription reminders in BudgetBaby. How iOS notification scheduling works, per-bill and per-subscription overrides, custom messages, quiet hours, and the monthly savings nudge."
+  canonical="/budgetbaby/docs/reminders"
+  headings={headings}
+>
+  <div class="docs-content">
+    <h1>Reminders</h1>
+    <p class="docs-summary">
+      BudgetBaby sends push notifications to remind you about upcoming bills and subscriptions.
+      You control exactly when they fire, what they say, and when they stay silent.
+      Basic reminders are available on the free tier. Advanced scheduling, subscription reminders,
+      custom messages, quiet hours, and savings nudges require Premium.
+    </p>
+
+    <h2 id="setup">Setting up reminders</h2>
+    <p>
+      Go to <strong>Settings → Reminders</strong>. On your first visit, BudgetBaby creates a default
+      reminder configuration for your household and requests notification permission from iOS if it
+      has not already been granted.
+    </p>
+    <p>
+      The global settings apply to all bills and subscriptions unless you override them individually
+      for a specific bill or subscription.
+    </p>
+    <ul>
+      <li>
+        <strong>Default reminder days.</strong> Choose which days before a due date you want to receive
+        a notification. Options: same day (day 0), 1 day before, 3 days before, 7 days before.
+        You can select multiple. For example, selecting 3 days before and same day sends two
+        notifications per bill: one three days before it is due and one on the due date itself.
+        Free users can only use same-day reminders. 3-day and 7-day options require Premium.
+      </li>
+      <li>
+        <strong>Reminder time.</strong> The hour and minute at which all notifications fire.
+        The default is 9:00 AM. This applies to all reminders globally unless a custom
+        quiet hours window overrides it.
+      </li>
+      <li>
+        <strong>Weekly bill summary.</strong> An optional Monday morning digest that lists all bills
+        due in the coming week and their total. Useful for planning the week ahead without having
+        to open the app. Available on both free and Premium.
+      </li>
+    </ul>
+    <div class="doc-tip">
+      <strong>Notification permission.</strong> If you denied notification permission during initial setup or in iOS Settings, BudgetBaby cannot send any reminders. To re-enable: iOS Settings → BudgetBaby → Notifications → Allow Notifications. You may also need to check that Alerts and Sounds are enabled.
+    </div>
+
+    <h2 id="how-scheduling-works">How iOS notification scheduling works</h2>
+    <p>
+      BudgetBaby uses local notifications, not server-sent push notifications. This is an important
+      distinction. Local notifications are scheduled entirely on your device and fire based on
+      a date and time you set. They work without an internet connection and without our servers.
+    </p>
+    <p>
+      When you save a reminder configuration, BudgetBaby immediately:
+    </p>
+    <ol>
+      <li>Cancels all previously scheduled bill and subscription notifications.</li>
+      <li>Calculates the next due date for each active bill and subscription based on their schedule.</li>
+      <li>Schedules a notification for each combination of bill/subscription and selected day-before offset, at the global reminder time.</li>
+    </ol>
+    <p>
+      This happens synchronously when you tap Save in Settings → Reminders. The notifications are
+      now registered with iOS and will fire even if the app is closed or has been force-quit,
+      as long as you have not killed BudgetBaby's notification permission.
+    </p>
+    <h3>Why notifications might fire at the wrong time</h3>
+    <p>
+      iOS has several mechanisms that can delay or suppress notifications independent of what
+      BudgetBaby schedules. If a notification fires late or not at all:
+    </p>
+    <ul>
+      <li><strong>Low Power Mode.</strong> iOS can defer non-critical notifications when the battery is low. This is an iOS behavior and cannot be overridden by apps.</li>
+      <li><strong>Focus modes.</strong> If you have a Focus mode active (Do Not Disturb, Sleep, Work, etc.) that blocks BudgetBaby notifications, they will be held until the Focus ends or may be delivered silently.</li>
+      <li><strong>Notification summaries.</strong> iOS 15 and later can group notifications into a scheduled delivery summary. If you have Summary mode enabled for BudgetBaby, notifications are batched rather than delivered immediately at the scheduled time.</li>
+      <li><strong>Background App Refresh disabled.</strong> While local notifications do not require Background App Refresh, bill schedules are recalculated when the app runs. If the app has not opened in a very long time (multiple weeks), newly created bills may not have been scheduled yet. Opening the app triggers rescheduling.</li>
+    </ul>
+
+    <h2 id="per-bill">Per-bill settings</h2>
+    <p>
+      Below the global settings, the Per-Bill Settings section lists every active recurring bill.
+      Tap any bill card to expand it.
+    </p>
+    <ul>
+      <li>
+        <strong>Day toggles.</strong> Enable or disable specific day offsets for this bill, overriding
+        the global setting. For example, if your global setting is "same day," you can set rent to
+        also notify you 7 days before, because rent is more critical and warrants earlier warning.
+      </li>
+      <li>
+        <strong>Custom badge.</strong> Bills with an active override show a purple "Custom" badge in
+        the card header so you can see at a glance which bills have custom schedules.
+      </li>
+      <li>
+        <strong>Reset to Default.</strong> Tap this button to remove the override and return the bill
+        to the global schedule.
+      </li>
+    </ul>
+    <p>
+      When you change a per-bill setting and tap Save, BudgetBaby immediately cancels the old
+      notifications for that bill and schedules new ones. The change takes effect for the next
+      upcoming occurrence of the bill.
+    </p>
+
+    <h2 id="per-subscription">Per-subscription settings <span class="doc-badge-premium">Premium</span></h2>
+    <p>
+      The Per-Subscription Settings section appears below the per-bill section when you have
+      active subscriptions. It works identically to per-bill settings but applies to your
+      tracked subscriptions.
+    </p>
+    <ul>
+      <li>Expand any subscription card to choose reminder days for that subscription specifically.</li>
+      <li>The card subtitle shows the next billing date so you always know how far away the next charge is.</li>
+      <li>Custom overrides show the purple "Custom" badge. Reset to Default clears the override.</li>
+    </ul>
+    <p>
+      Subscription reminder scheduling is more complex than bill scheduling because subscription
+      billing dates can shift (trials, paused billing, plan changes). BudgetBaby uses the next
+      billing date stored in the subscription record to calculate notification dates.
+      Keep your subscription next-billing-date field accurate by editing the subscription
+      whenever the billing date changes.
+    </p>
+
+    <h2 id="custom-messages">Custom messages <span class="doc-badge-premium">Premium</span></h2>
+    <p>
+      Inside any expanded bill or subscription card, a Custom Message field lets you write
+      your own notification body text for that specific bill or subscription.
+    </p>
+    <p>
+      When a notification fires, the body text you entered is used instead of the auto-generated
+      message. If you leave the field empty, BudgetBaby auto-generates the notification body
+      using this format:
+    </p>
+    <ul>
+      <li>Same day: "Your [Bill Name] payment of $X.XX is due today."</li>
+      <li>Days before: "[Bill Name] is due in [N] day(s) for $X.XX."</li>
+    </ul>
+    <p>
+      Custom messages let you add context that the auto-generated text cannot. Examples:
+    </p>
+    <ul>
+      <li>"Check if we're still using this before it renews."</li>
+      <li>"Transfer from savings account to cover this payment."</li>
+      <li>"Submit this as a work expense before paying."</li>
+      <li>"Decide whether to keep the annual plan this year."</li>
+    </ul>
+    <p>
+      Free users see a lock icon in place of the text field. Custom messages require a Premium subscription.
+    </p>
+
+    <h2 id="quiet-hours">Quiet hours <span class="doc-badge-premium">Premium</span></h2>
+    <p>
+      The Quiet Hours section in Settings → Reminders lets you suppress all BudgetBaby notifications
+      during a time window. This prevents reminders from waking you up or interrupting meetings.
+    </p>
+    <ol>
+      <li>Enable the <strong>Quiet Hours</strong> toggle.</li>
+      <li>Set a <strong>From</strong> time using the time picker. This is when the quiet window starts.</li>
+      <li>Set an <strong>Until</strong> time. This is when the quiet window ends and notifications resume.</li>
+    </ol>
+    <p>
+      Midnight wrap-around is handled correctly. A window from 10:00 PM to 8:00 AM will suppress
+      notifications from 10 PM until 8 AM, including overnight. You do not need to set two
+      separate windows.
+    </p>
+    <p>
+      Notifications that fall within the quiet window are held and delivered when the window ends.
+      They are not cancelled or lost. If your reminder time is 7:00 AM and your quiet window ends
+      at 8:00 AM, the notification fires at 8:00 AM.
+    </p>
+    <div class="doc-tip">
+      <strong>Quiet hours vs iOS Do Not Disturb.</strong> These are separate systems. BudgetBaby's quiet hours suppress notifications at the scheduling level: no notification is issued during the window. iOS Do Not Disturb receives the notification but silences the alert. For the cleanest experience, configure BudgetBaby quiet hours to match your iOS Focus schedule.
+    </div>
+
+    <h2 id="savings-nudge">Monthly savings nudge <span class="doc-badge-premium">Premium</span></h2>
+    <p>
+      The Savings Reminders section in Settings → Reminders sends one push notification per month
+      reminding you to fund your savings goals.
+    </p>
+    <ol>
+      <li>Enable the <strong>Monthly savings nudge</strong> toggle.</li>
+      <li>Use the day stepper to choose which day of the month to receive the notification. The range is day 1 through day 28 (staying within any month length).</li>
+      <li>The notification fires at your global reminder time on the selected day.</li>
+    </ol>
+    <p>
+      The default day is 15 (mid-month). This is designed for people who are paid at the start of
+      the month and want a halfway reminder to check whether they have moved money into their
+      savings goals yet. If you are paid on the 15th, consider setting the nudge to day 16 or 17
+      so it fires just after your paycheck lands.
+    </p>
+    <p>
+      The savings nudge notification says: "Time to check on your savings goals." It is intentionally
+      vague because you may have multiple goals and the point is just to open the Goals tab
+      and make a contribution.
+    </p>
+    <div class="doc-tip">
+      <strong>No goals, no nudge.</strong> If you have no active savings goals, the savings nudge notification is not sent even if the toggle is enabled. Create a goal in the Goals tab to activate it.
+    </div>
+
+    <h2 id="not-arriving">If notifications are not arriving</h2>
+    <p>
+      If you have configured reminders but are not receiving notifications, work through these
+      steps in order:
+    </p>
+    <ol>
+      <li>
+        <strong>Check iOS notification permission.</strong> Go to iOS Settings → BudgetBaby → Notifications.
+        Ensure Allow Notifications is on. Ensure Alerts (or Banners) is enabled. Without this,
+        no BudgetBaby notifications will appear.
+      </li>
+      <li>
+        <strong>Check notification settings in BudgetBaby.</strong> Go to Settings → Reminders.
+        Confirm the correct days are toggled on and the reminder time is what you expect.
+      </li>
+      <li>
+        <strong>Check Focus mode settings.</strong> Go to iOS Settings → Focus. Find any active Focus
+        modes and check whether BudgetBaby is in the allowed apps list. If not, add it.
+      </li>
+      <li>
+        <strong>Check Scheduled Summary.</strong> Go to iOS Settings → Notifications → Scheduled
+        Summary. If BudgetBaby appears in the summary list, it means notifications are being
+        batched. Move it out of the summary if you want immediate delivery.
+      </li>
+      <li>
+        <strong>Open the app to trigger rescheduling.</strong> If you have not opened BudgetBaby
+        in several weeks, open it once and go to Settings → Reminders. The act of viewing the
+        settings page triggers a reschedule of all notifications.
+      </li>
+      <li>
+        <strong>Contact support.</strong> If none of the above resolves it, email
+        <a href="mailto:support@babyblocks.io">support@babyblocks.io</a> with your iOS version,
+        app version, and a description of which notifications are not arriving.
+      </li>
+    </ol>
+  </div>
+</DocsLayout>

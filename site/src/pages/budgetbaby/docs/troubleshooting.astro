@@ -1,0 +1,211 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+
+const headings = [
+  { id: 'quick-fixes',         text: 'Quick fixes to try first' },
+  { id: 'symptom-table',       text: 'Symptom lookup table' },
+  { id: 'diagnostics',         text: 'Generating a support report' },
+  { id: 'safe-to-spend-wrong', text: 'Safe to Spend looks wrong' },
+  { id: 'premium-not-unlocking',text: 'Premium not unlocking' },
+  { id: 'date-issues',         text: 'Transaction date issues' },
+  { id: 'backup-fails',        text: 'Backup fails' },
+  { id: 'notifications',       text: 'Notifications not arriving' },
+  { id: 'app-crashes',         text: 'App crashes on launch' },
+];
+---
+
+<DocsLayout
+  title="Troubleshooting"
+  description="BudgetBaby troubleshooting: quick fixes, symptom lookup table, how to generate a support report, and per-issue solutions."
+  canonical="/budgetbaby/docs/troubleshooting"
+  headings={headings}
+>
+  <div class="docs-content">
+    <h1>Troubleshooting</h1>
+    <p class="docs-summary">
+      Most BudgetBaby issues are resolved in a few steps. Start with the quick fixes below,
+      then use the symptom table to find your specific issue. If nothing here helps,
+      generate a support report and send it to the support team.
+    </p>
+
+    <h2 id="quick-fixes">Quick fixes to try first</h2>
+    <p>Before diving into specific issues, run through these four checks. They resolve the majority of reported problems.</p>
+    <ul>
+      <li><strong>Force-quit and reopen the app.</strong> Swipe up from the Home bar to enter the app switcher, swipe BudgetBaby off the screen, then reopen it.</li>
+      <li><strong>Check your iOS version.</strong> BudgetBaby requires iOS 17.0 or later. Go to Settings → General → About to check. Update if you are on an older version.</li>
+      <li><strong>Update the app.</strong> Open the App Store, tap your profile icon, and pull down to check for updates. Many issues are fixed in recent releases.</li>
+      <li><strong>Check your internet connection.</strong> Cloud backup, sync, and Premium restore all require a working internet connection.</li>
+    </ul>
+
+    <h2 id="symptom-table">Symptom lookup table</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Symptom</th>
+            <th>Likely cause</th>
+            <th>Fix</th>
+            <th>Contact support when</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Safe to Spend shows 0 or a negative number</td>
+            <td>Unpaid Critical bills exceed remaining budget, or income is entered incorrectly</td>
+            <td>Mark paid bills as paid; check income in Settings → Budget Setup; tap the info button to see the full breakdown</td>
+            <td>Numbers still do not match after following the Safe to Spend steps below</td>
+          </tr>
+          <tr>
+            <td>Transactions appear on the wrong day</td>
+            <td>Timezone handling issue fixed in v2.0.5</td>
+            <td>Update the app; re-save affected transactions to apply the fix to existing records</td>
+            <td>Dates are still wrong after updating to the latest version</td>
+          </tr>
+          <tr>
+            <td>Premium not active after purchase</td>
+            <td>App Store cache or wrong Apple ID signed in</td>
+            <td>Settings → Premium → Restore Purchases; wait 30 seconds; force-quit and reopen</td>
+            <td>Restore fails after confirming you are signed in with the purchasing Apple ID</td>
+          </tr>
+          <tr>
+            <td>Cloud backup fails</td>
+            <td>Not signed in, no internet, or backup slot full</td>
+            <td>Sign in at Settings → Account; check connection; delete existing backup if slot is full</td>
+            <td>All steps tried and backup still fails</td>
+          </tr>
+          <tr>
+            <td>Notifications not arriving</td>
+            <td>iOS notification permission denied, or wrong days selected</td>
+            <td>iOS Settings → BudgetBaby → Notifications → Allow Notifications; check Settings → Reminders</td>
+            <td>Permission is enabled, reminders are configured correctly, and notifications still do not arrive</td>
+          </tr>
+          <tr>
+            <td>App crashes on launch</td>
+            <td>App is outdated or data store is corrupted</td>
+            <td>Update the app; if it still crashes, restore from a cloud backup, then reinstall</td>
+            <td>Before uninstalling if you have no cloud backup — we may be able to help recover data</td>
+          </tr>
+          <tr>
+            <td>Bills not appearing in the current period</td>
+            <td>Bill due date falls outside the current period dates</td>
+            <td>Check the bill due date and the current period start/end dates in Settings → Budget Setup</td>
+            <td>Due date is inside the period and bill still does not appear</td>
+          </tr>
+          <tr>
+            <td>Money pool balance looks wrong</td>
+            <td>Starting balance not set, or a transaction was logged with the wrong payment method</td>
+            <td>Check Settings → Accounts for starting balances; review recent transactions for incorrect payment methods</td>
+            <td>Balances are still wrong after reviewing all transactions</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 id="diagnostics">Generating a support report</h2>
+    <p>
+      BudgetBaby has a built-in diagnostics engine that packages everything the support team needs
+      to understand what is happening on your device, without ever including your financial data.
+      For anything beyond a simple question, attaching a support report speeds up resolution significantly.
+    </p>
+    <h3>How to generate a report</h3>
+    <p>Go to <strong>Settings → Support and Diagnostics</strong>. You have three options:</p>
+    <ul>
+      <li>
+        <strong>Report a Problem</strong> (recommended for bugs). Tap "Start Report." The guided 5-step flow asks which area is affected and when the issue occurred. It then generates a full diagnostics bundle and prompts you to send it. Choose your area: Backup, Restore, Bills, Subscriptions, Spending Buckets, Money on Hand, Premium, or Other.
+      </li>
+      <li>
+        <strong>Export Diagnostics</strong> (quick, no prompts). One tap creates the bundle immediately. Use this if you want to capture the current app state without going through the guided flow.
+      </li>
+      <li>
+        <strong>Copy Support Report</strong> (for pasting into emails). Copies a plain-text summary to your clipboard. Useful if you are writing from a desktop or want to paste the report inline.
+      </li>
+    </ul>
+    <h3>What is in the report</h3>
+    <ul>
+      <li><strong>Events log.</strong> Last 24 hours of app activity, up to 2,000 events. No financial data: only action types, screen names, and outcomes.</li>
+      <li><strong>Device snapshot.</strong> iPhone model, iOS version, locale, timezone, and build type (App Store or TestFlight).</li>
+      <li><strong>App state.</strong> Version, build number, onboarding status, Premium status, backup count, and last backup/restore dates.</li>
+      <li><strong>Data fingerprint.</strong> Entity counts only: how many transactions, categories, bills, periods, and goals. No amounts or descriptions.</li>
+      <li><strong>Support story.</strong> A human-readable narrative that summarizes the event timeline and highlights anything unusual.</li>
+      <li><strong>Issue fingerprint.</strong> A unique <code>BB-XXXX-XXXX</code> identifier for your report. Include this in your email subject line.</li>
+    </ul>
+    <div class="doc-tip">
+      <strong>Your financial data is never included.</strong> No transaction amounts, descriptions, account names, balances, budget values, or category names appear in the report. Only anonymous counts and app-state metadata.
+    </div>
+    <h3>How to send it</h3>
+    <p>
+      After generating the report, iOS presents a share sheet. The fastest route is Mail.
+      BudgetBaby pre-fills the subject line with your support code (<code>BB-XXXX-XXXX</code>)
+      and attaches the bundle automatically. Send to
+      <a href="mailto:support@babyblocks.io">support@babyblocks.io</a>.
+    </p>
+    <p>
+      If Mail is not configured, use AirDrop to your Mac and attach the file manually,
+      or use Copy Support Report to paste the text summary into your email.
+    </p>
+    <h3>Report archive</h3>
+    <p>
+      Every report is saved under Settings → Support and Diagnostics → View Archive.
+      Reports are kept for 90 days. You can re-share any archived report without regenerating it.
+    </p>
+    <p>The bundle filename looks like:</p>
+    <div class="doc-formula">BudgetBaby_Diagnostics_2026-03-01_14-35_BB-9F3K-2A17.budgetbaby-diagnostics</div>
+
+    <h2 id="safe-to-spend-wrong">Safe to Spend looks wrong</h2>
+    <ol>
+      <li>Tap the info button next to Safe to Spend on the home screen to see the full calculation breakdown with your actual numbers.</li>
+      <li>Verify your active budget period dates are correct in Settings → Budget Setup.</li>
+      <li>Check that upcoming bills are assigned to the current period and that any paid bills are marked as paid. Unpaid Critical bills are reserved in the calculation.</li>
+      <li>Confirm that your savings allocation percentage in Budget Setup matches your intentions.</li>
+    </ol>
+    <p>
+      If Safe to Spend is 0 or negative and you do not expect it to be, the most common causes are:
+      unpaid Critical bills that exceed the remaining budget, or an income amount that was entered
+      incorrectly during setup.
+    </p>
+
+    <h2 id="premium-not-unlocking">Premium not unlocking after purchase</h2>
+    <ol>
+      <li>Go to Settings → Premium → Restore Purchases.</li>
+      <li>Wait 30 seconds after tapping Restore, then check again.</li>
+      <li>Force-quit and reopen the app.</li>
+      <li>Make sure you are signed in to the App Store with the Apple ID that made the purchase. Go to Settings → (your name) → Media and Purchases to verify.</li>
+      <li>Contact <a href="/budgetbaby/support">support</a> with your order number if the issue persists.</li>
+    </ol>
+
+    <h2 id="date-issues">Transaction date issues</h2>
+    <p>
+      BudgetBaby normalizes all transaction dates to noon UTC to prevent timezone-related date shifts
+      across time zones. If you see dates that are off by one day:
+    </p>
+    <ul>
+      <li>Update BudgetBaby to the latest version. v2.0.5 and later include this fix.</li>
+      <li>Re-save any affected transactions. Opening a transaction and tapping Save applies the timezone normalization to that record.</li>
+    </ul>
+
+    <h2 id="backup-fails">Backup fails</h2>
+    <ul>
+      <li>Verify you are signed in to your BudgetBaby account at Settings → Account.</li>
+      <li>Check your internet connection. Backups require an active connection during upload.</li>
+      <li>Free users have 1 backup slot. If it is occupied, delete the existing backup first at Settings → Account → Manage Backups.</li>
+      <li>If errors persist after trying all of the above, contact <a href="/budgetbaby/support">support</a> with your account email address.</li>
+    </ul>
+
+    <h2 id="notifications">Notifications not arriving</h2>
+    <ul>
+      <li>Open iOS Settings → BudgetBaby → Notifications. Ensure Allow Notifications is turned on.</li>
+      <li>In BudgetBaby, go to Settings → Reminders. Verify the reminder days and time are configured as you expect.</li>
+      <li>Check that quiet hours are not covering the time when you expect the notification.</li>
+      <li>Note: Same-day bill reminders are available on the free tier. Multi-day reminders (3 days before, 1 week before) and subscription reminders require Premium.</li>
+    </ul>
+
+    <h2 id="app-crashes">App crashes on launch</h2>
+    <p>Crashes on launch are rare and usually caused by an outdated app version or a corrupted local data store.</p>
+    <ol>
+      <li>Update BudgetBaby to the latest version from the App Store.</li>
+      <li>If the crash continues after updating and you have a cloud backup, restore from it: sign in on another device or reinstall the app, then restore from Settings → Backup and Restore.</li>
+      <li>If you do not have a cloud backup, contact <a href="mailto:support@babyblocks.io">support@babyblocks.io</a> before uninstalling. Include your iOS version and app version. We may be able to help recover your data.</li>
+      <li>As a last resort, uninstall and reinstall the app. This will delete all local data.</li>
+    </ol>
+  </div>
+</DocsLayout>

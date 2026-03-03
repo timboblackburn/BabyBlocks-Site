@@ -1,0 +1,504 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+
+const headings = [
+  { id: 'safe-to-spend',          text: 'Safe to Spend' },
+  { id: 'sts-formula',            text: 'The formula in depth' },
+  { id: 'sts-worked-example',     text: 'Worked example' },
+  { id: 'money-pools',            text: 'Money Pools' },
+  { id: 'pools-in-practice',      text: 'Pools in practice' },
+  { id: 'priority-categories',    text: 'Priority Categories' },
+  { id: 'budget-buckets',         text: 'Budget Buckets' },
+  { id: 'buckets-vs-priorities',  text: 'Buckets vs priorities' },
+  { id: 'period-mechanics',       text: 'Budget period mechanics' },
+  { id: 'why-local-first',        text: 'Why local-first' },
+];
+---
+
+<DocsLayout
+  title="How BudgetBaby Works"
+  description="Deep dive into Safe to Spend, Money Pools, Priority Categories, Budget Buckets, and period mechanics — including the philosophy behind every design decision."
+  canonical="/budgetbaby/docs/core-concepts"
+  headings={headings}
+>
+  <div class="docs-content">
+    <h1>How BudgetBaby Works</h1>
+    <p class="docs-summary">
+      BudgetBaby is built around one insight: most budgeting apps tell you how much you have
+      spent but not how much you can safely spend right now. This page explains the four
+      interconnected systems that answer that question, and the reasoning behind each design choice.
+    </p>
+
+    <h2 id="safe-to-spend">Safe to Spend</h2>
+    <p>
+      The entire app is organized around one number: Safe to Spend. It sits on the home screen
+      and answers the question every budgeter needs answered before every purchase:
+      <em>"How much can I spend today without breaking my budget?"</em>
+    </p>
+    <p>
+      This is different from asking "How much do I have left?" because "how much is left" does
+      not account for how many days remain in the pay period, upcoming bills you have not paid yet,
+      or money you intended to save. Safe to Spend takes all of that into account and converts your
+      remaining budget into a daily allowance.
+    </p>
+    <p>
+      When Safe to Spend is green, you can spend confidently. When it turns yellow or orange,
+      the number itself tells you how much restraint is needed. When it goes red, you are either
+      over budget or your remaining budget is fully committed to bills and savings.
+    </p>
+    <p>The color thresholds:</p>
+    <ul class="doc-status-list">
+      <li><span class="status-dot green"></span><strong>Green.</strong> Spend confidently. Your daily rate is healthy relative to your budget and obligations.</li>
+      <li><span class="status-dot yellow"></span><strong>Yellow.</strong> Be thoughtful. You can still spend, but discretionary purchases should be considered more carefully.</li>
+      <li><span class="status-dot orange"></span><strong>Orange.</strong> Limit discretionary spending. Focus on essentials for the rest of the period.</li>
+      <li><span class="status-dot red"></span><strong>Red.</strong> Your remaining budget is fully spoken for, or you have overspent. Pause all discretionary spending.</li>
+    </ul>
+
+    <h2 id="sts-formula">The formula in depth</h2>
+    <p>Safe to Spend is calculated as follows:</p>
+    <div class="doc-formula">
+      Safe to Spend = (Remaining Budget - Bill Reserve - Savings Reserve) / Days Remaining
+    </div>
+    <p>Each variable explained:</p>
+    <ul>
+      <li>
+        <strong>Remaining Budget.</strong> Your total period budget minus all spending you have logged so far this period. This includes Cash, Debit, and Credit transactions. If your budget is $2,000 and you have logged $800 in spending, remaining budget is $1,200.
+      </li>
+      <li>
+        <strong>Bill Reserve.</strong> The sum of all unpaid Critical (red) bills due in the current period. BudgetBaby assumes you must pay these obligations. By reserving this amount, it prevents you from accidentally spending rent money on something else. If your rent bill is $800 and you have not marked it paid, $800 is removed from the numerator. Once you mark the bill paid, the reserve is released and Safe to Spend goes up.
+      </li>
+      <li>
+        <strong>Savings Reserve.</strong> The savings percentage from your budget allocation, applied to the full period budget. If you set 20% for savings and your period budget is $2,000, $400 is treated as already committed to savings regardless of whether you have transferred it. This makes Safe to Spend respect your savings intention without you having to manually move money first.
+      </li>
+      <li>
+        <strong>Days Remaining.</strong> Calendar days left in the current budget period, with a minimum value of 1. This converts the remaining spendable amount into a per-day allowance, making it easy to answer "can I afford this today" without doing math. On the last day of a period, you see exactly how much remains.
+      </li>
+    </ul>
+    <div class="doc-tip">
+      <strong>See your actual numbers.</strong> Tap the info button next to the Safe to Spend number on the home screen. BudgetBaby shows the full breakdown: your remaining budget, the exact dollar amounts reserved for bills and savings, days remaining, and the resulting daily rate. This transparency is intentional. You should always be able to verify the calculation.
+    </div>
+
+    <h3>Why a daily rate instead of a total remaining?</h3>
+    <p>
+      Showing a total remaining amount creates a psychological trap. If you have $600 left and
+      15 days to go, $600 feels like a lot. But it is only $40 a day. A daily rate makes the
+      constraint concrete and actionable. When you are about to spend $50 on dinner and your
+      Safe to Spend is $38, the decision is obvious. If it showed "$600 remaining," that dinner
+      would feel harmless.
+    </p>
+    <p>
+      The daily rate also adjusts automatically as the period progresses. If you underspend on
+      day one, Safe to Spend goes up slightly tomorrow. If you overspend, it corrects downward.
+      The number is always accurate to the current moment, not just a snapshot of what you started with.
+    </p>
+
+    <h2 id="sts-worked-example">Worked example</h2>
+    <p>Here is a complete example with real numbers to show how Safe to Spend behaves across a pay period.</p>
+    <div class="concept-example">
+      <div class="ce-header">Setup</div>
+      <ul>
+        <li>Monthly pay period, budget $3,000</li>
+        <li>Savings allocation: 20% ($600 reserved)</li>
+        <li>Rent bill: $900 (Critical, due on the 1st, not yet paid)</li>
+        <li>It is the 10th of the month (21 days remaining)</li>
+        <li>Total spending so far this month: $350</li>
+      </ul>
+      <div class="ce-calc">
+        <div class="ce-line"><span>Remaining Budget</span><span>$3,000 - $350 = $2,650</span></div>
+        <div class="ce-line"><span>Bill Reserve (rent)</span><span>- $900</span></div>
+        <div class="ce-line"><span>Savings Reserve (20%)</span><span>- $600</span></div>
+        <div class="ce-line ce-total"><span>Spendable over 21 days</span><span>$1,150</span></div>
+        <div class="ce-line ce-result"><span>Safe to Spend</span><span>$1,150 / 21 = $54.76/day</span></div>
+      </div>
+      <div class="ce-note">
+        Now you pay rent. You mark the bill as paid. The $900 Bill Reserve is released. Safe to Spend recalculates:
+      </div>
+      <div class="ce-calc">
+        <div class="ce-line"><span>Spendable over 21 days</span><span>$1,150 + $900 = $2,050</span></div>
+        <div class="ce-line ce-result"><span>Safe to Spend after marking rent paid</span><span>$2,050 / 21 = $97.62/day</span></div>
+      </div>
+    </div>
+    <p>
+      This is why marking bills paid matters. The reserve exists to protect you before the bill
+      is settled. Once it is settled, the money is free to apply to the daily rate.
+    </p>
+
+    <h2 id="money-pools">Money Pools</h2>
+    <p>
+      Most budgeting apps track one number: total spending. They treat your money as a single
+      pool and subtract from it. BudgetBaby tracks four distinct pools because your money does not
+      actually live in one place, and collapsing it to one number hides important information.
+    </p>
+    <ul>
+      <li>
+        <strong>Cash.</strong> Physical cash you carry or spend. Every cash transaction reduces the
+        Cash pool balance immediately. This pool is useful for tracking spending from your wallet
+        separately from your bank account.
+      </li>
+      <li>
+        <strong>Debit.</strong> Money in your bank account, available for immediate spending. When
+        you log a Debit transaction, the Debit pool balance decreases. When your paycheck lands,
+        you record an income entry and the Debit pool increases. Your Debit balance is an
+        approximation of your real checking account balance based on what you have told the app.
+      </li>
+      <li>
+        <strong>Credit.</strong> Purchases made on a credit card. This is the most misunderstood pool.
+        Credit spending counts toward your period budget (it affects Safe to Spend and your
+        spending breakdown), but it does <em>not</em> reduce your Cash or Debit balance immediately.
+        Instead, it creates a deferred liability. You owe this money, but the actual cash transfer
+        happens when you pay the credit card bill.
+      </li>
+      <li>
+        <strong>Savings.</strong> A protected pool for money you are setting aside for goals. Savings
+        pool money is explicitly not counted in Safe to Spend. You must manually move money into
+        Savings (via a transfer) or out of it (via a goal contribution). This protection prevents
+        goal money from being counted as available spending.
+      </li>
+    </ul>
+
+    <h3>Why four pools instead of one?</h3>
+    <p>
+      Consider two people, both with $1,200 in their accounts. Person A has $1,200 in Debit with
+      no obligations due. Person B has $1,200 in Debit, but $800 rent is due tomorrow and $400
+      is sitting on a credit card from last week's groceries. They have the same bank balance,
+      but completely different financial realities. A single-balance app shows them the same number.
+      BudgetBaby shows them different pictures.
+    </p>
+    <p>
+      The four-pool model also helps with credit card management. When you put a purchase on your
+      credit card, logging it as Credit in BudgetBaby means it appears in your spending history
+      and affects your Safe to Spend, but your Debit balance stays accurate. When you pay the
+      credit card bill, you log a transfer from Debit to Credit, which reduces Debit and zeros
+      out the Credit balance. The transaction history is correct and the pools stay in sync.
+    </p>
+
+    <h2 id="pools-in-practice">Pools in practice</h2>
+    <p>Here is how a typical credit card purchase cycle looks in BudgetBaby:</p>
+    <div class="concept-example">
+      <div class="ce-header">Grocery run on a credit card</div>
+      <ol>
+        <li><strong>You buy $120 of groceries.</strong> Log it as $120 Credit, category "Groceries" (Important). Your Credit pool shows -$120. Your Debit pool is unchanged. Safe to Spend drops by $120 / days remaining.</li>
+        <li><strong>You pay your credit card bill.</strong> Log a transfer: $120 from Debit to Credit. Your Debit drops by $120. Your Credit balance goes back to $0. Net effect: Debit is $120 lower, which reflects the real money that left your account.</li>
+        <li><strong>End result.</strong> Your budget shows $120 spent on Groceries. Your Debit pool correctly reflects that $120 left your bank account when you paid the bill.</li>
+      </ol>
+    </div>
+    <div class="doc-tip">
+      <strong>Cash and Debit balances carry forward between periods automatically.</strong> At the end of every period, your Debit and Cash pool balances become the starting balances for the next period. This reflects real money that persists in your account regardless of pay period boundaries.
+    </div>
+
+    <h2 id="priority-categories">Priority Categories</h2>
+    <p>
+      Every category has a priority level. Priority is not just a label; it changes how
+      BudgetBaby treats spending in calculations, how breakdowns are displayed, and most
+      importantly, how it affects Safe to Spend through the Bill Reserve.
+    </p>
+    <ul class="doc-status-list">
+      <li>
+        <span class="status-dot red"></span>
+        <div>
+          <strong>Critical.</strong> Non-negotiable obligations. Rent, mortgage, utilities, insurance,
+          loan payments, and anything else that would have serious consequences if missed.
+          Unpaid Critical bills are reserved in Safe to Spend. You physically cannot see that money
+          as available spending money until you mark the bill paid. This is the most important feature
+          in the priority system.
+        </div>
+      </li>
+      <li>
+        <span class="status-dot yellow"></span>
+        <div>
+          <strong>Important.</strong> Spending that matters and recurs but has some flexibility.
+          Groceries, gas, healthcare, and most subscriptions you actively use. These are needs,
+          not wants, but you might be able to reduce them temporarily in a tight month.
+        </div>
+      </li>
+      <li>
+        <span class="status-dot green"></span>
+        <div>
+          <strong>Discretionary.</strong> Optional spending you choose. Dining out, entertainment,
+          clothing, hobbies, and any subscription you could cancel without major impact. This is
+          the first category to review when you need to reduce spending.
+        </div>
+      </li>
+      <li>
+        <span class="status-dot muted"></span>
+        <div>
+          <strong>Buffer.</strong> A catch-all for spending that does not fit cleanly elsewhere.
+          Useful for one-off purchases, miscellaneous costs, and things you want to track but
+          have not categorized yet. Buffer spending does not affect the Bill Reserve.
+        </div>
+      </li>
+    </ul>
+    <p>
+      Priority gives your spending breakdown a layer of meaning that raw totals do not have.
+      When you review a period and see you spent $400 on Discretionary categories, you know
+      exactly where to look if you need to cut back. When you see $400 on Critical, you know
+      those expenses were unavoidable.
+    </p>
+    <p>
+      <strong>Free users</strong> get 12 default categories across all four priority levels.
+      <strong>Premium users</strong> can create unlimited custom categories, each with its own
+      SF Symbol icon, color, and priority level. Custom categories let you track spending at
+      exactly the level of granularity you want.
+    </p>
+
+    <h2 id="budget-buckets">Budget Buckets</h2>
+    <p>
+      Budget Buckets are the high-level split of your period income. During onboarding, you set
+      three percentages that together must equal 100%:
+    </p>
+    <ul>
+      <li><strong>Needs</strong> (default 50%). Essential, recurring costs: housing, utilities, insurance, groceries, transport.</li>
+      <li><strong>Wants</strong> (default 30%). Discretionary spending: dining, entertainment, hobbies, clothing.</li>
+      <li><strong>Savings</strong> (default 20%). Money you are setting aside before spending it on anything else.</li>
+    </ul>
+    <p>
+      You can rename these buckets (some people prefer "Bills," "Lifestyle," and "Future") and
+      change the percentages to reflect your actual priorities. The percentages drive two things:
+      how much Safe to Spend reserves for Savings, and how BudgetBaby categorizes your spending
+      breakdown.
+    </p>
+    <p>
+      Each category you create or use is assigned to one of the three buckets. When you log a
+      transaction, it goes into that category's bucket and counts against that bucket's allocation.
+    </p>
+
+    <h2 id="buckets-vs-priorities">Buckets vs priorities: the two axes</h2>
+    <p>
+      Buckets and priorities are two separate but complementary ways of describing a transaction.
+      They are not the same thing.
+    </p>
+    <div class="axes-table">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>What it answers</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Bucket</strong></td>
+            <td>Which allocation does this come from?</td>
+            <td>Rent comes from the Needs (50%) bucket</td>
+          </tr>
+          <tr>
+            <td><strong>Priority</strong></td>
+            <td>How critical is this spending?</td>
+            <td>Rent is Critical priority, so its bill is reserved in Safe to Spend</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      A category like "Dining Out" might be in the Wants bucket and have Discretionary priority.
+      "Groceries" might be in the Needs bucket and have Important priority. "Rent" is in Needs
+      and Critical. Netflix might be in Wants and Discretionary. The combination of bucket and
+      priority gives you a rich picture of both where your money is going and how necessary each
+      expense is.
+    </p>
+
+    <h2 id="period-mechanics">Budget period mechanics</h2>
+    <p>
+      A budget period is a fixed time window that matches your pay frequency. It has a start date,
+      an end date, a budget amount, and all the transactions, bills, and pool balances that belong to it.
+    </p>
+
+    <h3>Rollover at period end</h3>
+    <p>
+      At the start of a new period, BudgetBaby closes the previous period and opens a new one.
+      The previous period becomes read-only and is stored in History. This happens automatically
+      at midnight on the first day of the new period. If you have not opened the app since the
+      rollover, you will see the new period the next time you open it.
+    </p>
+
+    <h3>Balance carryforward</h3>
+    <p>
+      Cash and Debit balances carry forward automatically. If your Debit pool ended the period
+      at $427.50, the new period starts with $427.50 in Debit. This is because money in your
+      bank account does not disappear at the end of your pay period. It is still there. Carrying
+      it forward keeps your pool balances accurate without requiring you to re-enter them.
+    </p>
+    <p>
+      Credit and Savings balances do not carry forward the same way. Your Credit balance reflects
+      how much you owe on your card in the current period context. Savings is managed separately
+      through goal contributions and transfers.
+    </p>
+
+    <h3>Surplus budget rollover (optional)</h3>
+    <p>
+      If you spend less than your budget in a period, the unspent surplus can roll into the next
+      period as additional budget. This is optional and configurable in Settings → Budget Setup.
+      When enabled, surplus is displayed separately in your budget breakdown so you always know
+      whether your available budget comes from your regular pay or from a previous period's savings.
+    </p>
+    <p>
+      Some people prefer to disable surplus rollover and treat each period as a clean slate.
+      Others like accumulating surplus as a financial cushion. Both approaches are valid.
+    </p>
+
+    <h3>Bills per period</h3>
+    <p>
+      Bills are assigned to a period based on their due date. A rent bill due on the 1st appears
+      in the period that contains the 1st. If your pay period runs from the 15th to the 14th,
+      that rent bill appears at the start of the next period. Bills are not carried forward;
+      each period generates its own bill occurrence from the schedule you set up.
+    </p>
+    <p>
+      This design means you never have to worry about duplicate bills, stale bills from last
+      month showing up, or bills disappearing if you do not log them in time. The schedule handles it.
+    </p>
+
+    <h2 id="why-local-first">Why local-first</h2>
+    <p>
+      BudgetBaby stores everything on your device by default. No account is needed to use the app.
+      Cloud backup and sync are opt-in. This is a deliberate design choice, not a technical limitation.
+    </p>
+    <p>
+      Financial data is among the most sensitive data someone can have. An app that requires a
+      cloud account and stores your transactions on a server creates a single target for
+      unauthorized access: the server. An app that keeps everything on your device distributes
+      that risk across individual, hardware-encrypted devices.
+    </p>
+    <p>
+      There is also a practical argument. Local storage means the app works without an internet
+      connection, works instantly without round-trips to a server, and continues to work even if
+      our servers are down. Your budget does not depend on our uptime.
+    </p>
+    <p>
+      When you do opt into cloud backup, the data is encrypted on your device before it uploads.
+      We store an encrypted blob we cannot read, not plaintext financial records. The encryption
+      key lives in your iOS Keychain. This is not a compromise between privacy and convenience.
+      It is both.
+    </p>
+  </div>
+</DocsLayout>
+
+<style>
+  /* Concept examples */
+  .concept-example {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-block: var(--space-5);
+    font-size: var(--text-sm);
+  }
+
+  .ce-header {
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: var(--space-3) var(--space-5);
+    border-bottom: 1px solid var(--glass-border);
+    background: rgba(255,255,255,0.02);
+  }
+
+  .concept-example ul,
+  .concept-example ol {
+    padding: var(--space-4) var(--space-5) var(--space-4) var(--space-10);
+    margin: 0;
+    color: var(--text-secondary);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    line-height: var(--leading-relaxed);
+  }
+
+  .ce-calc {
+    padding: var(--space-4) var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    border-top: 1px solid var(--glass-border);
+  }
+
+  .ce-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    padding-block: 2px;
+  }
+
+  .ce-total {
+    border-top: 1px solid var(--glass-border);
+    margin-top: var(--space-2);
+    padding-top: var(--space-3);
+    color: var(--text-primary);
+    font-weight: var(--weight-medium);
+  }
+
+  .ce-result {
+    color: var(--accent-light);
+    font-weight: var(--weight-semibold);
+    font-size: var(--text-base);
+    padding-top: var(--space-1);
+  }
+
+  .ce-note {
+    padding: var(--space-3) var(--space-5);
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    border-top: 1px solid var(--glass-border);
+    line-height: var(--leading-relaxed);
+    font-style: italic;
+  }
+
+  /* Axes table */
+  .axes-table {
+    margin-block: var(--space-4);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .axes-table table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+    margin: 0;
+  }
+
+  .axes-table th {
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--glass-border);
+    background: rgba(255,255,255,0.02);
+    text-align: left;
+  }
+
+  .axes-table td {
+    padding: var(--space-3) var(--space-4);
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--glass-border);
+    line-height: var(--leading-relaxed);
+    vertical-align: top;
+  }
+
+  .axes-table tr:last-child td { border-bottom: none; }
+
+  /* Priority status list spacing */
+  .doc-status-list li {
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding-block: var(--space-1);
+  }
+
+  .doc-status-list li div {
+    flex: 1;
+    line-height: var(--leading-relaxed);
+  }
+
+  .doc-status-list .status-dot {
+    margin-top: 5px;
+    flex-shrink: 0;
+  }
+</style>

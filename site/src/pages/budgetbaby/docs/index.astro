@@ -1,0 +1,191 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+import Icon from '../../../components/Icon.astro';
+---
+
+<DocsLayout
+  title="Documentation"
+  description="Complete documentation for BudgetBaby. Get started, learn core concepts, manage backups, troubleshoot issues, and more."
+  canonical="/budgetbaby/docs"
+>
+  <div class="docs-content">
+    <h1>BudgetBaby Documentation</h1>
+    <p class="docs-summary">
+      Everything you need to get the most out of BudgetBaby. Use the sidebar to navigate directly
+      to any topic, or browse the full catalog below.
+    </p>
+
+    <!-- Most common tasks -->
+    <div class="docs-quick-tasks">
+      <p class="docs-quick-label">Most common tasks</p>
+      <div class="docs-quick-grid">
+        <a href="/budgetbaby/docs/quickstart#budget-periods" class="docs-quick-item">
+          <Icon name="calendar" size={16} />
+          <span>Set up a budget period</span>
+        </a>
+        <a href="/budgetbaby/docs/quickstart#logging-a-transaction" class="docs-quick-item">
+          <Icon name="dollar-sign" size={16} />
+          <span>Log a transaction</span>
+        </a>
+        <a href="/budgetbaby/docs/subscriptions#restoring-purchases" class="docs-quick-item">
+          <Icon name="refresh-cw" size={16} />
+          <span>Restore a purchase</span>
+        </a>
+        <a href="/budgetbaby/docs/backup-and-restore#restoring" class="docs-quick-item">
+          <Icon name="cloud-upload" size={16} />
+          <span>Restore from backup</span>
+        </a>
+        <a href="/budgetbaby/docs/troubleshooting#diagnostics" class="docs-quick-item">
+          <Icon name="activity" size={16} />
+          <span>Generate support report</span>
+        </a>
+        <a href="/budgetbaby/docs/troubleshooting#safe-to-spend-wrong" class="docs-quick-item">
+          <Icon name="alert-circle" size={16} />
+          <span>Safe to Spend looks wrong</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Full catalog -->
+    <h2 id="getting-started">Getting Started</h2>
+
+    <div class="docs-catalog">
+      <a href="/budgetbaby/docs/quickstart" class="docs-catalog-item">
+        <div class="docs-catalog-icon"><Icon name="zap" size={20} /></div>
+        <div>
+          <strong>Quickstart</strong>
+          <p>First launch walkthrough, logging your first transaction, and understanding budget periods.</p>
+        </div>
+      </a>
+    </div>
+
+    <h2 id="core-concepts">Core Concepts</h2>
+
+    <div class="docs-catalog">
+      <a href="/budgetbaby/docs/core-concepts" class="docs-catalog-item">
+        <div class="docs-catalog-icon"><Icon name="layers" size={20} /></div>
+        <div>
+          <strong>How BudgetBaby Works</strong>
+          <p>Safe to Spend formula, Money Pools, Priority Categories, and how budget periods function.</p>
+        </div>
+      </a>
+      <a href="/budgetbaby/docs/reminders" class="docs-catalog-item">
+        <div class="docs-catalog-icon"><Icon name="bell" size={20} /></div>
+        <div>
+          <strong>Reminders</strong>
+          <p>Bill and subscription reminders, custom messages, quiet hours, and monthly savings nudges.</p>
+        </div>
+      </a>
+    </div>
+
+    <h2 id="data-and-account">Data and Account</h2>
+
+    <div class="docs-catalog">
+      <a href="/budgetbaby/docs/backup-and-restore" class="docs-catalog-item">
+        <div class="docs-catalog-icon"><Icon name="cloud-upload" size={20} /></div>
+        <div>
+          <strong>Backup and Restore</strong>
+          <p>Where your data lives, how to create encrypted cloud backups, and how to restore safely.</p>
+        </div>
+      </a>
+      <a href="/budgetbaby/docs/exporting-and-data" class="docs-catalog-item">
+        <div class="docs-catalog-icon"><Icon name="file-text" size={20} /></div>
+        <div>
+          <strong>Exporting Data</strong>
+          <p>CSV and PDF export formats, column reference, and how to use exported data in a spreadsheet.</p>
+        </div>
+      </a>
+      <a href="/budgetbaby/docs/privacy-and-data-model" class="docs-catalog-item">
+        <div class="docs-catalog-icon"><Icon name="lock" size={20} /></div>
+        <div>
+          <strong>Privacy and Data Model</strong>
+          <p>What data BudgetBaby stores, where it goes, what we never do, and third-party services used.</p>
+        </div>
+      </a>
+    </div>
+
+    <h2 id="subscriptions">Subscriptions</h2>
+
+    <div class="docs-catalog">
+      <a href="/budgetbaby/docs/subscriptions" class="docs-catalog-item">
+        <div class="docs-catalog-icon"><Icon name="smartphone" size={20} /></div>
+        <div>
+          <strong>Plans and Purchases</strong>
+          <p>Free vs Premium comparison, purchasing, restoring purchases, cancelling, and refunds.</p>
+        </div>
+      </a>
+    </div>
+
+    <h2 id="help">Help</h2>
+
+    <div class="docs-catalog">
+      <a href="/budgetbaby/docs/common-cases" class="docs-catalog-item">
+        <div class="docs-catalog-icon"><Icon name="file-text" size={20} /></div>
+        <div>
+          <strong>Common Cases</strong>
+          <p>Scenario walkthroughs for real situations: Safe to Spend confusion, pool balance issues, Premium billing, backup recovery, notification problems, and budget setup changes.</p>
+        </div>
+      </a>
+      <a href="/budgetbaby/docs/troubleshooting" class="docs-catalog-item">
+        <div class="docs-catalog-icon"><Icon name="search" size={20} /></div>
+        <div>
+          <strong>Troubleshooting</strong>
+          <p>Quick fixes, symptom lookup table, generating a support report, and per-issue solutions.</p>
+        </div>
+      </a>
+      <a href="/budgetbaby/docs/contact-support" class="docs-catalog-item">
+        <div class="docs-catalog-icon"><Icon name="mail" size={20} /></div>
+        <div>
+          <strong>Contact Support</strong>
+          <p>How to write an effective support request, what to include, and expected response times.</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</DocsLayout>
+
+<style>
+  .docs-catalog {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-bottom: var(--space-8);
+  }
+
+  .docs-catalog-item {
+    display: flex;
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-5);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    transition: border-color 0.15s, background 0.15s;
+  }
+
+  .docs-catalog-item:hover {
+    border-color: var(--accent-light);
+    background: var(--accent-dim);
+  }
+
+  .docs-catalog-icon {
+    color: var(--accent-light);
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+
+  .docs-catalog-item strong {
+    display: block;
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--space-1);
+  }
+
+  .docs-catalog-item p {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+</style>

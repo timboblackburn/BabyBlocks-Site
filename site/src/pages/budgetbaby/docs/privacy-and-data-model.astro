@@ -1,0 +1,146 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+
+const headings = [
+  { id: 'on-device',          text: 'On-device data' },
+  { id: 'cloud-data',         text: 'Cloud data (opt-in)' },
+  { id: 'what-we-never-do',  text: 'What we never do' },
+  { id: 'third-party',        text: 'Third-party services' },
+  { id: 'your-rights',        text: 'Your rights' },
+];
+---
+
+<DocsLayout
+  title="Privacy and Data Model"
+  description="A plain-English explanation of what data BudgetBaby stores, where it goes, what we never do, and which third-party services are used."
+  canonical="/budgetbaby/docs/privacy-and-data-model"
+  headings={headings}
+>
+  <div class="docs-content">
+    <h1>Privacy and Data Model</h1>
+    <p class="docs-summary">
+      BudgetBaby is local-first: your budget data lives on your device by default and never
+      leaves without your explicit action. This page explains exactly what data exists,
+      where it goes, and what third-party services are involved.
+    </p>
+
+    <h2 id="on-device">On-device data</h2>
+    <p>
+      All your budget data is stored locally using SwiftData, encrypted at rest by iOS
+      using your device passcode. No account or internet connection is required for any
+      core budgeting feature.
+    </p>
+    <p>What is stored on your device:</p>
+    <ul>
+      <li>All transactions, categories, payment methods, and notes you enter</li>
+      <li>Budget periods: dates, income, allocations, and carry-forward settings</li>
+      <li>Recurring bills and subscriptions</li>
+      <li>Savings goals and goal contributions</li>
+      <li>Money pool starting balances</li>
+      <li>App settings and preferences</li>
+      <li>Reminder configuration</li>
+    </ul>
+    <p>
+      None of this data is sent to our servers unless you explicitly enable cloud backup
+      or cloud sync in Settings.
+    </p>
+    <div class="doc-tip">
+      <strong>Anonymous crash reporting.</strong> BudgetBaby uses Firebase Crashlytics to collect anonymous crash reports. These contain a stack trace (which lines of code failed) and device metadata (model, iOS version). They never contain transaction data, amounts, descriptions, or any personally identifiable information. You can opt out via iOS Settings → Privacy and Security → Tracking → BudgetBaby.
+    </div>
+
+    <h2 id="cloud-data">Cloud data (opt-in)</h2>
+    <p>Two cloud features exist, both fully opt-in and both requiring a signed-in account:</p>
+    <h3>Cloud backup</h3>
+    <p>
+      When you create a cloud backup, your data is encrypted on your device using AES-256-GCM
+      before upload. The encryption key is stored in your iOS Keychain and synced to your
+      other devices via iCloud Keychain. We store the encrypted blob on our servers.
+      We cannot decrypt or read the contents.
+    </p>
+    <h3>Cloud sync</h3>
+    <p>
+      Cloud sync transmits your data over TLS and stores it encrypted at rest in Firebase Firestore.
+      Sync is rolling out progressively and is opt-in at Settings → Account → Cloud Sync.
+      When enabled, your budget data is stored in Firestore associated with your account ID.
+    </p>
+    <h3>Account data</h3>
+    <p>When you create an account, we store:</p>
+    <ul>
+      <li>Your authentication identifier (Apple ID, Google ID, or email address)</li>
+      <li>A unique account ID used to associate your backups and sync data</li>
+    </ul>
+    <p>We do not store passwords directly. Authentication is handled by Firebase Auth, which means your credentials go to Firebase, not to our own servers.</p>
+
+    <h2 id="what-we-never-do">What we never do</h2>
+    <ul>
+      <li><strong>We do not connect to your bank.</strong> BudgetBaby is entirely manual entry. No bank credentials, no Plaid, no open banking APIs.</li>
+      <li><strong>We do not sell your data.</strong> Your data is yours. We do not sell, license, or share it with advertisers or data brokers.</li>
+      <li><strong>We do not serve ads.</strong> There are no ads in BudgetBaby and no ad network SDKs embedded in the app.</li>
+      <li><strong>We cannot read your cloud backups.</strong> Backups are encrypted before upload with a key only your device holds.</li>
+      <li><strong>We do not read your transaction data.</strong> Our support team never accesses individual transaction amounts, descriptions, or budget values. Support diagnostics contain only anonymous counts and metadata.</li>
+    </ul>
+
+    <h2 id="third-party">Third-party services</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Service</th>
+            <th>Purpose</th>
+            <th>Data received</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Firebase Auth</strong> (Google)</td>
+            <td>Account authentication (sign in, sign out, account deletion)</td>
+            <td>Your email or Apple/Google identity token. No budget data.</td>
+          </tr>
+          <tr>
+            <td><strong>Firebase Crashlytics</strong> (Google)</td>
+            <td>Anonymous crash reporting to help us fix bugs</td>
+            <td>Crash stack traces, device model, iOS version. No personal or financial data.</td>
+          </tr>
+          <tr>
+            <td><strong>Firebase Analytics</strong> (Google)</td>
+            <td>Anonymous usage events (which screens are used, not what is in them)</td>
+            <td>Screen names, feature interaction events. No transaction or budget data.</td>
+          </tr>
+          <tr>
+            <td><strong>Firebase Firestore</strong> (Google)</td>
+            <td>Cloud sync storage (opt-in only)</td>
+            <td>Your encrypted budget data, associated with your account ID.</td>
+          </tr>
+          <tr>
+            <td><strong>RevenueCat</strong></td>
+            <td>Subscription management and Premium entitlement verification</td>
+            <td>App Store receipt, subscription status, and a RevenueCat user ID. No financial data.</td>
+          </tr>
+          <tr>
+            <td><strong>Apple StoreKit</strong></td>
+            <td>In-app purchase processing</td>
+            <td>Handled entirely by Apple. We never see your payment information.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      Firebase and RevenueCat have their own privacy policies. Links to those policies are in our
+      <a href="/budgetbaby/privacy">Privacy Policy</a>.
+    </p>
+
+    <h2 id="your-rights">Your rights</h2>
+    <ul>
+      <li><strong>Access.</strong> All your budget data is visible and searchable directly in the app.</li>
+      <li><strong>Export.</strong> Use Settings → Export Data to download your data as a CSV at any time.</li>
+      <li><strong>Delete local data.</strong> Settings → About → Reset All Data permanently removes all on-device data.</li>
+      <li><strong>Delete cloud data.</strong> Settings → Account → Manage Backups → Delete All Backups removes all cloud backups.</li>
+      <li><strong>Delete your account.</strong> Settings → Account → Delete Account removes your authentication record and all associated cloud data.</li>
+    </ul>
+    <p>
+      For complete step-by-step deletion instructions, see the <a href="/budgetbaby/delete-data">Delete Your Data</a> page.
+      For the full legal text, see the <a href="/budgetbaby/privacy">Privacy Policy</a>.
+      For a deeper look at security and architecture, see the <a href="/budgetbaby/trust">Trust page</a>.
+    </p>
+  </div>
+</DocsLayout>
