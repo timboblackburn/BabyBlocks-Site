@@ -5,6 +5,7 @@ const headings = [
   { id: 'on-device',          text: 'On-device data' },
   { id: 'cloud-data',         text: 'Cloud data (opt-in)' },
   { id: 'what-we-never-do',  text: 'What we never do' },
+  { id: 'controls',           text: 'Your in-app controls' },
   { id: 'third-party',        text: 'Third-party services' },
   { id: 'your-rights',        text: 'Your rights' },
 ];
@@ -45,7 +46,9 @@ const headings = [
       or cloud sync in Settings.
     </p>
     <div class="doc-tip">
-      <strong>Anonymous crash reporting.</strong> BudgetBaby uses Firebase Crashlytics to collect anonymous crash reports. These contain a stack trace (which lines of code failed) and device metadata (model, iOS version). They never contain transaction data, amounts, descriptions, or any personally identifiable information. You can opt out via iOS Settings → Privacy and Security → Tracking → BudgetBaby.
+      <strong>Anonymous crash reporting.</strong> BudgetBaby uses Firebase Crashlytics to collect anonymous crash reports. These contain a stack trace (which lines of code failed) and device metadata (model, iOS version). They never contain transaction data, amounts, descriptions, or any personally identifiable information.
+      <br /><br />
+      You can opt out at any time inside the app: <strong>Settings → Privacy</strong> has a single toggle that turns off both crash reports and any product telemetry. When the toggle is off, RevenueCat (the subscription provider) also runs in anonymous mode — your purchase history is still tracked for restoring purchases, but no user ID is associated with it.
     </div>
 
     <h2 id="cloud-data">Cloud data (opt-in)</h2>
@@ -79,6 +82,33 @@ const headings = [
       <li><strong>We cannot read your cloud backups.</strong> Backups are encrypted before upload with a key only your device holds.</li>
       <li><strong>We do not read your transaction data.</strong> Our support team never accesses individual transaction amounts, descriptions, or budget values. Support diagnostics contain only anonymous counts and metadata.</li>
     </ul>
+
+    <h2 id="controls">Your in-app controls</h2>
+    <p>Three places in Settings give you direct control over your data:</p>
+
+    <h3>Settings → Privacy</h3>
+    <p>
+      A single toggle controls analytics and crash reports. When off, both Firebase
+      Crashlytics and any product telemetry stop. RevenueCat (the subscription provider)
+      switches to anonymous mode — purchases still work and can still be restored, but
+      no user identifier is associated with your subscription.
+    </p>
+
+    <h3>Settings → Activity &amp; History</h3>
+    <p>
+      Activity Log shows every save, edit, and delete in your data, with the latest
+      undoable. Tap the most recent entry's <strong>Undo</strong> button to revert it
+      (transactions, allocations, transfers, savings deposits, and other reversible
+      actions are supported). The log is on-device only — it never leaves your phone.
+    </p>
+
+    <h3>Settings → Security</h3>
+    <p>
+      An optional biometric lock (Face ID or Touch ID) can be required to open the app
+      or to perform destructive actions like wiping data. The recovery code wizard
+      lets you generate and store a one-time fallback code in case biometrics fail
+      after a device change.
+    </p>
 
     <h2 id="third-party">Third-party services</h2>
     <div class="table-wrap">

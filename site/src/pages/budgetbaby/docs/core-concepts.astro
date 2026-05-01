@@ -11,6 +11,7 @@ const headings = [
   { id: 'budget-buckets',         text: 'Budget Buckets' },
   { id: 'buckets-vs-priorities',  text: 'Buckets vs priorities' },
   { id: 'period-mechanics',       text: 'Budget period mechanics' },
+  { id: 'budget-guardrails',      text: 'Budget Guardrails' },
   { id: 'why-local-first',        text: 'Why local-first' },
 ];
 ---
@@ -347,6 +348,29 @@ const headings = [
     <p>
       This design means you never have to worry about duplicate bills, stale bills from last
       month showing up, or bills disappearing if you do not log them in time. The schedule handles it.
+    </p>
+
+    <h2 id="budget-guardrails">Budget Guardrails</h2>
+    <p>
+      Some operations are mathematically impossible without breaking your budget. Spending
+      more than you have allocated. Allocating more than your total budget. Transferring
+      from a pool that has nothing in it. BudgetBaby refuses these actions instead of
+      letting them silently corrupt the math.
+    </p>
+    <p>
+      There are three tiers of guardrail:
+    </p>
+    <ul>
+      <li><strong>Hard block.</strong> The Save button is disabled and a red error card explains why, including the maximum amount you could have entered. This protects against negative remaining budget, over-allocation, and transfers exceeding source pool balance.</li>
+      <li><strong>Soft warning.</strong> The action is allowed but an orange warning card flags the unusual state — for example, an expense that would push a single pool below zero even though your overall budget can absorb it.</li>
+      <li><strong>Education.</strong> Every financial metric on the home screen has an (i) info icon. Tap any number you do not recognize and an explanation sheet describes what it represents and how it is calculated.</li>
+    </ul>
+    <p>
+      On launch, BudgetBaby also auto-corrects any remaining-balance value that ended up
+      negative on a previous version of the app (before guardrails existed). It does this
+      by adding a corrective <code>BudgetAdjustment</code> entry that brings the remaining
+      balance back to zero. The correction is logged in your Activity Log so you can see
+      exactly what was adjusted and why.
     </p>
 
     <h2 id="why-local-first">Why local-first</h2>
