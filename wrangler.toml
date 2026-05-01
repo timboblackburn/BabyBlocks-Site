@@ -16,6 +16,11 @@ directory = "./site/dist"
 pattern = "babyblocks.io"
 custom_domain = true
 
-# www.babyblocks.io is attached via the Cloudflare dashboard
-# (Workers > babyblocks-site > Settings > Domains > Add custom domain)
-# because it had pre-existing DNS that needed manual override.
+# www.babyblocks.io is served via a hostname-pattern route, not a
+# Custom Domain, because the CNAME flattening DNS record (www →
+# babyblocks.io, proxied) conflicts with Custom Domain auto-attach.
+# The route below tells Cloudflare to match any www hostname and
+# route it to this same Worker.
+[[routes]]
+pattern = "www.babyblocks.io/*"
+zone_name = "babyblocks.io"
