@@ -162,19 +162,49 @@ const headings = [
 
     <h2 id="new-device">Moving to a new device</h2>
     <p>
-      When you switch to a new iPhone, your BudgetBaby data does not transfer automatically.
-      Here is the reliable way to move it:
+      Your BudgetBaby data does not transfer to a new iPhone automatically. There are two
+      ways to move it. Most people should use the migration file method below.
+    </p>
+
+    <h3 id="migration-file">Method 1: Migration file (recommended)</h3>
+    <p>
+      A migration file is a single <code>.bbbackup</code> file that contains your entire
+      BudgetBaby dataset, encrypted with a passphrase you set. It works no matter what
+      Apple ID or iCloud account is on the new device — the only thing that matters is
+      the passphrase.
+    </p>
+    <ol>
+      <li>On your old iPhone, go to <strong>Settings → Data &amp; Backup → Export Migration File</strong>.</li>
+      <li>Set a passphrase you will remember. Tap <strong>Export</strong>. Share the resulting <code>.bbbackup</code> file via AirDrop, iMessage, email, or any file transfer you prefer.</li>
+      <li>Install BudgetBaby on the new iPhone.</li>
+      <li>On the new device, on the welcome screen, tap <strong>Restore from migration file</strong>. Select the <code>.bbbackup</code> you transferred. Enter the passphrase. Restore.</li>
+    </ol>
+    <div class="doc-tip">
+      <strong>Why this is the most reliable method.</strong> The encryption key is the
+      passphrase you choose, embedded in the file. Nothing depends on iCloud Keychain
+      sync or Apple IDs matching. It also works for moving between two different
+      App Store versions of BudgetBaby (for example, between an older personal build
+      and the current LLC build).
+    </div>
+
+    <h3 id="cloud-restore">Method 2: Cloud backup + iCloud Keychain</h3>
+    <p>
+      If you have not created a migration file but you do have a recent cloud backup
+      and both devices share the same iCloud account:
     </p>
     <ol>
       <li>On your old iPhone, go to <strong>Settings → Backup and Restore</strong> and tap <strong>Create Backup</strong>.</li>
-      <li>Install BudgetBaby on your new iPhone (from the App Store, once the new LLC build is approved).</li>
+      <li>Install BudgetBaby on your new iPhone.</li>
       <li>Sign in to the same BudgetBaby account on the new device: Settings → Account.</li>
-      <li>Make sure iCloud Keychain is enabled on the new device: iOS Settings → (your name) → iCloud → Keychain. The encryption key will sync to the new device.</li>
-      <li>Go to Settings → Backup and Restore on the new device. Your backup should appear in the list within a minute or two as the iCloud Keychain sync completes.</li>
+      <li>Make sure iCloud Keychain is enabled on the new device: iOS Settings → (your name) → iCloud → Keychain.</li>
+      <li>Open BudgetBaby → Settings → Backup and Restore. Your backup should appear in the list within a minute or two as the iCloud Keychain sync completes.</li>
       <li>Tap the backup and restore from it.</li>
     </ol>
     <div class="doc-tip">
-      <strong>Why do you need to wait for iCloud Keychain?</strong> The decryption key is stored in your Keychain, not in the backup itself. Until iCloud Keychain syncs the key to your new device, the backup is downloaded but cannot be decrypted. Give it a few minutes after enabling iCloud Keychain before attempting the restore.
+      <strong>Why the wait for iCloud Keychain?</strong> The decryption key is stored in
+      your Keychain, not in the backup itself. Until iCloud Keychain syncs the key to
+      your new device, the backup is downloaded but cannot be decrypted. Give it a few
+      minutes after enabling iCloud Keychain before attempting the restore.
     </div>
 
     <h2 id="keychain-loss">If you lose iCloud Keychain access</h2>
