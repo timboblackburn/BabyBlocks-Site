@@ -1,0 +1,308 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import GlassCard from '../../components/GlassCard.astro';
+import Icon from '../../components/Icon.astro';
+---
+
+<Layout
+  title="Feature Requests | BabyBlocks"
+  description="Tell us what to build next. Submit ideas, see what's been asked for, and watch features ship from the public roadmap."
+  canonical="/coming-soon/feature-requests"
+  theme="core"
+>
+  <section class="fr-hero section">
+    <div class="container">
+      <div class="fr-hero-copy">
+        <div class="label-chip">Public roadmap input</div>
+        <h1>Your idea<br /><span class="text-gradient">could become a feature.</span></h1>
+        <p class="fr-sub">
+          We build what people actually ask for. Submit an idea below — if enough people want it
+          and it fits the app, it ships. We mark requests as approved, in progress, or shipped
+          so you can track what's happening.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="fr-form-section section-sm">
+    <div class="container-sm">
+      <GlassCard padding="md">
+        <form id="feature-request-form" class="fr-form" novalidate>
+          <h2 class="fr-form-heading">Submit an idea</h2>
+          <p class="fr-form-sub">It goes to the team. We review every one.</p>
+
+          <div class="fr-fields">
+            <label class="fr-label">
+              <span class="fr-label-text">Which app?</span>
+              <select name="app" required class="fr-select" aria-label="App">
+                <option value="budgetbaby">BudgetBaby</option>
+                <option value="pantrybaby">PantryBaby</option>
+                <option value="babyblocks-core">BabyBlocks Core</option>
+              </select>
+            </label>
+
+            <label class="fr-label">
+              <span class="fr-label-text">Title <span class="fr-help">(short, like a feature name)</span></span>
+              <input type="text" name="title" required minlength="4" maxlength="120"
+                placeholder="e.g. Export to Excel"
+                class="fr-input" aria-label="Title" />
+            </label>
+
+            <label class="fr-label">
+              <span class="fr-label-text">Describe it <span class="fr-help">(what it does, why you want it)</span></span>
+              <textarea name="description" required minlength="10" maxlength="2000" rows="5"
+                placeholder="What problem would this solve for you? How would you use it?"
+                class="fr-textarea" aria-label="Description"></textarea>
+            </label>
+
+            <label class="fr-label">
+              <span class="fr-label-text">Email <span class="fr-help">(optional — only used if we have a question)</span></span>
+              <input type="email" name="email" maxlength="255"
+                placeholder="you@example.com"
+                class="fr-input" aria-label="Email" />
+            </label>
+
+            <button type="submit" class="btn btn-primary fr-submit">
+              <span class="fr-submit-label">Submit idea</span>
+              <span class="fr-submit-spinner" aria-hidden="true"></span>
+            </button>
+
+            <p class="fr-status" aria-live="polite"></p>
+          </div>
+        </form>
+      </GlassCard>
+    </div>
+  </section>
+
+  <section class="fr-list-section section-sm">
+    <div class="container">
+      <div class="section-header">
+        <h2>Currently on the public board</h2>
+        <p>Approved ideas, in-progress builds, and shipped features. Newest first.</p>
+      </div>
+
+      <div id="feature-request-list" class="fr-list" aria-live="polite">
+        <p class="fr-list-loading">Loading…</p>
+      </div>
+
+      <p class="fr-list-empty-hint">
+        Don't see the idea you'd want? Submit it above.
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<script is:inline>
+  (function () {
+    const POST_URL = 'https://bb-ticket-service.timothy-9d8.workers.dev/api/public/feature-request';
+    const GET_URL  = 'https://bb-ticket-service.timothy-9d8.workers.dev/api/public/feature-requests';
+
+    const form = document.getElementById('feature-request-form');
+    const listEl = document.getElementById('feature-request-list');
+
+    if (form) {
+      const status = form.querySelector('.fr-status');
+      const submit = form.querySelector('.fr-submit');
+      const label = form.querySelector('.fr-submit-label');
+      const spinner = form.querySelector('.fr-submit-spinner');
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        status.textContent = '';
+        status.className = 'fr-status';
+
+        const fd = new FormData(form);
+        const body = {
+          app: (fd.get('app') || '').toString(),
+          title: (fd.get('title') || '').toString().trim(),
+          description: (fd.get('description') || '').toString().trim(),
+          email: (fd.get('email') || '').toString().trim().toLowerCase(),
+        };
+
+        if (!body.title || body.title.length < 4) {
+          status.textContent = 'A title (4 characters or more) is required.';
+          status.classList.add('fr-status--error');
+          return;
+        }
+        if (!body.description || body.description.length < 10) {
+          status.textContent = 'A description (10 characters or more) is required.';
+          status.classList.add('fr-status--error');
+          return;
+        }
+
+        submit.disabled = true;
+        label.style.opacity = '0.4';
+        spinner.classList.add('is-spinning');
+
+        try {
+          const res = await fetch(POST_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body),
+          });
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          form.reset();
+          status.textContent = 'Got it. We review every idea — if yours moves forward, it will appear in the list below once approved.';
+          status.classList.add('fr-status--success');
+        } catch {
+          status.innerHTML = 'Couldn\'t reach our servers right now. Email <a href="mailto:support@intriguemmc.com?subject=Feature%20Request">support@intriguemmc.com</a> with your idea and we\'ll log it manually.';
+          status.classList.add('fr-status--error');
+        } finally {
+          submit.disabled = false;
+          label.style.opacity = '1';
+          spinner.classList.remove('is-spinning');
+        }
+      });
+    }
+
+    function renderRequests(reqs) {
+      if (!reqs || reqs.length === 0) {
+        listEl.innerHTML = '<p class="fr-list-empty">No public ideas yet. Be the first to submit one above.</p>';
+        return;
+      }
+      const statusBadge = {
+        approved: { label: 'Approved', cls: 'fr-status-approved' },
+        in_progress: { label: 'In Progress', cls: 'fr-status-progress' },
+        shipped: { label: 'Shipped', cls: 'fr-status-shipped' },
+      };
+      const appLabel = {
+        budgetbaby: 'BudgetBaby',
+        pantrybaby: 'PantryBaby',
+        'babyblocks-core': 'BabyBlocks Core',
+      };
+      listEl.innerHTML = reqs.map((r) => {
+        const badge = statusBadge[r.status] || statusBadge.approved;
+        const appName = appLabel[r.app] || r.app;
+        const escapedTitle = (r.title || '').replace(/[<>&]/g, (ch) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[ch]));
+        const escapedDesc  = (r.description || '').replace(/[<>&]/g, (ch) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[ch]));
+        return [
+          '<article class="fr-card">',
+            '<div class="fr-card-head">',
+              '<span class="fr-app">' + appName + '</span>',
+              '<span class="fr-badge ' + badge.cls + '">' + badge.label + '</span>',
+            '</div>',
+            '<h3 class="fr-card-title">' + escapedTitle + '</h3>',
+            '<p class="fr-card-desc">' + escapedDesc + '</p>',
+          '</article>',
+        ].join('');
+      }).join('');
+    }
+
+    fetch(GET_URL)
+      .then((res) => res.ok ? res.json() : { requests: [] })
+      .then((data) => renderRequests(data.requests || []))
+      .catch(() => { listEl.innerHTML = '<p class="fr-list-empty">Couldn\'t load the public list right now. Try again in a minute.</p>'; });
+  })();
+</script>
+
+<style>
+  .fr-hero {
+    padding-top: calc(var(--space-24) + var(--space-8));
+    padding-bottom: var(--space-12);
+  }
+
+  .fr-hero-copy h1 {
+    font-size: clamp(var(--text-4xl), 7vw, var(--text-6xl));
+    line-height: 1.05;
+    margin: var(--space-4) 0 var(--space-6);
+  }
+
+  .fr-sub {
+    color: var(--text-secondary);
+    font-size: var(--text-lg);
+    max-width: 56ch;
+    margin: 0;
+  }
+
+  .fr-form-section { padding-block: var(--space-8); }
+
+  .fr-form { display: flex; flex-direction: column; gap: var(--space-4); }
+  .fr-form-heading { font-size: var(--text-xl); margin: 0; }
+  .fr-form-sub { font-size: var(--text-sm); color: var(--text-secondary); margin: 0 0 var(--space-2) 0; }
+
+  .fr-fields { display: flex; flex-direction: column; gap: var(--space-3); }
+
+  .fr-label { display: flex; flex-direction: column; gap: 0.35rem; }
+  .fr-label-text { font-size: 0.95rem; color: var(--text-primary); font-weight: 500; }
+  .fr-help { font-weight: 400; color: var(--text-muted); font-size: 0.85em; }
+
+  .fr-input, .fr-textarea, .fr-select {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 0.6rem;
+    padding: 0.7rem 0.85rem;
+    color: var(--text-primary);
+    font-size: 1rem;
+    width: 100%;
+    transition: border-color 0.15s ease, background 0.15s ease;
+    font-family: inherit;
+  }
+  .fr-textarea { resize: vertical; min-height: 6.5rem; }
+  .fr-select { appearance: none; cursor: pointer; }
+
+  .fr-input::placeholder, .fr-textarea::placeholder { color: var(--text-muted); }
+
+  .fr-input:focus, .fr-textarea:focus, .fr-select:focus {
+    outline: none;
+    border-color: var(--accent, #5fcfd6);
+    background: rgba(255,255,255,0.09);
+  }
+
+  .fr-submit {
+    position: relative;
+    margin-top: var(--space-2);
+    align-self: flex-start;
+  }
+  .fr-submit:disabled { cursor: wait; }
+
+  .fr-submit-spinner {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 1rem; height: 1rem;
+    margin-top: -0.5rem; margin-left: -0.5rem;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+  .fr-submit-spinner.is-spinning { opacity: 1; animation: fr-spin 0.75s linear infinite; }
+  @keyframes fr-spin { to { transform: rotate(360deg); } }
+
+  .fr-status { font-size: 0.9rem; color: var(--text-secondary); margin: 0; min-height: 1.25rem; }
+  .fr-status--error { color: #e87474; }
+  .fr-status--success { color: #6fcf97; }
+  .fr-status a { color: inherit; text-decoration: underline; }
+
+  .fr-list-section { padding-block: var(--space-12); }
+  .fr-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr)); gap: var(--space-4); margin-bottom: var(--space-6); }
+  .fr-list-loading, .fr-list-empty { color: var(--text-muted); }
+  .fr-list-empty-hint { color: var(--text-muted); font-size: 0.9rem; margin: 0; }
+
+  .fr-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 0.85rem;
+    padding: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .fr-card-head { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; }
+  .fr-app { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .fr-badge { font-size: 0.7rem; padding: 0.2rem 0.55rem; border-radius: 999px; font-weight: 600; }
+  .fr-status-approved { background: rgba(95, 207, 214, 0.15); color: #5fcfd6; }
+  .fr-status-progress { background: rgba(255, 200, 100, 0.15); color: #ffc864; }
+  .fr-status-shipped  { background: rgba(111, 207, 151, 0.15); color: #6fcf97; }
+  .fr-card-title { margin: 0; font-size: var(--text-lg); }
+  .fr-card-desc {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
