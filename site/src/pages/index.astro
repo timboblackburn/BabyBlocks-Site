@@ -5,11 +5,12 @@ import CTASection from '../components/CTASection.astro';
 import Icon from '../components/Icon.astro';
 import AppIcon from '../components/AppIcon.astro';
 import ScreenshotFrame from '../components/ScreenshotFrame.astro';
+import WaitlistForm from '../components/WaitlistForm.astro';
 ---
 
 <Layout
   title="BabyBlocks: Simple iOS Apps for a Calmer Life"
-  description="BabyBlocks is a suite of simple, visual iOS apps designed to bring clarity and calm to everyday life. BudgetBaby is the flagship, now available on the App Store."
+  description="BabyBlocks is a suite of simple, visual iOS apps designed to bring clarity and calm to everyday life. BudgetBaby returns to the App Store soon — join the waitlist."
   canonical="/"
   theme="core"
 >
@@ -18,11 +19,12 @@ import ScreenshotFrame from '../components/ScreenshotFrame.astro';
     <div class="container">
       <div class="hero-inner">
         <div class="hero-content">
-          <div class="label-chip">Now on the App Store</div>
+          <div class="label-chip">Coming back soon · In Apple review</div>
           <h1>Know what's safe<br /><span class="text-gradient">to spend today.</span></h1>
           <p class="hero-sub">
             BudgetBaby gives you one clear number every day. It factors in your bills, your savings goals,
-            and your remaining budget so you never have to guess. Set up in 3 minutes.
+            and your remaining budget so you never have to guess. We're transitioning to our LLC and the
+            new build is in App Review — back on the App Store within 2 weeks.
           </p>
           <div class="hero-actions">
             <a href="/budgetbaby" class="btn btn-primary btn-lg">
@@ -33,6 +35,14 @@ import ScreenshotFrame from '../components/ScreenshotFrame.astro';
             </a>
           </div>
           <p class="hero-note">Free to download · iOS 17+ · Premium from $7.99/mo</p>
+
+          <div id="hero-waitlist-anchor" class="hero-waitlist">
+            <WaitlistForm
+              app="budgetbaby"
+              heading="Be first when BudgetBaby returns."
+              sub="One email when the new LLC build clears App Review. No spam, no marketing."
+            />
+          </div>
         </div>
 
         <div class="hero-visual" aria-hidden="true">
@@ -257,9 +267,9 @@ import ScreenshotFrame from '../components/ScreenshotFrame.astro';
 
   <CTASection
     heading="Start with BudgetBaby."
-    subheading="The flagship app is live on the App Store. Know your Safe to Spend number today."
-    primaryLabel="Download BudgetBaby"
-    primaryHref="https://apps.apple.com/app/id6756576123"
+    subheading="In App Review under our new LLC. Join the waitlist and we'll email you the moment it's live again."
+    primaryLabel="Join the waitlist"
+    primaryHref="#hero-waitlist-anchor"
     secondaryLabel="Learn more"
     secondaryHref="/budgetbaby"
   />
@@ -305,6 +315,12 @@ import ScreenshotFrame from '../components/ScreenshotFrame.astro';
     font-size: var(--text-xs);
     color: var(--text-muted);
     margin: 0;
+  }
+
+  .hero-waitlist {
+    margin-top: var(--space-6);
+    max-width: 32rem;
+    scroll-margin-top: 6rem;
   }
 
   /* Phone mockup */

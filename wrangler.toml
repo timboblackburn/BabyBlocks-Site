@@ -8,3 +8,14 @@ compatibility_date = "2025-01-01"
 # Serve everything in site/dist as static assets (no Worker logic needed)
 [assets]
 directory = "./site/dist"
+
+# Custom domains — apex + www both point at this worker.
+# Cloudflare auto-creates the matching DNS records when this is deployed,
+# provided babyblocks.io is in this Cloudflare account's zone list.
+[[routes]]
+pattern = "babyblocks.io"
+custom_domain = true
+
+# www.babyblocks.io is attached via the Cloudflare dashboard
+# (Workers > babyblocks-site > Settings > Domains > Add custom domain)
+# because it had pre-existing DNS that needed manual override.

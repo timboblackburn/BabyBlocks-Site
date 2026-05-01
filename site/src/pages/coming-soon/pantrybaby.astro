@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import GlassCard from '../../components/GlassCard.astro';
 import Icon from '../../components/Icon.astro';
 import AppIcon from '../../components/AppIcon.astro';
+import WaitlistForm from '../../components/WaitlistForm.astro';
 ---
 
 <Layout
@@ -26,20 +27,11 @@ import AppIcon from '../../components/AppIcon.astro';
 
           <!-- Notify CTA -->
           <div class="notify-section">
-            <h2 class="notify-heading">Get notified at launch.</h2>
-            <p class="notify-sub">No spam. Just a single email when PantryBaby is available.</p>
-            <GlassCard padding="md">
-              <div class="form-placeholder-inner">
-                <div class="form-placeholder-icon"><Icon name="mail" size={24} /></div>
-                <div>
-                  <p class="form-placeholder-label">Email signup coming soon</p>
-                  <p class="form-placeholder-note">
-                    We'll be setting up our notification list shortly.<br />
-                    In the meantime, send us a note at <a href="mailto:support@babyblocks.io">support@babyblocks.io</a> to be added manually.
-                  </p>
-                </div>
-              </div>
-            </GlassCard>
+            <WaitlistForm
+              app="pantrybaby"
+              heading="Get notified at launch."
+              sub="No spam. Just one email when PantryBaby hits the App Store."
+            />
           </div>
         </div>
 

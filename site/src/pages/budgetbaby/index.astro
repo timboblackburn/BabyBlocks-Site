@@ -4,6 +4,7 @@ import GlassCard from '../../components/GlassCard.astro';
 import CTASection from '../../components/CTASection.astro';
 import Icon from '../../components/Icon.astro';
 import ScreenshotFrame from '../../components/ScreenshotFrame.astro';
+import WaitlistForm from '../../components/WaitlistForm.astro';
 
 const features = [
   {
@@ -154,21 +155,32 @@ const faqs = [
     <div class="container">
       <div class="hero-inner">
         <div class="hero-copy">
-          <div class="label-chip">Now on the App Store</div>
+          <div class="label-chip">Coming back soon · In Apple review</div>
           <h1>Know what's safe<br /><span class="text-gradient">to spend today.</span></h1>
           <p>
             BudgetBaby tracks your money across every pool: Cash, Debit, Credit, and Savings.
             One number tells you how much you can spend right now without jeopardizing your bills or goals.
           </p>
+          <p class="hero-note hero-note--callout">
+            We're transitioning to our new LLC and the build is in App Review. Back on the App Store within 2 weeks.
+          </p>
           <div class="hero-actions">
-            <a href="https://apps.apple.com/app/id6756576123" class="btn btn-primary btn-lg">
-              Download on the App Store
+            <a href="#bb-waitlist" class="btn btn-primary btn-lg">
+              Join the waitlist
             </a>
             <a href="/budgetbaby/features" class="btn btn-secondary btn-lg">
               See how it works
             </a>
           </div>
           <p class="hero-note">Free to download · iOS 17+ · Premium from $7.99/mo</p>
+
+          <div id="bb-waitlist" class="hero-waitlist">
+            <WaitlistForm
+              app="budgetbaby"
+              heading="Be first when BudgetBaby returns."
+              sub="One email when the new LLC build clears App Review. No spam, no marketing."
+            />
+          </div>
         </div>
 
         <div class="hero-visual" aria-hidden="true">
@@ -516,7 +528,14 @@ const faqs = [
     </div>
   </section>
 
-  <CTASection />
+  <CTASection
+    heading="Be first when BudgetBaby returns."
+    subheading="In App Review under our new LLC. Join the waitlist and we'll email you the moment it's live again."
+    primaryLabel="Join the waitlist"
+    primaryHref="#bb-waitlist"
+    secondaryLabel="See how it works"
+    secondaryHref="/budgetbaby/features"
+  />
 </Layout>
 
 <style>
@@ -556,6 +575,22 @@ const faqs = [
     font-size: var(--text-xs);
     color: var(--text-muted);
     margin: 0;
+  }
+
+  .hero-note--callout {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.04);
+    border-left: 2px solid var(--accent, #5fcfd6);
+    padding: 0.6rem 0.85rem;
+    border-radius: 0.4rem;
+    margin: 0.75rem 0;
+  }
+
+  .hero-waitlist {
+    margin-top: var(--space-6);
+    max-width: 32rem;
+    scroll-margin-top: 6rem;
   }
 
   /* Phone Mockup */

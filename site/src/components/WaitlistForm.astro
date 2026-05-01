@@ -1,0 +1,222 @@
+---
+import GlassCard from './GlassCard.astro';
+
+export interface Props {
+  app: 'budgetbaby' | 'pantrybaby' | 'babyblocks-core';
+  heading?: string;
+  sub?: string;
+  fallbackMailto?: string;
+}
+
+const {
+  app,
+  heading = 'Get notified at launch.',
+  sub = 'No spam. One email when we go live on the App Store.',
+  fallbackMailto = 'support@intriguemmc.com',
+} = Astro.props;
+
+const formId = `waitlist-form-${app}`;
+---
+
+<GlassCard padding="md">
+  <form id={formId} class="waitlist-form" data-app={app} novalidate>
+    <h2 class="waitlist-heading">{heading}</h2>
+    <p class="waitlist-sub">{sub}</p>
+
+    <div class="waitlist-fields">
+      <input
+        type="text"
+        name="name"
+        placeholder="First name"
+        autocomplete="given-name"
+        required
+        class="waitlist-input"
+        aria-label="First name"
+      />
+      <input
+        type="email"
+        name="email"
+        placeholder="you@example.com"
+        autocomplete="email"
+        required
+        class="waitlist-input"
+        aria-label="Email"
+      />
+      <button type="submit" class="btn btn-primary waitlist-submit">
+        <span class="waitlist-submit-label">Notify me</span>
+        <span class="waitlist-submit-spinner" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <p class="waitlist-status" aria-live="polite"></p>
+
+    <p class="waitlist-fallback">
+      Prefer email? Drop a note to <a href={`mailto:${fallbackMailto}?subject=Waitlist:%20${app}`}>{fallbackMailto}</a>
+      and we'll add you manually.
+    </p>
+  </form>
+</GlassCard>
+
+<script is:inline define:vars={{ formId }}>
+  // Self-contained vanilla JS — no framework, runs once per form on the page.
+  const form = document.getElementById(formId);
+  if (form) {
+    const status = form.querySelector('.waitlist-status');
+    const submit = form.querySelector('.waitlist-submit');
+    const label = form.querySelector('.waitlist-submit-label');
+    const spinner = form.querySelector('.waitlist-submit-spinner');
+
+    const endpoint = (window.__BB_WAITLIST_ENDPOINT__ || 'https://bb-ticket-service.timothy-9d8.workers.dev/api/public/waitlist');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      status.textContent = '';
+      status.className = 'waitlist-status';
+
+      const fd = new FormData(form);
+      const body = {
+        app: form.dataset.app,
+        name: (fd.get('name') || '').toString().trim(),
+        email: (fd.get('email') || '').toString().trim().toLowerCase(),
+      };
+
+      if (!body.name || !body.email || !body.email.includes('@')) {
+        status.textContent = 'Please enter a name and a valid email.';
+        status.classList.add('waitlist-status--error');
+        return;
+      }
+
+      submit.disabled = true;
+      label.style.opacity = '0.4';
+      spinner.classList.add('is-spinning');
+
+      try {
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        form.reset();
+        status.textContent = `You're on the list. We'll email ${body.email} the moment ${body.app === 'budgetbaby' ? 'BudgetBaby' : body.app === 'pantrybaby' ? 'PantryBaby' : 'BabyBlocks Core'} is live.`;
+        status.classList.add('waitlist-status--success');
+      } catch (err) {
+        status.innerHTML = `Couldn't reach our servers right now. Email us at <a href="mailto:support@intriguemmc.com?subject=Waitlist:%20${body.app}">support@intriguemmc.com</a> and we'll add you manually.`;
+        status.classList.add('waitlist-status--error');
+      } finally {
+        submit.disabled = false;
+        label.style.opacity = '1';
+        spinner.classList.remove('is-spinning');
+      }
+    });
+  }
+</script>
+
+<style>
+  .waitlist-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .waitlist-heading {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-primary);
+  }
+
+  .waitlist-sub {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin: 0 0 0.5rem 0;
+  }
+
+  .waitlist-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 0.5rem;
+  }
+
+  @media (max-width: 720px) {
+    .waitlist-fields {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .waitlist-input {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 0.6rem;
+    padding: 0.75rem 0.85rem;
+    color: var(--text-primary);
+    font-size: 1rem;
+    width: 100%;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+
+  .waitlist-input::placeholder {
+    color: var(--text-muted);
+  }
+
+  .waitlist-input:focus {
+    outline: none;
+    border-color: var(--accent, #5fcfd6);
+    background: rgba(255, 255, 255, 0.09);
+  }
+
+  .waitlist-submit {
+    position: relative;
+    min-width: 7.5rem;
+    white-space: nowrap;
+  }
+
+  .waitlist-submit:disabled {
+    cursor: wait;
+  }
+
+  .waitlist-submit-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1rem;
+    height: 1rem;
+    margin-top: -0.5rem;
+    margin-left: -0.5rem;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+
+  .waitlist-submit-spinner.is-spinning {
+    opacity: 1;
+    animation: waitlist-spin 0.75s linear infinite;
+  }
+
+  @keyframes waitlist-spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .waitlist-status {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0;
+    min-height: 1.25rem;
+  }
+
+  .waitlist-status--error { color: #e87474; }
+  .waitlist-status--success { color: #6fcf97; }
+
+  .waitlist-fallback {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 0.25rem 0 0 0;
+  }
+
+  .waitlist-fallback a {
+    color: var(--text-secondary);
+    text-decoration: underline;
+  }
+</style>
