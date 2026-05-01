@@ -26,10 +26,12 @@ import Icon from '../../components/Icon.astro';
 
   <section class="fr-form-section section-sm">
     <div class="container-sm">
-      <GlassCard padding="md">
+      <GlassCard padding="lg">
         <form id="feature-request-form" class="fr-form" novalidate>
-          <h2 class="fr-form-heading">Submit an idea</h2>
-          <p class="fr-form-sub">It goes to the team. We review every one.</p>
+          <div class="fr-form-header">
+            <h2 class="fr-form-heading">Submit an idea</h2>
+            <p class="fr-form-sub">Every submission goes to the team. We review every one.</p>
+          </div>
 
           <div class="fr-fields">
             <label class="fr-label">
@@ -42,33 +44,36 @@ import Icon from '../../components/Icon.astro';
             </label>
 
             <label class="fr-label">
-              <span class="fr-label-text">Title <span class="fr-help">(short, like a feature name)</span></span>
+              <span class="fr-label-text">Title <span class="fr-help">— short, like a feature name</span></span>
               <input type="text" name="title" required minlength="4" maxlength="120"
                 placeholder="e.g. Export to Excel"
                 class="fr-input" aria-label="Title" />
             </label>
 
             <label class="fr-label">
-              <span class="fr-label-text">Describe it <span class="fr-help">(what it does, why you want it)</span></span>
-              <textarea name="description" required minlength="10" maxlength="2000" rows="5"
+              <span class="fr-label-text">Describe it <span class="fr-help">— what it does, why you want it</span></span>
+              <textarea name="description" required minlength="10" maxlength="2000" rows="4"
                 placeholder="What problem would this solve for you? How would you use it?"
                 class="fr-textarea" aria-label="Description"></textarea>
             </label>
 
             <label class="fr-label">
-              <span class="fr-label-text">Email <span class="fr-help">(optional — only used if we have a question)</span></span>
+              <span class="fr-label-text">Email <span class="fr-help">— optional, only used if we have a question</span></span>
               <input type="email" name="email" maxlength="255"
                 placeholder="you@example.com"
                 class="fr-input" aria-label="Email" />
             </label>
+          </div>
 
+          <div class="fr-form-footer">
+            <p class="fr-privacy-hint">We never sell or share submissions.</p>
             <button type="submit" class="btn btn-primary fr-submit">
               <span class="fr-submit-label">Submit idea</span>
               <span class="fr-submit-spinner" aria-hidden="true"></span>
             </button>
-
-            <p class="fr-status" aria-live="polite"></p>
           </div>
+
+          <p class="fr-status" aria-live="polite"></p>
         </form>
       </GlassCard>
     </div>
@@ -196,62 +201,139 @@ import Icon from '../../components/Icon.astro';
 </script>
 
 <style>
+  /* ── Hero ────────────────────────────────────────────────────────────────── */
   .fr-hero {
     padding-top: calc(var(--space-24) + var(--space-8));
-    padding-bottom: var(--space-12);
+    padding-bottom: var(--space-10);
+  }
+
+  .fr-hero-copy {
+    max-width: 720px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
   }
 
   .fr-hero-copy h1 {
-    font-size: clamp(var(--text-4xl), 7vw, var(--text-6xl));
+    font-size: clamp(var(--text-4xl), 6.5vw, var(--text-6xl));
     line-height: 1.05;
-    margin: var(--space-4) 0 var(--space-6);
+    letter-spacing: -0.02em;
+    margin: var(--space-3) 0 0;
   }
 
   .fr-sub {
     color: var(--text-secondary);
     font-size: var(--text-lg);
-    max-width: 56ch;
+    line-height: 1.55;
+    max-width: 60ch;
     margin: 0;
   }
 
-  .fr-form-section { padding-block: var(--space-8); }
+  /* ── Form section ────────────────────────────────────────────────────────── */
+  .fr-form-section { padding-block: var(--space-6) var(--space-12); }
 
-  .fr-form { display: flex; flex-direction: column; gap: var(--space-4); }
-  .fr-form-heading { font-size: var(--text-xl); margin: 0; }
-  .fr-form-sub { font-size: var(--text-sm); color: var(--text-secondary); margin: 0 0 var(--space-2) 0; }
+  .fr-form { display: flex; flex-direction: column; gap: var(--space-5); }
 
-  .fr-fields { display: flex; flex-direction: column; gap: var(--space-3); }
+  .fr-form-header {
+    border-bottom: 1px solid var(--glass-border);
+    padding-bottom: var(--space-4);
+    margin-bottom: var(--space-1);
+  }
+  .fr-form-heading {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-semibold);
+    margin: 0 0 0.35rem 0;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+  }
+  .fr-form-sub {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    margin: 0;
+  }
 
-  .fr-label { display: flex; flex-direction: column; gap: 0.35rem; }
-  .fr-label-text { font-size: 0.95rem; color: var(--text-primary); font-weight: 500; }
-  .fr-help { font-weight: 400; color: var(--text-muted); font-size: 0.85em; }
+  .fr-fields { display: flex; flex-direction: column; gap: var(--space-4); }
 
-  .fr-input, .fr-textarea, .fr-select {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.14);
-    border-radius: 0.6rem;
-    padding: 0.7rem 0.85rem;
+  .fr-label { display: flex; flex-direction: column; gap: 0.4rem; }
+  .fr-label-text {
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    font-weight: var(--weight-semibold);
+    letter-spacing: 0.005em;
+  }
+  .fr-help {
+    font-weight: var(--weight-regular);
+    color: var(--text-muted);
+    font-size: 0.85em;
+  }
+
+  /* Inputs — theme-aware via tokens */
+  .fr-input,
+  .fr-textarea,
+  .fr-select {
+    background: var(--bg-elevated);
+    border: 1.5px solid var(--glass-border);
+    border-radius: 0.7rem;
+    padding: 0.85rem 1rem;
     color: var(--text-primary);
     font-size: 1rem;
+    line-height: 1.5;
     width: 100%;
-    transition: border-color 0.15s ease, background 0.15s ease;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
     font-family: inherit;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
   }
-  .fr-textarea { resize: vertical; min-height: 6.5rem; }
-  .fr-select { appearance: none; cursor: pointer; }
+  .fr-textarea {
+    resize: vertical;
+    min-height: 5rem;
+    line-height: 1.55;
+  }
+  .fr-select {
+    appearance: none;
+    cursor: pointer;
+    padding-right: 2.5rem;
+    background-image: linear-gradient(45deg, transparent 50%, var(--text-muted) 50%),
+                      linear-gradient(135deg, var(--text-muted) 50%, transparent 50%);
+    background-position: calc(100% - 1.1rem) 50%, calc(100% - 0.75rem) 50%;
+    background-size: 6px 6px, 6px 6px;
+    background-repeat: no-repeat;
+  }
 
-  .fr-input::placeholder, .fr-textarea::placeholder { color: var(--text-muted); }
+  .fr-input::placeholder,
+  .fr-textarea::placeholder {
+    color: var(--text-muted);
+    opacity: 0.7;
+  }
 
-  .fr-input:focus, .fr-textarea:focus, .fr-select:focus {
+  .fr-input:hover:not(:focus),
+  .fr-textarea:hover:not(:focus),
+  .fr-select:hover:not(:focus) {
+    border-color: var(--accent-border);
+  }
+
+  .fr-input:focus,
+  .fr-textarea:focus,
+  .fr-select:focus {
     outline: none;
-    border-color: var(--accent, #5fcfd6);
-    background: rgba(255,255,255,0.09);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px var(--accent-dim);
+  }
+
+  /* Footer row: button + char hint */
+  .fr-form-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-4);
+    padding-top: var(--space-2);
+    flex-wrap: wrap;
   }
 
   .fr-submit {
     position: relative;
-    margin-top: var(--space-2);
-    align-self: flex-start;
+    min-width: 11rem;
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
   }
   .fr-submit:disabled { cursor: wait; }
 
@@ -269,40 +351,122 @@ import Icon from '../../components/Icon.astro';
   .fr-submit-spinner.is-spinning { opacity: 1; animation: fr-spin 0.75s linear infinite; }
   @keyframes fr-spin { to { transform: rotate(360deg); } }
 
-  .fr-status { font-size: 0.9rem; color: var(--text-secondary); margin: 0; min-height: 1.25rem; }
-  .fr-status--error { color: #e87474; }
-  .fr-status--success { color: #6fcf97; }
-  .fr-status a { color: inherit; text-decoration: underline; }
+  .fr-privacy-hint {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .fr-privacy-hint::before {
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
 
-  .fr-list-section { padding-block: var(--space-12); }
-  .fr-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr)); gap: var(--space-4); margin-bottom: var(--space-6); }
-  .fr-list-loading, .fr-list-empty { color: var(--text-muted); }
+  .fr-status {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0;
+    min-height: 1.25rem;
+    line-height: 1.5;
+  }
+  .fr-status--error { color: #c63d3d; }
+  .fr-status--success { color: #2f9e5f; }
+  .fr-status a { color: inherit; text-decoration: underline; font-weight: var(--weight-semibold); }
+
+  /* ── Public list section ─────────────────────────────────────────────────── */
+  .fr-list-section { padding-block: var(--space-12); border-top: 1px solid var(--glass-border); }
+
+  .fr-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+  .fr-list-loading,
+  .fr-list-empty { color: var(--text-muted); font-size: 0.95rem; }
   .fr-list-empty-hint { color: var(--text-muted); font-size: 0.9rem; margin: 0; }
 
   .fr-card {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.10);
-    border-radius: 0.85rem;
-    padding: var(--space-4);
+    background: var(--bg-elevated);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg, 1rem);
+    padding: var(--space-5);
     display: flex;
     flex-direction: column;
+    gap: 0.65rem;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+  }
+  .fr-card:hover {
+    border-color: var(--accent-border);
+    box-shadow: 0 4px 16px var(--accent-dim);
+  }
+
+  .fr-card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     gap: 0.5rem;
   }
-  .fr-card-head { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; }
-  .fr-app { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
-  .fr-badge { font-size: 0.7rem; padding: 0.2rem 0.55rem; border-radius: 999px; font-weight: 600; }
-  .fr-status-approved { background: rgba(95, 207, 214, 0.15); color: #5fcfd6; }
-  .fr-status-progress { background: rgba(255, 200, 100, 0.15); color: #ffc864; }
-  .fr-status-shipped  { background: rgba(111, 207, 151, 0.15); color: #6fcf97; }
-  .fr-card-title { margin: 0; font-size: var(--text-lg); }
+  .fr-app {
+    font-size: 0.7rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: var(--weight-semibold);
+  }
+  .fr-badge {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+    font-weight: var(--weight-semibold);
+    letter-spacing: 0.02em;
+  }
+  .fr-status-approved { background: var(--accent-dim); color: var(--accent); }
+  .fr-status-progress { background: rgba(255, 178, 60, 0.16); color: #b86b00; }
+  .fr-status-shipped  { background: rgba(34, 158, 90, 0.16);  color: #1f6b3f; }
+
+  .fr-card-title {
+    margin: 0;
+    font-size: var(--text-lg);
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
   .fr-card-desc {
     margin: 0;
     color: var(--text-secondary);
     font-size: 0.95rem;
-    line-height: 1.5;
+    line-height: 1.55;
     display: -webkit-box;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+
+  /* ── Dark theme overrides (BudgetBaby pages, etc.) ───────────────────────── */
+  [data-theme="dark"] .fr-input,
+  [data-theme="dark"] .fr-textarea,
+  [data-theme="dark"] .fr-select {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+  [data-theme="dark"] .fr-card {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.10);
+  }
+  [data-theme="dark"] .fr-status-progress { color: #ffc864; background: rgba(255, 200, 100, 0.15); }
+  [data-theme="dark"] .fr-status-shipped  { color: #6fcf97; background: rgba(111, 207, 151, 0.15); }
+  [data-theme="dark"] .fr-status--error   { color: #e87474; }
+  [data-theme="dark"] .fr-status--success { color: #6fcf97; }
+
+  /* ── Responsive ──────────────────────────────────────────────────────────── */
+  @media (max-width: 640px) {
+    .fr-form-footer { flex-direction: column-reverse; align-items: stretch; }
+    .fr-submit { width: 100%; }
   }
 </style>
