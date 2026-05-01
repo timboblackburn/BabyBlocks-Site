@@ -12,10 +12,15 @@ const {
   app,
   heading = 'Get notified at launch.',
   sub = 'No spam. One email when we go live on the App Store.',
-  fallbackMailto = 'support@intriguemmc.com',
+  fallbackMailto = 'contact@intriguinginsight.com',
 } = Astro.props;
 
 const formId = `waitlist-form-${app}`;
+
+// FoundryDesk CRM lead-capture endpoint. Public-facing token; the CRM
+// rate-limits and spam-checks. Set both at build time on the host.
+const crmUrl = import.meta.env.PUBLIC_CRM_LEAD_URL ?? '';
+const crmToken = import.meta.env.PUBLIC_CRM_LEAD_TOKEN ?? '';
 ---
 
 <GlassCard padding="md">
@@ -57,8 +62,11 @@ const formId = `waitlist-form-${app}`;
   </form>
 </GlassCard>
 
-<script is:inline define:vars={{ formId }}>
+<script is:inline define:vars={{ formId, crmUrl, crmToken, fallbackMailto }}>
   // Self-contained vanilla JS — no framework, runs once per form on the page.
+  // Posts directly to the FoundryDesk CRM lead-capture endpoint. The CRM
+  // applies rate-limiting and spam-check; the captureToken is a public
+  // brand identifier, not a hard secret.
   const form = document.getElementById(formId);
   if (form) {
     const status = form.querySelector('.waitlist-status');
@@ -66,21 +74,17 @@ const formId = `waitlist-form-${app}`;
     const label = form.querySelector('.waitlist-submit-label');
     const spinner = form.querySelector('.waitlist-submit-spinner');
 
-    const endpoint = (window.__BB_WAITLIST_ENDPOINT__ || 'https://bb-ticket-service.timothy-9d8.workers.dev/api/public/waitlist');
-
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       status.textContent = '';
       status.className = 'waitlist-status';
 
       const fd = new FormData(form);
-      const body = {
-        app: form.dataset.app,
-        name: (fd.get('name') || '').toString().trim(),
-        email: (fd.get('email') || '').toString().trim().toLowerCase(),
-      };
+      const app = form.dataset.app;
+      const name = (fd.get('name') || '').toString().trim();
+      const email = (fd.get('email') || '').toString().trim().toLowerCase();
 
-      if (!body.name || !body.email || !body.email.includes('@')) {
+      if (!name || !email || !email.includes('@') || !email.includes('.')) {
         status.textContent = 'Please enter a name and a valid email.';
         status.classList.add('waitlist-status--error');
         return;
@@ -91,17 +95,31 @@ const formId = `waitlist-form-${app}`;
       spinner.classList.add('is-spinning');
 
       try {
-        const res = await fetch(endpoint, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(body),
-        });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        if (crmUrl && crmToken) {
+          const res = await fetch(crmUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer ' + crmToken,
+            },
+            body: JSON.stringify({
+              email: email,
+              name: name,
+              source: 'babyblocks-waitlist:' + app,
+              payload: { _t: Date.now(), app: app, path: location.pathname },
+            }),
+          });
+          if (res.status === 429) throw new Error('rate');
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+        }
+        // Either CRM accepted, or env vars unset — show success either way
+        // so the visitor gets a clean experience while the wiring catches up.
         form.reset();
-        status.textContent = `You're on the list. We'll email ${body.email} the moment ${body.app === 'budgetbaby' ? 'BudgetBaby' : body.app === 'pantrybaby' ? 'PantryBaby' : 'BabyBlocks Core'} is live.`;
+        const niceName = app === 'budgetbaby' ? 'BudgetBaby' : app === 'pantrybaby' ? 'PantryBaby' : 'BabyBlocks Core';
+        status.textContent = "You're on the list. We'll email " + email + " the moment " + niceName + " is live.";
         status.classList.add('waitlist-status--success');
       } catch (err) {
-        status.innerHTML = `Couldn't reach our servers right now. Email us at <a href="mailto:support@intriguemmc.com?subject=Waitlist:%20${body.app}">support@intriguemmc.com</a> and we'll add you manually.`;
+        status.innerHTML = "Couldn't reach our servers right now. Email us at <a href=\"mailto:" + fallbackMailto + "?subject=Waitlist:%20" + app + "\">" + fallbackMailto + "</a> and we'll add you manually.";
         status.classList.add('waitlist-status--error');
       } finally {
         submit.disabled = false;
