@@ -1,0 +1,222 @@
+---
+import GlassCard from './GlassCard.astro';
+
+export interface Props {
+  list?: 'general' | 'product' | 'changelog';
+  heading?: string;
+  sub?: string;
+  fallbackMailto?: string;
+}
+
+const {
+  list = 'general',
+  heading = 'Stay in the loop.',
+  sub = 'Occasional updates. No spam, unsubscribe anytime.',
+  fallbackMailto = 'contact@intriguinginsight.com',
+} = Astro.props;
+
+const formId = `newsletter-form-${list}`;
+
+// BabyBlocks Platform's public newsletter endpoint. Default points at
+// production; override at build time with PUBLIC_NEWSLETTER_URL if needed
+// (e.g. for staging).
+const newsletterUrl =
+  import.meta.env.PUBLIC_NEWSLETTER_URL ??
+  'https://api.babyblocks.io/api/public/newsletter';
+---
+
+<GlassCard padding="md">
+  <form id={formId} class="newsletter-form" data-list={list} novalidate>
+    <h2 class="newsletter-heading">{heading}</h2>
+    <p class="newsletter-sub">{sub}</p>
+
+    <div class="newsletter-fields">
+      <input
+        type="text"
+        name="name"
+        placeholder="First name (optional)"
+        autocomplete="given-name"
+        class="newsletter-input"
+        aria-label="First name"
+      />
+      <input
+        type="email"
+        name="email"
+        placeholder="you@example.com"
+        autocomplete="email"
+        required
+        class="newsletter-input"
+        aria-label="Email"
+      />
+      <button type="submit" class="btn btn-primary newsletter-submit">
+        <span class="newsletter-submit-label">Subscribe</span>
+        <span class="newsletter-submit-spinner" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <p class="newsletter-status" aria-live="polite"></p>
+
+    <p class="newsletter-fallback">
+      Prefer email? Drop a note to <a href={`mailto:${fallbackMailto}?subject=Newsletter`}>{fallbackMailto}</a>.
+    </p>
+  </form>
+</GlassCard>
+
+<script is:inline define:vars={{ formId, newsletterUrl, fallbackMailto }}>
+  const form = document.getElementById(formId);
+  if (form) {
+    const status = form.querySelector('.newsletter-status');
+    const submit = form.querySelector('.newsletter-submit');
+    const label = form.querySelector('.newsletter-submit-label');
+    const spinner = form.querySelector('.newsletter-submit-spinner');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      status.textContent = '';
+      status.className = 'newsletter-status';
+
+      const fd = new FormData(form);
+      const list = form.dataset.list;
+      const name = (fd.get('name') || '').toString().trim();
+      const email = (fd.get('email') || '').toString().trim().toLowerCase();
+
+      if (!email || !email.includes('@') || !email.includes('.')) {
+        status.textContent = 'Please enter a valid email.';
+        status.classList.add('newsletter-status--error');
+        return;
+      }
+
+      submit.disabled = true;
+      label.style.opacity = '0.4';
+      spinner.classList.add('is-spinning');
+
+      try {
+        const res = await fetch(newsletterUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, name, list }),
+        });
+        if (res.status === 429) throw new Error('rate');
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+
+        form.reset();
+        status.textContent = 'Subscribed. Watch your inbox for updates.';
+        status.classList.add('newsletter-status--success');
+      } catch (err) {
+        status.innerHTML = "Couldn't reach our servers right now. Email <a href=\"mailto:" + fallbackMailto + "\">" + fallbackMailto + "</a> and we'll add you manually.";
+        status.classList.add('newsletter-status--error');
+      } finally {
+        submit.disabled = false;
+        label.style.opacity = '1';
+        spinner.classList.remove('is-spinning');
+      }
+    });
+  }
+</script>
+
+<style>
+  .newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .newsletter-heading {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-primary);
+  }
+
+  .newsletter-sub {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin: 0 0 0.5rem 0;
+  }
+
+  .newsletter-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 0.5rem;
+  }
+
+  @media (max-width: 720px) {
+    .newsletter-fields {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .newsletter-input {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 0.6rem;
+    padding: 0.75rem 0.85rem;
+    color: var(--text-primary);
+    font-size: 1rem;
+    width: 100%;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+
+  .newsletter-input::placeholder {
+    color: var(--text-muted);
+  }
+
+  .newsletter-input:focus {
+    outline: none;
+    border-color: var(--accent, #5fcfd6);
+    background: rgba(255, 255, 255, 0.09);
+  }
+
+  .newsletter-submit {
+    position: relative;
+    min-width: 7.5rem;
+    white-space: nowrap;
+  }
+
+  .newsletter-submit:disabled { cursor: wait; }
+
+  .newsletter-submit-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1rem;
+    height: 1rem;
+    margin-top: -0.5rem;
+    margin-left: -0.5rem;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+
+  .newsletter-submit-spinner.is-spinning {
+    opacity: 1;
+    animation: newsletter-spin 0.75s linear infinite;
+  }
+
+  @keyframes newsletter-spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .newsletter-status {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0;
+    min-height: 1.25rem;
+  }
+
+  .newsletter-status--error { color: #e87474; }
+  .newsletter-status--success { color: #6fcf97; }
+
+  .newsletter-fallback {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 0.25rem 0 0 0;
+  }
+
+  .newsletter-fallback a {
+    color: var(--text-secondary);
+    text-decoration: underline;
+  }
+</style>
