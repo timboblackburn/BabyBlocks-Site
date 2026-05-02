@@ -17,10 +17,15 @@ const {
 
 const formId = `waitlist-form-${app}`;
 
-// FoundryDesk CRM lead-capture endpoint. Public-facing token; the CRM
-// rate-limits and spam-checks. Set both at build time on the host.
-const crmUrl = import.meta.env.PUBLIC_CRM_LEAD_URL ?? '';
-const crmToken = import.meta.env.PUBLIC_CRM_LEAD_TOKEN ?? '';
+// BabyBlocks platform's public waitlist endpoint. Default points at
+// production; override at build time with PUBLIC_WAITLIST_URL for staging.
+// The platform writes a contacts doc tagged `waitlist:<app>` and a
+// Cloud Function attempts an email-match auto-link to the matching
+// CRM customer record (if one exists). No bearer token — endpoint is
+// rate-limited per-IP server-side.
+const waitlistUrl =
+  import.meta.env.PUBLIC_WAITLIST_URL ??
+  'https://api.babyblocks.io/api/public/waitlist';
 ---
 
 <GlassCard padding="md">
@@ -62,11 +67,11 @@ const crmToken = import.meta.env.PUBLIC_CRM_LEAD_TOKEN ?? '';
   </form>
 </GlassCard>
 
-<script is:inline define:vars={{ formId, crmUrl, crmToken, fallbackMailto }}>
+<script is:inline define:vars={{ formId, waitlistUrl, fallbackMailto }}>
   // Self-contained vanilla JS — no framework, runs once per form on the page.
-  // Posts directly to the FoundryDesk CRM lead-capture endpoint. The CRM
-  // applies rate-limiting and spam-check; the captureToken is a public
-  // brand identifier, not a hard secret.
+  // Posts to the BabyBlocks platform's public waitlist endpoint, which
+  // rate-limits per-IP server-side and writes a contacts doc tagged
+  // `waitlist:<app>`. No bearer token — public endpoint by design.
   const form = document.getElementById(formId);
   if (form) {
     const status = form.querySelector('.waitlist-status');
@@ -95,25 +100,14 @@ const crmToken = import.meta.env.PUBLIC_CRM_LEAD_TOKEN ?? '';
       spinner.classList.add('is-spinning');
 
       try {
-        if (crmUrl && crmToken) {
-          const res = await fetch(crmUrl, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: 'Bearer ' + crmToken,
-            },
-            body: JSON.stringify({
-              email: email,
-              name: name,
-              source: 'babyblocks-waitlist:' + app,
-              payload: { _t: Date.now(), app: app, path: location.pathname },
-            }),
-          });
-          if (res.status === 429) throw new Error('rate');
-          if (!res.ok) throw new Error('HTTP ' + res.status);
-        }
-        // Either CRM accepted, or env vars unset — show success either way
-        // so the visitor gets a clean experience while the wiring catches up.
+        const res = await fetch(waitlistUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, name, app }),
+        });
+        if (res.status === 429) throw new Error('rate');
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+
         form.reset();
         const niceName = app === 'budgetbaby' ? 'BudgetBaby' : app === 'pantrybaby' ? 'PantryBaby' : 'BabyBlocks Core';
         status.textContent = "You're on the list. We'll email " + email + " the moment " + niceName + " is live.";

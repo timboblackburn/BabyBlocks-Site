@@ -2,6 +2,16 @@
 import Layout from '../../layouts/Layout.astro';
 import GlassCard from '../../components/GlassCard.astro';
 import Icon from '../../components/Icon.astro';
+
+// BabyBlocks platform's public feature-request endpoints. Default points
+// at production via the api.babyblocks.io custom domain; override at
+// build time with PUBLIC_FEATURE_REQUEST_URL for staging.
+const featureRequestPostUrl =
+  import.meta.env.PUBLIC_FEATURE_REQUEST_URL ??
+  'https://api.babyblocks.io/api/public/feature-request';
+const featureRequestListUrl =
+  import.meta.env.PUBLIC_FEATURE_REQUESTS_URL ??
+  'https://api.babyblocks.io/api/public/feature-requests';
 ---
 
 <Layout
@@ -97,10 +107,10 @@ import Icon from '../../components/Icon.astro';
   </section>
 </Layout>
 
-<script is:inline>
+<script is:inline define:vars={{ featureRequestPostUrl, featureRequestListUrl }}>
   (function () {
-    const POST_URL = 'https://bb-ticket-service.timothy-9d8.workers.dev/api/public/feature-request';
-    const GET_URL  = 'https://bb-ticket-service.timothy-9d8.workers.dev/api/public/feature-requests';
+    const POST_URL = featureRequestPostUrl;
+    const GET_URL  = featureRequestListUrl;
 
     const form = document.getElementById('feature-request-form');
     const listEl = document.getElementById('feature-request-list');
