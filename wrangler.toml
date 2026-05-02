@@ -4,6 +4,11 @@
 
 name = "babyblocks-site"
 compatibility_date = "2025-01-01"
+# global_fetch_strictly_public — at the runtime level, blocks any
+# fetch() to a private/link-local IP. Static-asset workers don't
+# fetch user-supplied URLs today, but the flag costs nothing and
+# defends against any future code path that does.
+compatibility_flags = ["global_fetch_strictly_public"]
 
 # Serve everything in site/dist as static assets (no Worker logic needed)
 [assets]
