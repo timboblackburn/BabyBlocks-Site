@@ -1,0 +1,145 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import GlassCard from '../../components/GlassCard.astro';
+
+// Help portal index — lists all published KB articles grouped by category.
+// Fetched at build time from the BabyBlocks platform's public KB endpoint
+// so the page is a static prerender.
+
+const kbListUrl =
+  import.meta.env.PUBLIC_KB_LIST_URL ??
+  'https://api.babyblocks.io/api/public/kb';
+
+interface KBArticle {
+  slug: string;
+  title: string;
+  summary: string;
+  category: string;
+}
+
+let articles: KBArticle[] = [];
+try {
+  const res = await fetch(kbListUrl);
+  if (res.ok) {
+    const data = await res.json() as { articles?: KBArticle[] };
+    articles = data.articles ?? [];
+  }
+} catch (err) {
+  console.error('[help/index] KB fetch failed:', err);
+}
+
+// Group by category, ordered with account/billing first since those drive
+// the most lookups.
+const CATEGORY_ORDER = ['account', 'billing', 'budgetbaby', 'pantrybaby', 'privacy', 'technical'];
+const CATEGORY_LABELS: Record<string, string> = {
+  account: 'Account & sign-in',
+  billing: 'Billing & subscription',
+  budgetbaby: 'BudgetBaby',
+  pantrybaby: 'PantryBaby',
+  privacy: 'Privacy & data',
+  technical: 'Sync & troubleshooting',
+};
+
+const grouped: Record<string, KBArticle[]> = {};
+for (const a of articles) {
+  const key = a.category ?? 'general';
+  if (!grouped[key]) grouped[key] = [];
+  grouped[key].push(a);
+}
+const orderedGroups = CATEGORY_ORDER
+  .filter((c) => grouped[c]?.length)
+  .map((c) => ({ key: c, label: CATEGORY_LABELS[c] ?? c, items: grouped[c] }));
+// Append any unrecognized categories at the end
+for (const [k, v] of Object.entries(grouped)) {
+  if (!CATEGORY_ORDER.includes(k)) {
+    orderedGroups.push({ key: k, label: CATEGORY_LABELS[k] ?? k, items: v });
+  }
+}
+---
+
+<Layout
+  title="Help | BabyBlocks"
+  description="Self-serve help for BudgetBaby, PantryBaby, and the BabyBlocks platform. Account, billing, sync, privacy."
+  canonical="/help"
+  theme="core"
+>
+  <section class="help-hero section">
+    <div class="container">
+      <div class="help-hero-copy">
+        <div class="label-chip">Help & support</div>
+        <h1>How can we help?</h1>
+        <p class="help-sub">
+          Self-serve answers for the most common questions. If you can't find what you're looking for,
+          reply to any email from us — a real human reads every one.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="help-grid section">
+    <div class="container">
+      {articles.length === 0 ? (
+        <p class="help-empty">Help articles are loading. Refresh in a moment.</p>
+      ) : (
+        orderedGroups.map((group) => (
+          <div class="help-group">
+            <h2 class="help-group-title">{group.label}</h2>
+            <div class="help-cards">
+              {group.items.map((a) => (
+                <a href={`/help/${a.slug}`} class="help-card-link">
+                  <GlassCard padding="md">
+                    <h3 class="help-card-title">{a.title}</h3>
+                    <p class="help-card-summary">{a.summary}</p>
+                  </GlassCard>
+                </a>
+              ))}
+            </div>
+          </div>
+        ))
+      )}
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .help-hero { padding: 4rem 0 2rem; }
+  .help-hero h1 { font-size: 2.25rem; margin: 0 0 1rem; color: var(--text-primary); }
+  .help-sub { font-size: 1.05rem; color: var(--text-secondary); max-width: 38rem; line-height: 1.6; margin: 0; }
+  .help-empty { color: var(--text-muted); font-size: 0.95rem; }
+
+  .help-grid { padding: 1rem 0 4rem; }
+  .help-group { margin-bottom: 2.5rem; }
+  .help-group-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin: 0 0 0.75rem;
+  }
+  .help-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+  .help-card-link {
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.15s ease;
+    display: block;
+  }
+  .help-card-link:hover { transform: translateY(-2px); }
+  .help-card-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin: 0 0 0.4rem;
+    color: var(--text-primary);
+    line-height: 1.35;
+  }
+  .help-card-summary {
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+</style>
