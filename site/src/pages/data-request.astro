@@ -1,0 +1,374 @@
+---
+import Layout from '../layouts/Layout.astro';
+import GlassCard from '../components/GlassCard.astro';
+import Icon from '../components/Icon.astro';
+
+// Phase 36c — public Data Subject Request form. Posts to the
+// FoundryDesk compliance endpoint. The brand slug `babyblocks`
+// is fixed because this page lives on the BabyBlocks site.
+const crmBase = import.meta.env.PUBLIC_CRM_BASE_URL ?? 'https://crm.intriguemmc.com';
+const dsrUrl = `${crmBase.replace(/\/$/, '')}/api/compliance/babyblocks/dsr-submit`;
+const lastUpdated = 'May 3, 2026';
+---
+
+<Layout
+  title="Data request — BabyBlocks"
+  description="Request a copy of, or deletion of, the data BabyBlocks holds about you. We respond within 30 days."
+  canonical="/data-request"
+>
+  <!-- Hero -->
+  <section class="sec-hero section">
+    <div class="container">
+      <div class="sec-hero-inner">
+        <div class="label-chip">Your data</div>
+        <h1>Your data, your call.<br /><span class="text-gradient">Access or delete on your terms.</span></h1>
+        <p>
+          You can ask us for a copy of the data we hold about you, or ask us to delete it. We respond within 30 days. There is no fee. Both options are available below.
+        </p>
+        <p class="sec-updated">Last updated: {lastUpdated}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Form -->
+  <section class="sec-section section-sm">
+    <div class="container-sm">
+      <GlassCard accent padding="lg">
+        <div class="sec-block">
+          <div class="sec-block-icon"><Icon name="mail" size={28} /></div>
+          <div>
+            <h2>Submit a request</h2>
+            <p>
+              Choose the kind of request below, give us the email address you used with us, and we will email you a verification link before processing the request.
+            </p>
+
+            <form
+              id="dsr-form"
+              class="dsr-form"
+              novalidate
+              aria-label="Data subject request form"
+            >
+              <fieldset class="dsr-fieldset">
+                <legend>What kind of request?</legend>
+
+                <label class="dsr-radio">
+                  <input type="radio" name="kind" value="dsar" checked required />
+                  <span class="dsr-radio-body">
+                    <span class="dsr-radio-title">Send me a copy of my data</span>
+                    <span class="dsr-radio-sub">
+                      GDPR Art. 15 / CCPA "Right to Know". You will get an export of every record we have linked to your email.
+                    </span>
+                  </span>
+                </label>
+
+                <label class="dsr-radio">
+                  <input type="radio" name="kind" value="rtbf" required />
+                  <span class="dsr-radio-body">
+                    <span class="dsr-radio-title">Delete my data</span>
+                    <span class="dsr-radio-sub">
+                      GDPR Art. 17 / CCPA "Right to Delete". We delete every record linked to your email, except where law requires us to retain it (tax records, fraud history).
+                    </span>
+                  </span>
+                </label>
+              </fieldset>
+
+              <label class="dsr-field">
+                <span class="dsr-label">Email address you used with us</span>
+                <input
+                  type="email"
+                  name="email"
+                  autocomplete="email"
+                  required
+                  placeholder="you@example.com"
+                />
+                <span class="dsr-help">
+                  We will email a verification link to this address before processing.
+                </span>
+              </label>
+
+              <label class="dsr-field">
+                <span class="dsr-label">
+                  Anything else we should know?
+                  <span class="dsr-optional">(optional)</span>
+                </span>
+                <textarea
+                  name="note"
+                  rows="4"
+                  maxlength="2000"
+                  placeholder="If you used multiple email addresses, mention them here. Or share any context that helps us locate your records."
+                ></textarea>
+              </label>
+
+              <!-- Honeypot -->
+              <div class="dsr-honeypot" aria-hidden="true">
+                <label>
+                  Company website
+                  <input type="text" name="company_website" tabindex="-1" autocomplete="off" />
+                </label>
+              </div>
+
+              <div class="dsr-actions">
+                <button id="dsr-submit" type="submit" class="btn btn-primary">
+                  <span id="dsr-submit-label">Submit request</span>
+                </button>
+                <p
+                  id="dsr-status"
+                  class="dsr-status"
+                  aria-live="polite"
+                  role="status"
+                ></p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </GlassCard>
+    </div>
+  </section>
+
+  <!-- What happens next -->
+  <section class="sec-section section-sm">
+    <div class="container-sm">
+      <GlassCard padding="lg">
+        <div class="sec-block">
+          <div class="sec-block-icon"><Icon name="check" size={28} /></div>
+          <div>
+            <h2>What happens next</h2>
+            <ol class="dsr-steps">
+              <li>You submit the form on this page.</li>
+              <li>We email you a verification link to confirm the request came from you, not someone impersonating you.</li>
+              <li>You click the link. We start processing.</li>
+              <li>
+                Within 30 days you receive your data export by email — or, for deletion requests, a confirmation that we have deleted your records.
+              </li>
+            </ol>
+            <p class="sec-note">
+              Most BabyBlocks data lives on your device or in your iCloud — we do not hold it on our servers. Your request covers the data we DO hold (account email, support tickets, purchase records).
+            </p>
+          </div>
+        </div>
+      </GlassCard>
+    </div>
+  </section>
+
+  <!-- Trouble using this form -->
+  <section class="sec-section section-sm">
+    <div class="container-sm">
+      <GlassCard padding="lg">
+        <div class="sec-block">
+          <div class="sec-block-icon"><Icon name="mail" size={28} /></div>
+          <div>
+            <h2>Trouble using this form?</h2>
+            <p>
+              Email <a href="mailto:support@babyblocks.io">support@babyblocks.io</a>
+              with the subject "Data request" and we will process it by hand.
+            </p>
+          </div>
+        </div>
+      </GlassCard>
+    </div>
+  </section>
+
+  <script is:inline define:vars={{ dsrUrl }}>
+    (function () {
+      const form = document.getElementById('dsr-form');
+      if (!form) return;
+      const status = document.getElementById('dsr-status');
+      const submit = document.getElementById('dsr-submit');
+      const label = document.getElementById('dsr-submit-label');
+      const renderedAt = Date.now();
+
+      function setStatus(text, kind) {
+        if (!status) return;
+        status.textContent = text;
+        status.className = 'dsr-status';
+        if (kind === 'error') status.classList.add('is-error');
+        else if (kind === 'ok') status.classList.add('is-ok');
+      }
+
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const fd = new FormData(form);
+        const kind = String(fd.get('kind') || '');
+        const email = String(fd.get('email') || '').trim().toLowerCase();
+        const note = String(fd.get('note') || '').trim();
+        const hp = String(fd.get('company_website') || '');
+
+        if (kind !== 'dsar' && kind !== 'rtbf') {
+          setStatus('Pick a request kind first.', 'error');
+          return;
+        }
+        if (!email || !email.includes('@') || !email.includes('.')) {
+          setStatus('That email looks off. Try again?', 'error');
+          return;
+        }
+        if (hp) {
+          form.reset();
+          setStatus("Thanks — we got it. Check your email for the verification link.", 'ok');
+          return;
+        }
+        if (Date.now() - renderedAt < 1500) {
+          form.reset();
+          setStatus("Thanks — we got it. Check your email for the verification link.", 'ok');
+          return;
+        }
+
+        if (submit) submit.disabled = true;
+        const originalLabel = label ? label.textContent : null;
+        if (label) label.textContent = 'Submitting…';
+
+        try {
+          const res = await fetch(dsrUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              kind: kind,
+              subjectEmail: email,
+              note: note || undefined,
+            }),
+          });
+          if (res.status === 429) {
+            setStatus(
+              "Too many requests from your network right now. Please try again in a minute.",
+              'error'
+            );
+            return;
+          }
+          if (!res.ok) throw new Error('network');
+          form.reset();
+          setStatus(
+            "Thanks — we got it. Check your email for the verification link. We respond within 30 days.",
+            'ok'
+          );
+        } catch (err) {
+          setStatus(
+            "Could not reach us right now. Email support@babyblocks.io and we will process by hand.",
+            'error'
+          );
+        } finally {
+          if (submit) submit.disabled = false;
+          if (label && originalLabel) label.textContent = originalLabel;
+        }
+      });
+    })();
+  </script>
+</Layout>
+
+<style>
+  .dsr-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 1.25rem;
+  }
+  .dsr-fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .dsr-fieldset legend {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+  }
+  .dsr-radio {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.5);
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .dsr-radio:hover {
+    border-color: rgba(0, 0, 0, 0.18);
+    background: rgba(255, 255, 255, 0.75);
+  }
+  .dsr-radio input[type="radio"] {
+    margin-top: 0.25rem;
+  }
+  .dsr-radio-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .dsr-radio-title {
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .dsr-radio-sub {
+    font-size: 0.825rem;
+    color: var(--ink-muted, rgba(0, 0, 0, 0.6));
+  }
+  .dsr-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .dsr-label {
+    font-weight: 600;
+    font-size: 0.925rem;
+  }
+  .dsr-optional {
+    font-weight: 400;
+    color: var(--ink-muted, rgba(0, 0, 0, 0.55));
+    margin-left: 0.25rem;
+  }
+  .dsr-field input,
+  .dsr-field textarea {
+    width: 100%;
+    padding: 0.7rem 0.9rem;
+    font-size: 0.925rem;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.7);
+    font-family: inherit;
+    transition: border-color 0.15s;
+  }
+  .dsr-field input:focus,
+  .dsr-field textarea:focus {
+    outline: none;
+    border-color: rgba(0, 0, 0, 0.4);
+  }
+  .dsr-field textarea {
+    resize: vertical;
+    min-height: 90px;
+  }
+  .dsr-help {
+    font-size: 0.78rem;
+    color: var(--ink-muted, rgba(0, 0, 0, 0.55));
+  }
+  .dsr-honeypot {
+    display: none;
+  }
+  .dsr-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+  }
+  .dsr-status {
+    font-size: 0.825rem;
+    min-height: 1rem;
+    margin: 0;
+  }
+  .dsr-status.is-error {
+    color: #b91c1c;
+  }
+  .dsr-status.is-ok {
+    color: #047857;
+  }
+  .dsr-steps {
+    margin: 0.5rem 0 0.75rem 1.25rem;
+    padding: 0;
+  }
+  .dsr-steps li {
+    margin-bottom: 0.4rem;
+    line-height: 1.6;
+  }
+</style>
