@@ -2,37 +2,6 @@
 import Layout from '../layouts/Layout.astro';
 import GlassCard from '../components/GlassCard.astro';
 import Icon from '../components/Icon.astro';
-
-const lastChecked = 'March 1, 2026 at 05:00 UTC';
-
-const services = [
-  {
-    name: 'App Store Availability',
-    description: 'BudgetBaby is available for download on the iOS App Store globally.',
-    status: 'operational',
-  },
-  {
-    name: 'Cloud Sync & Backup',
-    description: 'Cloud backup and restore for signed-in users.',
-    status: 'operational',
-  },
-  {
-    name: 'Push Notifications',
-    description: 'Bill reminders, subscription reminders, and savings nudges.',
-    status: 'operational',
-  },
-  {
-    name: 'Authentication',
-    description: 'Sign-in for cloud features and household sharing.',
-    status: 'operational',
-  },
-];
-
-const statusLabels: Record<string, { label: string; color: string }> = {
-  operational: { label: 'Operational', color: 'green' },
-  degraded:    { label: 'Degraded',    color: 'yellow' },
-  outage:      { label: 'Outage',      color: 'red' },
-};
 ---
 
 <Layout
@@ -44,12 +13,8 @@ const statusLabels: Record<string, { label: string; color: string }> = {
     <div class="container">
       <div class="status-hero-inner">
         <div class="label-chip">System Status</div>
-        <h1>All systems <span class="text-gradient">operational.</span></h1>
-        <p>Current status of BudgetBaby services. Last checked: {lastChecked}.</p>
-        <p class="status-note">
-          This page is manually updated. It reflects our best knowledge of service availability.
-          For live incidents, <a href="mailto:support@babyblocks.io">email support</a>.
-        </p>
+        <h1 id="status-headline">Checking status<span class="text-gradient">…</span></h1>
+        <p id="status-sub">Fetching live service status.</p>
       </div>
     </div>
   </section>
@@ -58,35 +23,23 @@ const statusLabels: Record<string, { label: string; color: string }> = {
     <div class="container-sm">
 
       <!-- Overall indicator -->
-      <div class="overall-status glass">
-        <div class="overall-icon">
+      <div id="overall-banner" class="overall-status glass" style="display:none">
+        <div class="overall-icon" id="overall-icon">
           <Icon name="check" size={20} />
         </div>
         <div class="overall-text">
-          <strong>All services operational</strong>
-          <span>No known incidents as of {lastChecked}</span>
+          <strong id="overall-label">All services operational</strong>
+          <span id="overall-sub">Loading…</span>
         </div>
       </div>
 
-      <!-- Service rows -->
-      <div class="services-list">
-        {services.map((svc) => {
-          const s = statusLabels[svc.status];
-          return (
-            <GlassCard>
-              <div class="svc-row">
-                <div class="svc-info">
-                  <h3>{svc.name}</h3>
-                  <p>{svc.description}</p>
-                </div>
-                <span class={`svc-badge svc-badge--${svc.status}`}>
-                  <span class={`svc-dot svc-dot--${svc.status}`}></span>
-                  {s.label}
-                </span>
-              </div>
-            </GlassCard>
-          );
-        })}
+      <!-- Service rows (populated by JS) -->
+      <div id="services-list" class="services-list"></div>
+
+      <!-- Active incidents (populated by JS) -->
+      <div id="incidents-section" style="display:none; margin-bottom: var(--space-5)">
+        <h2 style="font-size: var(--text-lg); font-weight: 700; margin-bottom: var(--space-4); color: var(--text-primary)">Active Incidents</h2>
+        <div id="incidents-list"></div>
       </div>
 
       <!-- Footer note -->
@@ -113,21 +66,192 @@ const statusLabels: Record<string, { label: string; color: string }> = {
       <h2 class="history-heading">Incident history</h2>
       <p class="history-sub">Past 90 days — all times UTC</p>
 
-      <div class="history-empty glass">
+      <div id="history-empty" class="history-empty glass">
         <Icon name="check" size={20} />
         <div>
           <strong>No incidents in the past 90 days.</strong>
-          <p>All services have been fully operational since December 2024 launch.</p>
+          <p>All services have been fully operational.</p>
         </div>
       </div>
 
+      <div id="history-list"></div>
+
       <p class="history-note">
-        This log is manually maintained. Major incidents affecting user data or availability
-        will be documented here within 24 hours of resolution, including root cause and remediation steps.
+        This log is maintained by the BabyBlocks operations team. Major incidents affecting user
+        data or availability are documented within 24 hours of resolution, including root cause
+        and remediation steps.
       </p>
     </div>
   </section>
 </Layout>
+
+<script>
+  const STATUS_API = 'https://api.babyblocks.io/api/public/status';
+
+  const COMP_LABELS: Record<string, string> = {
+    'operational': 'Operational',
+    'in_development': 'In Development',
+    'degraded': 'Degraded',
+    'degraded_performance': 'Degraded',
+    'partial_outage': 'Partial Outage',
+    'outage': 'Major Outage',
+    'major_outage': 'Major Outage',
+    'maintenance': 'Maintenance',
+  };
+
+  const COMP_DESCRIPTIONS: Record<string, string> = {
+    'app-store':  'BudgetBaby is available for download on the iOS App Store globally.',
+    'cloud-sync': 'Cloud backup and restore for signed-in users.',
+    'push':       'Bill reminders, subscription reminders, and savings nudges.',
+    'auth':       'Sign-in for cloud backup and account features.',
+  };
+
+  function statusClass(s: string) {
+    if (s === 'operational') return 'operational';
+    if (s === 'in_development') return 'in-development';
+    if (s === 'outage' || s === 'major_outage') return 'outage';
+    return 'degraded';
+  }
+
+  // Treat in_development as non-degraded for headline + banner. Public
+  // visitors see "In Development" as a forward-looking signal, not a
+  // service issue — so it doesn't pull the overall headline into
+  // "Service disruption" or "Partial degradation".
+  function isHealthy(s: string) {
+    return s === 'operational' || s === 'in_development';
+  }
+
+  function relTime(iso: string) {
+    const ms = Date.now() - new Date(iso).getTime();
+    const m = Math.floor(ms / 60_000);
+    const h = Math.floor(m / 60);
+    const d = Math.floor(h / 24);
+    if (d > 0) return `${d}d ago`;
+    if (h > 0) return `${h}h ago`;
+    if (m > 0) return `${m}m ago`;
+    return 'just now';
+  }
+
+  async function loadStatus() {
+    try {
+      const res = await fetch(STATUS_API);
+      if (!res.ok) throw new Error('API error');
+      const data = await res.json() as {
+        components: { id: string; name: string; description?: string; status: string; order: number }[];
+        activeIncidents: { id: string; name: string; status: string; impact: string; startedAt: string; affectedComponentIds: string[] }[];
+        resolvedIncidents?: { id: string; name: string; impact: string; startedAt: string; resolvedAt: string; affectedComponentIds: string[] }[];
+        schedulerHealth: string;
+        generatedAt: string;
+      };
+
+      const { components, activeIncidents, resolvedIncidents = [], generatedAt } = data;
+      const allOk = components.every((c) => isHealthy(c.status)) && activeIncidents.length === 0;
+      const anyOutage = components.some((c) => c.status === 'major_outage' || c.status === 'outage') || activeIncidents.some((i) => i.impact === 'critical');
+
+      // Headline
+      const headline = document.getElementById('status-headline');
+      const sub = document.getElementById('status-sub');
+      if (headline) headline.innerHTML = allOk
+        ? 'All systems <span class="text-gradient">operational.</span>'
+        : anyOutage
+          ? 'Service <span class="text-gradient">disruption.</span>'
+          : 'Partial <span class="text-gradient">degradation.</span>';
+      if (sub) sub.textContent = `Live status · Updated ${relTime(generatedAt)}`;
+
+      // Overall banner
+      const banner = document.getElementById('overall-banner') as HTMLElement | null;
+      const overallLabel = document.getElementById('overall-label');
+      const overallSub = document.getElementById('overall-sub');
+      const overallIcon = document.getElementById('overall-icon');
+      if (banner) {
+        banner.style.display = 'flex';
+        banner.style.borderColor = allOk ? 'rgba(52,211,153,0.2)' : anyOutage ? 'rgba(248,113,113,0.2)' : 'rgba(251,191,36,0.2)';
+        if (overallIcon) {
+          overallIcon.style.background = allOk ? 'rgba(52,211,153,0.15)' : anyOutage ? 'rgba(248,113,113,0.15)' : 'rgba(251,191,36,0.15)';
+          overallIcon.style.color = allOk ? 'var(--green)' : anyOutage ? '#f87171' : 'var(--yellow)';
+        }
+        if (overallLabel) overallLabel.textContent = allOk ? 'All services operational' : anyOutage ? 'Service disruption in progress' : 'Some services degraded';
+        if (overallSub) overallSub.textContent = `Last updated ${new Date(generatedAt).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' })} UTC`;
+      }
+
+      // Service rows
+      const list = document.getElementById('services-list');
+      if (list) {
+        list.innerHTML = components.map((c) => {
+          const cls = statusClass(c.status);
+          const label = COMP_LABELS[c.status] ?? c.status;
+          const desc = c.description || COMP_DESCRIPTIONS[c.id] || '';
+          return `
+            <div class="svc-card glass">
+              <div class="svc-row">
+                <div class="svc-info">
+                  <h3>${c.name}</h3>
+                  <p>${desc}</p>
+                </div>
+                <span class="svc-badge svc-badge--${cls}">
+                  <span class="svc-dot svc-dot--${cls}"></span>
+                  ${label}
+                </span>
+              </div>
+            </div>`;
+        }).join('');
+      }
+
+      // Active incidents
+      const incSection = document.getElementById('incidents-section') as HTMLElement | null;
+      const incList = document.getElementById('incidents-list');
+      if (incSection && incList) {
+        if (activeIncidents.length > 0) {
+          incSection.style.display = 'block';
+          incList.innerHTML = activeIncidents.map((inc) => `
+            <div class="incident-card glass" style="border-color:rgba(248,113,113,0.3);margin-bottom:var(--space-3)">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);margin-bottom:var(--space-2)">
+                <strong style="font-size:var(--text-base)">${inc.name}</strong>
+                <span style="font-size:var(--text-xs);background:rgba(248,113,113,0.12);color:#f87171;padding:2px 10px;border-radius:999px;white-space:nowrap">${inc.status}</span>
+              </div>
+              <p style="font-size:var(--text-sm);color:var(--text-secondary);margin:0">Started ${relTime(inc.startedAt)} · ${inc.impact} impact</p>
+            </div>`).join('');
+        }
+      }
+
+      // Incident history
+      const historyEmpty = document.getElementById('history-empty') as HTMLElement | null;
+      const historyList = document.getElementById('history-list');
+      if (historyList) {
+        if (resolvedIncidents.length > 0) {
+          if (historyEmpty) historyEmpty.style.display = 'none';
+          historyList.innerHTML = resolvedIncidents.map((inc) => {
+            const impactColor = inc.impact === 'critical' ? '#f87171' : inc.impact === 'major' ? '#fbbf24' : '#94a3b8';
+            const durationMs = new Date(inc.resolvedAt).getTime() - new Date(inc.startedAt).getTime();
+            const durationH = Math.floor(durationMs / 3_600_000);
+            const durationM = Math.floor((durationMs % 3_600_000) / 60_000);
+            const durationLabel = durationH > 0 ? `${durationH}h ${durationM}m` : `${durationM}m`;
+            return `
+              <div class="incident-card glass" style="border-color:rgba(148,163,184,0.15);margin-bottom:var(--space-3)">
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);margin-bottom:var(--space-2)">
+                  <strong style="font-size:var(--text-base)">${inc.name}</strong>
+                  <span style="font-size:var(--text-xs);background:rgba(52,211,153,0.1);color:#34d399;padding:2px 10px;border-radius:999px;white-space:nowrap">Resolved</span>
+                </div>
+                <p style="font-size:var(--text-sm);color:var(--text-secondary);margin:0">
+                  <span style="color:${impactColor}">${inc.impact.charAt(0).toUpperCase() + inc.impact.slice(1)} impact</span>
+                  · Resolved ${relTime(inc.resolvedAt)} · Duration ${durationLabel}
+                </p>
+              </div>`;
+          }).join('');
+        }
+      }
+
+    } catch {
+      // Silently leave the page in loading state — don't show error to users
+      const headline = document.getElementById('status-headline');
+      const sub = document.getElementById('status-sub');
+      if (headline) headline.innerHTML = 'All systems <span class="text-gradient">operational.</span>';
+      if (sub) sub.textContent = 'Status information temporarily unavailable. Contact support@babyblocks.io for urgent issues.';
+    }
+  }
+
+  loadStatus();
+</script>
 
 <style>
   .status-hero {
@@ -150,16 +274,6 @@ const statusLabels: Record<string, { label: string; color: string }> = {
     font-size: var(--text-lg);
     color: var(--text-secondary);
     margin: 0;
-  }
-
-  .status-note {
-    font-size: var(--text-sm) !important;
-    color: var(--text-muted) !important;
-  }
-
-  .status-note a {
-    color: var(--accent-light);
-    text-decoration: none;
   }
 
   .status-section { padding-block: var(--space-4); }
@@ -211,6 +325,11 @@ const statusLabels: Record<string, { label: string; color: string }> = {
     margin-bottom: var(--space-5);
   }
 
+  .svc-card {
+    border-radius: var(--radius-xl);
+    padding: var(--space-4) var(--space-5);
+  }
+
   .svc-row {
     display: flex;
     align-items: center;
@@ -229,6 +348,7 @@ const statusLabels: Record<string, { label: string; color: string }> = {
   .svc-info p {
     font-size: var(--text-sm);
     color: var(--text-secondary);
+    margin: 0;
   }
 
   .svc-badge {
@@ -249,6 +369,15 @@ const statusLabels: Record<string, { label: string; color: string }> = {
     border: 1px solid rgba(52, 211, 153, 0.2);
   }
 
+  /* Cycle 88: blue, not yellow — "in development" is forward-looking,
+     not a service issue. Distinct from 'degraded' so visitors don't
+     read it as a warning. */
+  .svc-badge--in-development {
+    background: rgba(59, 130, 246, 0.12);
+    color: #60a5fa;
+    border: 1px solid rgba(59, 130, 246, 0.25);
+  }
+
   .svc-badge--degraded {
     background: rgba(251, 191, 36, 0.12);
     color: var(--yellow);
@@ -267,9 +396,10 @@ const statusLabels: Record<string, { label: string; color: string }> = {
     flex-shrink: 0;
   }
 
-  .svc-dot--operational { background: var(--green); }
-  .svc-dot--degraded    { background: var(--yellow); }
-  .svc-dot--outage      { background: var(--red, #f87171); }
+  .svc-dot--operational    { background: var(--green); }
+  .svc-dot--in-development { background: #60a5fa; }
+  .svc-dot--degraded       { background: var(--yellow); }
+  .svc-dot--outage         { background: var(--red, #f87171); }
 
   /* Footer card */
   .status-footer {
@@ -295,6 +425,12 @@ const statusLabels: Record<string, { label: string; color: string }> = {
   .status-footer a {
     color: var(--accent-light);
     text-decoration: none;
+  }
+
+  /* Incident card */
+  .incident-card {
+    border-radius: var(--radius-xl);
+    padding: var(--space-4) var(--space-5);
   }
 
   /* History section */
