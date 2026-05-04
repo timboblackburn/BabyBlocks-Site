@@ -1,5 +1,6 @@
 ---
 import DocsLayout from '../../../layouts/DocsLayout.astro';
+import DocMock from '../../../components/DocMock.astro';
 
 const headings = [
   { id: 'safe-to-spend',            text: 'Safe to Spend confusion' },
@@ -45,6 +46,37 @@ const headings = [
 
     <!-- ─── SAFE TO SPEND ─────────────────────────────────────────────── -->
     <h2 id="safe-to-spend">Safe to Spend confusion</h2>
+
+    <div class="doc-mocks-row">
+      <DocMock label="Symptom" caption="STS at $0 with several unpaid Critical bills consuming the reserve.">
+        <div class="dm-bar"><span class="dm-bar-title">Home</span><span class="dm-bar-action">+</span></div>
+        <div class="dm-card dm-card-error" style="text-align:center;">
+          <div class="dm-hero-label">Safe to Spend</div>
+          <div class="dm-hero-amount red">$0<span class="dm-cents">.00</span></div>
+          <div class="dm-hero-sub">12 days · 3 unpaid Critical bills</div>
+        </div>
+        <div class="dm-card">
+          <div class="dm-kv"><span>Spent</span><span class="red">−$1,210</span></div>
+          <div class="dm-kv"><span>Bill reserve</span><span class="red">−$1,490</span></div>
+          <div class="dm-kv"><span>Savings reserve</span><span class="muted">−$300</span></div>
+          <div class="dm-kv-divider"></div>
+          <div class="dm-kv"><strong>Spendable</strong><strong class="red">$0</strong></div>
+        </div>
+      </DocMock>
+      <DocMock label="After fix" caption="Mark the bills you've already paid — reserve releases, daily rate returns.">
+        <div class="dm-bar"><span class="dm-bar-title">Home</span><span class="dm-bar-action">+</span></div>
+        <div class="dm-card dm-card-good" style="text-align:center;">
+          <div class="dm-hero-label">Safe to Spend</div>
+          <div class="dm-hero-amount green">$41<span class="dm-cents">.66</span></div>
+          <div class="dm-hero-sub">12 days · all bills paid</div>
+        </div>
+        <div class="dm-card">
+          <div class="dm-row" style="background:transparent; border:none; padding:1px 0;"><span class="dm-dot critical"></span><span class="dm-row-label">Rent</span><span class="dm-pill green">Paid</span></div>
+          <div class="dm-row" style="background:transparent; border:none; padding:1px 0;"><span class="dm-dot critical"></span><span class="dm-row-label">Utilities</span><span class="dm-pill green">Paid</span></div>
+          <div class="dm-row" style="background:transparent; border:none; padding:1px 0;"><span class="dm-dot critical"></span><span class="dm-row-label">Insurance</span><span class="dm-pill green">Paid</span></div>
+        </div>
+      </DocMock>
+    </div>
 
     <div class="case">
       <div class="case-header">
@@ -117,6 +149,44 @@ const headings = [
     <!-- ─── POOL BALANCES ─────────────────────────────────────────────── -->
     <h2 id="pool-balances">Pool balance issues</h2>
 
+    <div class="doc-mocks-row">
+      <DocMock label="Pool drift" caption="Debit goes negative when starting balance was never set.">
+        <div class="dm-bar"><span class="dm-bar-title">Money Pools</span><span class="dm-bar-action">Edit</span></div>
+        <div class="dm-card dm-card-error">
+          <div class="dm-row" style="background:transparent; border:none; padding:1px 0;">
+            <span class="dm-icon debit">B</span>
+            <span class="dm-row-label">Debit<div class="dm-row-meta" style="font-size:8px;">Checking</div></span>
+            <span class="dm-row-meta" style="color:#F87171; font-weight:700;">−$847</span>
+          </div>
+          <div class="dm-help" style="color:#FCA5A5;">Starting balance was never entered.</div>
+        </div>
+        <div class="dm-card">
+          <div class="dm-h2" style="font-size:10px;">Suggested fixes</div>
+          <div class="dm-kv"><span>1. Set starting balance</span><span class="dm-pill purple">Open</span></div>
+          <div class="dm-kv"><span>2. Find duplicate transactions</span><span class="muted">2 found</span></div>
+          <div class="dm-kv"><span>3. Wrong-method audit</span><span class="muted">5 candidates</span></div>
+        </div>
+        <div class="dm-btn dm-btn-primary">Set Starting Balance</div>
+      </DocMock>
+      <DocMock label="Edit transaction" caption="Re-categorise a wrongly-classified credit card buy.">
+        <div class="dm-bar"><span class="dm-back">Cancel</span><span class="dm-bar-title">Edit</span><span class="dm-bar-action">Save</span></div>
+        <div class="dm-card dm-card-accent" style="text-align:center;">
+          <div class="dm-hero-label">Amount</div>
+          <div class="dm-hero-amount" style="font-size:22px;">$120<span class="dm-cents">.00</span></div>
+        </div>
+        <div class="dm-card">
+          <div class="dm-kv"><span>Description</span><strong>Trader Joe's</strong></div>
+          <div class="dm-kv"><span>Date</span><span class="muted">Mar 9</span></div>
+        </div>
+        <div class="dm-section-label">Payment method</div>
+        <div class="dm-list">
+          <div class="dm-row"><span class="dm-dot debit"></span><span class="dm-row-label">Debit</span><span class="dm-row-meta" style="text-decoration:line-through; opacity:0.5;">Was</span></div>
+          <div class="dm-row" style="background:rgba(139,92,246,0.12); border-color:rgba(167,139,250,0.4);"><span class="dm-dot credit"></span><span class="dm-row-label">Credit</span><span class="dm-pill purple">Now</span></div>
+        </div>
+        <div class="dm-help">Both pools recalculate the moment you tap Save.</div>
+      </DocMock>
+    </div>
+
     <div class="case">
       <div class="case-header">
         <span class="case-label">Case</span>
@@ -170,6 +240,20 @@ const headings = [
     <!-- ─── BILLS ──────────────────────────────────────────────────────── -->
     <h2 id="bills">Bill and payment tracking</h2>
 
+    <div class="doc-mocks-row">
+      <DocMock label="Bills tab" caption="Each period regenerates the schedule. Tap the check to mark paid.">
+        <div class="dm-bar"><span class="dm-bar-title">Bills</span><span class="dm-bar-action">+</span></div>
+        <div class="dm-section-label">This period</div>
+        <div class="dm-list">
+          <div class="dm-row"><span class="dm-icon bills">R</span><span class="dm-row-label">Rent<div class="dm-row-meta" style="font-size:8px;">Due Mar 1 · Critical</div></span><span class="dm-pill green">Paid</span></div>
+          <div class="dm-row"><span class="dm-icon bills">U</span><span class="dm-row-label">Utilities<div class="dm-row-meta" style="font-size:8px;">Due Mar 8 · Critical</div></span><span class="dm-pill red">Unpaid</span></div>
+          <div class="dm-row"><span class="dm-icon bills">I</span><span class="dm-row-label">Insurance<div class="dm-row-meta" style="font-size:8px;">Due Mar 15 · Critical</div></span><span class="dm-pill yellow">Soon</span></div>
+          <div class="dm-row"><span class="dm-icon star">N</span><span class="dm-row-label">Netflix<div class="dm-row-meta" style="font-size:8px;">Due Mar 18 · Discretionary</div></span><span class="dm-pill muted">Subs</span></div>
+        </div>
+        <div class="dm-btn dm-btn-primary">Mark Utilities Paid</div>
+      </DocMock>
+    </div>
+
     <div class="case">
       <div class="case-header">
         <span class="case-label">Case</span>
@@ -205,6 +289,23 @@ const headings = [
 
     <!-- ─── PREMIUM AND BILLING ───────────────────────────────────────── -->
     <h2 id="premium-billing">Premium and billing</h2>
+
+    <div class="doc-mocks-row">
+      <DocMock label="Locked feature" caption="Locked Premium views show a Restore Purchases shortcut.">
+        <div class="dm-bar"><span class="dm-back">Insights</span><span class="dm-bar-title">Trends</span><span></span></div>
+        <div class="dm-card dm-card-warn" style="text-align:center;">
+          <span class="dm-icon lock" style="width:30px; height:30px; margin:0 auto;"><span class="dm-glyph-lock"></span></span>
+          <div class="dm-h2" style="margin-top:6px;">Premium feature</div>
+          <div class="dm-help" style="text-align:center; color:#FDBA74;">Trends, drill-down, and PDF require a Premium subscription.</div>
+        </div>
+        <div class="dm-card">
+          <div class="dm-kv"><span>Status</span><span class="dm-pill orange">Inactive</span></div>
+          <div class="dm-kv"><span>Last receipt</span><span class="muted">3 minutes ago</span></div>
+        </div>
+        <div class="dm-btn dm-btn-secondary">Restore Purchases</div>
+        <div class="dm-btn dm-btn-primary">View Plans</div>
+      </DocMock>
+    </div>
 
     <div class="case">
       <div class="case-header">
@@ -259,6 +360,24 @@ const headings = [
 
     <!-- ─── BACKUP AND RESTORE ────────────────────────────────────────── -->
     <h2 id="backup-restore">Backup and restore</h2>
+
+    <div class="doc-mocks-row">
+      <DocMock label="No backup found" caption="If no cloud backup existed before app deletion, the data is gone.">
+        <div class="dm-bar"><span class="dm-back">Account</span><span class="dm-bar-title">Backups</span><span></span></div>
+        <div class="dm-card dm-card-error" style="text-align:center;">
+          <span class="dm-icon danger" style="width:30px; height:30px; margin:0 auto;">!</span>
+          <div class="dm-h2" style="margin-top:6px;">No backups yet</div>
+          <div class="dm-help" style="text-align:center; color:#FCA5A5;">This account has no cloud backups. Local data is gone after uninstall.</div>
+        </div>
+        <div class="dm-card">
+          <div class="dm-kv"><span>Account signed in</span><span class="green">Yes</span></div>
+          <div class="dm-kv"><span>iCloud Keychain</span><span class="green">Synced</span></div>
+          <div class="dm-kv"><span>Cloud backups</span><strong class="red">0</strong></div>
+        </div>
+        <div class="dm-btn dm-btn-primary">Start Fresh Setup</div>
+        <div class="dm-help" style="text-align:center;">Create a backup right after onboarding.</div>
+      </DocMock>
+    </div>
 
     <div class="case">
       <div class="case-header">
@@ -315,6 +434,23 @@ const headings = [
     <!-- ─── NOTIFICATIONS ─────────────────────────────────────────────── -->
     <h2 id="notifications">Notifications</h2>
 
+    <div class="doc-mocks-row">
+      <DocMock label="Reschedule on save" caption="Tapping Save in Reminders cancels old notifications and books fresh ones.">
+        <div class="dm-bar"><span class="dm-back">Settings</span><span class="dm-bar-title">Reminders</span><span class="dm-bar-action">Save</span></div>
+        <div class="dm-card dm-card-good">
+          <div class="dm-kv"><strong>Just rescheduled</strong><span class="dm-pill green">42 alerts</span></div>
+          <div class="dm-help" style="color:#A7F3D0;">7 bills × 4 day-offsets, plus 14 subscription pings.</div>
+        </div>
+        <div class="dm-section-label">Days enabled</div>
+        <div class="dm-list">
+          <div class="dm-row"><span class="dm-row-label">Same day</span><span class="dm-toggle on"></span></div>
+          <div class="dm-row"><span class="dm-row-label">3 days before</span><span class="dm-toggle on"></span></div>
+          <div class="dm-row"><span class="dm-row-label">7 days before</span><span class="dm-toggle on purple"></span></div>
+        </div>
+        <div class="dm-help">Local notifications · iOS scheduled, no server.</div>
+      </DocMock>
+    </div>
+
     <div class="case">
       <div class="case-header">
         <span class="case-label">Case</span>
@@ -349,6 +485,45 @@ const headings = [
 
     <!-- ─── BUDGET SETUP CHANGES ──────────────────────────────────────── -->
     <h2 id="budget-setup">Budget setup changes</h2>
+
+    <div class="doc-mocks-row">
+      <DocMock label="Budget Setup" caption="Update pay frequency or income — changes apply to the next period.">
+        <div class="dm-bar"><span class="dm-back">Settings</span><span class="dm-bar-title">Budget Setup</span><span class="dm-bar-action">Save</span></div>
+        <div class="dm-card">
+          <div class="dm-h2">Pay frequency</div>
+          <div class="dm-seg">
+            <div class="dm-seg-item">Weekly</div>
+            <div class="dm-seg-item">Bi-weekly</div>
+            <div class="dm-seg-item active">Monthly</div>
+          </div>
+        </div>
+        <div class="dm-card dm-card-accent" style="text-align:center;">
+          <div class="dm-hero-label">Income per period</div>
+          <div class="dm-hero-amount" style="font-size:22px;">$5,200<span class="dm-cents">.00</span></div>
+          <div class="dm-hero-sub">Net take-home</div>
+        </div>
+        <div class="dm-card dm-card-warn">
+          <div class="dm-kv"><strong>Apply on</strong><span class="dm-pill orange">Next period</span></div>
+          <div class="dm-help" style="color:#FDBA74;">Current period continues with the old settings. End early to apply now.</div>
+        </div>
+      </DocMock>
+      <DocMock label="Recalibrated buckets" caption="High-cost-of-living split: 65% Needs, 20% Wants, 15% Savings.">
+        <div class="dm-bar"><span class="dm-back">Setup</span><span class="dm-bar-title">Buckets</span><span class="dm-bar-action">Save</span></div>
+        <div class="dm-card">
+          <div class="dm-kv"><strong>Needs</strong><span class="green">65%</span></div>
+          <div class="dm-slider"><div class="dm-slider-track" style="--p:65%"></div><div class="dm-slider-thumb" style="--p:65%"></div></div>
+        </div>
+        <div class="dm-card">
+          <div class="dm-kv"><strong>Wants</strong><span class="yellow">20%</span></div>
+          <div class="dm-slider"><div class="dm-slider-track" style="--p:20%"></div><div class="dm-slider-thumb" style="--p:20%"></div></div>
+        </div>
+        <div class="dm-card">
+          <div class="dm-kv"><strong>Savings</strong><span style="color:#A78BFA;">15%</span></div>
+          <div class="dm-slider"><div class="dm-slider-track" style="--p:15%"></div><div class="dm-slider-thumb" style="--p:15%"></div></div>
+        </div>
+        <div class="dm-row"><span class="dm-row-label">Roll over surplus</span><span class="dm-toggle on purple"></span></div>
+      </DocMock>
+    </div>
 
     <div class="case">
       <div class="case-header">

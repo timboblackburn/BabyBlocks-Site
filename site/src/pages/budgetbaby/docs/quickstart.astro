@@ -1,5 +1,6 @@
 ---
 import DocsLayout from '../../../layouts/DocsLayout.astro';
+import DocMock from '../../../components/DocMock.astro';
 
 const headings = [
   { id: 'before-you-open',      text: 'Before you open the app' },
@@ -54,6 +55,24 @@ const headings = [
     <p>You do not need your full list of expenses. You can add bills, categories, and subscriptions
     at any time. Starting with accurate income and your checking balance is what matters most.</p>
 
+    <div class="doc-mocks-row">
+      <DocMock label="Welcome" caption="The first launch greets you with a single primary action — start onboarding.">
+        <div class="dm-bar"><span></span><span class="dm-bar-action">Skip</span></div>
+        <div style="text-align:center; padding:18px 4px 8px;">
+          <div style="width:54px; height:54px; margin:0 auto 10px; border-radius:14px; background:linear-gradient(135deg, #8B5CF6, #6D28D9); display:flex; align-items:center; justify-content:center; font-size:26px; font-weight:800; color:white; box-shadow:0 8px 18px -4px rgba(139,92,246,0.5);">B</div>
+          <div class="dm-title" style="font-size:14px;">Welcome to BudgetBaby</div>
+          <div class="dm-help" style="margin-top:4px;">Set up your budget in about 5 minutes. Your data stays on this device.</div>
+        </div>
+        <div class="dm-card" style="margin-top:6px;">
+          <div class="dm-kv"><span>1. Pay frequency</span><span class="muted">~30s</span></div>
+          <div class="dm-kv"><span>2. Income</span><span class="muted">~30s</span></div>
+          <div class="dm-kv"><span>3. Bucket allocation</span><span class="muted">~1m</span></div>
+          <div class="dm-kv"><span>4. Default categories</span><span class="muted">~1m</span></div>
+        </div>
+        <div class="dm-btn dm-btn-primary" style="margin-top:6px;">Get Started</div>
+      </DocMock>
+    </div>
+
     <h2 id="onboarding">First launch and setup</h2>
     <p>
       The first time you open BudgetBaby, an 8-step guided setup walks you through everything
@@ -106,6 +125,46 @@ const headings = [
       <strong>You can change any of this later.</strong> Settings → Budget Setup lets you edit your income, frequency, allocations, and bucket names at any time. Your existing budget history is preserved when you change settings. The new settings take effect for the current and future periods.
     </div>
 
+    <div class="doc-mocks-row">
+      <DocMock label="Step 3 — Income" caption="Enter the take-home pay that lands in your account each pay period.">
+        <div class="dm-bar"><span class="dm-back">Back</span><span class="dm-bar-title">Step 3 of 8</span><span class="dm-bar-action">Next</span></div>
+        <div class="dm-bar-track" style="height:3px; margin-bottom:6px;">
+          <div class="dm-bar-fill" style="width:38%"></div>
+        </div>
+        <div class="dm-section-label">Income per period</div>
+        <div class="dm-card">
+          <div class="dm-hero-label">Take-home pay</div>
+          <div class="dm-hero-amount">$2,400<span class="dm-cents">.00</span></div>
+          <div class="dm-hero-sub">After taxes and deductions</div>
+        </div>
+        <div class="dm-help">This is the most important number in BudgetBaby. Use the amount that actually hits your bank.</div>
+        <div style="display:flex; gap:4px; flex-wrap:wrap;">
+          <span class="dm-pill purple">Bi-weekly</span>
+          <span class="dm-pill muted">14-day periods</span>
+        </div>
+        <div class="dm-btn dm-btn-primary" style="margin-top:auto;">Continue</div>
+      </DocMock>
+      <DocMock label="Step 4 — Buckets" caption="Split your income across Needs, Wants, and Savings — sliders always sum to 100%.">
+        <div class="dm-bar"><span class="dm-back">Back</span><span class="dm-bar-title">Step 4 of 8</span><span class="dm-bar-action">Next</span></div>
+        <div class="dm-bar-track" style="height:3px; margin-bottom:6px;">
+          <div class="dm-bar-fill" style="width:50%"></div>
+        </div>
+        <div class="dm-card">
+          <div class="dm-kv"><strong>Needs</strong><span class="green">50%</span></div>
+          <div class="dm-slider"><div class="dm-slider-track" style="--p:50%"></div><div class="dm-slider-thumb" style="--p:50%"></div></div>
+          <div class="dm-kv muted"><span>$1,200 of $2,400</span><span></span></div>
+        </div>
+        <div class="dm-card">
+          <div class="dm-kv"><strong>Wants</strong><span class="yellow">30%</span></div>
+          <div class="dm-slider"><div class="dm-slider-track" style="--p:30%"></div><div class="dm-slider-thumb" style="--p:30%"></div></div>
+        </div>
+        <div class="dm-card">
+          <div class="dm-kv"><strong>Savings</strong><span style="color:#A78BFA">20%</span></div>
+          <div class="dm-slider"><div class="dm-slider-track" style="--p:20%"></div><div class="dm-slider-thumb" style="--p:20%"></div></div>
+        </div>
+      </DocMock>
+    </div>
+
     <h2 id="starting-balances">Setting starting balances</h2>
     <p>
       After onboarding, your Money Pool balances are all at zero. The app cannot know what is
@@ -129,6 +188,34 @@ const headings = [
       <strong>Why does starting balance matter?</strong> Safe to Spend is calculated from your budget allocation, not your bank balance. But the Debit pool balance is a running total of what you have in your account based on what you tell BudgetBaby. If it starts at zero, the pool goes negative as you log transactions, which is confusing. Set it once and it carries forward automatically each period.
     </div>
 
+    <div class="doc-mocks-row">
+      <DocMock label="Settings — Payment Methods" caption="Tap each method to set what you actually have in that account today.">
+        <div class="dm-bar"><span class="dm-back">Settings</span><span class="dm-bar-title">Payment Methods</span><span></span></div>
+        <div class="dm-section-label">Pools</div>
+        <div class="dm-list">
+          <div class="dm-row"><span class="dm-icon cash">$</span><span class="dm-row-label">Cash</span><span class="dm-row-meta">$60</span><span class="dm-row-chevron"></span></div>
+          <div class="dm-row"><span class="dm-icon debit">B</span><span class="dm-row-label">Debit<div class="dm-row-meta" style="font-size:8px;">Checking account</div></span><span class="dm-row-meta" style="color:#34D399; font-weight:600;">$1,847</span><span class="dm-row-chevron"></span></div>
+          <div class="dm-row"><span class="dm-icon credit">C</span><span class="dm-row-label">Credit</span><span class="dm-row-meta">$0</span><span class="dm-row-chevron"></span></div>
+          <div class="dm-row"><span class="dm-icon savings">S</span><span class="dm-row-label">Savings</span><span class="dm-row-meta">$3,200</span><span class="dm-row-chevron"></span></div>
+        </div>
+        <div class="dm-help">Starting balances carry forward each period.</div>
+      </DocMock>
+      <DocMock label="Edit Debit balance" caption="Enter the actual checking balance shown in your banking app.">
+        <div class="dm-bar"><span class="dm-back">Cancel</span><span class="dm-bar-title">Debit</span><span class="dm-bar-action">Save</span></div>
+        <div class="dm-card dm-card-accent">
+          <div class="dm-hero-label">Current balance</div>
+          <div class="dm-hero-amount green">$1,847<span class="dm-cents">.32</span></div>
+        </div>
+        <div class="dm-section-label">Pool details</div>
+        <div class="dm-card">
+          <div class="dm-kv"><span>Type</span><strong>Checking</strong></div>
+          <div class="dm-kv"><span>Carries forward</span><span class="green">Yes</span></div>
+          <div class="dm-kv"><span>Last updated</span><span class="muted">Today</span></div>
+        </div>
+        <div class="dm-help">A rough estimate is fine for day one — you can adjust later.</div>
+      </DocMock>
+    </div>
+
     <h2 id="logging-a-transaction">Logging a transaction</h2>
     <p>
       Every purchase you log reduces your Safe to Spend number in real time. The faster you
@@ -149,6 +236,37 @@ const headings = [
     </div>
     <div class="doc-tip">
       <strong>How credit purchases affect balances.</strong> When you log a Credit transaction, your Debit balance does not change immediately. The real transfer from your bank happens when you pay the credit card bill. At that point, log a transfer from Debit to Credit in BudgetBaby to keep both pool balances accurate.
+    </div>
+
+    <div class="doc-mocks-row">
+      <DocMock label="Add Transaction" caption="Tap + on the Home screen to open the Add Transaction sheet.">
+        <div class="dm-sheet-handle"></div>
+        <div class="dm-bar"><span class="dm-bar-action">Cancel</span><span class="dm-bar-title">New Transaction</span><span class="dm-bar-action">Save</span></div>
+        <div class="dm-card dm-card-accent" style="text-align:center;">
+          <div class="dm-hero-label">Amount</div>
+          <div class="dm-hero-amount">$42<span class="dm-cents">.18</span></div>
+        </div>
+        <div class="dm-card">
+          <div class="dm-kv"><span>Description</span><strong>Trader Joe's</strong></div>
+          <div class="dm-kv"><span>Category</span><span><span class="dm-dot important"></span> Groceries</span></div>
+          <div class="dm-kv"><span>Method</span><strong>Debit</strong></div>
+          <div class="dm-kv"><span>Date</span><span class="muted">Today, 6:14 PM</span></div>
+        </div>
+        <div class="dm-help">Safe to Spend updates the moment you save.</div>
+      </DocMock>
+      <DocMock label="Home — after save" caption="Safe to Spend recalculates instantly across the days remaining.">
+        <div class="dm-bar"><span class="dm-bar-title" style="font-size:11px;">Home</span><span class="dm-bar-action">+</span></div>
+        <div class="dm-card dm-card-accent" style="align-items:center; text-align:center;">
+          <div class="dm-hero-label">Safe to Spend Today</div>
+          <div class="dm-hero-amount green">$56<span class="dm-cents">.40</span></div>
+          <div class="dm-hero-sub">14 days remaining in this period</div>
+        </div>
+        <div class="dm-section-label">Recent</div>
+        <div class="dm-list">
+          <div class="dm-row"><span class="dm-dot important"></span><span class="dm-row-label">Trader Joe's<div class="dm-row-meta" style="font-size:8px;">Groceries · Debit</div></span><span class="dm-row-meta" style="color:#F87171;">−$42.18</span></div>
+          <div class="dm-row"><span class="dm-dot discretionary"></span><span class="dm-row-label">Coffee<div class="dm-row-meta" style="font-size:8px;">Dining · Cash</div></span><span class="dm-row-meta" style="color:#F87171;">−$4.85</span></div>
+        </div>
+      </DocMock>
     </div>
 
     <h2 id="budget-periods">Budget periods</h2>
@@ -182,6 +300,39 @@ const headings = [
       </li>
     </ul>
 
+    <div class="doc-mocks-row">
+      <DocMock label="Period header" caption="Each period has a date range, a budget, and a live status pill.">
+        <div class="dm-bar"><span class="dm-bar-title">This Period</span><span class="dm-bar-action">History</span></div>
+        <div class="dm-card dm-card-accent">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span class="dm-hero-label">Mar 15 – Mar 28</span>
+            <span class="dm-pill green">Active</span>
+          </div>
+          <div class="dm-hero-amount" style="font-size:22px;">Day 6 of 14</div>
+          <div class="dm-bar-track" style="margin-top:4px;">
+            <div class="dm-bar-fill" style="width:43%"></div>
+          </div>
+        </div>
+        <div class="dm-card">
+          <div class="dm-kv"><span>Period budget</span><strong>$2,400</strong></div>
+          <div class="dm-kv"><span>Spent so far</span><span class="red">−$612</span></div>
+          <div class="dm-kv"><span>Bills reserved</span><span class="muted">−$900</span></div>
+          <div class="dm-kv-divider"></div>
+          <div class="dm-kv"><strong>Remaining spendable</strong><strong class="green">$888</strong></div>
+        </div>
+      </DocMock>
+      <DocMock label="History" caption="Closed periods become read-only — but every transaction stays accessible.">
+        <div class="dm-bar"><span class="dm-back">Back</span><span class="dm-bar-title">History</span><span></span></div>
+        <div class="dm-list">
+          <div class="dm-row"><span class="dm-icon calendar">M</span><span class="dm-row-label">Feb 29 – Mar 14<div class="dm-row-meta" style="font-size:8px;">$2,180 spent · 92%</div></span><span class="dm-pill muted">Closed</span></div>
+          <div class="dm-row"><span class="dm-icon calendar">F</span><span class="dm-row-label">Feb 15 – Feb 28<div class="dm-row-meta" style="font-size:8px;">$1,940 spent · 80%</div></span><span class="dm-pill muted">Closed</span></div>
+          <div class="dm-row"><span class="dm-icon calendar">F</span><span class="dm-row-label">Feb 1 – Feb 14<div class="dm-row-meta" style="font-size:8px;">$2,310 spent · 96%</div></span><span class="dm-pill muted">Closed</span></div>
+          <div class="dm-row"><span class="dm-icon calendar">J</span><span class="dm-row-label">Jan 18 – Jan 31<div class="dm-row-meta" style="font-size:8px;">$2,055 spent · 85%</div></span><span class="dm-pill muted">Closed</span></div>
+        </div>
+        <div class="dm-help">Tap any period to inspect transactions, pools, and the daily Safe to Spend curve.</div>
+      </DocMock>
+    </div>
+
     <h2 id="first-week">Your first week</h2>
     <p>
       The first week with BudgetBaby is when you build the habits that determine whether the app
@@ -202,6 +353,26 @@ const headings = [
       <li>Tap the info button next to Safe to Spend to see the full breakdown. Seeing the Bill Reserve and Savings Reserve helps you understand why the number is what it is, not just what it is.</li>
       <li>Mark bills as paid when you pay them. This releases the Bill Reserve immediately and lets Safe to Spend go up to reflect the freed capacity.</li>
     </ul>
+
+    <div class="doc-mocks-row">
+      <DocMock label="Bill Reserve sheet" caption="Tap (i) on Safe to Spend to see exactly what's reserved and why.">
+        <div class="dm-sheet-handle"></div>
+        <div class="dm-bar"><span></span><span class="dm-bar-title">Safe to Spend Breakdown</span><span class="dm-bar-action">Done</span></div>
+        <div class="dm-card">
+          <div class="dm-kv"><span>Period budget</span><strong>$2,400</strong></div>
+          <div class="dm-kv"><span>Spent</span><span class="red">−$612</span></div>
+          <div class="dm-kv"><span>Bill reserve</span><span class="muted">−$900</span></div>
+          <div class="dm-kv"><span>Savings reserve (20%)</span><span class="muted">−$480</span></div>
+          <div class="dm-kv-divider"></div>
+          <div class="dm-kv"><strong>Spendable</strong><strong class="green">$408</strong></div>
+          <div class="dm-kv"><span>Days remaining</span><strong>9</strong></div>
+        </div>
+        <div class="dm-card dm-card-accent" style="text-align:center;">
+          <div class="dm-hero-label">Daily allowance</div>
+          <div class="dm-hero-amount green" style="font-size:22px;">$45<span class="dm-cents">.33</span></div>
+        </div>
+      </DocMock>
+    </div>
 
     <h3>Days 6 and 7: Review and adjust</h3>
     <ul>

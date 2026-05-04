@@ -1,6 +1,7 @@
 ---
 import DocsLayout from '../../../layouts/DocsLayout.astro';
 import Icon from '../../../components/Icon.astro';
+import DocMock from '../../../components/DocMock.astro';
 ---
 
 <DocsLayout
@@ -14,6 +15,52 @@ import Icon from '../../../components/Icon.astro';
       Everything you need to get the most out of BudgetBaby. Use the sidebar to navigate directly
       to any topic, or browse the full catalog below.
     </p>
+
+    <div class="doc-mocks-row">
+      <DocMock label="Home" caption="Safe to Spend lives here — the single number that drives every decision.">
+        <div class="dm-bar"><span class="dm-bar-title" style="font-size:11px;">Today</span><span class="dm-bar-action">+</span></div>
+        <div class="dm-card dm-card-accent" style="text-align:center;">
+          <div class="dm-hero-label">Safe to Spend</div>
+          <div class="dm-hero-amount green">$54<span class="dm-cents">.76</span></div>
+          <div class="dm-hero-sub">21 days remaining</div>
+        </div>
+        <div class="dm-card">
+          <div class="dm-kv"><span>Period</span><strong>Mar 1 – Mar 31</strong></div>
+          <div class="dm-kv"><span>Spent</span><span class="red">−$612</span></div>
+          <div class="dm-kv"><span>Bills reserved</span><span class="muted">−$900</span></div>
+        </div>
+        <div class="dm-section-label">Recent</div>
+        <div class="dm-list">
+          <div class="dm-row"><span class="dm-dot important"></span><span class="dm-row-label">Trader Joe's</span><span class="dm-row-meta">−$42</span></div>
+          <div class="dm-row"><span class="dm-dot discretionary"></span><span class="dm-row-label">Spotify</span><span class="dm-row-meta">−$16</span></div>
+        </div>
+      </DocMock>
+      <DocMock label="Bills + reminders" caption="Bills, subscriptions, and reminders all live one tab away.">
+        <div class="dm-bar"><span class="dm-bar-title">Bills</span><span class="dm-bar-action">+</span></div>
+        <div class="dm-section-label">Due soon</div>
+        <div class="dm-list">
+          <div class="dm-row"><span class="dm-icon bills">R</span><span class="dm-row-label">Rent<div class="dm-row-meta" style="font-size:8px;">Mar 1 · Critical</div></span><span class="dm-pill red">$1,200</span></div>
+          <div class="dm-row"><span class="dm-icon bills">U</span><span class="dm-row-label">Utilities<div class="dm-row-meta" style="font-size:8px;">Mar 8</div></span><span class="dm-pill yellow">$185</span></div>
+          <div class="dm-row"><span class="dm-icon star">N</span><span class="dm-row-label">Netflix<div class="dm-row-meta" style="font-size:8px;">Mar 18</div></span><span class="dm-pill muted">$15</span></div>
+        </div>
+        <div class="dm-card dm-card-accent">
+          <div class="dm-kv"><strong>Reminder rule</strong><span class="dm-pill purple">3-day</span></div>
+          <div class="dm-help">Pings at 9:00 AM, on-device.</div>
+        </div>
+      </DocMock>
+      <DocMock label="Backup + privacy" caption="Encrypted cloud backups, biometric lock, full data export.">
+        <div class="dm-bar"><span class="dm-bar-title">Backup</span><span class="dm-bar-action">⋯</span></div>
+        <div class="dm-card dm-card-good" style="text-align:center;">
+          <span class="dm-icon shield" style="width:24px; height:24px; margin:0 auto;">L</span>
+          <div class="dm-h2" style="margin-top:4px;">2 of 5 slots</div>
+        </div>
+        <div class="dm-list">
+          <div class="dm-row"><span class="dm-icon upload">B</span><span class="dm-row-label">Mar 14, 9:02 PM<div class="dm-row-meta" style="font-size:8px;">2.4 MB · AES-256</div></span><span class="dm-row-chevron"></span></div>
+          <div class="dm-row"><span class="dm-icon upload">B</span><span class="dm-row-label">Feb 28, 10:14 AM<div class="dm-row-meta" style="font-size:8px;">2.1 MB</div></span><span class="dm-row-chevron"></span></div>
+        </div>
+        <div class="dm-btn dm-btn-primary">Create Backup</div>
+      </DocMock>
+    </div>
 
     <!-- Most common tasks -->
     <div class="docs-quick-tasks">

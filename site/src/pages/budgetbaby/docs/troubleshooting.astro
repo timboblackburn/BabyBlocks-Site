@@ -1,5 +1,6 @@
 ---
 import DocsLayout from '../../../layouts/DocsLayout.astro';
+import DocMock from '../../../components/DocMock.astro';
 
 const headings = [
   { id: 'quick-fixes',         text: 'Quick fixes to try first' },
@@ -27,6 +28,18 @@ const headings = [
       then use the symptom table to find your specific issue. If nothing here helps,
       generate a support report and send it to the support team.
     </p>
+
+    <div class="doc-mocks-row">
+      <DocMock label="Quick checks" caption="Force-quit, update, check iOS — this resolves most reported issues.">
+        <div class="dm-bar"><span></span><span class="dm-bar-title">Quick fixes</span><span></span></div>
+        <div class="dm-list">
+          <div class="dm-row"><span class="dm-icon support">1</span><span class="dm-row-label">Force-quit & reopen<div class="dm-row-meta" style="font-size:8px;">Swipe up · swipe app away</div></span></div>
+          <div class="dm-row"><span class="dm-icon support">2</span><span class="dm-row-label">iOS 17.0 or later<div class="dm-row-meta" style="font-size:8px;">Settings → General → About</div></span></div>
+          <div class="dm-row"><span class="dm-icon support">3</span><span class="dm-row-label">Update from App Store<div class="dm-row-meta" style="font-size:8px;">Profile → pull to refresh</div></span></div>
+          <div class="dm-row"><span class="dm-icon support">4</span><span class="dm-row-label">Working internet<div class="dm-row-meta" style="font-size:8px;">For backup, sync, restore</div></span></div>
+        </div>
+      </DocMock>
+    </div>
 
     <h2 id="quick-fixes">Quick fixes to try first</h2>
     <p>Before diving into specific issues, run through these four checks. They resolve the majority of reported problems.</p>
@@ -102,6 +115,43 @@ const headings = [
     </div>
 
     <h2 id="diagnostics">Generating a support report</h2>
+
+    <div class="doc-mocks-row">
+      <DocMock label="Support & Diagnostics" caption="Three ways to capture state — guided flow recommended for bugs.">
+        <div class="dm-bar"><span class="dm-back">Settings</span><span class="dm-bar-title">Support</span><span></span></div>
+        <div class="dm-card dm-card-accent">
+          <div class="dm-h2">Report a Problem</div>
+          <div class="dm-help">5-step guided flow. Choose an area, pick a time, attach the bundle.</div>
+          <div class="dm-btn dm-btn-primary" style="margin-top:4px;">Start Report</div>
+        </div>
+        <div class="dm-card">
+          <div class="dm-h2">Export Diagnostics</div>
+          <div class="dm-help">One-tap snapshot of current app state.</div>
+          <div class="dm-btn dm-btn-secondary" style="margin-top:4px;">Export</div>
+        </div>
+        <div class="dm-card">
+          <div class="dm-h2">Copy Support Report</div>
+          <div class="dm-help">Plain-text summary to your clipboard.</div>
+        </div>
+      </DocMock>
+      <DocMock label="Bundle preview" caption="Anonymous events, device snapshot, counts only — never financial data.">
+        <div class="dm-bar"><span class="dm-back">Support</span><span class="dm-bar-title">BB-9F3K-2A17</span><span class="dm-bar-action">Share</span></div>
+        <div class="dm-card dm-card-good" style="text-align:center;">
+          <div class="dm-hero-label">Issue fingerprint</div>
+          <div class="dm-hero-amount" style="font-size:18px; color:#A78BFA;">BB-9F3K-2A17</div>
+          <div class="dm-hero-sub">Generated Mar 01, 14:35</div>
+        </div>
+        <div class="dm-card">
+          <div class="dm-kv"><span>Events log</span><strong>1,842</strong></div>
+          <div class="dm-kv"><span>Device</span><strong>iPhone 15 Pro</strong></div>
+          <div class="dm-kv"><span>iOS</span><strong>17.4.1</strong></div>
+          <div class="dm-kv"><span>App build</span><strong>2.1.3 (412)</strong></div>
+          <div class="dm-kv"><span>Tx count</span><strong>1,283</strong></div>
+          <div class="dm-kv"><span>Amounts/desc.</span><strong class="green">Excluded</strong></div>
+        </div>
+        <div class="dm-help">Bundle: BudgetBaby_Diagnostics_…BB-9F3K-2A17.budgetbaby-diagnostics</div>
+      </DocMock>
+    </div>
     <p>
       BudgetBaby has a built-in diagnostics engine that packages everything the support team needs
       to understand what is happening on your device, without ever including your financial data.
@@ -152,6 +202,23 @@ const headings = [
     <div class="doc-formula">BudgetBaby_Diagnostics_2026-03-01_14-35_BB-9F3K-2A17.budgetbaby-diagnostics</div>
 
     <h2 id="safe-to-spend-wrong">Safe to Spend looks wrong</h2>
+
+    <div class="doc-mocks-row">
+      <DocMock label="Audit checklist" caption="Walk these checks before assuming the math is wrong.">
+        <div class="dm-bar"><span></span><span class="dm-bar-title">STS audit</span><span></span></div>
+        <div class="dm-list">
+          <div class="dm-row"><span class="dm-row-label">Tap (i) for live breakdown</span><span style="color:#34D399; font-size:14px;">→</span></div>
+          <div class="dm-row"><span class="dm-row-label">Period start/end correct</span><span style="color:#34D399; font-size:14px;">✓</span></div>
+          <div class="dm-row"><span class="dm-row-label">Critical bills marked paid</span><span style="color:#FBBF24; font-size:14px;">!</span></div>
+          <div class="dm-row"><span class="dm-row-label">Savings allocation</span><span style="color:#34D399; font-size:14px;">✓</span></div>
+          <div class="dm-row"><span class="dm-row-label">Income is take-home</span><span style="color:#34D399; font-size:14px;">✓</span></div>
+        </div>
+        <div class="dm-card dm-card-warn">
+          <div class="dm-kv"><strong>Likely cause</strong><span class="dm-pill orange">Bill reserve</span></div>
+          <div class="dm-help" style="color:#FDBA74;">$420 reserved across two unpaid Critical bills.</div>
+        </div>
+      </DocMock>
+    </div>
     <ol>
       <li>Tap the info button next to Safe to Spend on the home screen to see the full calculation breakdown with your actual numbers.</li>
       <li>Verify your active budget period dates are correct in Settings → Budget Setup.</li>
@@ -165,6 +232,25 @@ const headings = [
     </p>
 
     <h2 id="premium-not-unlocking">Premium not unlocking after purchase</h2>
+
+    <div class="doc-mocks-row">
+      <DocMock label="Restore in flight" caption="Restore Purchases re-pulls the receipt from Apple — never charges again.">
+        <div class="dm-bar"><span class="dm-back">Settings</span><span class="dm-bar-title">Premium</span><span></span></div>
+        <div class="dm-card dm-card-accent" style="text-align:center;">
+          <div class="dm-ring-wrap" style="margin:8px auto;">
+            <div class="dm-ring" style="--p:80%; width:42px; height:42px;"></div>
+            <span class="dm-ring-inner" style="font-size:7px;">Verifying</span>
+          </div>
+          <div class="dm-help" style="text-align:center;">Contacting Apple…</div>
+        </div>
+        <div class="dm-card">
+          <div class="dm-kv"><span>Last known status</span><strong>Inactive</strong></div>
+          <div class="dm-kv"><span>App Store ID</span><strong>insightintriguing@…</strong></div>
+          <div class="dm-kv"><span>Wait time</span><strong class="muted">~10 sec</strong></div>
+        </div>
+        <div class="dm-help">If "Nothing to restore" appears, confirm the right Apple ID is signed in.</div>
+      </DocMock>
+    </div>
     <ol>
       <li>Go to Settings → Premium → Restore Purchases.</li>
       <li>Wait 30 seconds after tapping Restore, then check again.</li>
@@ -174,6 +260,26 @@ const headings = [
     </ol>
 
     <h2 id="date-issues">Transaction date issues</h2>
+
+    <div class="doc-mocks-row">
+      <DocMock label="Re-save to repair" caption="Open and Save any affected transaction to apply timezone normalization.">
+        <div class="dm-bar"><span class="dm-back">Cancel</span><span class="dm-bar-title">Edit Transaction</span><span class="dm-bar-action">Save</span></div>
+        <div class="dm-card dm-card-warn">
+          <div class="dm-kv"><strong>Pre-2.0.5 record</strong><span class="dm-pill orange">!</span></div>
+          <div class="dm-help" style="color:#FDBA74;">Date may be off by one day. Save once to normalize to noon UTC.</div>
+        </div>
+        <div class="dm-card">
+          <div class="dm-kv"><span>Description</span><strong>Trader Joe's</strong></div>
+          <div class="dm-kv"><span>Amount</span><strong>$42.18</strong></div>
+          <div class="dm-kv"><span>Date</span><strong>Mar 02 · 12:00 UTC</strong></div>
+        </div>
+        <div class="dm-card">
+          <div class="dm-h2" style="font-size:10px;">After save</div>
+          <div class="dm-kv"><span>Was</span><span class="red">Mar 01</span></div>
+          <div class="dm-kv"><span>Now</span><span class="green">Mar 02</span></div>
+        </div>
+      </DocMock>
+    </div>
     <p>
       BudgetBaby normalizes all transaction dates to noon UTC to prevent timezone-related date shifts
       across time zones. If you see dates that are off by one day:
@@ -184,6 +290,23 @@ const headings = [
     </ul>
 
     <h2 id="backup-fails">Backup fails</h2>
+
+    <div class="doc-mocks-row">
+      <DocMock label="Backup error" caption="Each failure surfaces a specific reason and a one-tap fix.">
+        <div class="dm-bar"><span class="dm-back">Settings</span><span class="dm-bar-title">Backup</span><span></span></div>
+        <div class="dm-card dm-card-error">
+          <div class="dm-kv"><strong>Backup failed</strong><span class="dm-pill red">Slot full</span></div>
+          <div class="dm-help" style="color:#FCA5A5;">Free tier supports 1 backup. Delete the existing one first or upgrade.</div>
+        </div>
+        <div class="dm-card">
+          <div class="dm-kv"><span>Account</span><span class="green">Signed in</span></div>
+          <div class="dm-kv"><span>Connection</span><span class="green">Wi-Fi</span></div>
+          <div class="dm-kv"><span>Slots used</span><strong class="red">1 / 1</strong></div>
+        </div>
+        <div class="dm-btn dm-btn-secondary">Delete existing backup</div>
+        <div class="dm-btn dm-btn-primary">Upgrade to 5 slots</div>
+      </DocMock>
+    </div>
     <ul>
       <li>Verify you are signed in to your BudgetBaby account at Settings → Account.</li>
       <li>Check your internet connection. Backups require an active connection during upload.</li>
@@ -192,6 +315,22 @@ const headings = [
     </ul>
 
     <h2 id="notifications">Notifications not arriving</h2>
+
+    <div class="doc-mocks-row">
+      <DocMock label="iOS permissions" caption="Confirm Allow Notifications, Banners, Sounds — and that no Focus is blocking.">
+        <div class="dm-bar"><span class="dm-back">BudgetBaby</span><span class="dm-bar-title">Notifications</span><span></span></div>
+        <div class="dm-row"><span class="dm-row-label">Allow Notifications</span><span class="dm-toggle on"></span></div>
+        <div class="dm-section-label">Alerts</div>
+        <div class="dm-list">
+          <div class="dm-row"><span class="dm-row-label">Lock Screen</span><span style="color:#34D399; font-size:14px;">✓</span></div>
+          <div class="dm-row"><span class="dm-row-label">Banners</span><span style="color:#34D399; font-size:14px;">✓</span></div>
+        </div>
+        <div class="dm-card dm-card-warn">
+          <div class="dm-kv"><strong>Sleep Focus is on</strong><span class="dm-pill orange">!</span></div>
+          <div class="dm-help" style="color:#FDBA74;">Add BudgetBaby to its allowed-apps list.</div>
+        </div>
+      </DocMock>
+    </div>
     <ul>
       <li>Open iOS Settings → BudgetBaby → Notifications. Ensure Allow Notifications is turned on.</li>
       <li>In BudgetBaby, go to Settings → Reminders. Verify the reminder days and time are configured as you expect.</li>
@@ -200,6 +339,22 @@ const headings = [
     </ul>
 
     <h2 id="app-crashes">App crashes on launch</h2>
+
+    <div class="doc-mocks-row">
+      <DocMock label="Recovery path" caption="Don't uninstall before contacting support — we may rescue local data.">
+        <div class="dm-bar"><span></span><span class="dm-bar-title">Crash recovery</span><span></span></div>
+        <div class="dm-card dm-card-error" style="text-align:center;">
+          <span class="dm-icon danger" style="width:30px; height:30px; margin:0 auto;">!</span>
+          <div class="dm-h2" style="margin-top:6px;">App keeps crashing</div>
+        </div>
+        <div class="dm-list">
+          <div class="dm-row"><span class="dm-icon support">1</span><span class="dm-row-label">Update from App Store</span></div>
+          <div class="dm-row"><span class="dm-icon support">2</span><span class="dm-row-label">Restore from cloud backup</span></div>
+          <div class="dm-row"><span class="dm-icon support">3</span><span class="dm-row-label">Email support before uninstalling<div class="dm-row-meta" style="font-size:8px;">support@babyblocks.io</div></span></div>
+          <div class="dm-row"><span class="dm-icon danger">4</span><span class="dm-row-label">Last resort: uninstall + reinstall<div class="dm-row-meta" style="font-size:8px; color:#FCA5A5;">Deletes local data</div></span></div>
+        </div>
+      </DocMock>
+    </div>
     <p>Crashes on launch are rare and usually caused by an outdated app version or a corrupted local data store.</p>
     <ol>
       <li>Update BudgetBaby to the latest version from the App Store.</li>

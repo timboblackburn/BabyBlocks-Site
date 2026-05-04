@@ -1,5 +1,6 @@
 ---
 import DocsLayout from '../../../layouts/DocsLayout.astro';
+import DocMock from '../../../components/DocMock.astro';
 
 const headings = [
   { id: 'where-data-lives',   text: 'Where your data lives' },
@@ -60,6 +61,27 @@ const headings = [
       <strong>Create a backup before doing anything that might delete your data.</strong> This includes uninstalling the app, performing a factory reset, or switching to a new iPhone. A backup takes about 5 seconds and can restore months of financial data that would otherwise be gone.
     </div>
 
+    <div class="doc-mocks-row">
+      <DocMock label="Local-first" caption="By default everything lives in BudgetBaby's private container, encrypted by iOS.">
+        <div class="dm-bar"><span class="dm-back">Settings</span><span class="dm-bar-title">Storage</span><span></span></div>
+        <div class="dm-card dm-card-good" style="text-align:center;">
+          <span class="dm-icon shield" style="width:30px; height:30px; margin:0 auto;">L</span>
+          <div class="dm-h2" style="margin-top:6px;">On this device only</div>
+          <div class="dm-help" style="text-align:center;">SwiftData container, encrypted at rest by iOS.</div>
+        </div>
+        <div class="dm-card">
+          <div class="dm-kv"><span>Local data size</span><strong>2.4 MB</strong></div>
+          <div class="dm-kv"><span>Transactions</span><strong>1,283</strong></div>
+          <div class="dm-kv"><span>Budget periods</span><strong>17</strong></div>
+          <div class="dm-kv"><span>Bills + subs</span><strong>14</strong></div>
+        </div>
+        <div class="dm-card dm-card-warn">
+          <div class="dm-kv"><strong>No cloud backup yet</strong><span class="dm-pill orange">!</span></div>
+          <div class="dm-help" style="color:#FDBA74;">Deleting the app will erase everything above.</div>
+        </div>
+      </DocMock>
+    </div>
+
     <h2 id="encryption-model">Encryption model</h2>
     <p>
       BudgetBaby's cloud backup encryption is designed so that we genuinely cannot read your data,
@@ -96,6 +118,28 @@ const headings = [
       <strong>AES-256-GCM provides both confidentiality and integrity.</strong> The GCM (Galois/Counter Mode) component of the encryption verifies that the backup has not been tampered with during storage or transmission. If any part of the backup is altered, decryption fails and the restore is rejected.
     </div>
 
+    <div class="doc-mocks-row">
+      <DocMock label="Encryption flow" caption="AES-256-GCM happens in memory before data ever leaves your device.">
+        <div class="dm-bar"><span></span><span class="dm-bar-title">Backup encryption</span><span></span></div>
+        <div class="dm-card">
+          <div class="dm-kv"><span class="dm-pill purple">1</span><strong>Key</strong></div>
+          <div class="dm-help">Generated on-device, stored in iOS Keychain. Synced via iCloud Keychain (E2EE).</div>
+        </div>
+        <div class="dm-card">
+          <div class="dm-kv"><span class="dm-pill purple">2</span><strong>Encrypt</strong></div>
+          <div class="dm-help">AES-256-GCM in memory. Plaintext never touches the wire.</div>
+        </div>
+        <div class="dm-card">
+          <div class="dm-kv"><span class="dm-pill purple">3</span><strong>Upload</strong></div>
+          <div class="dm-help">TLS to our servers. We receive a sealed blob.</div>
+        </div>
+        <div class="dm-card dm-card-good">
+          <div class="dm-kv"><span class="dm-pill green">4</span><strong>Restore</strong></div>
+          <div class="dm-help" style="color:#A7F3D0;">Decrypts only on a device that has your key.</div>
+        </div>
+      </DocMock>
+    </div>
+
     <h2 id="creating-a-backup">Creating a backup</h2>
     <p>A BudgetBaby account is required to create a cloud backup. If you have not signed in, go to Settings → Account first.</p>
     <ol>
@@ -126,6 +170,39 @@ const headings = [
       <li>Back up before switching to a new iPhone or before uninstalling the app.</li>
     </ul>
 
+    <div class="doc-mocks-row">
+      <DocMock label="Backup & Restore" caption="Tap Create Backup — encryption, upload, and slot tracking are automatic.">
+        <div class="dm-bar"><span class="dm-back">Settings</span><span class="dm-bar-title">Backup</span><span></span></div>
+        <div class="dm-card dm-card-accent">
+          <div class="dm-kv"><strong>Slots used</strong><strong style="color:#A78BFA">2 / 5</strong></div>
+          <div class="dm-bar-track"><div class="dm-bar-fill" style="width:40%"></div></div>
+          <div class="dm-kv muted"><span>Premium</span><span>5 slots total</span></div>
+        </div>
+        <div class="dm-section-label">Existing backups</div>
+        <div class="dm-list">
+          <div class="dm-row"><span class="dm-icon upload">B</span><span class="dm-row-label">Backup<div class="dm-row-meta" style="font-size:8px;">Mar 14, 9:02 PM · 2.4 MB</div></span><span class="dm-row-chevron"></span></div>
+          <div class="dm-row"><span class="dm-icon upload">B</span><span class="dm-row-label">Backup<div class="dm-row-meta" style="font-size:8px;">Feb 28, 10:14 AM · 2.1 MB</div></span><span class="dm-row-chevron"></span></div>
+        </div>
+        <div class="dm-btn dm-btn-primary">+ Create Backup</div>
+      </DocMock>
+      <DocMock label="Backup running" caption="Backups complete in 5–15 seconds for most users.">
+        <div class="dm-bar"><span></span><span class="dm-bar-title">Creating backup…</span><span></span></div>
+        <div class="dm-card dm-card-accent" style="align-items:center; text-align:center;">
+          <div class="dm-ring-wrap" style="margin:8px auto 4px;">
+            <div class="dm-ring" style="--p:74%; width:56px; height:56px;"></div>
+            <span class="dm-ring-inner">74%</span>
+          </div>
+          <div class="dm-h2">Encrypting…</div>
+          <div class="dm-help">2.4 MB · AES-256-GCM</div>
+        </div>
+        <div class="dm-card">
+          <div class="dm-kv"><span><span style="color:#34D399;">✓</span> Snapshot built</span><span class="muted">1.4s</span></div>
+          <div class="dm-kv"><span><span style="color:#34D399;">✓</span> Encrypted in memory</span><span class="muted">0.2s</span></div>
+          <div class="dm-kv"><span><span style="color:#A78BFA;">●</span> Uploading to server</span><span class="muted">3.8s</span></div>
+        </div>
+      </DocMock>
+    </div>
+
     <h2 id="restoring">Restoring from backup</h2>
     <ol>
       <li>Go to <strong>Settings → Backup and Restore</strong>.</li>
@@ -144,6 +221,27 @@ const headings = [
       iOS version, app version, and the approximate time of the failed restore attempt.
     </p>
 
+    <div class="doc-mocks-row">
+      <DocMock label="Restore confirmation" caption="The confirm sheet describes exactly what will happen — and what gets safety-backed-up.">
+        <div class="dm-sheet-handle"></div>
+        <div class="dm-bar"><span></span><span class="dm-bar-title">Confirm restore</span><span class="dm-bar-action">Cancel</span></div>
+        <div class="dm-card dm-card-warn" style="text-align:center;">
+          <span class="dm-icon danger" style="width:30px; height:30px; margin:0 auto;">!</span>
+          <div class="dm-h2" style="margin-top:6px;">Replace local data?</div>
+          <div class="dm-help" style="text-align:center;">Mar 14, 9:02 PM · 1,283 transactions</div>
+        </div>
+        <div class="dm-card">
+          <div class="dm-kv"><span><span style="color:#34D399;">●</span> Auto safety backup first</span><span class="muted">~2s</span></div>
+          <div class="dm-kv"><span><span style="color:#A78BFA;">●</span> Download + decrypt</span><span class="muted">~5s</span></div>
+          <div class="dm-kv"><span><span style="color:#F87171;">●</span> Replace current data</span><span class="muted">instant</span></div>
+        </div>
+        <div class="dm-dialog-actions">
+          <div class="dm-btn dm-btn-secondary">Cancel</div>
+          <div class="dm-btn dm-btn-danger">Restore</div>
+        </div>
+      </DocMock>
+    </div>
+
     <h2 id="safety-backups">Safety backups</h2>
     <p>
       Before every restore operation, BudgetBaby automatically creates a local safety backup of your
@@ -159,6 +257,22 @@ const headings = [
       The safety backup ensures that even if you restore from the wrong backup, or the restored
       data is not what you expected, you have a way back.
     </p>
+
+    <div class="doc-mocks-row">
+      <DocMock label="Backup list" caption="Safety backups appear in-line and can rescue you from a wrong restore.">
+        <div class="dm-bar"><span class="dm-back">Settings</span><span class="dm-bar-title">Backup</span><span></span></div>
+        <div class="dm-list">
+          <div class="dm-row" style="border-color:rgba(167,139,250,0.4); background:rgba(139,92,246,0.08);">
+            <span class="dm-icon shield">S</span>
+            <span class="dm-row-label">Safety backup<div class="dm-row-meta" style="font-size:8px;">Mar 14, 9:01 PM · pre-restore</div></span>
+            <span class="dm-pill purple">Local</span>
+          </div>
+          <div class="dm-row"><span class="dm-icon upload">B</span><span class="dm-row-label">Backup<div class="dm-row-meta" style="font-size:8px;">Mar 14, 9:02 PM</div></span><span class="dm-pill muted">Cloud</span></div>
+          <div class="dm-row"><span class="dm-icon upload">B</span><span class="dm-row-label">Backup<div class="dm-row-meta" style="font-size:8px;">Feb 28, 10:14 AM</div></span><span class="dm-pill muted">Cloud</span></div>
+        </div>
+        <div class="dm-help">Safety backups are local-only and do not consume slots.</div>
+      </DocMock>
+    </div>
 
     <h2 id="new-device">Moving to a new device</h2>
     <p>
@@ -187,6 +301,21 @@ const headings = [
       and the current LLC build).
     </div>
 
+    <div class="doc-mocks-row">
+      <DocMock label="Export migration file" caption="Wrap your dataset in a single .bbbackup file with a passphrase you choose.">
+        <div class="dm-bar"><span class="dm-back">Settings</span><span class="dm-bar-title">Migration</span><span class="dm-bar-action">Export</span></div>
+        <div class="dm-card dm-card-accent" style="text-align:center;">
+          <div class="dm-hero-label">budgetbaby_2026-05-03.bbbackup</div>
+          <div class="dm-hero-amount" style="font-size:18px;">2.4 MB</div>
+          <div class="dm-hero-sub">AES-256-GCM, sealed with your passphrase</div>
+        </div>
+        <div class="dm-section-label">Passphrase</div>
+        <div class="dm-card" style="font-family:var(--font-mono); letter-spacing:0.4em; font-size:12px; text-align:center; padding:8px;">••••••••••</div>
+        <div class="dm-help">Pick something memorable. We never see this — you cannot recover it later.</div>
+        <div class="dm-btn dm-btn-primary">Export & Share…</div>
+      </DocMock>
+    </div>
+
     <h3 id="cloud-restore">Method 2: Cloud backup + iCloud Keychain</h3>
     <p>
       If you have not created a migration file but you do have a recent cloud backup
@@ -205,6 +334,23 @@ const headings = [
       your Keychain, not in the backup itself. Until iCloud Keychain syncs the key to
       your new device, the backup is downloaded but cannot be decrypted. Give it a few
       minutes after enabling iCloud Keychain before attempting the restore.
+    </div>
+
+    <div class="doc-mocks-row">
+      <DocMock label="Waiting for Keychain" caption="A new device decrypts only after iCloud Keychain delivers your key.">
+        <div class="dm-bar"><span class="dm-back">Account</span><span class="dm-bar-title">Backup</span><span></span></div>
+        <div class="dm-card dm-card-warn" style="text-align:center;">
+          <span class="dm-icon lock" style="width:30px; height:30px; margin:0 auto;"><span class="dm-glyph-lock"></span></span>
+          <div class="dm-h2" style="margin-top:6px;">Waiting for key</div>
+          <div class="dm-help" style="text-align:center; color:#FDBA74;">iCloud Keychain is syncing. Restore unlocks once the key arrives.</div>
+        </div>
+        <div class="dm-card">
+          <div class="dm-kv"><span><span style="color:#34D399;">✓</span> Account signed in</span><span class="muted"></span></div>
+          <div class="dm-kv"><span><span style="color:#34D399;">✓</span> Backup downloaded</span><span class="muted">2.4 MB</span></div>
+          <div class="dm-kv"><span><span style="color:#FBBF24;">●</span> Encryption key syncing…</span><span class="muted">~1 min</span></div>
+          <div class="dm-kv"><span><span style="color:var(--text-faint);">○</span> Restore</span><span class="muted">pending</span></div>
+        </div>
+      </DocMock>
     </div>
 
     <h2 id="keychain-loss">If you lose iCloud Keychain access</h2>
@@ -231,6 +377,28 @@ const headings = [
       For future protection, always enable iCloud Keychain on all your devices.
     </p>
 
+    <div class="doc-mocks-row">
+      <DocMock label="Recovery options" caption="Try the full recovery sequence before assuming the key is lost.">
+        <div class="dm-bar"><span class="dm-back">Account</span><span class="dm-bar-title">Recovery</span><span></span></div>
+        <div class="dm-card">
+          <div class="dm-kv"><span class="dm-pill purple">1</span><strong>Old iPhone still on?</strong></div>
+          <div class="dm-help">Sign in on it and let iCloud Keychain re-sync the key.</div>
+        </div>
+        <div class="dm-card">
+          <div class="dm-kv"><span class="dm-pill purple">2</span><strong>iPhone device backup</strong></div>
+          <div class="dm-help">Restore an older iPhone backup that contains the Keychain.</div>
+        </div>
+        <div class="dm-card">
+          <div class="dm-kv"><span class="dm-pill purple">3</span><strong>Apple account recovery</strong></div>
+          <div class="dm-help">Apple may be able to restore Keychain via account recovery.</div>
+        </div>
+        <div class="dm-card dm-card-error">
+          <div class="dm-kv"><strong>If all fail</strong><span class="dm-pill red">!</span></div>
+          <div class="dm-help" style="color:#FCA5A5;">By design, we cannot decrypt for you. Start fresh on the new device.</div>
+        </div>
+      </DocMock>
+    </div>
+
     <h2 id="managing-backups">Managing and deleting backups</h2>
     <p>To view, manage, or delete your backups:</p>
     <ol>
@@ -245,5 +413,21 @@ const headings = [
       For complete instructions on deleting your account and all associated data, see the
       <a href="/budgetbaby/delete-data">Delete Your Data</a> page.
     </p>
+
+    <div class="doc-mocks-row">
+      <DocMock label="Manage Backups" caption="Swipe to delete; the Delete All button clears every cloud slot at once.">
+        <div class="dm-bar"><span class="dm-back">Account</span><span class="dm-bar-title">Manage Backups</span><span class="dm-bar-action">Edit</span></div>
+        <div class="dm-list">
+          <div class="dm-row" style="position:relative; padding-right:50px;">
+            <span class="dm-icon upload">B</span>
+            <span class="dm-row-label">Mar 14, 9:02 PM<div class="dm-row-meta" style="font-size:8px;">2.4 MB</div></span>
+            <span style="position:absolute; right:0; top:0; bottom:0; background:#F87171; color:white; padding:0 8px; display:flex; align-items:center; font-size:9px; font-weight:700; border-radius:0 9px 9px 0;">Delete</span>
+          </div>
+          <div class="dm-row"><span class="dm-icon upload">B</span><span class="dm-row-label">Feb 28, 10:14 AM<div class="dm-row-meta" style="font-size:8px;">2.1 MB</div></span><span class="dm-row-chevron"></span></div>
+          <div class="dm-row"><span class="dm-icon upload">B</span><span class="dm-row-label">Feb 14, 8:35 PM<div class="dm-row-meta" style="font-size:8px;">2.0 MB</div></span><span class="dm-row-chevron"></span></div>
+        </div>
+        <div class="dm-btn dm-btn-danger" style="margin-top:auto;">Delete All Backups</div>
+      </DocMock>
+    </div>
   </div>
 </DocsLayout>

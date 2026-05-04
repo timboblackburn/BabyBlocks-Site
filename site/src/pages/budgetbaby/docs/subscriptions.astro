@@ -1,5 +1,6 @@
 ---
 import DocsLayout from '../../../layouts/DocsLayout.astro';
+import DocMock from '../../../components/DocMock.astro';
 
 const headings = [
   { id: 'free-vs-premium',     text: 'Free vs Premium' },
@@ -288,6 +289,43 @@ const headings = [
       </table>
     </div>
 
+    <div class="doc-mocks-row">
+      <DocMock label="Free home" caption="Same Safe to Spend, all four pools, full priority system on the free tier.">
+        <div class="dm-bar"><span class="dm-bar-title">Home</span><span class="dm-bar-action">+</span></div>
+        <div class="dm-card dm-card-accent" style="text-align:center;">
+          <div class="dm-hero-label">Safe to Spend</div>
+          <div class="dm-hero-amount green">$54<span class="dm-cents">.76</span></div>
+        </div>
+        <div class="dm-section-label">Pools</div>
+        <div class="dm-list">
+          <div class="dm-row"><span class="dm-icon cash">$</span><span class="dm-row-label">Cash</span><span class="dm-row-meta">$60</span></div>
+          <div class="dm-row"><span class="dm-icon debit">B</span><span class="dm-row-label">Debit</span><span class="dm-row-meta">$1,847</span></div>
+          <div class="dm-row"><span class="dm-icon credit">C</span><span class="dm-row-label">Credit</span><span class="dm-row-meta">−$120</span></div>
+          <div class="dm-row"><span class="dm-icon savings">S</span><span class="dm-row-label">Savings</span><span class="dm-row-meta">$3,200</span></div>
+        </div>
+        <div class="dm-help">Free tier · 1 backup slot · 3 bills · 5 categories</div>
+      </DocMock>
+      <DocMock label="Premium upsell" caption="Unlock unlimited bills, multi-day reminders, PDF exports, sync, and more.">
+        <div class="dm-bar"><span class="dm-back">Settings</span><span class="dm-bar-title">Premium</span><span></span></div>
+        <div class="dm-card dm-card-accent" style="text-align:center;">
+          <span class="dm-pill purple" style="margin:0 auto;">Best Value</span>
+          <div class="dm-h2" style="margin-top:6px;">Annual</div>
+          <div class="dm-hero-amount" style="font-size:24px;">$69<span class="dm-cents">.99</span></div>
+          <div class="dm-hero-sub">≈ $5.83/mo · save 27%</div>
+        </div>
+        <div class="dm-card">
+          <div class="dm-h2">Or monthly</div>
+          <div class="dm-kv"><span>$7.99/mo</span><span class="muted">cancel any time</span></div>
+        </div>
+        <div class="dm-list">
+          <div class="dm-row"><span style="color:#34D399;">✓</span><span class="dm-row-label">Unlimited bills, subs, goals</span></div>
+          <div class="dm-row"><span style="color:#34D399;">✓</span><span class="dm-row-label">Advanced insights + PDF</span></div>
+          <div class="dm-row"><span style="color:#34D399;">✓</span><span class="dm-row-label">5 backup slots · cloud sync</span></div>
+        </div>
+        <div class="dm-btn dm-btn-primary">Subscribe</div>
+      </DocMock>
+    </div>
+
     <h2 id="purchasing">Purchasing Premium</h2>
     <ol>
       <li>Open BudgetBaby and tap any locked Premium feature, or go to <strong>Settings → Premium</strong>.</li>
@@ -300,6 +338,22 @@ const headings = [
       App Store receipt and tells the app which features to unlock. We never see or store your
       payment information.
     </p>
+
+    <div class="doc-mocks-row">
+      <DocMock label="Apple confirmation" caption="Apple handles every charge. We never see card details.">
+        <div style="height:20px;"></div>
+        <div class="dm-dialog">
+          <div class="dm-help" style="text-align:center; font-size:7.5px; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-muted);">Confirm Subscription</div>
+          <div class="dm-h2" style="font-size:11px;">BudgetBaby Premium</div>
+          <div class="dm-help" style="text-align:center;">Annual · $69.99</div>
+          <div class="dm-kv-divider"></div>
+          <div class="dm-help" style="text-align:center; font-size:7.5px;">Charged to your Apple ID. Auto-renews annually.</div>
+          <div class="dm-btn dm-btn-primary">Subscribe with Face ID</div>
+          <div class="dm-help" style="text-align:center;">Double-click side button to confirm</div>
+        </div>
+        <div class="dm-help" style="text-align:center; margin-top:auto;">Receipt email: insightintriguing@gmail.com</div>
+      </DocMock>
+    </div>
 
     <h2 id="restoring-purchases">Restoring purchases</h2>
     <p>
@@ -321,6 +375,23 @@ const headings = [
       or the Apple ID used to purchase. Include your app version from Settings → About.
     </p>
 
+    <div class="doc-mocks-row">
+      <DocMock label="Restore Purchases" caption="One tap re-verifies the receipt with Apple — never creates a new charge.">
+        <div class="dm-bar"><span class="dm-back">Settings</span><span class="dm-bar-title">Premium</span><span></span></div>
+        <div class="dm-card dm-card-good">
+          <div class="dm-kv"><strong>Premium</strong><span class="dm-pill green">Active</span></div>
+          <div class="dm-help" style="color:#A7F3D0;">Annual plan · renews May 03, 2027</div>
+        </div>
+        <div class="dm-card">
+          <div class="dm-kv"><span>Apple ID</span><strong>insightintriguing@…</strong></div>
+          <div class="dm-kv"><span>Receipt verified</span><span class="green">Just now</span></div>
+          <div class="dm-kv"><span>Entitlement</span><strong>budgetbaby.premium</strong></div>
+        </div>
+        <div class="dm-btn dm-btn-secondary">Restore Purchases</div>
+        <div class="dm-help">If features are still locked, force-quit and reopen — StoreKit needs a fresh session.</div>
+      </DocMock>
+    </div>
+
     <h2 id="cancelling">Cancelling</h2>
     <p>
       BudgetBaby subscriptions are managed entirely by Apple. We cannot cancel a subscription on
@@ -341,6 +412,23 @@ const headings = [
     </p>
     <div class="doc-tip">
       <strong>If you do not see BudgetBaby in your subscription list,</strong> you may be signed in with a different Apple ID, or the subscription may have already lapsed. Check by signing in to the Apple ID you used to purchase at appleid.apple.com.
+    </div>
+
+    <div class="doc-mocks-row">
+      <DocMock label="iOS Subscriptions" caption="Cancel only happens in iOS Settings → Apple ID → Subscriptions.">
+        <div class="dm-bar"><span class="dm-back">Apple ID</span><span class="dm-bar-title">Subscriptions</span><span></span></div>
+        <div class="dm-section-label">Active</div>
+        <div class="dm-list">
+          <div class="dm-row" style="background:rgba(139,92,246,0.12); border-color:rgba(167,139,250,0.4);">
+            <span class="dm-icon" style="background:linear-gradient(135deg, #8B5CF6, #6D28D9);">B</span>
+            <span class="dm-row-label">BudgetBaby Premium<div class="dm-row-meta" style="font-size:8px;">$69.99/year · renews May 03, 2027</div></span>
+            <span class="dm-row-chevron"></span>
+          </div>
+          <div class="dm-row"><span class="dm-icon star">A</span><span class="dm-row-label">Apple One<div class="dm-row-meta" style="font-size:8px;">$16.95/mo</div></span><span class="dm-row-chevron"></span></div>
+          <div class="dm-row"><span class="dm-icon star">i</span><span class="dm-row-label">iCloud+ 2TB<div class="dm-row-meta" style="font-size:8px;">$9.99/mo</div></span><span class="dm-row-chevron"></span></div>
+        </div>
+        <div class="dm-btn dm-btn-danger">Cancel Subscription</div>
+      </DocMock>
     </div>
 
     <h2 id="refunds">Refunds</h2>

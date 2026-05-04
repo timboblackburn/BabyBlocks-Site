@@ -1,5 +1,6 @@
 ---
 import DocsLayout from '../../../layouts/DocsLayout.astro';
+import DocMock from '../../../components/DocMock.astro';
 
 const headings = [
   { id: 'formats',          text: 'Export formats' },
@@ -48,6 +49,46 @@ const headings = [
       Use CSV if you need the raw data.
     </p>
 
+    <div class="doc-mocks-row">
+      <DocMock label="Export Data" caption="Pick CSV for raw data, PDF for a sharable financial summary.">
+        <div class="dm-bar"><span class="dm-back">Settings</span><span class="dm-bar-title">Export Data</span><span></span></div>
+        <div class="dm-seg">
+          <div class="dm-seg-item active">CSV</div>
+          <div class="dm-seg-item">PDF</div>
+        </div>
+        <div class="dm-card">
+          <div class="dm-h2">CSV (.csv)</div>
+          <div class="dm-help">Plain-text spreadsheet. UTF-8 with BOM. ISO 8601 dates.</div>
+          <div class="dm-kv muted"><span>Includes</span><span>Tx · Bills · Goals · Periods</span></div>
+        </div>
+        <div class="dm-section-label">Range</div>
+        <div class="dm-list">
+          <div class="dm-row"><span class="dm-row-label">Current period</span><span class="dm-row-meta">14 days</span></div>
+          <div class="dm-row" style="background:rgba(139,92,246,0.12); border-color:rgba(167,139,250,0.4);"><span class="dm-row-label">Last 90 days</span><span class="dm-pill purple">Selected</span></div>
+          <div class="dm-row"><span class="dm-row-label">All time</span><span class="dm-row-meta">17 periods</span></div>
+        </div>
+        <div class="dm-btn dm-btn-primary">Export CSV</div>
+      </DocMock>
+      <DocMock label="PDF preview" caption="The PDF renders a printable summary, not raw data.">
+        <div class="dm-bar"><span class="dm-back">Export</span><span class="dm-bar-title">PDF preview</span><span class="dm-bar-action">Share</span></div>
+        <div class="dm-card" style="padding:8px 10px;">
+          <div class="dm-h2" style="font-size:11px;">March 2026 Summary</div>
+          <div class="dm-help">Mar 1 – Mar 31 · BudgetBaby</div>
+          <div class="dm-kv-divider"></div>
+          <div class="dm-kv"><span>Income</span><strong>$3,000</strong></div>
+          <div class="dm-kv"><span>Spent</span><strong class="red">$2,140</strong></div>
+          <div class="dm-kv"><span>Surplus</span><strong class="green">$860</strong></div>
+        </div>
+        <div class="dm-card">
+          <div class="dm-section-label" style="margin:0;">By priority</div>
+          <div class="dm-kv"><span><span class="dm-dot critical"></span> Critical</span><strong>$1,140</strong></div>
+          <div class="dm-kv"><span><span class="dm-dot important"></span> Important</span><strong>$640</strong></div>
+          <div class="dm-kv"><span><span class="dm-dot discretionary"></span> Discretionary</span><strong>$280</strong></div>
+          <div class="dm-kv"><span><span class="dm-dot buffer"></span> Buffer</span><strong>$80</strong></div>
+        </div>
+      </DocMock>
+    </div>
+
     <h2 id="how-to-export">How to export</h2>
     <ol>
       <li>Open BudgetBaby and go to <strong>Settings → Export Data</strong>.</li>
@@ -58,6 +99,31 @@ const headings = [
     </ol>
     <div class="doc-tip">
       <strong>Free tier limit.</strong> Free users can export as CSV once per month. Premium users have unlimited CSV and PDF exports. The export option in Settings shows how many exports remain for the current month.
+    </div>
+
+    <div class="doc-mocks-row">
+      <DocMock label="Share sheet" caption="iOS share sheet sends the file to Files, Mail, AirDrop, or anywhere else.">
+        <div style="height:90px;"></div>
+        <div class="dm-card" style="background:rgba(40,40,55,0.85); backdrop-filter:blur(20px); padding:8px 10px;">
+          <div class="dm-help" style="text-align:center; font-weight:700; color:var(--text-primary);">budgetbaby_2026-03.csv</div>
+          <div class="dm-help" style="text-align:center;">CSV · 18 KB</div>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:6px; margin-top:6px;">
+          <div style="background:rgba(255,255,255,0.05); border-radius:9px; padding:6px 4px; text-align:center; font-size:7.5px; color:var(--text-secondary);">
+            <div style="width:20px; height:20px; margin:0 auto 3px; border-radius:5px; background:#1d4ed8;"></div>Files
+          </div>
+          <div style="background:rgba(255,255,255,0.05); border-radius:9px; padding:6px 4px; text-align:center; font-size:7.5px; color:var(--text-secondary);">
+            <div style="width:20px; height:20px; margin:0 auto 3px; border-radius:5px; background:#0284c7;"></div>Mail
+          </div>
+          <div style="background:rgba(255,255,255,0.05); border-radius:9px; padding:6px 4px; text-align:center; font-size:7.5px; color:var(--text-secondary);">
+            <div style="width:20px; height:20px; margin:0 auto 3px; border-radius:5px; background:#0891b2;"></div>AirDrop
+          </div>
+          <div style="background:rgba(255,255,255,0.05); border-radius:9px; padding:6px 4px; text-align:center; font-size:7.5px; color:var(--text-secondary);">
+            <div style="width:20px; height:20px; margin:0 auto 3px; border-radius:5px; background:#22c55e;"></div>Numbers
+          </div>
+        </div>
+        <div class="dm-btn dm-btn-secondary" style="margin-top:auto;">Cancel</div>
+      </DocMock>
     </div>
 
     <h2 id="csv-columns">CSV column reference</h2>
@@ -145,6 +211,23 @@ const headings = [
     </div>
     <div class="doc-tip">
       <strong>Using the CSV in Excel.</strong> Open Excel, go to Data → From Text/CSV, select the file, and ensure the delimiter is set to comma. Excel should detect the UTF-8 encoding automatically. If date columns appear as text, use the Text to Columns wizard to convert them.
+    </div>
+
+    <div class="doc-mocks-row">
+      <DocMock label="CSV preview" caption="Each row carries everything a spreadsheet needs to reconstruct the transaction.">
+        <div class="dm-bar"><span class="dm-back">Files</span><span class="dm-bar-title">budgetbaby.csv</span><span class="dm-bar-action">⋯</span></div>
+        <div class="dm-csv">
+          <div><span class="dm-csv-h">date</span>,<span class="dm-csv-h">amount</span>,<span class="dm-csv-h">payment_method</span>,<span class="dm-csv-h">category_name</span>,<span class="dm-csv-h">priority</span></div>
+          <div>2026-03-01,1200.00,debit,Rent,critical</div>
+          <div>2026-03-02,42.18,debit,Groceries,important</div>
+          <div>2026-03-02,4.85,cash,Coffee,discretionary</div>
+          <div>2026-03-03,140.00,credit,Gas,important</div>
+          <div>2026-03-04,15.49,debit,Streaming,discretionary</div>
+          <div>2026-03-05,32.00,debit,Phone,critical</div>
+          <div>2026-03-07,84.20,credit,Dining,discretionary</div>
+        </div>
+        <div class="dm-help">UTF-8 · BOM · ISO-8601 dates · numeric amounts</div>
+      </DocMock>
     </div>
 
     <h2 id="deleting-data">Deleting your data</h2>

@@ -1,5 +1,6 @@
 ---
 import DocsLayout from '../../../layouts/DocsLayout.astro';
+import DocMock from '../../../components/DocMock.astro';
 
 const headings = [
   { id: 'on-device',          text: 'On-device data' },
@@ -51,6 +52,23 @@ const headings = [
       You can opt out at any time inside the app: <strong>Settings → Privacy</strong> has a single toggle that turns off both crash reports and any product telemetry. When the toggle is off, RevenueCat (the subscription provider) also runs in anonymous mode — your purchase history is still tracked for restoring purchases, but no user ID is associated with it.
     </div>
 
+    <div class="doc-mocks-row">
+      <DocMock label="Privacy toggle" caption="A single switch controls analytics, crash reports, and RevenueCat anonymity.">
+        <div class="dm-bar"><span class="dm-back">Settings</span><span class="dm-bar-title">Privacy</span><span></span></div>
+        <div class="dm-card dm-card-good">
+          <div class="dm-kv"><strong>Local-only mode</strong><span class="dm-toggle on"></span></div>
+          <div class="dm-help" style="color:#A7F3D0;">Crash reports, analytics, and product telemetry are off. RevenueCat runs anonymously.</div>
+        </div>
+        <div class="dm-section-label">What's on / off</div>
+        <div class="dm-list">
+          <div class="dm-row"><span class="dm-row-label">Anonymous crash reports</span><span style="color:#F87171; font-size:14px;">✗</span></div>
+          <div class="dm-row"><span class="dm-row-label">Product analytics</span><span style="color:#F87171; font-size:14px;">✗</span></div>
+          <div class="dm-row"><span class="dm-row-label">Subscription telemetry</span><span style="color:#FBBF24; font-size:14px;">Anon</span></div>
+          <div class="dm-row"><span class="dm-row-label">Cloud backup</span><span style="color:#F87171; font-size:14px;">Off</span></div>
+        </div>
+      </DocMock>
+    </div>
+
     <h2 id="cloud-data">Cloud data (opt-in)</h2>
     <p>Two cloud features exist, both fully opt-in and both requiring a signed-in account:</p>
     <h3>Cloud backup</h3>
@@ -74,6 +92,26 @@ const headings = [
     </ul>
     <p>We do not store passwords directly. Authentication is handled by Firebase Auth, which means your credentials go to Firebase, not to our own servers.</p>
 
+    <div class="doc-mocks-row">
+      <DocMock label="Cloud features" caption="Both backup and sync are explicit opt-in. Off by default.">
+        <div class="dm-bar"><span class="dm-back">Settings</span><span class="dm-bar-title">Account</span><span></span></div>
+        <div class="dm-card">
+          <div class="dm-kv"><strong>Cloud backup</strong><span class="dm-toggle on purple"></span></div>
+          <div class="dm-help">AES-256-GCM before upload. Key in iOS Keychain.</div>
+        </div>
+        <div class="dm-card">
+          <div class="dm-kv"><strong>Cloud sync</strong><span class="dm-toggle"></span></div>
+          <div class="dm-help">Rolling out. Encrypted at rest in Firestore. <span class="dm-pill purple" style="font-size:6.5px;">Beta</span></div>
+        </div>
+        <div class="dm-section-label">Account</div>
+        <div class="dm-list">
+          <div class="dm-row"><span class="dm-row-label">Email</span><span class="dm-row-meta">tim@example.com</span></div>
+          <div class="dm-row"><span class="dm-row-label">Provider</span><span class="dm-row-meta">Sign in with Apple</span></div>
+          <div class="dm-row"><span class="dm-row-label">Account ID</span><span class="dm-row-meta">acc_a1b2…</span></div>
+        </div>
+      </DocMock>
+    </div>
+
     <h2 id="what-we-never-do">What we never do</h2>
     <ul>
       <li><strong>We do not connect to your bank.</strong> BudgetBaby is entirely manual entry. No bank credentials, no Plaid, no open banking APIs.</li>
@@ -82,6 +120,24 @@ const headings = [
       <li><strong>We cannot read your cloud backups.</strong> Backups are encrypted before upload with a key only your device holds.</li>
       <li><strong>We do not read your transaction data.</strong> Our support team never accesses individual transaction amounts, descriptions, or budget values. Support diagnostics contain only anonymous counts and metadata.</li>
     </ul>
+
+    <div class="doc-mocks-row">
+      <DocMock label="Five guarantees" caption="Promises baked into the architecture, not just policy.">
+        <div class="dm-bar"><span></span><span class="dm-bar-title">What we never do</span><span></span></div>
+        <div class="dm-list">
+          <div class="dm-row"><span style="color:#F87171; font-size:14px; width:14px;">✗</span><span class="dm-row-label" style="font-size:9px;">Connect to your bank</span></div>
+          <div class="dm-row"><span style="color:#F87171; font-size:14px; width:14px;">✗</span><span class="dm-row-label" style="font-size:9px;">Sell your data</span></div>
+          <div class="dm-row"><span style="color:#F87171; font-size:14px; width:14px;">✗</span><span class="dm-row-label" style="font-size:9px;">Serve ads</span></div>
+          <div class="dm-row"><span style="color:#F87171; font-size:14px; width:14px;">✗</span><span class="dm-row-label" style="font-size:9px;">Read your cloud backups</span></div>
+          <div class="dm-row"><span style="color:#F87171; font-size:14px; width:14px;">✗</span><span class="dm-row-label" style="font-size:9px;">Read your transactions</span></div>
+        </div>
+        <div class="dm-card dm-card-good" style="margin-top:auto; text-align:center;">
+          <span class="dm-icon shield" style="width:24px; height:24px; margin:0 auto;">✓</span>
+          <div class="dm-h2" style="margin-top:4px;">Verifiable by design</div>
+          <div class="dm-help" style="text-align:center; color:#A7F3D0;">Encryption keys live only on your devices.</div>
+        </div>
+      </DocMock>
+    </div>
 
     <h2 id="controls">Your in-app controls</h2>
     <p>Three places in Settings give you direct control over your data:</p>
@@ -93,6 +149,23 @@ const headings = [
       switches to anonymous mode — purchases still work and can still be restored, but
       no user identifier is associated with your subscription.
     </p>
+
+    <div class="doc-mocks-row">
+      <DocMock label="Activity log" caption="Every save, edit, and delete is timestamped and undoable.">
+        <div class="dm-bar"><span class="dm-back">Settings</span><span class="dm-bar-title">Activity</span><span></span></div>
+        <div class="dm-list">
+          <div class="dm-row" style="background:rgba(139,92,246,0.12); border-color:rgba(167,139,250,0.4);">
+            <span class="dm-icon target">T</span>
+            <span class="dm-row-label">Logged $42.18 · Groceries<div class="dm-row-meta" style="font-size:8px;">Today, 6:14 PM</div></span>
+            <span class="dm-pill purple">Undo</span>
+          </div>
+          <div class="dm-row"><span class="dm-icon target">T</span><span class="dm-row-label">Edited bill: Rent<div class="dm-row-meta" style="font-size:8px;">Today, 5:50 PM</div></span><span class="dm-row-meta" style="font-size:8px;">·</span></div>
+          <div class="dm-row"><span class="dm-icon target">T</span><span class="dm-row-label">Marked Rent paid<div class="dm-row-meta" style="font-size:8px;">Mar 1</div></span><span class="dm-row-meta" style="font-size:8px;">·</span></div>
+          <div class="dm-row"><span class="dm-icon star">G</span><span class="dm-row-label">Goal contribution +$200<div class="dm-row-meta" style="font-size:8px;">Feb 28</div></span><span class="dm-row-meta" style="font-size:8px;">·</span></div>
+        </div>
+        <div class="dm-help">Log lives on-device only. Never uploaded.</div>
+      </DocMock>
+    </div>
 
     <h3>Settings → Activity &amp; History</h3>
     <p>
@@ -109,6 +182,25 @@ const headings = [
       lets you generate and store a one-time fallback code in case biometrics fail
       after a device change.
     </p>
+
+    <div class="doc-mocks-row">
+      <DocMock label="Security" caption="Optional Face ID lock and a recovery wizard for biometric edge cases.">
+        <div class="dm-bar"><span class="dm-back">Settings</span><span class="dm-bar-title">Security</span><span></span></div>
+        <div class="dm-card">
+          <div class="dm-kv"><strong>Require Face ID</strong><span class="dm-toggle on"></span></div>
+          <div class="dm-help">On launch and before destructive actions.</div>
+        </div>
+        <div class="dm-card">
+          <div class="dm-kv"><strong>Hide amounts when locked</strong><span class="dm-toggle on"></span></div>
+        </div>
+        <div class="dm-card">
+          <div class="dm-kv"><strong>Recovery code</strong><span class="dm-pill green">Set</span></div>
+          <div class="dm-help">Generated Mar 02 · stored only by you</div>
+          <div class="dm-btn dm-btn-secondary" style="margin-top:4px;">Regenerate</div>
+        </div>
+        <div class="dm-row"><span class="dm-icon danger">!</span><span class="dm-row-label">Wipe data after 10 fails</span><span class="dm-toggle"></span></div>
+      </DocMock>
+    </div>
 
     <h2 id="third-party">Third-party services</h2>
     <div class="table-wrap">
@@ -158,6 +250,20 @@ const headings = [
       Firebase and RevenueCat have their own privacy policies. Links to those policies are in our
       <a href="/budgetbaby/privacy">Privacy Policy</a>.
     </p>
+
+    <div class="doc-mocks-row">
+      <DocMock label="Third parties" caption="Each service receives only what's needed for its job.">
+        <div class="dm-bar"><span></span><span class="dm-bar-title">Third-party services</span><span></span></div>
+        <div class="dm-list">
+          <div class="dm-row"><span class="dm-icon shield">F</span><span class="dm-row-label">Firebase Auth<div class="dm-row-meta" style="font-size:8px;">Sign-in only</div></span><span class="dm-pill green">No tx</span></div>
+          <div class="dm-row"><span class="dm-icon shield">F</span><span class="dm-row-label">Crashlytics<div class="dm-row-meta" style="font-size:8px;">Anonymous crashes</div></span><span class="dm-pill green">No PII</span></div>
+          <div class="dm-row"><span class="dm-icon shield">F</span><span class="dm-row-label">Firestore<div class="dm-row-meta" style="font-size:8px;">Cloud sync (opt-in)</div></span><span class="dm-pill purple">Encrypted</span></div>
+          <div class="dm-row"><span class="dm-icon shield">R</span><span class="dm-row-label">RevenueCat<div class="dm-row-meta" style="font-size:8px;">Subscriptions</div></span><span class="dm-pill green">No $</span></div>
+          <div class="dm-row"><span class="dm-icon shield">A</span><span class="dm-row-label">StoreKit<div class="dm-row-meta" style="font-size:8px;">Apple</div></span><span class="dm-pill green">Apple-only</span></div>
+        </div>
+        <div class="dm-help">Full disclosures live in the Privacy Policy.</div>
+      </DocMock>
+    </div>
 
     <h2 id="your-rights">Your rights</h2>
     <ul>
