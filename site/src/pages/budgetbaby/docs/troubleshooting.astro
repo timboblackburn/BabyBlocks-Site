@@ -64,8 +64,8 @@ const headings = [
         <tbody>
           <tr>
             <td>Safe to Spend shows 0 or a negative number</td>
-            <td>Unpaid Critical bills exceed remaining budget, or income is entered incorrectly</td>
-            <td>Mark paid bills as paid; check income in Settings → Budget Setup; tap the info button to see the full breakdown</td>
+            <td>Unpaid red (Essentials) bills exceed remaining budget, or income is entered incorrectly</td>
+            <td>Mark paid bills as paid; check income in Settings → Budget Settings; tap the info button to see the full breakdown</td>
             <td>Numbers still do not match after following the Safe to Spend steps below</td>
           </tr>
           <tr>
@@ -77,7 +77,7 @@ const headings = [
           <tr>
             <td>Premium not active after purchase</td>
             <td>App Store cache or wrong Apple ID signed in</td>
-            <td>Settings → Premium → Restore Purchases; wait 30 seconds; force-quit and reopen</td>
+            <td>Settings → Premium Features → Restore Purchases; wait 30 seconds; force-quit and reopen</td>
             <td>Restore fails after confirming you are signed in with the purchasing Apple ID</td>
           </tr>
           <tr>
@@ -101,13 +101,13 @@ const headings = [
           <tr>
             <td>Bills not appearing in the current period</td>
             <td>Bill due date falls outside the current period dates</td>
-            <td>Check the bill due date and the current period start/end dates in Settings → Budget Setup</td>
+            <td>Check the bill due date and the current period start/end dates in Settings → Budget Settings</td>
             <td>Due date is inside the period and bill still does not appear</td>
           </tr>
           <tr>
             <td>Money pool balance looks wrong</td>
             <td>Starting balance not set, or a transaction was logged with the wrong payment method</td>
-            <td>Check Settings → Accounts for starting balances; review recent transactions for incorrect payment methods</td>
+            <td>Check Settings → Payment Methods → Money Setup for starting balances; review recent transactions for incorrect payment methods</td>
             <td>Balances are still wrong after reviewing all transactions</td>
           </tr>
         </tbody>
@@ -161,7 +161,7 @@ const headings = [
     <p>Go to <strong>Settings → Support and Diagnostics</strong>. You have three options:</p>
     <ul>
       <li>
-        <strong>Report a Problem</strong> (recommended for bugs). Tap "Start Report." The guided 5-step flow asks which area is affected and when the issue occurred. It then generates a full diagnostics bundle and prompts you to send it. Choose your area: Backup, Restore, Bills, Subscriptions, Spending Buckets, Money on Hand, Premium, or Other.
+        <strong>Report a Problem</strong> (recommended for bugs). Tap "Start Report." The guided 5-step flow asks which area is affected and when the issue occurred. It then generates a full diagnostics bundle and prompts you to send it. Choose an area: Backup, Restore, Bills, Subscriptions, Spending Buckets, Money on Hand, Premium / Paywall, or Other.
       </li>
       <li>
         <strong>Export Diagnostics</strong> (quick, no prompts). One tap creates the bundle immediately. Use this if you want to capture the current app state without going through the guided flow.
@@ -209,25 +209,25 @@ const headings = [
         <div class="dm-list">
           <div class="dm-row"><span class="dm-row-label">Tap (i) for live breakdown</span><span style="color:#34D399; font-size:14px;">→</span></div>
           <div class="dm-row"><span class="dm-row-label">Period start/end correct</span><span style="color:#34D399; font-size:14px;">✓</span></div>
-          <div class="dm-row"><span class="dm-row-label">Critical bills marked paid</span><span style="color:#FBBF24; font-size:14px;">!</span></div>
+          <div class="dm-row"><span class="dm-row-label">Red bills marked paid</span><span style="color:#FBBF24; font-size:14px;">!</span></div>
           <div class="dm-row"><span class="dm-row-label">Savings allocation</span><span style="color:#34D399; font-size:14px;">✓</span></div>
           <div class="dm-row"><span class="dm-row-label">Income is take-home</span><span style="color:#34D399; font-size:14px;">✓</span></div>
         </div>
         <div class="dm-card dm-card-warn">
           <div class="dm-kv"><strong>Likely cause</strong><span class="dm-pill orange">Bill reserve</span></div>
-          <div class="dm-help" style="color:#FDBA74;">$420 reserved across two unpaid Critical bills.</div>
+          <div class="dm-help" style="color:#FDBA74;">$420 reserved across two unpaid red bills.</div>
         </div>
       </DocMock>
     </div>
     <ol>
       <li>Tap the info button next to Safe to Spend on the home screen to see the full calculation breakdown with your actual numbers.</li>
-      <li>Verify your active budget period dates are correct in Settings → Budget Setup.</li>
-      <li>Check that upcoming bills are assigned to the current period and that any paid bills are marked as paid. Unpaid Critical bills are reserved in the calculation.</li>
+      <li>Verify your active budget period dates are correct in Settings → Budget Settings.</li>
+      <li>Check that upcoming bills are assigned to the current period and that any paid bills are marked as paid. Unpaid red (Essentials) bills are reserved in the calculation.</li>
       <li>Confirm that your savings allocation percentage in Budget Setup matches your intentions.</li>
     </ol>
     <p>
       If Safe to Spend is 0 or negative and you do not expect it to be, the most common causes are:
-      unpaid Critical bills that exceed the remaining budget, or an income amount that was entered
+      unpaid red (Essentials) bills that exceed the remaining budget, or an income amount that was entered
       incorrectly during setup.
     </p>
 
@@ -252,7 +252,7 @@ const headings = [
       </DocMock>
     </div>
     <ol>
-      <li>Go to Settings → Premium → Restore Purchases.</li>
+      <li>Go to Settings → Premium Features → Restore Purchases.</li>
       <li>Wait 30 seconds after tapping Restore, then check again.</li>
       <li>Force-quit and reopen the app.</li>
       <li>Make sure you are signed in to the App Store with the Apple ID that made the purchase. Go to Settings → (your name) → Media and Purchases to verify.</li>
@@ -310,7 +310,7 @@ const headings = [
     <ul>
       <li>Verify you are signed in to your BudgetBaby account at Settings → Account.</li>
       <li>Check your internet connection. Backups require an active connection during upload.</li>
-      <li>Free users have 1 backup slot. If it is occupied, delete the existing backup first at Settings → Account → Manage Backups.</li>
+      <li>Free users have 1 backup slot. If it is occupied, delete the existing backup first at Settings → Backup &amp; Restore.</li>
       <li>If errors persist after trying all of the above, contact <a href="/budgetbaby/support">support</a> with your account email address.</li>
     </ul>
 
@@ -358,7 +358,7 @@ const headings = [
     <p>Crashes on launch are rare and usually caused by an outdated app version or a corrupted local data store.</p>
     <ol>
       <li>Update BudgetBaby to the latest version from the App Store.</li>
-      <li>If the crash continues after updating and you have a cloud backup, restore from it: sign in on another device or reinstall the app, then restore from Settings → Backup and Restore.</li>
+      <li>If the crash continues after updating and you have a cloud backup, restore from it: sign in on another device or reinstall the app, then restore from Settings → Backup &amp; Restore.</li>
       <li>If you do not have a cloud backup, contact <a href="mailto:support@babyblocks.io">support@babyblocks.io</a> before uninstalling. Include your iOS version and app version. We may be able to help recover your data.</li>
       <li>As a last resort, uninstall and reinstall the app. This will delete all local data.</li>
     </ol>

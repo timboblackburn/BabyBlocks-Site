@@ -48,12 +48,12 @@ const headings = [
     <h2 id="safe-to-spend">Safe to Spend confusion</h2>
 
     <div class="doc-mocks-row">
-      <DocMock label="Symptom" caption="STS at $0 with several unpaid Critical bills consuming the reserve.">
+      <DocMock label="Symptom" caption="STS at $0 with several unpaid red (Essentials) bills consuming the reserve.">
         <div class="dm-bar"><span class="dm-bar-title">Home</span><span class="dm-bar-action">+</span></div>
         <div class="dm-card dm-card-error" style="text-align:center;">
           <div class="dm-hero-label">Safe to Spend</div>
           <div class="dm-hero-amount red">$0<span class="dm-cents">.00</span></div>
-          <div class="dm-hero-sub">12 days · 3 unpaid Critical bills</div>
+          <div class="dm-hero-sub">12 days · 3 unpaid red (Essentials) bills</div>
         </div>
         <div class="dm-card">
           <div class="dm-kv"><span>Spent</span><span class="red">−$1,210</span></div>
@@ -89,19 +89,19 @@ const headings = [
         zero or goes negative, one or more reserves are consuming more than your remaining budget.</p>
         <p>Common causes:</p>
         <ul>
-          <li>A large Critical bill is due very soon and its full amount is reserved.</li>
+          <li>A large red (Essentials) bill is due very soon and its full amount is reserved.</li>
           <li>You are close to period end with little budget remaining but several unpaid bills still reserved.</li>
           <li>You have a Savings allocation (e.g. 20%) holding back more than what is left in the period.</li>
           <li>Your income was entered incorrectly and is lower than your actual take-home pay.</li>
         </ul>
         <ol>
           <li>Tap the info button next to Safe to Spend on the Home screen. This expands the full breakdown — Budget, Spent, Bill Reserve, Savings Reserve, Remaining, Days Remaining, and the resulting daily rate.</li>
-          <li>Look at Bill Reserve. If it is large, go to Settings → Bills. Any unpaid Critical bill is fully reserved. If you have already paid one of those bills externally, mark it paid in BudgetBaby. The reserve releases immediately and Safe to Spend rises.</li>
-          <li>If Savings Reserve is the issue, this is expected behavior — it is money committed to your savings allocation. To change it, go to Settings → Budget Setup and adjust the Savings slider.</li>
+          <li>Look at Bill Reserve. If it is large, go to Settings → Bills. Any unpaid red (Essentials) bill is fully reserved. If you have already paid one of those bills externally, mark it paid in BudgetBaby. The reserve releases immediately and Safe to Spend rises.</li>
+          <li>If Savings Reserve is the issue, this is expected behavior — it is money committed to your savings allocation. To change it, go to Settings → Budget Settings and adjust the Savings slider.</li>
           <li>If you are near period end with very few days remaining, the denominator is small. Even a modest reserve can push the daily rate to zero. Check the History tab to see what you have spent.</li>
-          <li>Verify your income: Settings → Budget Setup → Income per Period. Confirm it is your actual take-home pay, not gross salary.</li>
+          <li>Verify your income: Settings → Budget Settings → Income per Period. Confirm it is your actual take-home pay, not gross salary.</li>
         </ol>
-        <div class="case-tip">Once all Critical bills are marked paid and the period has reasonable days remaining, Safe to Spend will show a positive number reflecting your actual discretionary capacity.</div>
+        <div class="case-tip">Once all red (Essentials) bills are marked paid and the period has reasonable days remaining, Safe to Spend will show a positive number reflecting your actual discretionary capacity.</div>
       </div>
     </div>
 
@@ -134,13 +134,13 @@ const headings = [
       <div class="case-body">
         <p class="case-what"><strong>What is happening.</strong> Marking a bill paid removes it from the Bill Reserve, which should raise Safe to Spend. If it did not visibly change, one of the following is true.</p>
         <ul>
-          <li>The bill's priority is not Critical. Only Critical bills are included in the Bill Reserve. Important, Discretionary, and Buffer bills are never reserved.</li>
-          <li>Another Critical bill is now the binding constraint — the reserve dropped for the paid bill, but another large Critical bill is still unpaid.</li>
+          <li>The bill's priority is not red. Only red (Essentials) bills are included in the Bill Reserve. Yellow (Variable), green (Fun), and gray (Unplanned) bills are never reserved.</li>
+          <li>Another red (Essentials) bill is now the binding constraint — the reserve dropped for the paid bill, but another large red (Essentials) bill is still unpaid.</li>
           <li>You are at period end with zero or near-zero days remaining. The daily rate denominator approaches 1, so even a large reserve change produces a tiny per-day change.</li>
         </ul>
         <ol>
-          <li>Check the bill's priority: Bills tab → tap the bill → Priority. If it is not Critical, no reserve was ever held for it.</li>
-          <li>Tap the info button on Safe to Spend to see the current Bill Reserve total. If it is still large, other Critical bills are still unpaid.</li>
+          <li>Check the bill's priority: Bills tab → tap the bill → Priority. If it is not red, no reserve was ever held for it.</li>
+          <li>Tap the info button on Safe to Spend to see the current Bill Reserve total. If it is still large, other red (Essentials) bills are still unpaid.</li>
           <li>If days remaining is 0 or 1, Safe to Spend will be zero regardless of bill status. This resets when the next period starts.</li>
         </ol>
       </div>
@@ -195,12 +195,12 @@ const headings = [
       <div class="case-body">
         <p class="case-what"><strong>What is happening.</strong> The Debit pool balance is a running total computed from your starting balance + income logged + Debit transactions. If it is wrong, one of these inputs is off.</p>
         <ol>
-          <li><strong>Check the starting balance.</strong> Go to Settings → Accounts → Debit. If this was never set (left at zero), every period started from zero and the balance has been drifting negative ever since. Set it to your current actual checking account balance. This corrects from today forward.</li>
+          <li><strong>Check the starting balance.</strong> Go to Settings → Payment Methods → Money Setup → Debit. If this was never set (left at zero), every period started from zero and the balance has been drifting negative ever since. Set it to your current actual checking account balance. This corrects from today forward.</li>
           <li><strong>Look for duplicate transactions.</strong> Transactions → All → filter by payment method Debit. Sort by date and look for any that appear twice. Delete the duplicate.</li>
           <li><strong>Check for wrong payment method.</strong> Credit card purchases logged as Debit reduce the Debit pool incorrectly. Find them and edit each one to Credit.</li>
-          <li><strong>Verify income is being logged.</strong> Go to Settings → Budget Setup to confirm the income amount and that auto-income is enabled. If you log income manually, check that an income entry was created at the start of the current period.</li>
+          <li><strong>Verify income is being logged.</strong> Go to Settings → Budget Settings to confirm the income amount and that auto-income is enabled. If you log income manually, check that an income entry was created at the start of the current period.</li>
         </ol>
-        <div class="case-tip">Once you set the correct starting balance in Settings → Accounts, future periods will carry it forward automatically.</div>
+        <div class="case-tip">Once you set the correct starting balance in Settings → Payment Methods → Money Setup, future periods will carry it forward automatically.</div>
       </div>
     </div>
 
@@ -245,10 +245,10 @@ const headings = [
         <div class="dm-bar"><span class="dm-bar-title">Bills</span><span class="dm-bar-action">+</span></div>
         <div class="dm-section-label">This period</div>
         <div class="dm-list">
-          <div class="dm-row"><span class="dm-icon bills">R</span><span class="dm-row-label">Rent<div class="dm-row-meta" style="font-size:8px;">Due Mar 1 · Critical</div></span><span class="dm-pill green">Paid</span></div>
-          <div class="dm-row"><span class="dm-icon bills">U</span><span class="dm-row-label">Utilities<div class="dm-row-meta" style="font-size:8px;">Due Mar 8 · Critical</div></span><span class="dm-pill red">Unpaid</span></div>
-          <div class="dm-row"><span class="dm-icon bills">I</span><span class="dm-row-label">Insurance<div class="dm-row-meta" style="font-size:8px;">Due Mar 15 · Critical</div></span><span class="dm-pill yellow">Soon</span></div>
-          <div class="dm-row"><span class="dm-icon star">N</span><span class="dm-row-label">Netflix<div class="dm-row-meta" style="font-size:8px;">Due Mar 18 · Discretionary</div></span><span class="dm-pill muted">Subs</span></div>
+          <div class="dm-row"><span class="dm-icon bills">R</span><span class="dm-row-label">Rent<div class="dm-row-meta" style="font-size:8px;">Due Mar 1 · Essentials</div></span><span class="dm-pill green">Paid</span></div>
+          <div class="dm-row"><span class="dm-icon bills">U</span><span class="dm-row-label">Utilities<div class="dm-row-meta" style="font-size:8px;">Due Mar 8 · Essentials</div></span><span class="dm-pill red">Unpaid</span></div>
+          <div class="dm-row"><span class="dm-icon bills">I</span><span class="dm-row-label">Insurance<div class="dm-row-meta" style="font-size:8px;">Due Mar 15 · Essentials</div></span><span class="dm-pill yellow">Soon</span></div>
+          <div class="dm-row"><span class="dm-icon star">N</span><span class="dm-row-label">Netflix<div class="dm-row-meta" style="font-size:8px;">Due Mar 18 · Fun</div></span><span class="dm-pill muted">Subs</span></div>
         </div>
         <div class="dm-btn dm-btn-primary">Mark Utilities Paid</div>
       </DocMock>
@@ -315,7 +315,7 @@ const headings = [
       <div class="case-body">
         <p class="case-what"><strong>What is happening.</strong> BudgetBaby verifies subscription status with Apple through StoreKit. If the purchase completed on Apple's side but the app has not received confirmation yet, features appear locked until the receipt is verified.</p>
         <ol>
-          <li>Go to Settings → Premium (or Settings → Subscription).</li>
+          <li>Go to Settings → Premium Features (or Settings → Subscription).</li>
           <li>Tap <strong>Restore Purchases</strong>. This contacts Apple and refreshes subscription state immediately.</li>
           <li>Wait 5–10 seconds for the verification to complete. Features should unlock without restarting the app.</li>
           <li>If Restore Purchases shows "Nothing to restore," the purchase may not have gone through on Apple's side. Check your Apple ID email for a receipt. If no receipt arrived, go to iOS Settings → App Store → Apple ID → Subscriptions to confirm it is listed and active.</li>
@@ -336,7 +336,7 @@ const headings = [
           <li>Go to iOS Settings → (your name) → Subscriptions. Find BudgetBaby Premium.</li>
           <li>If it shows "Expired" or "Billing Issue," tap it and update your payment method.</li>
           <li>Once the payment method is updated, Apple will retry the charge. The subscription should renew within 24 hours.</li>
-          <li>After renewal, return to BudgetBaby and tap Restore Purchases in Settings → Premium to update the app's subscription state.</li>
+          <li>After renewal, return to BudgetBaby and tap Restore Purchases in Settings → Premium Features to update the app's subscription state.</li>
         </ol>
       </div>
     </div>
@@ -350,7 +350,7 @@ const headings = [
         <p class="case-what"><strong>What is happening.</strong> Your Premium subscription is tied to your Apple ID, not to a specific device. As long as you are signed in to the same Apple ID on the new phone, you can restore it at no cost.</p>
         <ol>
           <li>On the new device, open BudgetBaby.</li>
-          <li>Go to Settings → Premium.</li>
+          <li>Go to Settings → Premium Features.</li>
           <li>Tap <strong>Restore Purchases</strong>.</li>
           <li>Confirm you are signed in to the correct Apple ID when prompted.</li>
           <li>Within a few seconds, Premium should be active. Features unlock immediately.</li>
@@ -389,10 +389,10 @@ const headings = [
         <ol>
           <li>Reinstall BudgetBaby from the App Store.</li>
           <li>Sign in to your BudgetBaby account: Settings → Account.</li>
-          <li>Go to Settings → Backup and Restore. If you had created a cloud backup before deleting, it should appear in the list. Tap it and restore.</li>
+          <li>Go to Settings → Backup &amp; Restore. If you had created a cloud backup before deleting, it should appear in the list. Tap it and restore.</li>
           <li>If no backup appears, your data is not recoverable. Begin a fresh setup using onboarding.</li>
         </ol>
-        <div class="case-tip">After rebuilding your data, create a backup immediately: Settings → Backup and Restore → Create Backup. Then create a new backup at the end of each budget period going forward.</div>
+        <div class="case-tip">After rebuilding your data, create a backup immediately: Settings → Backup &amp; Restore → Create Backup. Then create a new backup at the end of each budget period going forward.</div>
       </div>
     </div>
 
@@ -406,7 +406,7 @@ const headings = [
         <ol>
           <li>On the new iPhone, go to iOS Settings → (your name) → iCloud → Keychain. Ensure iCloud Keychain is enabled. This syncs the encryption key used to decrypt your backup.</li>
           <li>Sign in to BudgetBaby: Settings → Account. Use the same account as the old device.</li>
-          <li>Go to Settings → Backup and Restore. Wait 1–2 minutes for the backup list to populate — iCloud Keychain may need a moment to deliver the key.</li>
+          <li>Go to Settings → Backup &amp; Restore. Wait 1–2 minutes for the backup list to populate — iCloud Keychain may need a moment to deliver the key.</li>
           <li>Tap the backup and tap Restore. Confirm the prompt.</li>
           <li>If the backup list is empty after waiting, check that both iPhones are signed in to the same Apple ID and iCloud account.</li>
         </ol>
@@ -422,7 +422,7 @@ const headings = [
       <div class="case-body">
         <p class="case-what"><strong>What is happening.</strong> Before every restore, BudgetBaby automatically creates a safety backup of your current data stored locally on your device, labeled "Safety backup" with the timestamp of when you initiated the restore.</p>
         <ol>
-          <li>Go to Settings → Backup and Restore.</li>
+          <li>Go to Settings → Backup &amp; Restore.</li>
           <li>In the backup list, find the entry labeled "Safety backup" with a recent timestamp.</li>
           <li>Tap it and tap Restore. Confirm the prompt.</li>
           <li>Your data returns to the state it was in immediately before the unwanted restore.</li>
@@ -487,8 +487,8 @@ const headings = [
     <h2 id="budget-setup">Budget setup changes</h2>
 
     <div class="doc-mocks-row">
-      <DocMock label="Budget Setup" caption="Update pay frequency or income — changes apply to the next period.">
-        <div class="dm-bar"><span class="dm-back">Settings</span><span class="dm-bar-title">Budget Setup</span><span class="dm-bar-action">Save</span></div>
+      <DocMock label="Budget Settings" caption="Update pay frequency or income — changes apply to the next period.">
+        <div class="dm-bar"><span class="dm-back">Settings</span><span class="dm-bar-title">Budget Settings</span><span class="dm-bar-action">Save</span></div>
         <div class="dm-card">
           <div class="dm-h2">Pay frequency</div>
           <div class="dm-seg">
@@ -507,19 +507,17 @@ const headings = [
           <div class="dm-help" style="color:#FDBA74;">Current period continues with the old settings. End early to apply now.</div>
         </div>
       </DocMock>
-      <DocMock label="Recalibrated buckets" caption="High-cost-of-living split: 65% Needs, 20% Wants, 15% Savings.">
-        <div class="dm-bar"><span class="dm-back">Setup</span><span class="dm-bar-title">Buckets</span><span class="dm-bar-action">Save</span></div>
-        <div class="dm-card">
-          <div class="dm-kv"><strong>Needs</strong><span class="green">65%</span></div>
-          <div class="dm-slider"><div class="dm-slider-track" style="--p:65%"></div><div class="dm-slider-thumb" style="--p:65%"></div></div>
+      <DocMock label="Lower savings target" caption="Lower the monthly savings target so Safe to Spend reflects what's realistic.">
+        <div class="dm-bar"><span class="dm-back">Setup</span><span class="dm-bar-title">Savings target</span><span class="dm-bar-action">Save</span></div>
+        <div class="dm-card dm-card-accent" style="text-align:center;">
+          <div class="dm-hero-label">Per period</div>
+          <div class="dm-hero-amount" style="font-size:22px;">$300<span class="dm-cents">.00</span></div>
+          <div class="dm-hero-sub">was $480 — eased while bills are tight</div>
         </div>
-        <div class="dm-card">
-          <div class="dm-kv"><strong>Wants</strong><span class="yellow">20%</span></div>
-          <div class="dm-slider"><div class="dm-slider-track" style="--p:20%"></div><div class="dm-slider-thumb" style="--p:20%"></div></div>
-        </div>
-        <div class="dm-card">
-          <div class="dm-kv"><strong>Savings</strong><span style="color:#A78BFA;">15%</span></div>
-          <div class="dm-slider"><div class="dm-slider-track" style="--p:15%"></div><div class="dm-slider-thumb" style="--p:15%"></div></div>
+        <div class="dm-section-label">Goals receiving the contribution</div>
+        <div class="dm-list">
+          <div class="dm-row"><span class="dm-icon target">E</span><span class="dm-row-label">Emergency fund</span><span class="dm-row-meta">$200</span></div>
+          <div class="dm-row"><span class="dm-icon star">V</span><span class="dm-row-label">Vacation</span><span class="dm-row-meta">$100</span></div>
         </div>
         <div class="dm-row"><span class="dm-row-label">Roll over surplus</span><span class="dm-toggle on purple"></span></div>
       </DocMock>
@@ -533,7 +531,7 @@ const headings = [
       <div class="case-body">
         <p class="case-what"><strong>What is happening.</strong> Your pay frequency determines the length of budget periods. Changing from bi-weekly to monthly, for example, requires updating this so future periods have the right length and Safe to Spend is calibrated correctly.</p>
         <ol>
-          <li>Go to Settings → Budget Setup.</li>
+          <li>Go to Settings → Budget Settings.</li>
           <li>Update <strong>Pay Frequency</strong> to match your new schedule.</li>
           <li>Update <strong>Income per Period</strong> to your new take-home pay for one pay period.</li>
           <li>Tap Save. The change takes effect at the start of the next budget period. Your current period continues with the old settings.</li>
@@ -551,9 +549,9 @@ const headings = [
       <div class="case-body">
         <p class="case-what"><strong>What is happening.</strong> The 50/30/20 default split (Needs/Wants/Savings) is a starting point. If your real fixed costs consistently exceed 50% of take-home pay, your Needs bucket is too small and Safe to Spend will always feel insufficient.</p>
         <ol>
-          <li>Go to Settings → Budget Setup → Bucket Allocation. Adjust the sliders to match your actual spending distribution. A high-cost-of-living split might be 65% Needs / 20% Wants / 15% Savings.</li>
-          <li>Review your bill priorities. Bills marked Critical are reserved in full. If you have discretionary bills (streaming, gym) marked Critical, change them to Discretionary — only reserve money for bills you absolutely must pay.</li>
-          <li>Check whether surplus carryover is enabled: Settings → Budget Setup → Roll over unspent budget. If you consistently come in under budget, enabling carryover lets accumulated surplus add to future periods' capacity.</li>
+          <li>Review which categories you've assigned the red color. Red categories drive the Bill Reserve. If a streaming service or gym membership is marked red, change it to green (Fun) — only reserve money for bills you absolutely must pay.</li>
+          <li>Look at your monthly category targets. If your real essential outflows consistently exceed what you've planned for red categories, your savings target may be too aggressive. Lower the savings target until Safe to Spend is realistic, then raise it back as you build cushion.</li>
+          <li>Check whether surplus carryover is enabled in Settings → Budget Settings. If you consistently come in under budget, enabling carryover lets accumulated surplus add to future periods' capacity.</li>
           <li>Check the Insights tab for a Spending Breakdown by category. This shows where money actually goes vs. what you have allocated, which often reveals a mismatch between perceived and actual spending.</li>
         </ol>
       </div>

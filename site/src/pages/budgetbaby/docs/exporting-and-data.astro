@@ -5,52 +5,48 @@ import DocMock from '../../../components/DocMock.astro';
 const headings = [
   { id: 'formats',          text: 'Export formats' },
   { id: 'how-to-export',   text: 'How to export' },
-  { id: 'csv-columns',     text: 'CSV column reference' },
+  { id: 'csv-files',       text: 'CSV file reference' },
+  { id: 'pdf-contents',    text: 'PDF contents' },
   { id: 'deleting-data',   text: 'Deleting your data' },
 ];
 ---
 
 <DocsLayout
   title="Exporting Data"
-  description="CSV and PDF export formats in BudgetBaby, how to export, and a full CSV column reference."
+  description="CSV and PDF export formats in BudgetBaby, how to export, and the column reference for each CSV file."
   canonical="/budgetbaby/docs/exporting-and-data"
   headings={headings}
 >
   <div class="docs-content">
     <h1>Exporting Data</h1>
     <p class="docs-summary">
-      Premium users can export their BudgetBaby data as a CSV for spreadsheet analysis
-      or as a formatted PDF financial summary. Free users get one CSV export per month.
+      Premium users can export their BudgetBaby data as CSV files for spreadsheet analysis or as a
+      formatted PDF financial summary. Free users get one CSV export per month.
     </p>
 
     <h2 id="formats">Export formats</h2>
     <h3>CSV</h3>
     <p>
-      The CSV export is a plain-text file compatible with any spreadsheet application.
+      A CSV export produces <strong>up to four separate files</strong> — one each for transactions,
+      categories, recurring bills, and subscriptions — depending on what you have. The files are
+      packaged together so you can open whichever one you need in any spreadsheet app.
     </p>
     <ul>
-      <li><strong>What is included.</strong> Transactions, categories, recurring bills, subscriptions, savings goals, and budget periods.</li>
-      <li><strong>Date format.</strong> ISO 8601: YYYY-MM-DD. This format is reliably parsed by Excel, Numbers, and Google Sheets without needing a format conversion.</li>
-      <li><strong>Amount format.</strong> Pure numbers with no currency symbol. A separate Currency column contains the currency code (for example, USD). This makes sorting and arithmetic work correctly in a spreadsheet.</li>
-      <li><strong>Encoding.</strong> UTF-8 with a BOM header for maximum Excel compatibility.</li>
+      <li><strong>Date format.</strong> ISO 8601 with full date (YYYY-MM-DD), parsed reliably by Excel, Numbers, and Google Sheets.</li>
+      <li><strong>Amount format.</strong> Pure numeric values with no currency symbol. A separate Currency column carries the code so sorting and arithmetic work correctly.</li>
+      <li><strong>Encoding.</strong> Plain UTF-8.</li>
+      <li><strong>Priority labels.</strong> Categories use their display names: <em>Essentials</em>, <em>Variable</em>, <em>Fun</em>, <em>Unplanned</em>.</li>
+      <li><strong>Payment method labels.</strong> Capitalised display names — <em>Cash</em>, <em>Debit</em>, <em>Credit</em>, <em>Savings</em>.</li>
     </ul>
+
     <h3>PDF</h3>
     <p>
-      The PDF export is a formatted financial summary report, not a raw data file. It includes:
-    </p>
-    <ul>
-      <li>Spending breakdown by priority level (Critical, Important, Discretionary, Buffer)</li>
-      <li>Monthly bills and subscriptions with amounts and due dates</li>
-      <li>Savings goals with current balance and progress toward the target</li>
-      <li>Budget period summary: income, total spent, remaining</li>
-    </ul>
-    <p>
-      The PDF is intended for sharing or printing, not for importing into another system.
-      Use CSV if you need the raw data.
+      The PDF export is a formatted financial summary report, not a raw data file. It's designed
+      for sharing or printing — use CSV when you need the underlying data.
     </p>
 
     <div class="doc-mocks-row">
-      <DocMock label="Export Data" caption="Pick CSV for raw data, PDF for a sharable financial summary.">
+      <DocMock label="Export Data" caption="Pick CSV for raw data, PDF for a sharable summary.">
         <div class="dm-bar"><span class="dm-back">Settings</span><span class="dm-bar-title">Export Data</span><span></span></div>
         <div class="dm-seg">
           <div class="dm-seg-item active">CSV</div>
@@ -58,8 +54,9 @@ const headings = [
         </div>
         <div class="dm-card">
           <div class="dm-h2">CSV (.csv)</div>
-          <div class="dm-help">Plain-text spreadsheet. UTF-8 with BOM. ISO 8601 dates.</div>
-          <div class="dm-kv muted"><span>Includes</span><span>Tx · Bills · Goals · Periods</span></div>
+          <div class="dm-help">Up to 4 files: Transactions, Categories, Bills, Subscriptions.</div>
+          <div class="dm-kv muted"><span>Encoding</span><span>UTF-8</span></div>
+          <div class="dm-kv muted"><span>Dates</span><span>ISO 8601 (YYYY-MM-DD)</span></div>
         </div>
         <div class="dm-section-label">Range</div>
         <div class="dm-list">
@@ -69,7 +66,7 @@ const headings = [
         </div>
         <div class="dm-btn dm-btn-primary">Export CSV</div>
       </DocMock>
-      <DocMock label="PDF preview" caption="The PDF renders a printable summary, not raw data.">
+      <DocMock label="PDF preview" caption="The PDF renders a printable summary — financial overview, bills, goals, priority breakdown.">
         <div class="dm-bar"><span class="dm-back">Export</span><span class="dm-bar-title">PDF preview</span><span class="dm-bar-action">Share</span></div>
         <div class="dm-card" style="padding:8px 10px;">
           <div class="dm-h2" style="font-size:11px;">March 2026 Summary</div>
@@ -77,35 +74,37 @@ const headings = [
           <div class="dm-kv-divider"></div>
           <div class="dm-kv"><span>Income</span><strong>$3,000</strong></div>
           <div class="dm-kv"><span>Spent</span><strong class="red">$2,140</strong></div>
-          <div class="dm-kv"><span>Surplus</span><strong class="green">$860</strong></div>
+          <div class="dm-kv"><span>Remaining</span><strong class="green">$860</strong></div>
         </div>
         <div class="dm-card">
-          <div class="dm-section-label" style="margin:0;">By priority</div>
-          <div class="dm-kv"><span><span class="dm-dot critical"></span> Critical</span><strong>$1,140</strong></div>
-          <div class="dm-kv"><span><span class="dm-dot important"></span> Important</span><strong>$640</strong></div>
-          <div class="dm-kv"><span><span class="dm-dot discretionary"></span> Discretionary</span><strong>$280</strong></div>
-          <div class="dm-kv"><span><span class="dm-dot buffer"></span> Buffer</span><strong>$80</strong></div>
+          <div class="dm-section-label" style="margin:0;">Spending by priority</div>
+          <div class="dm-kv"><span><span class="dm-dot critical"></span> Essentials</span><strong>$1,140</strong></div>
+          <div class="dm-kv"><span><span class="dm-dot important"></span> Variable</span><strong>$640</strong></div>
+          <div class="dm-kv"><span><span class="dm-dot discretionary"></span> Fun</span><strong>$280</strong></div>
+          <div class="dm-kv"><span><span class="dm-dot buffer"></span> Unplanned</span><strong>$80</strong></div>
         </div>
       </DocMock>
     </div>
 
     <h2 id="how-to-export">How to export</h2>
     <ol>
-      <li>Open BudgetBaby and go to <strong>Settings → Export Data</strong>.</li>
+      <li>Open BudgetBaby and go to <strong>Settings → Data &amp; Backup → Export Data</strong>.</li>
       <li>Choose <strong>CSV</strong> or <strong>PDF</strong>.</li>
-      <li>Select the budget period or date range to export.</li>
+      <li>Select the date range to export.</li>
       <li>Tap <strong>Export</strong>. iOS presents a share sheet.</li>
-      <li>Choose a destination: Files, Mail, AirDrop, or any other app in the share sheet.</li>
+      <li>Choose a destination — Files, Mail, AirDrop, or any other share target.</li>
     </ol>
     <div class="doc-tip">
-      <strong>Free tier limit.</strong> Free users can export as CSV once per month. Premium users have unlimited CSV and PDF exports. The export option in Settings shows how many exports remain for the current month.
+      <strong>Free tier limit.</strong> Free users can export as CSV once per month. Premium users
+      have unlimited CSV and PDF exports. The export screen shows how many exports remain for the
+      current month.
     </div>
 
     <div class="doc-mocks-row">
-      <DocMock label="Share sheet" caption="iOS share sheet sends the file to Files, Mail, AirDrop, or anywhere else.">
+      <DocMock label="Share sheet" caption="iOS share sheet routes the file to Files, Mail, AirDrop, or anywhere else.">
         <div style="height:90px;"></div>
         <div class="dm-card" style="background:rgba(40,40,55,0.85); backdrop-filter:blur(20px); padding:8px 10px;">
-          <div class="dm-help" style="text-align:center; font-weight:700; color:var(--text-primary);">budgetbaby_2026-03.csv</div>
+          <div class="dm-help" style="text-align:center; font-weight:700; color:var(--text-primary);">BudgetBaby_Transactions.csv</div>
           <div class="dm-help" style="text-align:center;">CSV · 18 KB</div>
         </div>
         <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:6px; margin-top:6px;">
@@ -126,11 +125,13 @@ const headings = [
       </DocMock>
     </div>
 
-    <h2 id="csv-columns">CSV column reference</h2>
+    <h2 id="csv-files">CSV file reference</h2>
     <p>
-      The transactions CSV includes the following columns. All columns are present in every row.
-      Empty values are represented by an empty field, not NULL or N/A.
+      A CSV export produces these files (only files with content are generated). Each is a plain
+      comma-separated table with a single header row and one row per record.
     </p>
+
+    <h3><code>BudgetBaby_Transactions.csv</code></h3>
     <div class="table-wrap">
       <table>
         <thead>
@@ -141,100 +142,122 @@ const headings = [
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><code>id</code></td>
-            <td>UUID</td>
-            <td>Unique identifier for the transaction.</td>
-          </tr>
-          <tr>
-            <td><code>date</code></td>
-            <td>YYYY-MM-DD</td>
-            <td>The date the transaction was logged.</td>
-          </tr>
-          <tr>
-            <td><code>description</code></td>
-            <td>Text</td>
-            <td>User-entered description. May be empty.</td>
-          </tr>
-          <tr>
-            <td><code>amount</code></td>
-            <td>Decimal</td>
-            <td>Transaction amount. Always positive, regardless of type.</td>
-          </tr>
-          <tr>
-            <td><code>currency</code></td>
-            <td>Text</td>
-            <td>ISO 4217 currency code, e.g. USD.</td>
-          </tr>
-          <tr>
-            <td><code>payment_method</code></td>
-            <td>Enum</td>
-            <td>cash, debit, credit, or savings.</td>
-          </tr>
-          <tr>
-            <td><code>category_name</code></td>
-            <td>Text</td>
-            <td>The category name at the time of export.</td>
-          </tr>
-          <tr>
-            <td><code>category_priority</code></td>
-            <td>Enum</td>
-            <td>critical, important, discretionary, or buffer.</td>
-          </tr>
-          <tr>
-            <td><code>budget_bucket</code></td>
-            <td>Text</td>
-            <td>The bucket name (Needs, Wants, or Savings).</td>
-          </tr>
-          <tr>
-            <td><code>period_id</code></td>
-            <td>UUID</td>
-            <td>The budget period this transaction belongs to.</td>
-          </tr>
-          <tr>
-            <td><code>period_start</code></td>
-            <td>YYYY-MM-DD</td>
-            <td>Start date of the budget period.</td>
-          </tr>
-          <tr>
-            <td><code>period_end</code></td>
-            <td>YYYY-MM-DD</td>
-            <td>End date of the budget period.</td>
-          </tr>
-          <tr>
-            <td><code>notes</code></td>
-            <td>Text</td>
-            <td>Any notes attached to the transaction. May be empty.</td>
-          </tr>
+          <tr><td><code>Date</code></td><td>YYYY-MM-DD</td><td>The transaction date.</td></tr>
+          <tr><td><code>Category</code></td><td>Text</td><td>Category name at export time.</td></tr>
+          <tr><td><code>Priority</code></td><td>Text</td><td>Display name: Essentials / Variable / Fun / Unplanned.</td></tr>
+          <tr><td><code>Amount</code></td><td>Decimal</td><td>Positive number, no currency symbol.</td></tr>
+          <tr><td><code>Currency</code></td><td>Text</td><td>Currency code or symbol (e.g. $, USD).</td></tr>
+          <tr><td><code>Payment Method</code></td><td>Text</td><td>Cash / Debit / Credit / Savings.</td></tr>
+          <tr><td><code>Note</code></td><td>Text</td><td>Optional user note. May be empty.</td></tr>
         </tbody>
       </table>
     </div>
+
+    <h3><code>BudgetBaby_Categories.csv</code></h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Column</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><code>Name</code></td><td>Text</td><td>Category name.</td></tr>
+          <tr><td><code>Priority</code></td><td>Text</td><td>Essentials / Variable / Fun / Unplanned.</td></tr>
+          <tr><td><code>Icon</code></td><td>Text</td><td>SF Symbol icon name.</td></tr>
+          <tr><td><code>Monthly Budget</code></td><td>Decimal</td><td>Planned amount per period (may be empty).</td></tr>
+          <tr><td><code>Currency</code></td><td>Text</td><td>Currency code or symbol.</td></tr>
+          <tr><td><code>Sort Order</code></td><td>Integer</td><td>Display order for the category list.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3><code>BudgetBaby_Bills.csv</code></h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Column</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><code>Name</code></td><td>Text</td><td>Bill name.</td></tr>
+          <tr><td><code>Amount</code></td><td>Decimal</td><td>Bill amount per occurrence.</td></tr>
+          <tr><td><code>Currency</code></td><td>Text</td><td>Currency code or symbol.</td></tr>
+          <tr><td><code>Due Day</code></td><td>Integer</td><td>Day of month the bill is due.</td></tr>
+          <tr><td><code>Payment Method</code></td><td>Text</td><td>Cash / Debit / Credit / Savings.</td></tr>
+          <tr><td><code>Category</code></td><td>Text</td><td>Linked category name.</td></tr>
+          <tr><td><code>Status</code></td><td>Text</td><td>Active or Inactive.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3><code>BudgetBaby_Subscriptions.csv</code></h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Column</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><code>Name</code></td><td>Text</td><td>Subscription name.</td></tr>
+          <tr><td><code>Amount</code></td><td>Decimal</td><td>Subscription amount.</td></tr>
+          <tr><td><code>Currency</code></td><td>Text</td><td>Currency code or symbol.</td></tr>
+          <tr><td><code>Frequency</code></td><td>Text</td><td>Monthly, Yearly, etc.</td></tr>
+          <tr><td><code>Next Billing Date</code></td><td>YYYY-MM-DD</td><td>Next charge date.</td></tr>
+          <tr><td><code>Category</code></td><td>Text</td><td>Provider category.</td></tr>
+          <tr><td><code>Status</code></td><td>Text</td><td>Active or Inactive.</td></tr>
+          <tr><td><code>Monthly Equivalent</code></td><td>Decimal</td><td>Amount normalised to a monthly figure for comparison.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
     <div class="doc-tip">
-      <strong>Using the CSV in Excel.</strong> Open Excel, go to Data → From Text/CSV, select the file, and ensure the delimiter is set to comma. Excel should detect the UTF-8 encoding automatically. If date columns appear as text, use the Text to Columns wizard to convert them.
+      <strong>Using CSV in Excel.</strong> Open Excel, go to Data → From Text/CSV, select the file,
+      and ensure the delimiter is set to comma. Excel detects UTF-8 automatically. If date columns
+      appear as text, use Text to Columns to convert them to dates.
     </div>
 
     <div class="doc-mocks-row">
-      <DocMock label="CSV preview" caption="Each row carries everything a spreadsheet needs to reconstruct the transaction.">
-        <div class="dm-bar"><span class="dm-back">Files</span><span class="dm-bar-title">budgetbaby.csv</span><span class="dm-bar-action">⋯</span></div>
+      <DocMock label="Transactions CSV" caption="Each row is one transaction with date, category, priority, amount, currency, method, note.">
+        <div class="dm-bar"><span class="dm-back">Files</span><span class="dm-bar-title">BudgetBaby_Transactions.csv</span><span class="dm-bar-action">⋯</span></div>
         <div class="dm-csv">
-          <div><span class="dm-csv-h">date</span>,<span class="dm-csv-h">amount</span>,<span class="dm-csv-h">payment_method</span>,<span class="dm-csv-h">category_name</span>,<span class="dm-csv-h">priority</span></div>
-          <div>2026-03-01,1200.00,debit,Rent,critical</div>
-          <div>2026-03-02,42.18,debit,Groceries,important</div>
-          <div>2026-03-02,4.85,cash,Coffee,discretionary</div>
-          <div>2026-03-03,140.00,credit,Gas,important</div>
-          <div>2026-03-04,15.49,debit,Streaming,discretionary</div>
-          <div>2026-03-05,32.00,debit,Phone,critical</div>
-          <div>2026-03-07,84.20,credit,Dining,discretionary</div>
+          <div><span class="dm-csv-h">Date</span>,<span class="dm-csv-h">Category</span>,<span class="dm-csv-h">Priority</span>,<span class="dm-csv-h">Amount</span>,<span class="dm-csv-h">Currency</span>,<span class="dm-csv-h">Payment Method</span>,<span class="dm-csv-h">Note</span></div>
+          <div>2026-03-01,Rent,Essentials,1200.00,$,Debit,</div>
+          <div>2026-03-02,Groceries,Variable,42.18,$,Debit,Trader Joe's</div>
+          <div>2026-03-02,Coffee &amp; Cafe,Fun,4.85,$,Cash,</div>
+          <div>2026-03-03,Transport,Variable,140.00,$,Credit,</div>
+          <div>2026-03-04,Subscriptions,Fun,15.49,$,Debit,Netflix</div>
+          <div>2026-03-07,Dining Out,Fun,84.20,$,Credit,Anniversary</div>
         </div>
-        <div class="dm-help">UTF-8 · BOM · ISO-8601 dates · numeric amounts</div>
+        <div class="dm-help">UTF-8 · ISO-8601 dates · numeric amounts · display labels</div>
       </DocMock>
     </div>
+
+    <h2 id="pdf-contents">PDF contents</h2>
+    <p>The PDF report is generated on-device and includes:</p>
+    <ul>
+      <li><strong>Financial overview.</strong> Period budget, total spent, remaining.</li>
+      <li><strong>Spending by priority.</strong> Totals for each color (Essentials, Variable, Fun, Unplanned).</li>
+      <li><strong>Spending by category, grouped by priority.</strong> Each color band lists its categories with totals.</li>
+      <li><strong>Monthly bills and subscriptions.</strong> Names, amounts, due dates, statuses.</li>
+      <li><strong>Savings goals.</strong> Target, current balance, progress percentage.</li>
+    </ul>
+    <p>Use CSV if you need the raw data — the PDF is intended for sharing or printing.</p>
 
     <h2 id="deleting-data">Deleting your data</h2>
     <p>
       If you want to reset BudgetBaby or remove your data entirely, see the dedicated
-      <a href="/budgetbaby/delete-data">Delete Your Data</a> page for complete instructions.
-      That page covers local data reset, cloud backup deletion, account deletion, and subscription cancellation.
+      <a href="/budgetbaby/delete-data">Delete Your Data</a> page for complete instructions. That
+      page covers local data reset, cloud backup deletion, account deletion, and subscription
+      cancellation.
     </p>
   </div>
 </DocsLayout>

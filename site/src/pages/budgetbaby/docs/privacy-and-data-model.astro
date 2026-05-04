@@ -32,15 +32,19 @@ const headings = [
       using your device passcode. No account or internet connection is required for any
       core budgeting feature.
     </p>
-    <p>What is stored on your device:</p>
+    <p>The on-device SwiftData store includes:</p>
     <ul>
-      <li>All transactions, categories, payment methods, and notes you enter</li>
-      <li>Budget periods: dates, income, allocations, and carry-forward settings</li>
-      <li>Recurring bills and subscriptions</li>
-      <li>Savings goals and goal contributions</li>
-      <li>Money pool starting balances</li>
-      <li>App settings and preferences</li>
+      <li>Budget periods (dates, income, allocations, carry-forward settings) and the related <code>BudgetAdjustment</code> entries</li>
+      <li>Categories with priority colors, custom names, icons, and planned amounts</li>
+      <li>All transactions and the optional notes attached to them</li>
+      <li>Money pool accounts and starting balances</li>
+      <li>Recurring bills and per-period bill occurrences (with paid/unpaid state)</li>
+      <li>Subscriptions and important expenses</li>
+      <li>Savings goals and savings transactions</li>
+      <li>Money transfers between pools</li>
       <li>Reminder configuration</li>
+      <li>User and household profile fields</li>
+      <li>App settings, preferences, and the activity log (BudgetChangeLog)</li>
     </ul>
     <p>
       None of this data is sent to our servers unless you explicitly enable cloud backup

@@ -143,7 +143,7 @@ const headings = [
     <h2 id="creating-a-backup">Creating a backup</h2>
     <p>A BudgetBaby account is required to create a cloud backup. If you have not signed in, go to Settings → Account first.</p>
     <ol>
-      <li>Go to <strong>Settings → Backup and Restore</strong>.</li>
+      <li>Go to <strong>Settings → Backup &amp; Restore</strong>.</li>
       <li>Tap <strong>Create Backup</strong>.</li>
       <li>Wait for the backup to complete. For most users this takes 5 to 15 seconds.</li>
     </ol>
@@ -205,7 +205,7 @@ const headings = [
 
     <h2 id="restoring">Restoring from backup</h2>
     <ol>
-      <li>Go to <strong>Settings → Backup and Restore</strong>.</li>
+      <li>Go to <strong>Settings → Backup &amp; Restore</strong>.</li>
       <li>Select the backup you want to restore from the list. The list shows the creation date and time of each backup.</li>
       <li>Tap <strong>Restore</strong>.</li>
       <li>Read the confirmation dialog carefully. It explains what will happen and that a safety backup will be created first. Tap Confirm.</li>
@@ -249,7 +249,7 @@ const headings = [
     </p>
     <ul>
       <li>Safety backups appear in the backup list labeled "Safety backup" with the timestamp of when the restore was initiated.</li>
-      <li>They can be used to undo a restore: go to Settings → Backup and Restore, select the safety backup, and restore from it.</li>
+      <li>They can be used to undo a restore: go to Settings → Backup &amp; Restore, select the safety backup, and restore from it.</li>
       <li>Safety backups are local only. They will be deleted if you uninstall the app.</li>
       <li>They do not count against your backup slot quota.</li>
     </ul>
@@ -288,10 +288,10 @@ const headings = [
       the passphrase.
     </p>
     <ol>
-      <li>On your old iPhone, go to <strong>Settings → Data &amp; Backup → Export Migration File</strong>.</li>
-      <li>Set a passphrase you will remember. Tap <strong>Export</strong>. Share the resulting <code>.bbbackup</code> file via AirDrop, iMessage, email, or any file transfer you prefer.</li>
+      <li>On your old iPhone, go to <strong>Settings → Backup &amp; Restore</strong> and find the Migration File section. Tap <strong>Save Backup to File</strong>.</li>
+      <li>Set a passphrase you will remember. Tap <strong>Export</strong>. Share the resulting <code>.bbbackup</code> file via AirDrop, iMessage, email, iCloud Drive, or any file transfer you prefer.</li>
       <li>Install BudgetBaby on the new iPhone.</li>
-      <li>On the new device, on the welcome screen, tap <strong>Restore from migration file</strong>. Select the <code>.bbbackup</code> you transferred. Enter the passphrase. Restore.</li>
+      <li>On the new device, open <strong>Settings → Backup &amp; Restore</strong> and tap the Migration File <strong>Import</strong> action. Select the <code>.bbbackup</code> you transferred. Enter the passphrase. Restore.</li>
     </ol>
     <div class="doc-tip">
       <strong>Why this is the most reliable method.</strong> The encryption key is the
@@ -322,11 +322,11 @@ const headings = [
       and both devices share the same iCloud account:
     </p>
     <ol>
-      <li>On your old iPhone, go to <strong>Settings → Backup and Restore</strong> and tap <strong>Create Backup</strong>.</li>
+      <li>On your old iPhone, go to <strong>Settings → Backup &amp; Restore</strong> and tap <strong>Create Backup</strong>.</li>
       <li>Install BudgetBaby on your new iPhone.</li>
       <li>Sign in to the same BudgetBaby account on the new device: Settings → Account.</li>
       <li>Make sure iCloud Keychain is enabled on the new device: iOS Settings → (your name) → iCloud → Keychain.</li>
-      <li>Open BudgetBaby → Settings → Backup and Restore. Your backup should appear in the list within a minute or two as the iCloud Keychain sync completes.</li>
+      <li>Open BudgetBaby → Settings → Backup &amp; Restore. Your backup should appear in the list within a minute or two as the iCloud Keychain sync completes.</li>
       <li>Tap the backup and restore from it.</li>
     </ol>
     <div class="doc-tip">
@@ -402,9 +402,9 @@ const headings = [
     <h2 id="managing-backups">Managing and deleting backups</h2>
     <p>To view, manage, or delete your backups:</p>
     <ol>
-      <li>Go to <strong>Settings → Account → Manage Backups</strong>.</li>
-      <li>Swipe left on any backup to reveal the Delete action. Tap <strong>Delete</strong> and confirm.</li>
-      <li>To delete all backups at once, tap <strong>Delete All Backups</strong> at the bottom and confirm.</li>
+      <li>Go to <strong>Settings → Backup &amp; Restore</strong>.</li>
+      <li>Swipe left on any backup in the list to reveal the Delete action. Tap <strong>Delete</strong> and confirm.</li>
+      <li>To delete every cloud backup at once, scroll to the bottom and tap the destructive Delete-All action; confirm in the alert sheet.</li>
     </ol>
     <div class="doc-warning">
       <strong>Backup deletion is permanent and cannot be undone.</strong> Because your backups are encrypted with a key only your device holds, neither you nor we can recover a deleted backup. The server-side encrypted blob and the on-device key are both required; deleting the blob makes the backup unrecoverable even if the key still exists.
