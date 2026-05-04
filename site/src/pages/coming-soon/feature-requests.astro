@@ -4,17 +4,14 @@ import GlassCard from '../../components/GlassCard.astro';
 import Icon from '../../components/Icon.astro';
 
 // BabyBlocks platform's public feature-request endpoints. Default points
-// at the workers.dev URL because the api.babyblocks.io custom domain has
-// no DNS record (the wrangler route is configured but DNS was never
-// added). Override at build time with PUBLIC_FEATURE_REQUEST_URL once
-// the DNS record exists. Cycle 86 — fix for "Couldn't reach our servers"
-// on the form.
+// at production via the api.babyblocks.io custom domain; override at
+// build time with PUBLIC_FEATURE_REQUEST_URL for staging.
 const featureRequestPostUrl =
   import.meta.env.PUBLIC_FEATURE_REQUEST_URL ??
-  'https://bb-ticket-service.timothy-9d8.workers.dev/api/public/feature-request';
+  'https://api.babyblocks.io/api/public/feature-request';
 const featureRequestListUrl =
   import.meta.env.PUBLIC_FEATURE_REQUESTS_URL ??
-  'https://bb-ticket-service.timothy-9d8.workers.dev/api/public/feature-requests';
+  'https://api.babyblocks.io/api/public/feature-requests';
 ---
 
 <Layout
