@@ -1,5 +1,4 @@
 ---
-import Icon from './Icon.astro';
 const navLinks = [
   {
     label: 'BudgetBaby',
@@ -29,7 +28,7 @@ const currentPath = Astro.url.pathname;
 <header class="site-header">
   <div class="header-inner container">
     <a href="/" class="logo" aria-label="BabyBlocks home">
-      <Icon name="layers" size={20} aria-hidden="true" />
+      <img src="/BabyBlocksIcon/favicon-48x48.png" alt="" class="logo-mark" width="24" height="24" />
       <span class="logo-text">BabyBlocks</span>
     </a>
 
@@ -132,6 +131,14 @@ const currentPath = Astro.url.pathname;
     align-items: center;
     gap: var(--space-2);
     text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .logo-mark {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    display: block;
     flex-shrink: 0;
   }
 
