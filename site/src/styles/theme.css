@@ -380,6 +380,16 @@ strong { color: var(--text-primary); font-weight: var(--weight-semibold); }
   margin-bottom: var(--space-4);
 }
 
+/* Family touchpoint. The apps-section heading uses Fraunces, the same
+   editorial serif used on intriguemmc.com and intriguinginsight.com.
+   Single accent moment so the BabyBlocks personality stays intact while
+   signalling the parent-family DNA. */
+.apps-section .section-header h2 {
+  font-family: 'Fraunces', ui-serif, Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
 .section-header p {
   font-size: var(--text-lg);
   color: var(--text-secondary);

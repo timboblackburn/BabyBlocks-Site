@@ -63,7 +63,14 @@ const year = new Date().getFullYear();
         <li><a href="https://foundry-os.io" target="_blank" rel="noopener" class="family-rail-link">Foundry <span aria-hidden="true">↗</span></a></li>
         <li><span class="family-rail-link family-rail-soon">ScreenForge</span></li>
       </ul>
-      <a href="https://intriguemmc.com/press" target="_blank" rel="noopener" class="family-rail-press">Press kit <span aria-hidden="true">→</span></a>
+      <a href="https://intriguemmc.com/press" target="_blank" rel="noopener" class="family-rail-press">
+        <svg class="family-rail-mark" viewBox="0 0 64 64" aria-hidden="true">
+          <rect x="2" y="2" width="60" height="60" rx="14" ry="14" fill="#7A2030"/>
+          <path d="M22 14 V50" stroke="#F4EFE4" stroke-width="3.4" stroke-linecap="round" fill="none"/>
+          <path d="M30 50 V22 L40 36 L50 22 V50" stroke="#F4EFE4" stroke-width="3.4" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+        </svg>
+        Press kit <span aria-hidden="true">→</span>
+      </a>
     </div>
 
     <div class="footer-bottom">
@@ -140,7 +147,10 @@ const year = new Date().getFullYear();
     text-transform: uppercase;
     letter-spacing: 0.18em;
     font-weight: var(--weight-semibold);
-    color: var(--accent-light);
+    /* Parent accent. Oxblood at a dark-theme-tinted shade
+       (#C24A5E is the dark-mode oxblood used on intriguemmc.com).
+       Same family across all four sites, adjusted for surface luminance. */
+    color: #C24A5E;
     margin: 0;
   }
   .family-rail-list {
@@ -159,10 +169,13 @@ const year = new Date().getFullYear();
     font-weight: var(--weight-medium);
     transition: color 0.15s ease;
   }
-  .family-rail-link:hover { color: var(--accent-light); }
+  .family-rail-link:hover { color: #C24A5E; }
   .family-rail-soon { color: var(--text-faint); cursor: default; }
   .family-rail-press {
-    color: var(--accent-light);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #C24A5E;
     text-decoration: none;
     font-size: 0.75rem;
     text-transform: uppercase;
@@ -171,6 +184,7 @@ const year = new Date().getFullYear();
     transition: color 0.15s ease;
   }
   .family-rail-press:hover { color: var(--text-primary); }
+  .family-rail-mark { width: 14px; height: 14px; flex-shrink: 0; }
 
   .footer-nav {
     display: grid;

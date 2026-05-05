@@ -104,7 +104,18 @@ const canonicalURL = canonical ? `${siteURL}${canonical}` : null;
     <meta name="color-scheme" content={isLight ? 'light' : 'dark'} />
     <meta name="theme-color" content={themeColor} />
 
-    <!-- Analytics — Plausible (privacy-friendly, no cookies, GDPR-compliant) -->
+    <!-- Fraunces serif. Family touchpoint shared with intriguemmc.com and
+         intriguinginsight.com. Used sparingly on a single accent moment per
+         page to keep the BabyBlocks personality intact while signalling the
+         family DNA. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Analytics. Plausible. Privacy-friendly, no cookies, GDPR-compliant. -->
     <script is:inline defer data-domain="babyblocks.io" src="https://plausible.io/js/script.js"></script>
 
     <!-- Structured data. Always emit Organization with parentOrganization
