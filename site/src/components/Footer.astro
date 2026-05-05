@@ -1,5 +1,4 @@
 ---
-import Icon from './Icon.astro';
 const year = new Date().getFullYear();
 ---
 
@@ -8,12 +7,12 @@ const year = new Date().getFullYear();
     <div class="footer-top">
       <div class="footer-brand">
         <a href="/" class="footer-logo">
-          <Icon name="layers" size={20} />
+          <img src="/BabyBlocksIcon/favicon-48x48.png" alt="" width="22" height="22" class="footer-logo-mark" />
           <span>BabyBlocks</span>
         </a>
         <p class="footer-tagline">
-          Simple, visual apps for a calmer life.<br />
-          Built by Intriguing Insight.
+          Calm iOS apps. One job each. Local-first by default.<br />
+          A BabyBlocks-family project. Part of <a href="https://intriguinginsight.com" target="_blank" rel="noopener" class="footer-tagline-link">Intriguing Insight</a>. Operated by <a href="https://intriguemmc.com" target="_blank" rel="noopener" class="footer-tagline-link">Intrigue MMC LLC</a>.
         </p>
       </div>
 
@@ -54,9 +53,22 @@ const year = new Date().getFullYear();
       </nav>
     </div>
 
+    <!-- Family rail. Identical block on every site in the Intrigue MMC family
+         so the four properties read as one studio with four brands. -->
+    <div class="family-rail">
+      <p class="family-rail-label">Part of Intrigue MMC LLC</p>
+      <ul class="family-rail-list">
+        <li><a href="https://intriguemmc.com" target="_blank" rel="noopener" class="family-rail-link">Intrigue MMC <span aria-hidden="true">↗</span></a></li>
+        <li><a href="https://intriguinginsight.com" target="_blank" rel="noopener" class="family-rail-link">Intriguing Insight <span aria-hidden="true">↗</span></a></li>
+        <li><a href="https://foundry-os.io" target="_blank" rel="noopener" class="family-rail-link">Foundry <span aria-hidden="true">↗</span></a></li>
+        <li><span class="family-rail-link family-rail-soon">ScreenForge</span></li>
+      </ul>
+      <a href="https://intriguemmc.com/press" target="_blank" rel="noopener" class="family-rail-press">Press kit <span aria-hidden="true">→</span></a>
+    </div>
+
     <div class="footer-bottom">
       <p class="footer-legal">
-        &copy; {year} Intrigue MMC LLC · All rights reserved.
+        &copy; {year} Intrigue MMC LLC. All rights reserved. Illinois LLC. Founded 2024.
       </p>
       <div class="footer-legal-links">
         <a href="/budgetbaby/privacy">Privacy</a>
@@ -100,6 +112,65 @@ const year = new Date().getFullYear();
     color: var(--text-muted);
     line-height: var(--leading-relaxed);
   }
+  .footer-tagline-link {
+    color: var(--text-secondary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.15s ease;
+  }
+  .footer-tagline-link:hover { color: var(--accent-light); }
+  .footer-logo-mark {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    display: block;
+  }
+
+  .family-rail {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3) var(--space-4);
+    padding: var(--space-5) 0;
+    border-top: 1px solid var(--glass-border);
+    margin-top: var(--space-8);
+  }
+  .family-rail-label {
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-weight: var(--weight-semibold);
+    color: var(--accent-light);
+    margin: 0;
+  }
+  .family-rail-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.25rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+  }
+  .family-rail-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    transition: color 0.15s ease;
+  }
+  .family-rail-link:hover { color: var(--accent-light); }
+  .family-rail-soon { color: var(--text-faint); cursor: default; }
+  .family-rail-press {
+    color: var(--accent-light);
+    text-decoration: none;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-weight: var(--weight-semibold);
+    transition: color 0.15s ease;
+  }
+  .family-rail-press:hover { color: var(--text-primary); }
 
   .footer-nav {
     display: grid;

@@ -23,7 +23,7 @@
 
   /* Functional accent */
   --accent:       var(--purple-500);
-  --accent-light: var(--purple-400);
+  --accent-light: var(--purple-300);  /* Bumped from purple-400 for WCAG AA contrast on dark backgrounds */
   --accent-dim:   rgba(139, 92, 246, 0.15);
   --accent-glow:  rgba(139, 92, 246, 0.25);
   --accent-border:rgba(139, 92, 246, 0.2);
@@ -318,6 +318,14 @@ strong { color: var(--text-primary); font-weight: var(--weight-semibold); }
   color: var(--purple-300);
   letter-spacing: 0.04em;
   text-transform: uppercase;
+}
+.label-chip-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #F59E0B;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.18);
+  display: inline-block;
 }
 
 .divider {

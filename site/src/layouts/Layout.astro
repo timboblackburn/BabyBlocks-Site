@@ -11,6 +11,8 @@ interface Props {
   canonical?: string;
   /** 'dark' = BudgetBaby pages (default). 'core' = BabyBlocks brand (light). 'pantry' = PantryBaby (light/green). */
   theme?: 'dark' | 'core' | 'pantry';
+  /** Optional extra structured data (a serialized JSON-LD string) merged into the head. */
+  structuredData?: string;
 }
 
 const {
@@ -20,7 +22,36 @@ const {
   ogDescription,
   canonical,
   theme = 'dark',
+  structuredData,
 } = Astro.props;
+
+// Default Organization JSON-LD with parentOrganization back to Intrigue MMC.
+// Identical pattern on every site in the family so Google reads them as
+// one entity graph rather than four orphans.
+const orgJsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': 'https://babyblocks.io/#org',
+      name: 'BabyBlocks',
+      url: 'https://babyblocks.io',
+      description:
+        'A family of focused iOS apps. One job each. Local-first by default. A BabyBlocks-family project; part of Intriguing Insight; operated by Intrigue MMC LLC.',
+      parentOrganization: { '@id': 'https://intriguemmc.com/#org' },
+      founder: { '@id': 'https://intriguemmc.com/#founder' },
+      sameAs: ['https://intriguemmc.com', 'https://intriguinginsight.com'],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': 'https://babyblocks.io/#site',
+      url: 'https://babyblocks.io',
+      name: 'BabyBlocks',
+      publisher: { '@id': 'https://babyblocks.io/#org' },
+      inLanguage: 'en-US',
+    },
+  ],
+});
 
 const isLight = theme === 'core' || theme === 'pantry';
 const themeColor = theme === 'pantry' ? '#F7F5F2' : theme === 'core' ? '#EEEEFC' : '#09090F';
@@ -75,6 +106,12 @@ const canonicalURL = canonical ? `${siteURL}${canonical}` : null;
 
     <!-- Analytics — Plausible (privacy-friendly, no cookies, GDPR-compliant) -->
     <script is:inline defer data-domain="babyblocks.io" src="https://plausible.io/js/script.js"></script>
+
+    <!-- Structured data. Always emit Organization with parentOrganization
+         pointing to Intrigue MMC LLC; pages can pass `structuredData` for
+         per-page SoftwareApplication, Article, or BreadcrumbList specifics. -->
+    <script is:inline type="application/ld+json" set:html={orgJsonLd}></script>
+    {structuredData && <script is:inline type="application/ld+json" set:html={structuredData}></script>}
   </head>
   <body>
     <a href="#main-content" class="skip-link">Skip to content</a>
