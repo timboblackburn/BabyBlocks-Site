@@ -416,40 +416,45 @@ strong { color: var(--text-primary); font-weight: var(--weight-semibold); }
    BabyBlocks Core Theme — light periwinkle
    ============================================= */
 [data-theme="core"] {
-  --bg-base:      #EEEEFC;
-  --bg-raised:    #F4F4FD;
+  /* Light lavender palette. Page surface is a pale lavender wash; cards are
+     pure white; accent is a confident violet-600 that meets AA for small text
+     on the lavender background; text primary is indigo-950 for maximum
+     readability without going to pure black. Deep purple accents replaced
+     the previous mauve #6B5FC7 with the truer violet hue requested. */
+  --bg-base:      #F5F3FF;     /* lavender-50, the page wash */
+  --bg-raised:    #FAF7FF;     /* slightly raised */
   --bg-surface:   #FFFFFF;
   --bg-elevated:  #FFFFFF;
 
-  --accent:       #6B5FC7;
-  --accent-light: #7C6FCD;
-  --accent-dim:   rgba(107, 95, 199, 0.1);
-  --accent-glow:  rgba(107, 95, 199, 0.15);
-  --accent-border:rgba(107, 95, 199, 0.22);
+  --accent:       #7C3AED;     /* violet-600 — passes AA on the lavender wash */
+  --accent-light: #8B5CF6;     /* violet-500 — hover and decorative */
+  --accent-dim:   rgba(139, 92, 246, 0.10);
+  --accent-glow:  rgba(139, 92, 246, 0.20);
+  --accent-border:rgba(139, 92, 246, 0.24);
 
-  --text-primary:   #0D0D1A;
-  --text-secondary: rgba(13, 13, 26, 0.62);
-  --text-muted:     rgba(13, 13, 26, 0.40);
-  --text-faint:     rgba(13, 13, 26, 0.24);
+  --text-primary:   #1E1B4B;   /* indigo-950, ~16:1 contrast on lavender */
+  --text-secondary: rgba(30, 27, 75, 0.66);
+  --text-muted:     rgba(30, 27, 75, 0.46);
+  --text-faint:     rgba(30, 27, 75, 0.28);
 
-  --glass-bg:           rgba(255, 255, 255, 0.7);
-  --glass-bg-hover:     rgba(255, 255, 255, 0.88);
-  --glass-border:       rgba(0, 0, 0, 0.07);
-  --glass-border-accent:rgba(107, 95, 199, 0.24);
+  --glass-bg:           rgba(255, 255, 255, 0.78);
+  --glass-bg-hover:     rgba(255, 255, 255, 0.92);
+  --glass-border:       rgba(30, 27, 75, 0.08);
+  --glass-border-accent:rgba(139, 92, 246, 0.28);
 
-  --shadow-sm:   0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-  --shadow-md:   0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.05);
-  --shadow-lg:   0 12px 32px rgba(0,0,0,0.1),  0 4px 8px rgba(0,0,0,0.06);
-  --shadow-xl:   0 24px 64px rgba(0,0,0,0.12);
+  --shadow-sm:   0 1px 3px rgba(30,27,75,0.06), 0 1px 2px rgba(30,27,75,0.04);
+  --shadow-md:   0 4px 12px rgba(30,27,75,0.08), 0 2px 4px rgba(30,27,75,0.05);
+  --shadow-lg:   0 12px 32px rgba(30,27,75,0.10), 0 4px 8px rgba(30,27,75,0.06);
+  --shadow-xl:   0 24px 64px rgba(30,27,75,0.12);
 
-  --glow-sm:  0 0 16px rgba(107, 95, 199, 0.14);
-  --glow-md:  0 0 32px rgba(107, 95, 199, 0.2);
-  --glow-lg:  0 0 64px rgba(107, 95, 199, 0.14);
+  --glow-sm:  0 0 16px rgba(139, 92, 246, 0.14);
+  --glow-md:  0 0 32px rgba(139, 92, 246, 0.20);
+  --glow-lg:  0 0 64px rgba(139, 92, 246, 0.16);
 
-  --header-bg:      rgba(238, 238, 252, 0.9);
-  --header-border:  rgba(0, 0, 0, 0.07);
-  --mobile-nav-bg:  rgba(238, 238, 252, 0.98);
-  --cta-glow-color: rgba(107, 95, 199, 0.16);
+  --header-bg:      rgba(245, 243, 255, 0.86);
+  --header-border:  rgba(30, 27, 75, 0.08);
+  --mobile-nav-bg:  rgba(245, 243, 255, 0.98);
+  --cta-glow-color: rgba(139, 92, 246, 0.18);
 }
 
 [data-theme="core"] body {
@@ -459,15 +464,15 @@ strong { color: var(--text-primary); font-weight: var(--weight-semibold); }
 
 [data-theme="core"] body::before {
   background:
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(107, 95, 199, 0.06) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 30% at 90% 80%, rgba(80, 70, 190, 0.04) 0%, transparent 50%);
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(139, 92, 246, 0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 30% at 90% 80%, rgba(167, 139, 250, 0.08) 0%, transparent 50%);
 }
 
 [data-theme="core"] a { color: var(--accent); }
 [data-theme="core"] a:hover { color: var(--accent-light); }
 
 [data-theme="core"] .text-gradient {
-  background: linear-gradient(135deg, #6B5FC7 0%, #9B8EE0 50%, #6B5FC7 100%);
+  background: linear-gradient(135deg, #7C3AED 0%, #A78BFA 50%, #7C3AED 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -482,24 +487,24 @@ strong { color: var(--text-primary); font-weight: var(--weight-semibold); }
 [data-theme="core"] .section-header .eyebrow { color: var(--accent); }
 
 [data-theme="core"] .btn-primary {
-  background: linear-gradient(135deg, #6B5FC7 0%, #5548B0 100%);
-  box-shadow: 0 0 16px rgba(107, 95, 199, 0.22), 0 4px 12px rgba(0,0,0,0.1);
+  background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
+  box-shadow: 0 0 16px rgba(139, 92, 246, 0.28), 0 4px 12px rgba(30,27,75,0.10);
   color: #fff;
 }
 [data-theme="core"] .btn-primary:hover {
-  background: linear-gradient(135deg, #7C6FCD 0%, #6B5FC7 100%);
-  box-shadow: 0 0 28px rgba(107, 95, 199, 0.28), 0 8px 24px rgba(0,0,0,0.12);
+  background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
+  box-shadow: 0 0 28px rgba(139, 92, 246, 0.34), 0 8px 24px rgba(30,27,75,0.12);
   color: #fff;
 }
 
 [data-theme="core"] .btn-secondary {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.78);
   border-color: var(--glass-border-accent);
   color: var(--text-primary);
 }
 [data-theme="core"] .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.92);
-  border-color: rgba(107, 95, 199, 0.38);
+  background: rgba(255, 255, 255, 0.96);
+  border-color: rgba(139, 92, 246, 0.42);
   color: var(--text-primary);
 }
 

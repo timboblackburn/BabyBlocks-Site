@@ -9,7 +9,8 @@ interface Props {
   ogTitle?: string;
   ogDescription?: string;
   canonical?: string;
-  /** 'dark' = BudgetBaby pages (default). 'core' = BabyBlocks brand (light). 'pantry' = PantryBaby (light/green). */
+  /** 'core' = BabyBlocks brand light lavender (default). 'pantry' = PantryBaby (light sage).
+   *  'dark' kept for legacy callers but no longer the site default. */
   theme?: 'dark' | 'core' | 'pantry';
   /** Optional extra structured data (a serialized JSON-LD string) merged into the head. */
   structuredData?: string;
@@ -21,7 +22,7 @@ const {
   ogTitle,
   ogDescription,
   canonical,
-  theme = 'dark',
+  theme = 'core',
   structuredData,
 } = Astro.props;
 
