@@ -14,6 +14,9 @@ interface Props {
   theme?: 'dark' | 'core' | 'pantry';
   /** Optional extra structured data (a serialized JSON-LD string) merged into the head. */
   structuredData?: string;
+  /** When true, emits <meta name="robots" content="noindex,nofollow"> so crawlers
+   *  do not index this page. Use for 404, search, draft, or auth pages. */
+  noindex?: boolean;
 }
 
 const {
@@ -24,6 +27,7 @@ const {
   canonical,
   theme = 'core',
   structuredData,
+  noindex = false,
 } = Astro.props;
 
 // Default Organization JSON-LD with parentOrganization back to Intrigue MMC.
@@ -74,6 +78,7 @@ const canonicalURL = canonical ? `${siteURL}${canonical}` : null;
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     {canonicalURL && <link rel="canonical" href={canonicalURL} />}
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />

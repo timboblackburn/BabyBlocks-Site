@@ -727,3 +727,25 @@ strong { color: var(--text-primary); font-weight: var(--weight-semibold); }
 
   html { scroll-behavior: auto; }
 }
+
+/* ── Print. Strip the dark/cream theme, kill decorative chrome, expand
+   external link URLs so a printed page is still readable. ── */
+@media print {
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  body::before, body::after { display: none !important; }
+  .site-header, .site-footer, .skip-link,
+  .dark-band, .cta-section, .hero-visual, .phone-stage { display: none !important; }
+  a { color: #000 !important; text-decoration: underline; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.85em; color: #555; }
+  .glass, .glass-accent {
+    background: #fff !important;
+    border-color: #ccc !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+  }
+  h1, h2, h3, h4 { color: #000 !important; page-break-after: avoid; }
+  p, li { color: #222 !important; }
+}
