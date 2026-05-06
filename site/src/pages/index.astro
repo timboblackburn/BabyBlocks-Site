@@ -704,8 +704,28 @@ import BudgetBabyPreview from '../components/abstract/BudgetBabyPreview.astro';
     .feature-strip-grid { grid-template-columns: 1fr; }
     .dark-trust-list { grid-template-columns: 1fr; }
     .pricing-cards { grid-template-columns: 1fr; }
-    .phone-stage { aspect-ratio: 4 / 5; }
-    .phone-slot--back  { left: 2%; }
-    .phone-slot--front { right: 2%; }
+
+    /* Phone stage: drop the back phone, centre the front one,
+       keep the warm decorative blocks. The dual stack does not fit
+       gracefully on a 320-360px viewport. */
+    .phone-stage {
+      aspect-ratio: 3 / 4;
+      max-width: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-inline: auto;
+    }
+    .phone-slot--back  { display: none; }
+    .phone-slot--front {
+      position: static;
+      transform: none;
+    }
+    .hero-title { font-size: clamp(2rem, 9vw, 2.75rem); }
+    .hero-sub { font-size: var(--text-base); }
+
+    /* Brand row on tiny viewports: keep the status pill on its own line. */
+    .brand-row { gap: var(--space-2); }
+    .brand-status { margin-left: 0; }
   }
 </style>
