@@ -4,6 +4,8 @@ import CTASection from '../components/CTASection.astro';
 import Icon from '../components/Icon.astro';
 import AppIcon from '../components/AppIcon.astro';
 import WaitlistForm from '../components/WaitlistForm.astro';
+import PhoneMockup from '../components/abstract/PhoneMockup.astro';
+import BudgetBabyPreview from '../components/abstract/BudgetBabyPreview.astro';
 ---
 
 <Layout
@@ -45,89 +47,24 @@ import WaitlistForm from '../components/WaitlistForm.astro';
 
         <div class="hero-visual" aria-hidden="true">
           <div class="phone-stage">
-            <!-- Back phone, dark Safe to Spend screen -->
-            <div class="phone phone--back">
-              <div class="phone-notch"></div>
-              <div class="phone-screen phone-screen--dark">
-                <div class="ps-greeting">
-                  <span class="ps-time">9:21</span>
-                  <span class="ps-signal" aria-hidden="true">
-                    <span class="ps-bars"><i></i><i></i><i></i><i></i></span>
-                  </span>
-                </div>
-                <div class="ps-headline">Good morning, Alex</div>
-                <div class="ps-eyebrow">Here&rsquo;s what&rsquo;s safe to spend</div>
-                <div class="ps-amount">$126<span>.50</span></div>
-                <div class="ps-amount-meta">left for today</div>
-                <div class="ps-bar"><div class="ps-bar-fill" style="width:62%"></div></div>
-                <div class="ps-line"><span>$1,873.50 available this month</span></div>
-                <div class="ps-line ps-muted">$3,000 monthly income</div>
-                <div class="ps-section">Upcoming</div>
-                <div class="ps-row">
-                  <div class="ps-row-icon"><Icon name="home" size={10} /></div>
-                  <div class="ps-row-info"><span>Rent</span><span class="ps-row-sub">May 1</span></div>
-                  <span class="ps-row-amt">$1,200.00</span>
-                </div>
-                <div class="ps-row">
-                  <div class="ps-row-icon"><Icon name="zap" size={10} /></div>
-                  <div class="ps-row-info"><span>Electricity</span><span class="ps-row-sub">May 3</span></div>
-                  <span class="ps-row-amt">$120.00</span>
-                </div>
-                <div class="ps-row">
-                  <div class="ps-row-icon"><Icon name="users" size={10} /></div>
-                  <div class="ps-row-info"><span>Daycare</span><span class="ps-row-sub">May 5</span></div>
-                  <span class="ps-row-amt">$850.00</span>
-                </div>
-                <div class="ps-tab"><span>See All Bills</span></div>
-                <div class="ps-tabbar">
-                  <span class="ps-tab-item active">Home</span>
-                  <span class="ps-tab-item">Budget</span>
-                  <span class="ps-tab-item ps-tab-fab" aria-hidden="true">+</span>
-                  <span class="ps-tab-item">Activity</span>
-                  <span class="ps-tab-item">Settings</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Front phone, light Overview screen -->
-            <div class="phone phone--front">
-              <div class="phone-notch"></div>
-              <div class="phone-screen phone-screen--light">
-                <div class="ps-light-top">
-                  <span class="ps-light-back">←</span>
-                  <span class="ps-light-title">May 2024 ▾</span>
-                  <span aria-hidden="true">⓿</span>
-                </div>
-                <div class="ps-light-eyebrow">Overview</div>
-                <div class="ps-light-row"><span>Income</span><span class="ps-light-amt">$3,000.00</span></div>
-                <div class="ps-light-row"><span>Bills</span><span class="ps-light-amt">$2,150.00</span></div>
-                <div class="ps-light-row"><span>Spending</span><span class="ps-light-amt">$730.50</span></div>
-                <div class="ps-light-row"><span>Savings</span><span class="ps-light-amt">$250.00</span></div>
-                <div class="ps-light-eyebrow ps-light-eyebrow--mt">Spending by Category</div>
-                <div class="ps-donut">
-                  <svg viewBox="0 0 80 80" aria-hidden="true">
-                    <circle cx="40" cy="40" r="32" fill="none" stroke="#F2EAE0" stroke-width="14"/>
-                    <circle cx="40" cy="40" r="32" fill="none" stroke="#F25E72" stroke-width="14" stroke-dasharray="42 200" transform="rotate(-90 40 40)"/>
-                    <circle cx="40" cy="40" r="32" fill="none" stroke="#FFB8C7" stroke-width="14" stroke-dasharray="32 200" stroke-dashoffset="-42" transform="rotate(-90 40 40)"/>
-                    <circle cx="40" cy="40" r="32" fill="none" stroke="#FFD9BF" stroke-width="14" stroke-dasharray="22 200" stroke-dashoffset="-74" transform="rotate(-90 40 40)"/>
-                  </svg>
-                  <div class="ps-donut-inner">
-                    <span class="ps-donut-amt">$730.50</span>
-                    <span class="ps-donut-meta">total spent</span>
-                  </div>
-                </div>
-                <ul class="ps-legend">
-                  <li><span class="ps-dot" style="background:#F25E72"></span>Groceries<span class="ps-legend-amt">$285.40</span></li>
-                  <li><span class="ps-dot" style="background:#FFB8C7"></span>Kids<span class="ps-legend-amt">$153.20</span></li>
-                  <li><span class="ps-dot" style="background:#FFD9BF"></span>Transport<span class="ps-legend-amt">$98.50</span></li>
-                  <li><span class="ps-dot" style="background:#A78BFA"></span>Dining<span class="ps-legend-amt">$72.60</span></li>
-                </ul>
-              </div>
-            </div>
-
             <div class="phone-glow" aria-hidden="true"></div>
             <div class="phone-block phone-block--peach" aria-hidden="true"></div>
             <div class="phone-block phone-block--blush" aria-hidden="true"></div>
+
+            {/* Back phone — Insights screen, mirrors the actual app's Insights view. */}
+            <div class="phone-slot phone-slot--back">
+              <PhoneMockup tone="dark" tilt={-3} width={210}>
+                <BudgetBabyPreview variant="insights" />
+              </PhoneMockup>
+            </div>
+
+            {/* Front phone — Home dashboard, faithful to BudgetBaby's HomeView,
+                BudgetSummaryCard, MoneyPoolsCard, and ColorBucketCard. */}
+            <div class="phone-slot phone-slot--front">
+              <PhoneMockup tone="dark" tilt={2} width={230}>
+                <BudgetBabyPreview variant="home" />
+              </PhoneMockup>
+            </div>
           </div>
         </div>
       </div>
@@ -425,256 +362,14 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     opacity: 0.85;
   }
 
-  .phone {
+  /* Two PhoneMockup instances stacked inside the stage. The back phone
+     (Insights) sits behind and to the left at a slight counter-rotation;
+     the front phone (Home) is the focal element on the right. */
+  .phone-slot {
     position: absolute;
-    width: 200px;
-    aspect-ratio: 200 / 410;
-    background: #0F0E14;
-    border-radius: 32px;
-    padding: 6px;
-    box-shadow:
-      0 0 0 2px rgba(20, 16, 12, 0.06),
-      0 30px 70px rgba(60, 30, 20, 0.20),
-      0 8px 24px rgba(60, 30, 20, 0.10);
-    overflow: hidden;
   }
-  .phone--back  { left: 30%;  top: 6%;  transform: rotate(-3deg); z-index: 1; }
-  .phone--front { right: 6%;  top: 0;   transform: rotate(2deg);  z-index: 2; }
-
-  .phone-notch {
-    position: absolute;
-    top: 12px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 56px;
-    height: 16px;
-    background: #0F0E14;
-    border-radius: 0 0 12px 12px;
-    z-index: 3;
-  }
-
-  .phone-screen {
-    border-radius: 26px;
-    height: 100%;
-    overflow: hidden;
-    padding: 22px 12px 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    font-size: 9px;
-  }
-
-  .phone-screen--dark {
-    background: #131217;
-    color: rgba(255, 247, 239, 0.9);
-  }
-  .phone-screen--light {
-    background: var(--cream-50);
-    color: var(--ink-900);
-  }
-
-  .ps-greeting {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 8px;
-    color: rgba(255, 247, 239, 0.65);
-    margin-bottom: 4px;
-  }
-  .ps-signal { display: inline-flex; align-items: flex-end; }
-  .ps-bars {
-    display: inline-flex;
-    align-items: flex-end;
-    gap: 1px;
-    height: 8px;
-  }
-  .ps-bars i {
-    display: block;
-    width: 2px;
-    background: rgba(255, 247, 239, 0.55);
-    border-radius: 1px;
-  }
-  .ps-bars i:nth-child(1) { height: 3px; }
-  .ps-bars i:nth-child(2) { height: 5px; }
-  .ps-bars i:nth-child(3) { height: 7px; }
-  .ps-bars i:nth-child(4) { height: 8px; }
-  .ps-headline {
-    font-size: 11px;
-    font-weight: 600;
-    color: #FFF7EF;
-  }
-  .ps-eyebrow {
-    font-size: 8px;
-    color: rgba(255, 247, 239, 0.55);
-  }
-  .ps-amount {
-    font-size: 26px;
-    font-weight: 700;
-    color: #FFF7EF;
-    letter-spacing: -0.04em;
-    line-height: 1;
-    margin-top: 2px;
-  }
-  .ps-amount span { font-size: 14px; opacity: 0.7; }
-  .ps-amount-meta {
-    font-size: 8px;
-    color: rgba(255, 247, 239, 0.55);
-  }
-  .ps-bar {
-    height: 4px;
-    background: rgba(255, 247, 239, 0.10);
-    border-radius: 999px;
-    overflow: hidden;
-    margin: 4px 0 2px;
-  }
-  .ps-bar-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--coral-500), var(--peach-300));
-    border-radius: 999px;
-  }
-  .ps-line {
-    font-size: 8px;
-    color: rgba(255, 247, 239, 0.78);
-  }
-  .ps-line.ps-muted { color: rgba(255, 247, 239, 0.45); }
-  .ps-section {
-    font-size: 9px;
-    font-weight: 600;
-    color: #FFF7EF;
-    margin: 4px 0 1px;
-  }
-  .ps-row {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    padding: 3px 0;
-    border-bottom: 1px solid rgba(255, 247, 239, 0.06);
-  }
-  .ps-row-icon {
-    width: 16px; height: 16px;
-    border-radius: 5px;
-    background: rgba(255, 247, 239, 0.06);
-    color: var(--peach-200);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-  .ps-row-icon :global(svg) {
-    width: 10px;
-    height: 10px;
-  }
-  .ps-row-info {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    font-size: 8px;
-  }
-  .ps-row-info span { color: #FFF7EF; }
-  .ps-row-sub { color: rgba(255, 247, 239, 0.45) !important; font-size: 7px; }
-  .ps-row-amt { font-size: 8px; color: #FFF7EF; font-weight: 600; }
-  .ps-tab {
-    background: rgba(255, 247, 239, 0.04);
-    border-radius: 8px;
-    text-align: center;
-    padding: 5px 0;
-    font-size: 8px;
-    color: rgba(255, 247, 239, 0.7);
-    margin-top: 3px;
-  }
-  .ps-tabbar {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-top: auto;
-    padding-top: 4px;
-    border-top: 1px solid rgba(255, 247, 239, 0.06);
-    font-size: 7px;
-    color: rgba(255, 247, 239, 0.45);
-  }
-  .ps-tab-item.active { color: #FFF7EF; }
-  .ps-tab-fab {
-    width: 22px; height: 22px;
-    border-radius: 999px;
-    background: var(--coral-500);
-    color: #fff;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 13px;
-    font-weight: 600;
-  }
-
-  /* Light phone */
-  .ps-light-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 9px;
-    color: var(--ink-800);
-    margin-bottom: 4px;
-  }
-  .ps-light-back { font-weight: 600; }
-  .ps-light-title { font-weight: 600; }
-  .ps-light-eyebrow {
-    font-size: 8px;
-    font-weight: 600;
-    color: var(--ink-700);
-    margin: 4px 0 2px;
-  }
-  .ps-light-eyebrow--mt { margin-top: 8px; }
-  .ps-light-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2px 0;
-    border-bottom: 1px solid rgba(21, 17, 13, 0.06);
-    font-size: 8px;
-    color: var(--text-secondary);
-  }
-  .ps-light-amt { color: var(--ink-900); font-weight: 600; }
-
-  .ps-donut {
-    position: relative;
-    width: 96px;
-    margin: 4px auto 4px;
-  }
-  .ps-donut svg {
-    width: 96px;
-    height: 96px;
-    display: block;
-  }
-  .ps-donut-inner {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1px;
-  }
-  .ps-donut-amt { font-size: 11px; font-weight: 700; color: var(--ink-900); letter-spacing: -0.02em; }
-  .ps-donut-meta { font-size: 7px; color: var(--text-muted); }
-
-  .ps-legend {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    font-size: 8px;
-    color: var(--text-secondary);
-  }
-  .ps-legend li {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
-  .ps-dot {
-    width: 7px; height: 7px;
-    border-radius: 999px;
-    flex-shrink: 0;
-  }
-  .ps-legend-amt { margin-left: auto; color: var(--ink-900); font-weight: 600; }
+  .phone-slot--back  { left: 6%;  top: 8%;  z-index: 1; }
+  .phone-slot--front { right: 4%; top: 0;   z-index: 2; }
 
   /* ── Dark feature strip ─────────────────────────────────────────── */
   .feature-strip { padding-block: var(--space-16); }
@@ -1007,7 +702,7 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     .dark-trust-list { grid-template-columns: 1fr; }
     .pricing-cards { grid-template-columns: 1fr; }
     .phone-stage { aspect-ratio: 4 / 5; }
-    .phone--back { left: 4%; }
-    .phone--front { right: 4%; }
+    .phone-slot--back  { left: 2%; }
+    .phone-slot--front { right: 2%; }
   }
 </style>

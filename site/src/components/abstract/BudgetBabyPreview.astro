@@ -1,226 +1,602 @@
 ---
 /**
  * BudgetBabyPreview
- * A small, generic BudgetBaby UI preview. Drop it inside a PhoneMockup
- * to render a familiar Safe-to-Spend layout. Generic sample data only —
- * no fake user names, no fake reviews, no fake totals beyond round
- * illustrative numbers.
+ * Faithful low-fi mock of the actual BudgetBaby iOS app screens. Layout,
+ * labels, colours, and tab bar mirror the Swift source under
+ * BudgetBabyIndividual/BudgetBaby (HomeView, BudgetSummaryCard,
+ * MoneyPoolsCard, ColorBucketCard, ContentView tab bar).
+ *
+ * The app is dark-mode primary with a purple accent (#7C3AED). Money
+ * Pools are Cash / Card / Savings (three, not four). The Home screen
+ * shows colour buckets (Essentials / Variable / Fun / Unplanned), not
+ * a list of bills. Tab bar is Home / Bills / Add / Insights / Settings.
+ *
+ * Drop inside <PhoneMockup tone="dark"> for the dark frame, or pair
+ * with <PhoneMockup tone="dark" /> for both screens of the homepage hero.
  *
  * Props
- *  - variant: spend | overview  (default: spend)
- *
- * Use:
- *   <PhoneMockup tone="dark"><BudgetBabyPreview variant="spend" /></PhoneMockup>
- *   <PhoneMockup tone="light"><BudgetBabyPreview variant="overview" /></PhoneMockup>
+ *  - variant: home | insights  (default: home)
  */
-import Icon from '../Icon.astro';
-
 interface Props {
-  variant?: 'spend' | 'overview';
+  variant?: 'home' | 'insights';
 }
-const { variant = 'spend' } = Astro.props;
+const { variant = 'home' } = Astro.props;
 ---
 
-{variant === 'spend' && (
-  <>
-    <div class="bb-row bb-row--top">
-      <span>9:21</span>
+{variant === 'home' && (
+  <div class="bb-app">
+    {/* Status / chrome row */}
+    <div class="bb-row bb-row--status">
+      <span class="bb-time">9:41</span>
       <span class="bb-bars" aria-hidden="true">
         <i></i><i></i><i></i><i></i>
       </span>
     </div>
-    <div class="bb-headline">Today</div>
-    <div class="bb-eyebrow">Safe to spend</div>
-    <div class="bb-amount">$126<small>.50</small></div>
-    <div class="bb-meta">left for today</div>
-    <div class="bb-bar"><div class="bb-bar-fill" style="width:62%" /></div>
-    <div class="bb-line">$1,873.50 available this month</div>
-    <div class="bb-section">Upcoming</div>
-    <div class="bb-row">
-      <span class="bb-icon"><Icon name="home" size={10} /></span>
-      <span class="bb-row-name">Rent <small>· May 1</small></span>
-      <span class="bb-row-amt">$1,200</span>
+
+    {/* Date header — matches BudgetSummaryCard "Sunday, December 14" */}
+    <div class="bb-date-row">
+      <span class="bb-date">Sunday, December 14</span>
+      <span class="bb-mood" aria-hidden="true">
+        <span class="bb-mood-dot bb-mood-dot--ok"></span>
+      </span>
     </div>
-    <div class="bb-row">
-      <span class="bb-icon"><Icon name="zap" size={10} /></span>
-      <span class="bb-row-name">Electricity <small>· May 3</small></span>
-      <span class="bb-row-amt">$120</span>
-    </div>
-    <div class="bb-row">
-      <span class="bb-icon"><Icon name="users" size={10} /></span>
-      <span class="bb-row-name">Daycare <small>· May 5</small></span>
-      <span class="bb-row-amt">$850</span>
-    </div>
-  </>
+
+    {/* Summary card — Remaining + Safe to spend today */}
+    <section class="bb-card bb-card--hero">
+      <span class="bb-label">Remaining</span>
+      <span class="bb-amount-xl">
+        <span class="bb-currency">$</span>1,847<small>.50</small>
+      </span>
+
+      <span class="bb-protected">
+        <span class="bb-shield" aria-hidden="true">◇</span>
+        $300 protected
+      </span>
+
+      <hr class="bb-rule" />
+
+      <div class="bb-sts">
+        <div class="bb-sts-left">
+          <span class="bb-label">Safe to spend today <span class="bb-chev" aria-hidden="true">›</span></span>
+          <span class="bb-amount-md">
+            <span class="bb-currency">$</span>62
+          </span>
+        </div>
+        <div class="bb-days">
+          <span class="bb-days-num">12</span>
+          <span class="bb-days-label">days left</span>
+        </div>
+      </div>
+    </section>
+
+    {/* Money Pools — Cash / Card / Savings (three, matching MoneyPoolsCard) */}
+    <section class="bb-card">
+      <div class="bb-card-head">
+        <span class="bb-card-title">Money Pools</span>
+        <div class="bb-card-meta">
+          <span class="bb-meta-tag">On Hand</span>
+          <span class="bb-meta-val">$2,140</span>
+        </div>
+      </div>
+      <div class="bb-pools">
+        <div class="bb-pool">
+          <span class="bb-pool-icon bb-pool-icon--cash" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="7" width="18" height="11" rx="2"/><circle cx="12" cy="12.5" r="2.2"/></svg>
+          </span>
+          <span class="bb-pool-name">Cash</span>
+          <span class="bb-pool-val">$420</span>
+        </div>
+        <div class="bb-pool">
+          <span class="bb-pool-icon bb-pool-icon--card" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="6" width="20" height="13" rx="2.5"/><line x1="2" y1="11" x2="22" y2="11"/></svg>
+          </span>
+          <span class="bb-pool-name">Card</span>
+          <span class="bb-pool-val">$1,720</span>
+        </div>
+        <div class="bb-pool">
+          <span class="bb-pool-icon bb-pool-icon--savings" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L21 6 V13 C21 17 17 21 12 22 C7 21 3 17 3 13 V6 Z" /></svg>
+          </span>
+          <span class="bb-pool-name">Savings</span>
+          <span class="bb-pool-val">$3,200</span>
+        </div>
+      </div>
+    </section>
+
+    {/* Color buckets — Essentials / Variable / Fun, matching ColorBucketCard.
+        Ordered red → yellow → green per PriorityColor.sortOrder. */}
+    <section class="bb-buckets">
+      <div class="bb-bucket">
+        <span class="bb-strip bb-strip--red" aria-hidden="true"></span>
+        <div class="bb-bucket-body">
+          <div class="bb-bucket-head">
+            <span class="bb-bucket-name">Essentials</span>
+            <span class="bb-bucket-rem">$640 left</span>
+          </div>
+          <div class="bb-progress"><div class="bb-progress-fill bb-progress-fill--red" style="width:48%"></div></div>
+          <div class="bb-bucket-meta">Spent <strong>$580</strong> of $1,220</div>
+        </div>
+      </div>
+      <div class="bb-bucket">
+        <span class="bb-strip bb-strip--yellow" aria-hidden="true"></span>
+        <div class="bb-bucket-body">
+          <div class="bb-bucket-head">
+            <span class="bb-bucket-name">Variable</span>
+            <span class="bb-bucket-rem">$210 left</span>
+          </div>
+          <div class="bb-progress"><div class="bb-progress-fill bb-progress-fill--yellow" style="width:65%"></div></div>
+          <div class="bb-bucket-meta">Spent <strong>$390</strong> of $600</div>
+        </div>
+      </div>
+      <div class="bb-bucket">
+        <span class="bb-strip bb-strip--green" aria-hidden="true"></span>
+        <div class="bb-bucket-body">
+          <div class="bb-bucket-head">
+            <span class="bb-bucket-name">Fun</span>
+            <span class="bb-bucket-rem">$45 left</span>
+          </div>
+          <div class="bb-progress"><div class="bb-progress-fill bb-progress-fill--green" style="width:82%"></div></div>
+          <div class="bb-bucket-meta">Spent <strong>$205</strong> of $250</div>
+        </div>
+      </div>
+    </section>
+
+    {/* Tab bar — 5 items matching ContentView.swift */}
+    <nav class="bb-tabs">
+      <span class="bb-tab bb-tab--active" aria-current="page">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 11 L12 4 L21 11 V20 A1 1 0 0 1 20 21 H14 V14 H10 V21 H4 A1 1 0 0 1 3 20 Z"/></svg>
+        <span>Home</span>
+      </span>
+      <span class="bb-tab">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 3 H6 A2 2 0 0 0 4 5 V19 A2 2 0 0 0 6 21 H18 A2 2 0 0 0 20 19 V9 Z"/><polyline points="14 3 14 9 20 9"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg>
+        <span>Bills</span>
+      </span>
+      <span class="bb-tab bb-tab--add" aria-hidden="true">
+        <span class="bb-fab">+</span>
+      </span>
+      <span class="bb-tab">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="6" y1="20" x2="6" y2="13"/><line x1="12" y1="20" x2="12" y2="9"/><line x1="18" y1="20" x2="18" y2="5"/></svg>
+        <span>Insights</span>
+      </span>
+      <span class="bb-tab">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8 2 2 0 1 1-2.8 2.8 1.6 1.6 0 0 0-1.8-.3 1.6 1.6 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.6 1.6 0 0 0-1-1.5 1.6 1.6 0 0 0-1.8.3 2 2 0 1 1-2.8-2.8 1.6 1.6 0 0 0 .3-1.8 1.6 1.6 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.6 1.6 0 0 0 1.5-1 1.6 1.6 0 0 0-.3-1.8 2 2 0 1 1 2.8-2.8 1.6 1.6 0 0 0 1.8.3 1.6 1.6 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 1 1.5 1.6 1.6 0 0 0 1.8-.3 2 2 0 1 1 2.8 2.8 1.6 1.6 0 0 0-.3 1.8 1.6 1.6 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z"/></svg>
+        <span>Settings</span>
+      </span>
+    </nav>
+  </div>
 )}
 
-{variant === 'overview' && (
-  <>
-    <div class="bb-row bb-row--top">
-      <span>← May 2024</span>
-      <span aria-hidden="true">⌥</span>
+{variant === 'insights' && (
+  <div class="bb-app">
+    <div class="bb-row bb-row--status">
+      <span class="bb-time">9:41</span>
+      <span class="bb-bars" aria-hidden="true">
+        <i></i><i></i><i></i><i></i>
+      </span>
     </div>
-    <div class="bb-eyebrow">Overview</div>
-    <div class="bb-line bb-line--row"><span>Income</span><strong>$3,000</strong></div>
-    <div class="bb-line bb-line--row"><span>Bills</span><strong>$2,150</strong></div>
-    <div class="bb-line bb-line--row"><span>Spending</span><strong>$730</strong></div>
-    <div class="bb-line bb-line--row"><span>Savings</span><strong>$250</strong></div>
-    <div class="bb-section bb-section--mt">Spending by category</div>
-    <div class="bb-donut" aria-hidden="true">
-      <svg viewBox="0 0 80 80">
-        <circle cx="40" cy="40" r="32" fill="none" stroke="#F2EAE0" stroke-width="14" />
-        <circle cx="40" cy="40" r="32" fill="none" stroke="#F25E72" stroke-width="14" stroke-dasharray="42 200" transform="rotate(-90 40 40)" />
-        <circle cx="40" cy="40" r="32" fill="none" stroke="#FFB8C7" stroke-width="14" stroke-dasharray="32 200" stroke-dashoffset="-42" transform="rotate(-90 40 40)" />
-        <circle cx="40" cy="40" r="32" fill="none" stroke="#FFD9BF" stroke-width="14" stroke-dasharray="22 200" stroke-dashoffset="-74" transform="rotate(-90 40 40)" />
-      </svg>
-      <div class="bb-donut-inner">
-        <strong>$730</strong>
-        <span>this month</span>
+
+    <div class="bb-date-row">
+      <span class="bb-date bb-date--lg">Insights</span>
+    </div>
+
+    {/* Financial Snapshot card (matches InsightsView labels) */}
+    <section class="bb-card bb-card--snapshot">
+      <span class="bb-label bb-label--soft">Financial Snapshot</span>
+      <div class="bb-snapshot">
+        <div>
+          <span class="bb-label">Total Spent</span>
+          <span class="bb-amount-xl">
+            <span class="bb-currency">$</span>1,175
+          </span>
+          <span class="bb-snapshot-sub">of $2,070 budget</span>
+        </div>
+        <div class="bb-ring" aria-hidden="true">
+          <svg viewBox="0 0 80 80">
+            <circle cx="40" cy="40" r="32" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="9" />
+            <circle cx="40" cy="40" r="32" fill="none" stroke="#7C3AED" stroke-width="9"
+                    stroke-linecap="round" stroke-dasharray="115 200" transform="rotate(-90 40 40)" />
+          </svg>
+          <span class="bb-ring-pct">57%</span>
+        </div>
       </div>
-    </div>
-    <ul class="bb-legend">
-      <li><span class="bb-dot" style="background:#F25E72"></span>Groceries<span class="bb-amt">$285</span></li>
-      <li><span class="bb-dot" style="background:#FFB8C7"></span>Kids<span class="bb-amt">$153</span></li>
-      <li><span class="bb-dot" style="background:#FFD9BF"></span>Transport<span class="bb-amt">$98</span></li>
-    </ul>
-  </>
+    </section>
+
+    {/* Spending by Priority */}
+    <section class="bb-card">
+      <div class="bb-card-head">
+        <span class="bb-card-title">Spending by Priority</span>
+      </div>
+      <ul class="bb-priority">
+        <li>
+          <span class="bb-pdot bb-pdot--red"></span>
+          <span class="bb-pname">Essentials</span>
+          <span class="bb-pbar"><span class="bb-pbar-fill" style="width:74%; background:#F87171"></span></span>
+          <span class="bb-pamt">$580</span>
+        </li>
+        <li>
+          <span class="bb-pdot bb-pdot--yellow"></span>
+          <span class="bb-pname">Variable</span>
+          <span class="bb-pbar"><span class="bb-pbar-fill" style="width:50%; background:#FBBF24"></span></span>
+          <span class="bb-pamt">$390</span>
+        </li>
+        <li>
+          <span class="bb-pdot bb-pdot--green"></span>
+          <span class="bb-pname">Fun</span>
+          <span class="bb-pbar"><span class="bb-pbar-fill" style="width:26%; background:#34D399"></span></span>
+          <span class="bb-pamt">$205</span>
+        </li>
+      </ul>
+    </section>
+
+    {/* Top Categories */}
+    <section class="bb-card">
+      <div class="bb-card-head">
+        <span class="bb-card-title">Top Categories</span>
+      </div>
+      <ul class="bb-tops">
+        <li><span class="bb-rank">1</span><span class="bb-tname">Groceries</span><span class="bb-tamt">$285</span></li>
+        <li><span class="bb-rank">2</span><span class="bb-tname">Rent</span><span class="bb-tamt">$1,200</span></li>
+        <li><span class="bb-rank">3</span><span class="bb-tname">Dining</span><span class="bb-tamt">$72</span></li>
+      </ul>
+    </section>
+
+    <nav class="bb-tabs">
+      <span class="bb-tab">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 11 L12 4 L21 11 V20 A1 1 0 0 1 20 21 H14 V14 H10 V21 H4 A1 1 0 0 1 3 20 Z"/></svg>
+        <span>Home</span>
+      </span>
+      <span class="bb-tab">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 3 H6 A2 2 0 0 0 4 5 V19 A2 2 0 0 0 6 21 H18 A2 2 0 0 0 20 19 V9 Z"/><polyline points="14 3 14 9 20 9"/></svg>
+        <span>Bills</span>
+      </span>
+      <span class="bb-tab bb-tab--add" aria-hidden="true">
+        <span class="bb-fab">+</span>
+      </span>
+      <span class="bb-tab bb-tab--active" aria-current="page">
+        <svg viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="13" width="3" height="7"/><rect x="10" y="9" width="3" height="11"/><rect x="16" y="5" width="3" height="15"/></svg>
+        <span>Insights</span>
+      </span>
+      <span class="bb-tab">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/></svg>
+        <span>Settings</span>
+      </span>
+    </nav>
+  </div>
 )}
 
 <style>
-  .bb-row {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    padding: 2px 0;
-    border-bottom: 1px solid var(--glass-border, rgba(255, 247, 239, 0.06));
-    font-size: 8px;
-  }
-  .bb-row--top {
-    border-bottom: none;
-    justify-content: space-between;
-    color: var(--text-muted, rgba(255, 247, 239, 0.55));
-    font-size: 7.5px;
-  }
-  .bb-bars { display: inline-flex; align-items: flex-end; gap: 1px; height: 8px; }
-  .bb-bars i { width: 2px; background: currentColor; opacity: 0.55; border-radius: 1px; }
-  .bb-bars i:nth-child(1) { height: 3px; }
-  .bb-bars i:nth-child(2) { height: 5px; }
-  .bb-bars i:nth-child(3) { height: 7px; }
-  .bb-bars i:nth-child(4) { height: 8px; }
+  /* Container — fills the PhoneMockup screen, sets up the BudgetBaby palette */
+  .bb-app {
+    --bb-bg-top:    #140A28;     /* AppColors.backgroundGradientTop */
+    --bb-bg-bot:    #05040A;     /* AppColors.background */
+    --bb-card-bg:   rgba(255, 255, 255, 0.03);
+    --bb-card-bd:   rgba(255, 255, 255, 0.08);
+    --bb-text:      #FFFFFF;
+    --bb-text-2:    #9CA3AF;
+    --bb-text-3:    #6B7280;
+    --bb-accent:    #7C3AED;
+    --bb-accent-2:  #A78BFA;
+    --bb-red:       #F87171;
+    --bb-yellow:    #FBBF24;
+    --bb-green:     #34D399;
 
-  .bb-headline {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--text-primary, #FFF7EF);
-  }
-  .bb-eyebrow {
-    font-size: 7.5px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--text-muted, rgba(255, 247, 239, 0.55));
-    margin-top: 2px;
-  }
-  .bb-amount {
-    font-size: 24px;
-    font-weight: 700;
-    letter-spacing: -0.04em;
-    line-height: 1;
-    color: var(--text-primary, #FFF7EF);
-    margin-top: 1px;
-  }
-  .bb-amount small { font-size: 14px; opacity: 0.7; font-weight: 700; }
-  .bb-meta { font-size: 8px; color: var(--text-muted, rgba(255, 247, 239, 0.55)); }
-  .bb-bar {
-    height: 4px;
-    background: var(--glass-border, rgba(255, 247, 239, 0.10));
-    border-radius: 999px;
-    overflow: hidden;
-    margin: 4px 0 2px;
-  }
-  .bb-bar-fill {
-    height: 100%;
-    background: linear-gradient(90deg, #F25E72, #FFD9BF);
-    border-radius: 999px;
-  }
-  .bb-line {
-    font-size: 8px;
-    color: var(--text-secondary, rgba(255, 247, 239, 0.78));
-  }
-  .bb-line--row {
+    position: absolute;
+    inset: 0;
+    margin: -22px -12px -10px;
+    padding: 14px 10px 4px;
     display: flex;
+    flex-direction: column;
+    gap: 7px;
+    overflow: hidden;
+    background: linear-gradient(180deg, var(--bb-bg-top) 0%, var(--bb-bg-bot) 60%);
+    color: var(--bb-text);
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+    font-size: 9px;
+    line-height: 1.3;
+  }
+
+  .bb-row { display: flex; align-items: center; }
+  .bb-row--status {
     justify-content: space-between;
+    padding: 0 6px;
+    font-size: 7.5px;
+    color: rgba(255, 255, 255, 0.55);
+    margin-bottom: 2px;
+  }
+  .bb-bars { display: inline-flex; align-items: flex-end; gap: 1px; height: 7px; }
+  .bb-bars i { width: 1.5px; background: currentColor; opacity: 0.7; border-radius: 0.5px; }
+  .bb-bars i:nth-child(1) { height: 2.5px; }
+  .bb-bars i:nth-child(2) { height: 4px; }
+  .bb-bars i:nth-child(3) { height: 5.5px; }
+  .bb-bars i:nth-child(4) { height: 7px; }
+
+  .bb-date-row {
+    display: flex;
     align-items: center;
-    padding: 2px 0;
-    border-bottom: 1px solid var(--glass-border, rgba(21, 17, 13, 0.06));
+    justify-content: space-between;
+    padding: 0 4px 2px;
   }
-  .bb-line--row strong {
-    color: var(--text-primary, #15110D);
-    font-weight: 600;
+  .bb-date { font-size: 9.5px; color: var(--bb-text-2); font-weight: 500; }
+  .bb-date--lg { font-size: 14px; color: var(--bb-text); font-weight: 700; letter-spacing: -0.01em; }
+  .bb-mood-dot {
+    display: inline-block;
+    width: 7px; height: 7px;
+    border-radius: 999px;
   }
-  .bb-section {
+  .bb-mood-dot--ok { background: var(--bb-green); box-shadow: 0 0 0 2px rgba(52, 211, 153, 0.16); }
+
+  .bb-card {
+    background: var(--bb-card-bg);
+    border: 1px solid var(--bb-card-bd);
+    border-radius: 9px;
+    padding: 7px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .bb-card--hero {
+    background:
+      radial-gradient(140% 100% at 100% 0%, rgba(124, 58, 237, 0.18) 0%, transparent 60%),
+      var(--bb-card-bg);
+    border-color: rgba(124, 58, 237, 0.22);
+    padding: 8px 10px;
+  }
+  .bb-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .bb-card-title {
     font-size: 8.5px;
     font-weight: 600;
-    color: var(--text-primary, #FFF7EF);
-    margin: 4px 0 1px;
+    color: var(--bb-text);
   }
-  .bb-section--mt { margin-top: 8px; }
-  .bb-icon {
-    width: 16px; height: 16px;
-    border-radius: 5px;
-    background: var(--glass-bg, rgba(255, 247, 239, 0.06));
-    color: #FFD9BF;
+  .bb-card-meta { display: flex; flex-direction: column; align-items: flex-end; }
+  .bb-meta-tag { font-size: 6.5px; color: var(--bb-text-3); text-transform: uppercase; letter-spacing: 0.08em; }
+  .bb-meta-val { font-size: 8px; color: var(--bb-text-2); font-weight: 500; }
+
+  .bb-label {
+    font-size: 7.5px;
+    color: var(--bb-text-2);
+    font-weight: 500;
+  }
+  .bb-label--soft { color: var(--bb-text-3); text-transform: uppercase; letter-spacing: 0.10em; font-size: 6.5px; }
+  .bb-chev { color: var(--bb-text-3); font-size: 8px; }
+
+  .bb-amount-xl {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    color: var(--bb-text);
+    display: inline-flex;
+    align-items: baseline;
+    gap: 1px;
+  }
+  .bb-amount-xl small { font-size: 13px; opacity: 0.55; font-weight: 700; margin-left: 1px; }
+  .bb-amount-md {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--bb-text);
+    display: inline-flex;
+    align-items: baseline;
+    gap: 1px;
+  }
+  .bb-currency { font-size: 0.55em; color: var(--bb-text-2); font-weight: 600; margin-right: 1px; transform: translateY(-2px); }
+
+  .bb-protected {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    margin-top: 2px;
+    padding: 2px 6px;
+    border-radius: 999px;
+    background: rgba(52, 211, 153, 0.12);
+    color: var(--bb-green);
+    font-size: 7px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .bb-shield { font-size: 7px; }
+
+  .bb-rule {
+    border: none;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.06);
+    margin: 4px 0 2px;
+  }
+
+  .bb-sts {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 6px;
+  }
+  .bb-sts-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+  .bb-days {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    line-height: 1.1;
+    border-left: 1px solid var(--bb-card-bd);
+    padding-left: 8px;
+  }
+  .bb-days-num {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--bb-accent-2);
+    letter-spacing: -0.02em;
+  }
+  .bb-days-label { font-size: 6.5px; color: var(--bb-text-3); text-transform: uppercase; letter-spacing: 0.08em; }
+
+  /* Money Pools */
+  .bb-pools {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    padding-top: 2px;
+  }
+  .bb-pool {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 6px 4px;
+    border-radius: 7px;
+    background: rgba(255, 255, 255, 0.025);
+  }
+  .bb-pool-icon {
+    width: 18px; height: 18px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
+    border-radius: 999px;
   }
-  .bb-row-name {
-    flex: 1;
-    font-size: 8px;
-    color: var(--text-primary, #FFF7EF);
-  }
-  .bb-row-name small {
-    color: var(--text-muted, rgba(255, 247, 239, 0.45));
-    font-size: 7.5px;
-  }
-  .bb-row-amt { font-size: 8px; font-weight: 600; }
+  .bb-pool-icon svg { width: 11px; height: 11px; }
+  .bb-pool-icon--cash    { color: var(--bb-green);   background: rgba(52, 211, 153, 0.12); }
+  .bb-pool-icon--card    { color: var(--bb-accent-2); background: rgba(124, 58, 237, 0.16); }
+  .bb-pool-icon--savings { color: var(--bb-yellow);  background: rgba(251, 191, 36, 0.14); }
+  .bb-pool-name { font-size: 7px; color: var(--bb-text-2); font-weight: 500; }
+  .bb-pool-val { font-size: 8.5px; color: var(--bb-text); font-weight: 600; letter-spacing: -0.01em; }
 
-  /* Donut */
-  .bb-donut {
-    position: relative;
-    width: 96px;
-    margin: 4px auto 4px;
-  }
-  .bb-donut svg { width: 96px; height: 96px; display: block; }
-  .bb-donut-inner {
-    position: absolute;
-    inset: 0;
+  /* Color buckets */
+  .bb-buckets { display: flex; flex-direction: column; gap: 4px; }
+  .bb-bucket {
     display: flex;
-    flex-direction: column;
+    gap: 6px;
+    padding: 6px 8px;
+    background: var(--bb-card-bg);
+    border: 1px solid var(--bb-card-bd);
+    border-radius: 9px;
     align-items: center;
-    justify-content: center;
-    line-height: 1.2;
   }
-  .bb-donut-inner strong { font-size: 11px; font-weight: 700; }
-  .bb-donut-inner span { font-size: 7px; color: var(--text-muted, rgba(21, 17, 13, 0.55)); }
-  .bb-legend {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    font-size: 8px;
-    margin: 0;
-    padding: 0;
-  }
-  .bb-legend li {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
-  .bb-dot {
-    width: 7px; height: 7px;
+  .bb-strip {
+    width: 3px;
+    height: 26px;
     border-radius: 999px;
     flex-shrink: 0;
   }
-  .bb-amt { margin-left: auto; font-weight: 600; }
+  .bb-strip--red    { background: var(--bb-red); }
+  .bb-strip--yellow { background: var(--bb-yellow); }
+  .bb-strip--green  { background: var(--bb-green); }
+
+  .bb-bucket-body { flex: 1; display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .bb-bucket-head {
+    display: flex;
+    justify-content: space-between;
+    font-size: 8.5px;
+  }
+  .bb-bucket-name { font-weight: 600; color: var(--bb-text); }
+  .bb-bucket-rem  { color: var(--bb-text-2); font-weight: 500; }
+
+  .bb-progress {
+    height: 3px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .bb-progress-fill { height: 100%; border-radius: 999px; }
+  .bb-progress-fill--red    { background: var(--bb-red);    box-shadow: 0 0 6px rgba(248, 113, 113, 0.30); }
+  .bb-progress-fill--yellow { background: var(--bb-yellow); box-shadow: 0 0 6px rgba(251, 191, 36, 0.30); }
+  .bb-progress-fill--green  { background: var(--bb-green);  box-shadow: 0 0 6px rgba(52, 211, 153, 0.30); }
+
+  .bb-bucket-meta { font-size: 7px; color: var(--bb-text-3); }
+  .bb-bucket-meta strong { color: var(--bb-text-2); font-weight: 600; }
+
+  /* Insights — financial snapshot */
+  .bb-snapshot { display: grid; grid-template-columns: 1fr auto; gap: 6px; align-items: center; }
+  .bb-snapshot-sub { font-size: 7px; color: var(--bb-text-3); }
+  .bb-ring { position: relative; width: 56px; height: 56px; }
+  .bb-ring svg { width: 100%; height: 100%; }
+  .bb-ring-pct {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--bb-text);
+  }
+
+  /* Spending by Priority list */
+  .bb-priority { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px; }
+  .bb-priority li {
+    display: grid;
+    grid-template-columns: 6px 50px 1fr 26px;
+    align-items: center;
+    gap: 5px;
+    font-size: 8px;
+  }
+  .bb-pdot { width: 6px; height: 6px; border-radius: 999px; }
+  .bb-pdot--red    { background: var(--bb-red); }
+  .bb-pdot--yellow { background: var(--bb-yellow); }
+  .bb-pdot--green  { background: var(--bb-green); }
+  .bb-pname { color: var(--bb-text); font-weight: 500; }
+  .bb-pbar  { height: 3px; background: rgba(255, 255, 255, 0.06); border-radius: 999px; overflow: hidden; }
+  .bb-pbar-fill { display: block; height: 100%; border-radius: 999px; }
+  .bb-pamt  { color: var(--bb-text); font-weight: 600; text-align: right; font-size: 7.5px; }
+
+  /* Top Categories */
+  .bb-tops { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 3px; }
+  .bb-tops li {
+    display: grid;
+    grid-template-columns: 14px 1fr auto;
+    align-items: center;
+    gap: 6px;
+    font-size: 8px;
+    padding: 3px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  }
+  .bb-tops li:last-child { border-bottom: none; }
+  .bb-rank {
+    font-family: -apple-system, sans-serif;
+    font-size: 8px;
+    color: var(--bb-text-3);
+    font-weight: 600;
+    text-align: center;
+  }
+  .bb-tname { color: var(--bb-text); }
+  .bb-tamt  { color: var(--bb-text); font-weight: 600; }
+
+  /* Tab bar — 5 items, center FAB */
+  .bb-tabs {
+    margin-top: auto;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: center;
+    padding: 4px 4px 6px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(0, 0, 0, 0.30);
+  }
+  .bb-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    color: var(--bb-text-3);
+    font-size: 6.5px;
+    font-weight: 500;
+  }
+  .bb-tab svg { width: 11px; height: 11px; }
+  .bb-tab--active { color: var(--bb-accent-2); }
+  .bb-tab--add { transform: translateY(-3px); }
+  .bb-fab {
+    width: 22px; height: 22px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #8B5CF6 0%, #7C3AED 100%);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 14px rgba(124, 58, 237, 0.45);
+  }
 </style>
