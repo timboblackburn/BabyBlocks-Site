@@ -21,7 +21,7 @@ const formId = `waitlist-form-${app}`;
 // production; override at build time with PUBLIC_WAITLIST_URL for staging.
 // The platform writes a contacts doc tagged `waitlist:<app>` and a
 // Cloud Function attempts an email-match auto-link to the matching
-// CRM customer record (if one exists). No bearer token — endpoint is
+// CRM customer record (if one exists). No bearer token, endpoint is
 // rate-limited per-IP server-side.
 const waitlistUrl =
   import.meta.env.PUBLIC_WAITLIST_URL ??
@@ -68,10 +68,10 @@ const waitlistUrl =
 </GlassCard>
 
 <script is:inline define:vars={{ formId, waitlistUrl, fallbackMailto }}>
-  // Self-contained vanilla JS — no framework, runs once per form on the page.
+  // Self-contained vanilla JS, no framework, runs once per form on the page.
   // Posts to the BabyBlocks platform's public waitlist endpoint, which
   // rate-limits per-IP server-side and writes a contacts doc tagged
-  // `waitlist:<app>`. No bearer token — public endpoint by design.
+  // `waitlist:<app>`. No bearer token, public endpoint by design.
   const form = document.getElementById(formId);
   if (form) {
     const status = form.querySelector('.waitlist-status');

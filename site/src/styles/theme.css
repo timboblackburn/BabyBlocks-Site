@@ -11,7 +11,7 @@
   --bg-surface:   #13131E;
   --bg-elevated:  #1A1A28;
 
-  /* Indigo / violet — family DNA from Intrigue MMC */
+  /* Indigo / violet, family DNA from Intrigue MMC */
   --indigo-700:  #4338CA;
   --indigo-600:  #5B5BFF;
   --indigo-500:  #6366F1;
@@ -19,7 +19,7 @@
   --violet-500:  #8B5CF6;
   --violet-400:  #A78BFA;
 
-  /* BabyBlocks warmth — cream, peach, blush, coral */
+  /* BabyBlocks warmth, cream, peach, blush, coral */
   --cream-50:    #FFFBF5;
   --cream-100:   #FFF7EF;
   --cream-200:   #FBF1E5;
@@ -32,7 +32,7 @@
   --coral-600:   #F25E72;
   --coral-700:   #D94A60;
 
-  /* Functional accent — coral as primary, violet as family secondary */
+  /* Functional accent, coral as primary, violet as family secondary */
   --accent:       var(--coral-600);
   --accent-light: var(--coral-500);
   --accent-deep:  var(--coral-700);
@@ -43,7 +43,7 @@
   --family-accent: var(--violet-600);    /* indigo/violet from family system */
   --family-accent-soft: rgba(124, 58, 237, 0.10);
 
-  /* Text on warm cream — deep charcoal with warm undertone */
+  /* Text on warm cream, deep charcoal with warm undertone */
   --ink-900:        #15110D;
   --ink-800:        #1F1A14;
   --ink-700:        #2A241D;
@@ -156,7 +156,7 @@
   /* Default page surface (overridden per data-theme) */
   --page-bg:   var(--cream-100);
 
-  /* Legacy aliases — pages still referencing the old purple/violet token
+  /* Legacy aliases, pages still referencing the old purple/violet token
      names. Map them onto the new coral palette so the visual story stays
      coherent without forcing a rewrite of every page. */
   --purple-300: var(--blush-300);
@@ -190,7 +190,7 @@ body {
   letter-spacing: -0.005em;
 }
 
-/* Quiet warm gradient wash behind everything. Restrained — three soft
+/* Quiet warm gradient wash behind everything. Restrained, three soft
    blooms, much lower opacity than a typical SaaS hero, so the page reads
    as paper rather than rendered. */
 body::before {
@@ -205,7 +205,7 @@ body::before {
   z-index: 0;
 }
 
-/* Very faint paper grain. ~2% opacity — invisible at a glance but stops
+/* Very faint paper grain. ~2% opacity, invisible at a glance but stops
    flat surfaces from reading as a screenshot. SVG noise filter inlined as
    a data-URI so there is zero extra request. */
 body::after {
@@ -232,7 +232,7 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.02em;
 }
 
-/* Editorial display — used on hero H1 and major section H2s.
+/* Editorial display, used on hero H1 and major section H2s.
    Fraunces is the family touchpoint shared with intriguemmc.com
    and intriguinginsight.com. */
 .display-serif {
@@ -370,7 +370,7 @@ strong { color: var(--text-primary); font-weight: var(--weight-semibold); }
   padding-block: var(--space-16);
 }
 
-/* ── Dark band — used as alternating section break, like the reference's
+/* ── Dark band, used as alternating section break, like the reference's
    feature row sitting on a near-black panel below the cream hero. ── */
 .dark-band {
   position: relative;
@@ -518,7 +518,7 @@ strong { color: var(--text-primary); font-weight: var(--weight-semibold); }
   margin-inline: auto;
 }
 
-/* ── Trust strip — the small icon row underneath the hero ── */
+/* ── Trust strip, the small icon row underneath the hero ── */
 .trust-strip {
   display: flex;
   flex-wrap: wrap;
@@ -606,7 +606,7 @@ strong { color: var(--text-primary); font-weight: var(--weight-semibold); }
 }
 
 /* =============================================
-   Theme: Core (BabyBlocks) — already the :root default.
+   Theme: Core (BabyBlocks), already the :root default.
    Kept here so [data-theme="core"] still applies the same surface.
    ============================================= */
 [data-theme="core"] {
@@ -614,7 +614,7 @@ strong { color: var(--text-primary); font-weight: var(--weight-semibold); }
 }
 
 /* =============================================
-   Theme: PantryBaby — warm sage pastel
+   Theme: PantryBaby, warm sage pastel
    ============================================= */
 [data-theme="pantry"] {
   --page-bg: #F4F1EA;
@@ -674,7 +674,7 @@ strong { color: var(--text-primary); font-weight: var(--weight-semibold); }
 }
 
 /* =============================================
-   Theme: Dark (legacy) — for any page that opts back into the dark base.
+   Theme: Dark (legacy), for any page that opts back into the dark base.
    ============================================= */
 [data-theme="dark"] {
   --page-bg: var(--bg-base);

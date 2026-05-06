@@ -15,7 +15,7 @@
  *
  * Props
  *  - variant: babyblocks | intrigue | insight | foundry | screenforge
- *  - intensity: 0..1 — global opacity dial (default: 0.9)
+ *  - intensity: 0..1, global opacity dial (default: 0.9)
  */
 interface Props {
   variant?: 'babyblocks' | 'intrigue' | 'insight' | 'foundry' | 'screenforge';
@@ -74,7 +74,7 @@ const {
     opacity: var(--pa-intensity);
   }
 
-  /* BabyBlocks — warm cream / blush + a soft peach bloom. Reads paper-like. */
+  /* BabyBlocks, warm cream / blush + a soft peach bloom. Reads paper-like. */
   .pa-babyblocks {
     background:
       radial-gradient(ellipse 90% 70% at 100% 0%, rgba(255, 184, 199, 0.45) 0%, transparent 60%),
@@ -82,7 +82,7 @@ const {
       linear-gradient(165deg, #FFF7EF 0%, #FBEFE3 100%);
   }
 
-  /* Intrigue — parent studio. Cool indigo wash with the wave SVG layered above. */
+  /* Intrigue, parent studio. Cool indigo wash with the wave SVG layered above. */
   .pa-intrigue {
     background: linear-gradient(160deg, #0E0E16 0%, #161324 60%, #0F0E18 100%);
   }
@@ -94,7 +94,7 @@ const {
     z-index: 1;
   }
 
-  /* Insight — book-like atmosphere. Single warm beam from upper-right. */
+  /* Insight, book-like atmosphere. Single warm beam from upper-right. */
   .pa-insight {
     background:
       radial-gradient(ellipse 50% 40% at 90% 5%, rgba(167, 139, 250, 0.30) 0%, transparent 55%),
@@ -112,7 +112,7 @@ const {
     pointer-events: none;
   }
 
-  /* Foundry — dark metallic with the grid SVG (engineered, restrained). */
+  /* Foundry, dark metallic with the grid SVG (engineered, restrained). */
   .pa-foundry {
     background:
       radial-gradient(ellipse 80% 50% at 70% 100%, rgba(91, 91, 255, 0.22) 0%, transparent 60%),
@@ -126,7 +126,7 @@ const {
     z-index: 0;
   }
 
-  /* ScreenForge — violet UI panel glow. */
+  /* ScreenForge, violet UI panel glow. */
   .pa-screenforge {
     background:
       radial-gradient(ellipse 60% 60% at 50% 0%, rgba(167, 139, 250, 0.32) 0%, transparent 65%),

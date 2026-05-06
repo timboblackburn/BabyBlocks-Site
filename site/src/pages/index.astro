@@ -27,22 +27,23 @@ import BudgetBabyPreview from '../components/abstract/BudgetBabyPreview.astro';
             </span>
           </div>
           <h1 class="display-serif hero-title">
-            Know what is safe<br />to spend today.
+            Can you actually<br />afford that today?
           </h1>
           <p class="hero-sub">
-            BudgetBaby helps you plan bills, spending, and savings without connecting your bank.
-            One number every day, after your bills and savings are set aside.
+            BudgetBaby works that out for you. One number on the home screen, every morning.
+            Your rent, your bills, and what you want to save are already taken out, so the
+            number you see is what you can actually spend.
           </p>
 
           <div class="hero-actions">
             <a href="#hero-waitlist" class="btn btn-dark btn-lg">
-              Join the waitlist
+              Email me when it is back
             </a>
             <a href="/budgetbaby" class="btn btn-secondary btn-lg">
-              See how it works
+              How it works
             </a>
           </div>
-          <p class="hero-note">iOS 17+. Free tier available. Premium $7.99/mo or $69.99/yr.</p>
+          <p class="hero-note">iPhone, iOS 17 and up. Free to use. $7.99 a month or $69.99 a year if you want the extras.</p>
         </div>
 
         <div class="hero-visual" aria-hidden="true">
@@ -51,14 +52,14 @@ import BudgetBabyPreview from '../components/abstract/BudgetBabyPreview.astro';
             <div class="phone-block phone-block--peach" aria-hidden="true"></div>
             <div class="phone-block phone-block--blush" aria-hidden="true"></div>
 
-            {/* Back phone — Insights screen, mirrors the actual app's Insights view. */}
+            {/* Back phone. Insights screen, mirrors the actual app's Insights view. */}
             <div class="phone-slot phone-slot--back">
               <PhoneMockup tone="dark" tilt={-3} width={210}>
                 <BudgetBabyPreview variant="insights" />
               </PhoneMockup>
             </div>
 
-            {/* Front phone — Home dashboard, faithful to BudgetBaby's HomeView,
+            {/* Front phone. Home dashboard, faithful to BudgetBaby's HomeView,
                 BudgetSummaryCard, MoneyPoolsCard, and ColorBucketCard. */}
             <div class="phone-slot phone-slot--front">
               <PhoneMockup tone="dark" tilt={2} width={230}>
@@ -77,34 +78,32 @@ import BudgetBabyPreview from '../components/abstract/BudgetBabyPreview.astro';
       <div class="feature-strip-grid">
         <div class="feature-tile">
           <div class="feature-tile-icon"><Icon name="target" size={22} /></div>
-          <h3>Safe to Spend</h3>
-          <p>One daily number. Bills and savings are already taken out.</p>
+          <h3>One number a day</h3>
+          <p>Open the app. See what is left after rent, bills, and savings. That is your number.</p>
         </div>
         <div class="feature-tile">
           <div class="feature-tile-icon"><Icon name="file-text" size={22} /></div>
-          <h3>Bills and subscriptions</h3>
-          <p>See what is due this month and the next. Reminders before each due date.</p>
+          <h3>You will not miss a bill</h3>
+          <p>Every recurring bill in one list. We nudge you a few days before each one is due.</p>
         </div>
         <div class="feature-tile">
           <div class="feature-tile-icon"><Icon name="bar-chart-2" size={22} /></div>
-          <h3>Track in one tap</h3>
-          <p>Log a transaction, pick a category and pool, and keep moving.</p>
+          <h3>Logging takes a second</h3>
+          <p>Tap, pick the category, pick the pool. Done. Back to your day.</p>
         </div>
         <div class="feature-tile">
           <div class="feature-tile-icon"><Icon name="lock" size={22} /></div>
-          <h3>No bank connections</h3>
-          <p>You enter what you spend. Nothing leaves your phone unless you turn on backup.</p>
+          <h3>Your bank stays out of it</h3>
+          <p>You type what you spend. Nothing leaves your phone unless you flip on backup.</p>
         </div>
       </div>
 
-      <!-- A single editorial trust line on the same dark band. Replaces the
-           4-up icon grid that read as a generic SaaS feature row. -->
       <div class="dark-trust">
         <div class="dark-trust-rule" aria-hidden="true"></div>
         <p class="dark-trust-line">
-          <span class="dark-trust-eyebrow">House rules</span>
-          No bank connections. No selling data. No ads.
-          <a href="/about">Read why <span aria-hidden="true">&rarr;</span></a>
+          <span class="dark-trust-eyebrow">A few things we will not do</span>
+          Plug into your bank. Sell your data. Show you ads. Keep nudging you to upgrade.
+          <a href="/about">Why <span aria-hidden="true">&rarr;</span></a>
         </p>
       </div>
     </div>
@@ -116,8 +115,8 @@ import BudgetBabyPreview from '../components/abstract/BudgetBabyPreview.astro';
       <div class="apps-section-head">
         <div>
           <span class="eyebrow">The other apps</span>
-          <h2 class="display-serif">A few more iOS apps in the works.</h2>
-          <p>Each app does one job. They share a look, but each one stands on its own.</p>
+          <h2 class="display-serif">A couple of other apps in the works.</h2>
+          <p>Each app picks one annoying daily problem and solves just that. You can grab one and skip the others.</p>
         </div>
       </div>
 
@@ -130,7 +129,7 @@ import BudgetBabyPreview from '../components/abstract/BudgetBabyPreview.astro';
             </span>
           </div>
           <h3>BudgetBaby</h3>
-          <p>Plan bills, spending, and savings without connecting your bank.</p>
+          <p>One number on your home screen tells you what you can spend today.</p>
           <span class="app-card-link">Learn more <span aria-hidden="true">&rarr;</span></span>
         </a>
 
@@ -142,7 +141,7 @@ import BudgetBabyPreview from '../components/abstract/BudgetBabyPreview.astro';
             </span>
           </div>
           <h3>PantryBaby</h3>
-          <p>Track what you have and what is running low. No more guessing at the store.</p>
+          <p>What is in the cupboard, what you are out of, and what to grab on the way home.</p>
           <span class="app-card-link">Get notified <span aria-hidden="true">&rarr;</span></span>
         </a>
 
@@ -156,8 +155,8 @@ import BudgetBabyPreview from '../components/abstract/BudgetBabyPreview.astro';
             </span>
           </div>
           <h3>BabyBlocks Core</h3>
-          <p>A shared home for the apps. Idea stage, not yet in development.</p>
-          <span class="app-card-link">Read the brief <span aria-hidden="true">&rarr;</span></span>
+          <p>A single home for all the apps. Still on paper. Nothing is being coded yet.</p>
+          <span class="app-card-link">Read the idea <span aria-hidden="true">&rarr;</span></span>
         </a>
       </div>
     </div>
@@ -169,9 +168,9 @@ import BudgetBabyPreview from '../components/abstract/BudgetBabyPreview.astro';
       <div class="pricing-band-grid">
         <div class="pricing-band-copy">
           <span class="eyebrow">Pricing</span>
-          <h2 class="display-serif">Start free. Pay if you want more.</h2>
-          <p>The free tier is a working budgeting app. Premium removes limits and adds calendar sync, full reports, and unlimited categories. Cancel any time in iOS Settings.</p>
-          <a href="/budgetbaby" class="btn btn-dark">See full pricing</a>
+          <h2 class="display-serif">Free works. Pay only if you want more.</h2>
+          <p>The free version is a real budgeting app, not a demo. Premium drops the limits and adds calendar reminders, monthly reports, and unlimited categories. You can cancel from iOS Settings whenever you want.</p>
+          <a href="/budgetbaby" class="btn btn-dark">See what is in each plan</a>
         </div>
 
         <div class="pricing-cards">
@@ -206,7 +205,7 @@ import BudgetBabyPreview from '../components/abstract/BudgetBabyPreview.astro';
       </div>
 
       <p class="pricing-fineprint">
-        Annual is $69.99/yr with a 7 day free trial. Manage and cancel in iOS Settings.
+        The yearly plan is $69.99 with a 7 day trial. Cancel from iOS Settings whenever you want.
       </p>
     </div>
   </section>
@@ -217,19 +216,19 @@ import BudgetBabyPreview from '../components/abstract/BudgetBabyPreview.astro';
       <div id="hero-waitlist" class="waitlist-anchor">
         <WaitlistForm
           app="budgetbaby"
-          heading="Get one email when BudgetBaby is back."
-          sub="That is the only email. No newsletter, no marketing list."
+          heading="Drop your email. We will tell you the day it is back."
+          sub="One email, just from us. No newsletter, no marketing, no list trades."
         />
       </div>
     </div>
   </section>
 
   <CTASection
-    heading="Get notified when BudgetBaby is back."
-    subheading="The new build is in App Review. We will email you the day it goes live."
-    primaryLabel="Join the waitlist"
+    heading="Want a heads-up when BudgetBaby is back?"
+    subheading="The new build is sitting in App Review. We will send you one email the moment it goes live."
+    primaryLabel="Email me when it is back"
     primaryHref="#hero-waitlist"
-    secondaryLabel="See what is in it"
+    secondaryLabel="What is inside the app"
     secondaryHref="/budgetbaby"
   />
 </Layout>
@@ -543,17 +542,17 @@ import BudgetBabyPreview from '../components/abstract/BudgetBabyPreview.astro';
     border-radius: 999px;
     flex-shrink: 0;
   }
-  /* "Soon" — solid coral with halo, the most attention-getting */
+  /* "Soon", solid coral with halo, the most attention-getting */
   .status-dot--soon {
     background: var(--coral-500);
     box-shadow: 0 0 0 3px rgba(242, 94, 114, 0.16);
   }
-  /* "In development" — muted ring, no fill, signals motion-without-imminence */
+  /* "In development", muted ring, no fill, signals motion-without-imminence */
   .status-dot--build {
     background: transparent;
     box-shadow: inset 0 0 0 1.5px var(--text-muted);
   }
-  /* "In planning" — small dim square, signals not-yet-form */
+  /* "In planning", small dim square, signals not-yet-form */
   .status-dot--future {
     background: var(--text-faint);
     border-radius: 1px;

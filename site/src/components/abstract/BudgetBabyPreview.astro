@@ -33,7 +33,7 @@ const { variant = 'home' } = Astro.props;
       </span>
     </div>
 
-    {/* Date header — matches BudgetSummaryCard "Sunday, December 14" */}
+    {/* Date header, matches BudgetSummaryCard "Sunday, December 14" */}
     <div class="bb-date-row">
       <span class="bb-date">Sunday, December 14</span>
       <span class="bb-mood" aria-hidden="true">
@@ -41,7 +41,7 @@ const { variant = 'home' } = Astro.props;
       </span>
     </div>
 
-    {/* Summary card — Remaining + Safe to spend today */}
+    {/* Summary card. Remaining + Safe to spend today */}
     <section class="bb-card bb-card--hero">
       <span class="bb-label">Remaining</span>
       <span class="bb-amount-xl">
@@ -69,7 +69,7 @@ const { variant = 'home' } = Astro.props;
       </div>
     </section>
 
-    {/* Money Pools — Cash / Card / Savings (three, matching MoneyPoolsCard) */}
+    {/* Money Pools. Cash / Card / Savings (three, matching MoneyPoolsCard) */}
     <section class="bb-card">
       <div class="bb-card-head">
         <span class="bb-card-title">Money Pools</span>
@@ -103,7 +103,7 @@ const { variant = 'home' } = Astro.props;
       </div>
     </section>
 
-    {/* Color buckets — Essentials / Variable / Fun, matching ColorBucketCard.
+    {/* Color buckets. Essentials / Variable / Fun, matching ColorBucketCard.
         Ordered red → yellow → green per PriorityColor.sortOrder. */}
     <section class="bb-buckets">
       <div class="bb-bucket">
@@ -141,7 +141,7 @@ const { variant = 'home' } = Astro.props;
       </div>
     </section>
 
-    {/* Tab bar — 5 items matching ContentView.swift */}
+    {/* Tab bar, 5 items matching ContentView.swift */}
     <nav class="bb-tabs">
       <span class="bb-tab bb-tab--active" aria-current="page">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 11 L12 4 L21 11 V20 A1 1 0 0 1 20 21 H14 V14 H10 V21 H4 A1 1 0 0 1 3 20 Z"/></svg>
@@ -265,7 +265,7 @@ const { variant = 'home' } = Astro.props;
 )}
 
 <style>
-  /* Container — fills the PhoneMockup screen, sets up the BudgetBaby palette */
+  /* Container, fills the PhoneMockup screen, sets up the BudgetBaby palette */
   .bb-app {
     --bb-bg-top:    #140A28;     /* AppColors.backgroundGradientTop */
     --bb-bg-bot:    #05040A;     /* AppColors.background */
@@ -509,7 +509,7 @@ const { variant = 'home' } = Astro.props;
   .bb-bucket-meta { font-size: 7px; color: var(--bb-text-3); }
   .bb-bucket-meta strong { color: var(--bb-text-2); font-weight: 600; }
 
-  /* Insights — financial snapshot */
+  /* Insights, financial snapshot */
   .bb-snapshot { display: grid; grid-template-columns: 1fr auto; gap: 6px; align-items: center; }
   .bb-snapshot-sub { font-size: 7px; color: var(--bb-text-3); }
   .bb-ring { position: relative; width: 56px; height: 56px; }
@@ -565,7 +565,7 @@ const { variant = 'home' } = Astro.props;
   .bb-tname { color: var(--bb-text); }
   .bb-tamt  { color: var(--bb-text); font-weight: 600; }
 
-  /* Tab bar — 5 items, center FAB */
+  /* Tab bar, 5 items, center FAB */
   .bb-tabs {
     margin-top: auto;
     display: grid;
