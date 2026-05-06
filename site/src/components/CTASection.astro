@@ -1,4 +1,6 @@
 ---
+import AbstractGlow from './abstract/AbstractGlow.astro';
+
 interface Props {
   heading?: string;
   subheading?: string;
@@ -9,11 +11,11 @@ interface Props {
 }
 
 const {
-  heading = 'BudgetBaby is coming back.',
-  subheading = 'Almost ready. Join the waitlist and we\'ll email you the moment it\'s live again under our new LLC.',
+  heading = 'One email when BudgetBaby is back.',
+  subheading = 'The new LLC build is in App Review. We will email you the day it goes live.',
   primaryLabel = 'Join the waitlist',
   primaryHref = '/budgetbaby#bb-waitlist',
-  secondaryLabel = 'See how it works',
+  secondaryLabel = 'See the features',
   secondaryHref = '/budgetbaby/features',
 } = Astro.props;
 ---
@@ -21,7 +23,8 @@ const {
 <section class="cta-section section-sm">
   <div class="container">
     <div class="cta-card glass-accent">
-      <div class="cta-glow" aria-hidden="true"></div>
+      <AbstractGlow tone="coral" size="lg" opacity={0.22}
+                    position="top:50%;left:50%;transform:translate(-50%,-50%);" />
       <div class="cta-content">
         <h2>{heading}</h2>
         <p>{subheading}</p>
@@ -35,7 +38,7 @@ const {
             </a>
           )}
         </div>
-        <p class="cta-note">Free when it launches · iOS 17+ · Premium from $7.99/mo</p>
+        <p class="cta-note">iOS 17+. Free tier available. Premium from $7.99/mo.</p>
       </div>
     </div>
   </div>
@@ -50,15 +53,6 @@ const {
     padding: var(--space-16) var(--space-12);
     text-align: center;
     border-radius: var(--radius-2xl);
-  }
-
-  .cta-glow {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 600px; height: 300px;
-    background: radial-gradient(ellipse, var(--cta-glow-color) 0%, transparent 70%);
-    pointer-events: none;
   }
 
   .cta-content {

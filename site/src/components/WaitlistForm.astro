@@ -157,14 +157,14 @@ const waitlistUrl =
   }
 
   .waitlist-input {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    border-radius: 0.6rem;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid var(--glass-border-strong, rgba(21, 17, 13, 0.14));
+    border-radius: 0.7rem;
     padding: 0.75rem 0.85rem;
     color: var(--text-primary);
     font-size: 1rem;
     width: 100%;
-    transition: border-color 0.15s ease, background 0.15s ease;
+    transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
   }
 
   .waitlist-input::placeholder {
@@ -173,8 +173,9 @@ const waitlistUrl =
 
   .waitlist-input:focus {
     outline: none;
-    border-color: var(--accent, #5fcfd6);
-    background: rgba(255, 255, 255, 0.09);
+    border-color: var(--accent, #F25E72);
+    background: #FFFFFF;
+    box-shadow: 0 0 0 3px rgba(242, 94, 114, 0.16);
   }
 
   .waitlist-submit {

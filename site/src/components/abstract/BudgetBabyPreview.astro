@@ -1,0 +1,226 @@
+---
+/**
+ * BudgetBabyPreview
+ * A small, generic BudgetBaby UI preview. Drop it inside a PhoneMockup
+ * to render a familiar Safe-to-Spend layout. Generic sample data only —
+ * no fake user names, no fake reviews, no fake totals beyond round
+ * illustrative numbers.
+ *
+ * Props
+ *  - variant: spend | overview  (default: spend)
+ *
+ * Use:
+ *   <PhoneMockup tone="dark"><BudgetBabyPreview variant="spend" /></PhoneMockup>
+ *   <PhoneMockup tone="light"><BudgetBabyPreview variant="overview" /></PhoneMockup>
+ */
+import Icon from '../Icon.astro';
+
+interface Props {
+  variant?: 'spend' | 'overview';
+}
+const { variant = 'spend' } = Astro.props;
+---
+
+{variant === 'spend' && (
+  <>
+    <div class="bb-row bb-row--top">
+      <span>9:21</span>
+      <span class="bb-bars" aria-hidden="true">
+        <i></i><i></i><i></i><i></i>
+      </span>
+    </div>
+    <div class="bb-headline">Today</div>
+    <div class="bb-eyebrow">Safe to spend</div>
+    <div class="bb-amount">$126<small>.50</small></div>
+    <div class="bb-meta">left for today</div>
+    <div class="bb-bar"><div class="bb-bar-fill" style="width:62%" /></div>
+    <div class="bb-line">$1,873.50 available this month</div>
+    <div class="bb-section">Upcoming</div>
+    <div class="bb-row">
+      <span class="bb-icon"><Icon name="home" size={10} /></span>
+      <span class="bb-row-name">Rent <small>· May 1</small></span>
+      <span class="bb-row-amt">$1,200</span>
+    </div>
+    <div class="bb-row">
+      <span class="bb-icon"><Icon name="zap" size={10} /></span>
+      <span class="bb-row-name">Electricity <small>· May 3</small></span>
+      <span class="bb-row-amt">$120</span>
+    </div>
+    <div class="bb-row">
+      <span class="bb-icon"><Icon name="users" size={10} /></span>
+      <span class="bb-row-name">Daycare <small>· May 5</small></span>
+      <span class="bb-row-amt">$850</span>
+    </div>
+  </>
+)}
+
+{variant === 'overview' && (
+  <>
+    <div class="bb-row bb-row--top">
+      <span>← May 2024</span>
+      <span aria-hidden="true">⌥</span>
+    </div>
+    <div class="bb-eyebrow">Overview</div>
+    <div class="bb-line bb-line--row"><span>Income</span><strong>$3,000</strong></div>
+    <div class="bb-line bb-line--row"><span>Bills</span><strong>$2,150</strong></div>
+    <div class="bb-line bb-line--row"><span>Spending</span><strong>$730</strong></div>
+    <div class="bb-line bb-line--row"><span>Savings</span><strong>$250</strong></div>
+    <div class="bb-section bb-section--mt">Spending by category</div>
+    <div class="bb-donut" aria-hidden="true">
+      <svg viewBox="0 0 80 80">
+        <circle cx="40" cy="40" r="32" fill="none" stroke="#F2EAE0" stroke-width="14" />
+        <circle cx="40" cy="40" r="32" fill="none" stroke="#F25E72" stroke-width="14" stroke-dasharray="42 200" transform="rotate(-90 40 40)" />
+        <circle cx="40" cy="40" r="32" fill="none" stroke="#FFB8C7" stroke-width="14" stroke-dasharray="32 200" stroke-dashoffset="-42" transform="rotate(-90 40 40)" />
+        <circle cx="40" cy="40" r="32" fill="none" stroke="#FFD9BF" stroke-width="14" stroke-dasharray="22 200" stroke-dashoffset="-74" transform="rotate(-90 40 40)" />
+      </svg>
+      <div class="bb-donut-inner">
+        <strong>$730</strong>
+        <span>this month</span>
+      </div>
+    </div>
+    <ul class="bb-legend">
+      <li><span class="bb-dot" style="background:#F25E72"></span>Groceries<span class="bb-amt">$285</span></li>
+      <li><span class="bb-dot" style="background:#FFB8C7"></span>Kids<span class="bb-amt">$153</span></li>
+      <li><span class="bb-dot" style="background:#FFD9BF"></span>Transport<span class="bb-amt">$98</span></li>
+    </ul>
+  </>
+)}
+
+<style>
+  .bb-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 0;
+    border-bottom: 1px solid var(--glass-border, rgba(255, 247, 239, 0.06));
+    font-size: 8px;
+  }
+  .bb-row--top {
+    border-bottom: none;
+    justify-content: space-between;
+    color: var(--text-muted, rgba(255, 247, 239, 0.55));
+    font-size: 7.5px;
+  }
+  .bb-bars { display: inline-flex; align-items: flex-end; gap: 1px; height: 8px; }
+  .bb-bars i { width: 2px; background: currentColor; opacity: 0.55; border-radius: 1px; }
+  .bb-bars i:nth-child(1) { height: 3px; }
+  .bb-bars i:nth-child(2) { height: 5px; }
+  .bb-bars i:nth-child(3) { height: 7px; }
+  .bb-bars i:nth-child(4) { height: 8px; }
+
+  .bb-headline {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-primary, #FFF7EF);
+  }
+  .bb-eyebrow {
+    font-size: 7.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted, rgba(255, 247, 239, 0.55));
+    margin-top: 2px;
+  }
+  .bb-amount {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--text-primary, #FFF7EF);
+    margin-top: 1px;
+  }
+  .bb-amount small { font-size: 14px; opacity: 0.7; font-weight: 700; }
+  .bb-meta { font-size: 8px; color: var(--text-muted, rgba(255, 247, 239, 0.55)); }
+  .bb-bar {
+    height: 4px;
+    background: var(--glass-border, rgba(255, 247, 239, 0.10));
+    border-radius: 999px;
+    overflow: hidden;
+    margin: 4px 0 2px;
+  }
+  .bb-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #F25E72, #FFD9BF);
+    border-radius: 999px;
+  }
+  .bb-line {
+    font-size: 8px;
+    color: var(--text-secondary, rgba(255, 247, 239, 0.78));
+  }
+  .bb-line--row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px 0;
+    border-bottom: 1px solid var(--glass-border, rgba(21, 17, 13, 0.06));
+  }
+  .bb-line--row strong {
+    color: var(--text-primary, #15110D);
+    font-weight: 600;
+  }
+  .bb-section {
+    font-size: 8.5px;
+    font-weight: 600;
+    color: var(--text-primary, #FFF7EF);
+    margin: 4px 0 1px;
+  }
+  .bb-section--mt { margin-top: 8px; }
+  .bb-icon {
+    width: 16px; height: 16px;
+    border-radius: 5px;
+    background: var(--glass-bg, rgba(255, 247, 239, 0.06));
+    color: #FFD9BF;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .bb-row-name {
+    flex: 1;
+    font-size: 8px;
+    color: var(--text-primary, #FFF7EF);
+  }
+  .bb-row-name small {
+    color: var(--text-muted, rgba(255, 247, 239, 0.45));
+    font-size: 7.5px;
+  }
+  .bb-row-amt { font-size: 8px; font-weight: 600; }
+
+  /* Donut */
+  .bb-donut {
+    position: relative;
+    width: 96px;
+    margin: 4px auto 4px;
+  }
+  .bb-donut svg { width: 96px; height: 96px; display: block; }
+  .bb-donut-inner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.2;
+  }
+  .bb-donut-inner strong { font-size: 11px; font-weight: 700; }
+  .bb-donut-inner span { font-size: 7px; color: var(--text-muted, rgba(21, 17, 13, 0.55)); }
+  .bb-legend {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 8px;
+    margin: 0;
+    padding: 0;
+  }
+  .bb-legend li {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .bb-dot {
+    width: 7px; height: 7px;
+    border-radius: 999px;
+    flex-shrink: 0;
+  }
+  .bb-amt { margin-left: auto; font-weight: 600; }
+</style>

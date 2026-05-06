@@ -37,14 +37,14 @@ const { caption, label } = Astro.props;
   .screenshot-device {
     width: 200px;
     height: 420px;
-    background: var(--bg-elevated);
+    background: #131217;
     border-radius: 36px;
-    border: 1.5px solid var(--glass-border);
+    border: 1.5px solid rgba(255, 247, 239, 0.06);
     box-shadow:
-      0 0 0 6px var(--bg-surface),
-      0 0 0 7px var(--glass-border),
-      0 28px 60px rgba(0, 0, 0, 0.45),
-      0 0 40px rgba(139, 92, 246, 0.08);
+      0 0 0 6px #0F0E14,
+      0 0 0 7px rgba(21, 17, 13, 0.10),
+      0 28px 60px rgba(60, 30, 20, 0.22),
+      0 0 40px rgba(242, 94, 114, 0.08);
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -53,29 +53,37 @@ const { caption, label } = Astro.props;
 
   .screenshot-chrome {
     height: 44px;
-    background: var(--bg-raised);
+    background: #0F0E14;
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-bottom: 1px solid var(--glass-border);
+    border-bottom: 1px solid rgba(255, 247, 239, 0.06);
   }
 
   .screenshot-notch {
     width: 72px;
     height: 20px;
-    background: var(--bg-elevated);
+    background: #131217;
     border-radius: 12px;
   }
 
   .screenshot-screen {
     flex: 1;
     overflow: hidden;
-    background: var(--bg-base);
+    background: #131217;
     padding: var(--space-3);
     display: flex;
     flex-direction: column;
     gap: var(--space-2);
+
+    /* Light-on-dark context for any tokenised child content. */
+    --text-primary:   #FFF7EF;
+    --text-secondary: rgba(255, 247, 239, 0.78);
+    --text-muted:     rgba(255, 247, 239, 0.55);
+    --text-faint:     rgba(255, 247, 239, 0.40);
+    --glass-border:   rgba(255, 247, 239, 0.08);
+    color: #FFF7EF;
   }
 
   .screenshot-caption {

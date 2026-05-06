@@ -1,0 +1,338 @@
+---
+/**
+ * DashboardPreview
+ * A compact, honest preview of a Foundry-style founder OS dashboard:
+ * Capture / Score / Decide / Load. Generic illustrative numbers only —
+ * no fake customer names, no fake quotes, no specific company logos.
+ *
+ * This component lives in the abstract/ kit so any sibling site
+ * (Foundry, Intrigue MMC) can re-use it. It is not currently placed
+ * on a BabyBlocks page.
+ *
+ * Props
+ *  - tone:   dark | light  (default: dark)
+ *  - height: px (default: 360)
+ *  - class:  extra classes
+ */
+interface Props {
+  tone?: 'dark' | 'light';
+  height?: number;
+  class?: string;
+}
+const { tone = 'dark', height = 360, class: className = '' } = Astro.props;
+---
+
+<div
+  class:list={['dash-preview', `dash-tone-${tone}`, className]}
+  style={`--dash-h:${height}px`}
+  role="img"
+  aria-label="Founder OS dashboard preview: capture, score, decide, load"
+>
+  <div class="dash-chrome">
+    <div class="dash-dots" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </div>
+    <span class="dash-title">Foundry · Today</span>
+    <span class="dash-meta">This week</span>
+  </div>
+
+  <div class="dash-body">
+    <aside class="dash-rail">
+      <div class="dash-rail-section">Capture</div>
+      <ul>
+        <li class="active">Inbox<span>12</span></li>
+        <li>Ideas</li>
+        <li>Signals</li>
+      </ul>
+      <div class="dash-rail-section">Decide</div>
+      <ul>
+        <li>Opportunities</li>
+        <li>Decisions</li>
+        <li>Load</li>
+      </ul>
+    </aside>
+
+    <main class="dash-main">
+      <header class="dash-stats">
+        <div class="dash-stat">
+          <span>Active projects</span>
+          <strong>6</strong>
+        </div>
+        <div class="dash-stat">
+          <span>Load</span>
+          <strong>72%</strong>
+          <small>moderate</small>
+        </div>
+        <div class="dash-stat">
+          <span>Decisions</span>
+          <strong>8</strong>
+        </div>
+        <div class="dash-stat">
+          <span>Focus time</span>
+          <strong>17.3h</strong>
+        </div>
+      </header>
+
+      <div class="dash-grid">
+        <section class="dash-card">
+          <header><span>Top opportunities</span><small>score</small></header>
+          <ul class="dash-bars">
+            <li><span>Opportunity A</span><div class="bar" style="--w:82%"></div><b>82</b></li>
+            <li><span>Opportunity B</span><div class="bar" style="--w:74%"></div><b>74</b></li>
+            <li><span>Opportunity C</span><div class="bar" style="--w:62%"></div><b>62</b></li>
+          </ul>
+        </section>
+
+        <section class="dash-card dash-card--load">
+          <header><span>Load</span><small>this week</small></header>
+          <div class="dash-ring" aria-hidden="true">
+            <svg viewBox="0 0 80 80">
+              <circle cx="40" cy="40" r="32" fill="none" stroke="rgba(255,247,239,0.08)" stroke-width="9" />
+              <circle cx="40" cy="40" r="32" fill="none" stroke="#7C3AED" stroke-width="9"
+                stroke-linecap="round" stroke-dasharray="145 200" transform="rotate(-90 40 40)" />
+            </svg>
+            <div class="dash-ring-inner"><strong>72%</strong><span>load</span></div>
+          </div>
+        </section>
+
+        <section class="dash-card">
+          <header><span>Recent decisions</span><small>this week</small></header>
+          <ul class="dash-decisions">
+            <li><span class="dash-dot dash-dot--done"></span>Picked initial segment</li>
+            <li><span class="dash-dot dash-dot--done"></span>Deprioritised Q2 pilot</li>
+            <li><span class="dash-dot dash-dot--open"></span>Marketing bet</li>
+          </ul>
+        </section>
+      </div>
+    </main>
+  </div>
+</div>
+
+<style>
+  .dash-preview {
+    width: 100%;
+    height: var(--dash-h);
+    border-radius: 22px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 247, 239, 0.06);
+    box-shadow: 0 28px 64px rgba(0, 0, 0, 0.18);
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-sans);
+    font-size: 11px;
+  }
+  .dash-tone-dark {
+    background: linear-gradient(180deg, #0F0E16 0%, #14121E 100%);
+    color: rgba(255, 247, 239, 0.85);
+  }
+  .dash-tone-light {
+    background: #FFF;
+    color: #15110D;
+    border-color: rgba(21, 17, 13, 0.08);
+  }
+
+  .dash-chrome {
+    height: 30px;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid rgba(255, 247, 239, 0.05);
+    font-size: 10px;
+    color: rgba(255, 247, 239, 0.5);
+  }
+  .dash-tone-light .dash-chrome { border-color: rgba(21, 17, 13, 0.06); color: rgba(21, 17, 13, 0.55); }
+  .dash-dots { display: inline-flex; gap: 4px; }
+  .dash-dots span {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: rgba(255, 247, 239, 0.12);
+  }
+  .dash-tone-light .dash-dots span { background: rgba(21, 17, 13, 0.12); }
+  .dash-title { font-weight: 600; color: rgba(255, 247, 239, 0.78); }
+  .dash-tone-light .dash-title { color: var(--ink-900, #15110D); }
+  .dash-meta { margin-left: auto; }
+
+  .dash-body {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    flex: 1;
+    min-height: 0;
+  }
+
+  .dash-rail {
+    border-right: 1px solid rgba(255, 247, 239, 0.05);
+    padding: 12px 10px;
+    font-size: 10px;
+    color: rgba(255, 247, 239, 0.6);
+  }
+  .dash-tone-light .dash-rail { border-color: rgba(21, 17, 13, 0.06); color: rgba(21, 17, 13, 0.55); }
+  .dash-rail-section {
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 8.5px;
+    margin: 6px 0 4px;
+    opacity: 0.7;
+  }
+  .dash-rail ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .dash-rail li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 6px;
+    border-radius: 6px;
+  }
+  .dash-rail li.active {
+    background: rgba(124, 58, 237, 0.16);
+    color: rgba(255, 247, 239, 0.92);
+  }
+  .dash-tone-light .dash-rail li.active {
+    background: rgba(124, 58, 237, 0.10);
+    color: var(--ink-900, #15110D);
+  }
+  .dash-rail li span {
+    background: rgba(255, 247, 239, 0.08);
+    padding: 1px 6px;
+    border-radius: 999px;
+    font-size: 9px;
+  }
+
+  .dash-main { padding: 12px; display: flex; flex-direction: column; gap: 10px; min-height: 0; }
+
+  .dash-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .dash-stat {
+    border: 1px solid rgba(255, 247, 239, 0.06);
+    border-radius: 8px;
+    padding: 8px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .dash-tone-light .dash-stat { border-color: rgba(21, 17, 13, 0.07); }
+  .dash-stat span { font-size: 9px; color: rgba(255, 247, 239, 0.55); }
+  .dash-tone-light .dash-stat span { color: rgba(21, 17, 13, 0.55); }
+  .dash-stat strong { font-size: 16px; font-weight: 700; letter-spacing: -0.02em; }
+  .dash-stat small { font-size: 8.5px; color: #A78BFA; }
+
+  .dash-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1.2fr;
+    gap: 8px;
+    flex: 1;
+    min-height: 0;
+  }
+  .dash-card {
+    border: 1px solid rgba(255, 247, 239, 0.06);
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .dash-tone-light .dash-card { border-color: rgba(21, 17, 13, 0.07); }
+  .dash-card header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 10px;
+  }
+  .dash-card header span { font-weight: 600; }
+  .dash-card header small {
+    text-transform: uppercase;
+    letter-spacing: 0.10em;
+    font-size: 8.5px;
+    color: rgba(255, 247, 239, 0.45);
+  }
+  .dash-tone-light .dash-card header small { color: rgba(21, 17, 13, 0.45); }
+
+  .dash-bars {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+  }
+  .dash-bars li {
+    display: grid;
+    grid-template-columns: 1fr 80px 24px;
+    gap: 8px;
+    align-items: center;
+    font-size: 10px;
+  }
+  .dash-bars li > span { color: rgba(255, 247, 239, 0.78); }
+  .dash-tone-light .dash-bars li > span { color: var(--ink-800, #1F1A14); }
+  .dash-bars .bar {
+    height: 4px;
+    border-radius: 999px;
+    background: rgba(255, 247, 239, 0.07);
+    position: relative;
+    overflow: hidden;
+  }
+  .dash-tone-light .dash-bars .bar { background: rgba(21, 17, 13, 0.07); }
+  .dash-bars .bar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    width: var(--w);
+    background: linear-gradient(90deg, #7C3AED, #A78BFA);
+    border-radius: inherit;
+  }
+  .dash-bars b { font-weight: 600; font-size: 10px; text-align: right; }
+
+  .dash-ring {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .dash-ring svg { width: 84px; height: 84px; }
+  .dash-ring-inner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+  }
+  .dash-ring-inner strong { font-size: 14px; font-weight: 700; }
+  .dash-ring-inner span { font-size: 9px; color: rgba(255, 247, 239, 0.55); }
+  .dash-tone-light .dash-ring-inner span { color: rgba(21, 17, 13, 0.55); }
+
+  .dash-decisions {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 10px;
+  }
+  .dash-decisions li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .dash-dot {
+    width: 7px; height: 7px;
+    border-radius: 999px;
+    flex-shrink: 0;
+  }
+  .dash-dot--done { background: #34D399; }
+  .dash-dot--open { background: #F59E0B; }
+
+  @media (max-width: 700px) {
+    .dash-body { grid-template-columns: 1fr; }
+    .dash-rail { display: none; }
+    .dash-grid { grid-template-columns: 1fr; }
+    .dash-stats { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>

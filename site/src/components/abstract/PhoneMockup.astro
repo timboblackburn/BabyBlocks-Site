@@ -1,0 +1,116 @@
+---
+/**
+ * PhoneMockup
+ * Reusable phone shell — a thin device frame with a notch and a screen
+ * area provided via slot. Pure CSS so it scales and works without
+ * external assets. Two surface tones (dark/light) so a single mockup
+ * can carry either an editorial dark UI or a paper-like light UI.
+ *
+ * Props
+ *  - tone:   dark | light                  (default: dark)
+ *  - tilt:   small rotation in degrees     (default: 0)
+ *  - width:  pixel width of the device     (default: 220)
+ *  - shadow: lift | flat                   (default: lift)
+ *  - class:  extra classes on the outer device
+ *
+ * Slot
+ *  - default: rendered inside the screen
+ *
+ * The component is a generic shell. Inject your own UI via the slot —
+ * a tiny BudgetBaby preview lives in `BudgetBabyPreview` (sibling
+ * component) so this stays brand-agnostic.
+ */
+interface Props {
+  tone?: 'dark' | 'light';
+  tilt?: number;
+  width?: number;
+  shadow?: 'lift' | 'flat';
+  class?: string;
+}
+
+const {
+  tone = 'dark',
+  tilt = 0,
+  width = 220,
+  shadow = 'lift',
+  class: className = '',
+} = Astro.props;
+
+const ratio = 410 / 200;
+const height = Math.round(width * ratio);
+---
+
+<div
+  class:list={['phone-device', `phone-tone-${tone}`, `phone-shadow-${shadow}`, className]}
+  style={`width:${width}px;height:${height}px;transform:rotate(${tilt}deg);`}
+  aria-hidden="true"
+>
+  <span class="phone-frame-notch"></span>
+  <div class="phone-frame-screen">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .phone-device {
+    position: relative;
+    background: #0F0E14;
+    border-radius: 12%;
+    padding: 6px;
+    isolation: isolate;
+    flex-shrink: 0;
+  }
+
+  .phone-shadow-lift {
+    box-shadow:
+      0 0 0 1.5px rgba(255, 247, 239, 0.04) inset,
+      0 30px 70px rgba(60, 30, 20, 0.20),
+      0 8px 22px rgba(60, 30, 20, 0.10);
+  }
+
+  .phone-shadow-flat {
+    box-shadow: 0 0 0 1.5px rgba(255, 247, 239, 0.06) inset;
+  }
+
+  .phone-frame-notch {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30%;
+    height: 14px;
+    background: #0F0E14;
+    border-radius: 0 0 12px 12px;
+    z-index: 2;
+  }
+
+  .phone-frame-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 9%;
+    overflow: hidden;
+    padding: 22px 12px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 9px;
+    line-height: 1.35;
+  }
+
+  .phone-tone-dark .phone-frame-screen {
+    background: #131217;
+    color: #FFF7EF;
+    /* Light-on-dark token context for any tokenised slot content. */
+    --text-primary:   #FFF7EF;
+    --text-secondary: rgba(255, 247, 239, 0.76);
+    --text-muted:     rgba(255, 247, 239, 0.55);
+    --text-faint:     rgba(255, 247, 239, 0.35);
+    --glass-border:   rgba(255, 247, 239, 0.08);
+  }
+
+  .phone-tone-light .phone-frame-screen {
+    background: #FFF7EF;
+    color: #15110D;
+  }
+</style>

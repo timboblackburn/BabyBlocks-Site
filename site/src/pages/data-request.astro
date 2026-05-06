@@ -12,7 +12,7 @@ const lastUpdated = 'May 3, 2026';
 ---
 
 <Layout
-  title="Data request — BabyBlocks"
+  title="Data request | BabyBlocks"
   description="Request a copy of, or deletion of, the data BabyBlocks holds about you. We respond within 30 days."
   canonical="/data-request"
 >
@@ -138,11 +138,11 @@ const lastUpdated = 'May 3, 2026';
               <li>We email you a verification link to confirm the request came from you, not someone impersonating you.</li>
               <li>You click the link. We start processing.</li>
               <li>
-                Within 30 days you receive your data export by email — or, for deletion requests, a confirmation that we have deleted your records.
+                Within 30 days you receive your data export by email. For deletion requests, you receive a confirmation that we have deleted your records.
               </li>
             </ol>
             <p class="sec-note">
-              Most BabyBlocks data lives on your device or in your iCloud — we do not hold it on our servers. Your request covers the data we DO hold (account email, support tickets, purchase records).
+              Most BabyBlocks data lives on your device or in your iCloud. We do not hold it on our servers. Your request covers the data we DO hold (account email, support tickets, purchase records).
             </p>
           </div>
         </div>
@@ -203,12 +203,12 @@ const lastUpdated = 'May 3, 2026';
         }
         if (hp) {
           form.reset();
-          setStatus("Thanks — we got it. Check your email for the verification link.", 'ok');
+          setStatus("Thanks. We got it. Check your email for the verification link.", 'ok');
           return;
         }
         if (Date.now() - renderedAt < 1500) {
           form.reset();
-          setStatus("Thanks — we got it. Check your email for the verification link.", 'ok');
+          setStatus("Thanks. We got it. Check your email for the verification link.", 'ok');
           return;
         }
 
@@ -236,7 +236,7 @@ const lastUpdated = 'May 3, 2026';
           if (!res.ok) throw new Error('network');
           form.reset();
           setStatus(
-            "Thanks — we got it. Check your email for the verification link. We respond within 30 days.",
+            "Thanks. We got it. Check your email for the verification link. We respond within 30 days.",
             'ok'
           );
         } catch (err) {

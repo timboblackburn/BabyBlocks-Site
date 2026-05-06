@@ -1,0 +1,79 @@
+---
+/**
+ * AbstractGlow
+ * Single restrained radial bloom. Use behind hero copy, inside CTA cards,
+ * or on the dark feature band where you want a single warm or violet
+ * accent without dominating the surface.
+ *
+ * Props
+ *  - tone:     coral | violet | peach | indigo (default: coral)
+ *  - size:     sm (260px) | md (420px) | lg (640px) | xl (900px)  (default: md)
+ *  - position: cssRect describing the centre, e.g. "top:-10%; right:-12%"
+ *              (default: centred)
+ *  - opacity:  0..1, intensity dial (default: 0.32)
+ *  - blend:    normal | screen | multiply (default: normal)
+ *
+ * Always pointer-events:none and decorative-only (aria-hidden).
+ */
+interface Props {
+  tone?: 'coral' | 'violet' | 'peach' | 'indigo' | 'cream';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  position?: string;
+  opacity?: number;
+  blend?: 'normal' | 'screen' | 'multiply';
+  class?: string;
+}
+
+const {
+  tone = 'coral',
+  size = 'md',
+  position = 'top:50%;left:50%;transform:translate(-50%,-50%);',
+  opacity = 0.32,
+  blend = 'normal',
+  class: className = '',
+} = Astro.props;
+
+const tones: Record<string, string> = {
+  coral:  'rgba(242, 94, 114, 1)',
+  violet: 'rgba(124, 58, 237, 1)',
+  peach:  'rgba(255, 207, 158, 1)',
+  indigo: 'rgba(91, 91, 255, 1)',
+  cream:  'rgba(255, 247, 239, 1)',
+};
+
+const sizes: Record<string, string> = {
+  sm: '260px',
+  md: '420px',
+  lg: '640px',
+  xl: '900px',
+};
+
+const dim = sizes[size];
+const colorStop = tones[tone];
+
+const styleStr = [
+  position,
+  `width:${dim}`,
+  `height:${dim}`,
+  `--glow-color:${colorStop}`,
+  `--glow-opacity:${opacity}`,
+  `mix-blend-mode:${blend}`,
+].join(';');
+---
+
+<div class:list={['abstract-glow', className]} style={styleStr} aria-hidden="true"></div>
+
+<style>
+  .abstract-glow {
+    position: absolute;
+    pointer-events: none;
+    background: radial-gradient(
+      circle at 50% 50%,
+      color-mix(in srgb, var(--glow-color) calc(var(--glow-opacity) * 100%), transparent) 0%,
+      transparent 65%
+    );
+    border-radius: 50%;
+    z-index: 0;
+    will-change: opacity;
+  }
+</style>

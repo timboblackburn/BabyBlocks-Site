@@ -8,7 +8,7 @@ const lastUpdated = 'March 1, 2026';
 ---
 
 <Layout
-  title="Trust & Privacy — BudgetBaby"
+  title="Trust & Privacy | BudgetBaby"
   description="How BudgetBaby handles your data. On-device storage, encrypted cloud backups, no bank connections, and no data selling. Full transparency."
   canonical="/budgetbaby/trust"
 >
@@ -19,8 +19,8 @@ const lastUpdated = 'March 1, 2026';
         <div class="label-chip">BudgetBaby</div>
         <h1>Your data is yours.<br /><span class="text-gradient">Here's exactly what that means.</span></h1>
         <p>
-          You deserve a clear, honest explanation of what happens to your financial data —
-          not buried in a privacy policy, but front and center. This page is that explanation.
+          A plain explanation of what happens to your data. Not buried in a privacy policy.
+          Front and centre instead.
         </p>
         <p class="trust-updated">Last updated: {lastUpdated}</p>
       </div>
@@ -37,7 +37,7 @@ const lastUpdated = 'March 1, 2026';
             <h2>Your budget lives on your device.</h2>
             <p>
               BudgetBaby stores all your data locally using SwiftData, Apple's native persistence framework.
-              Your transactions, budgets, categories, bills, and goals are written to your device's local storage —
+              Your transactions, budgets, categories, bills, and goals are written to your device&rsquo;s local storage,
               not to our servers.
             </p>
             <ul class="trust-list">
@@ -62,11 +62,11 @@ const lastUpdated = 'March 1, 2026';
             <h2>Cloud backup is opt-in and encrypted.</h2>
             <p>
               If you choose to enable cloud backup, your data is encrypted on your device before it ever leaves.
-              We use AES-256-GCM encryption. The encryption key lives in your iCloud Keychain — not on our servers.
+              We use AES-256-GCM encryption. The encryption key lives in your iCloud Keychain, not on our servers.
             </p>
             <ul class="trust-list">
               <li><Icon name="check" size={14} /> Encrypted with AES-256-GCM before leaving your device</li>
-              <li><Icon name="check" size={14} /> Encryption key stored in your iCloud Keychain — we cannot access it</li>
+              <li><Icon name="check" size={14} /> Encryption key stored in your iCloud Keychain. We cannot access it</li>
               <li><Icon name="check" size={14} /> We cannot read the contents of your backup</li>
               <li><Icon name="check" size={14} /> Requires explicit sign-in. Off by default.</li>
               <li><Icon name="check" size={14} /> Free: 1 backup slot. Premium: 5 slots.</li>
@@ -157,7 +157,7 @@ const lastUpdated = 'March 1, 2026';
             </div>
 
             <p class="trust-note">
-              You can opt out of Firebase Analytics via iOS App Tracking Transparency. Crash reporting helps us fix bugs — it contains no financial data.
+              You can opt out of Firebase Analytics via iOS App Tracking Transparency. Crash reporting helps us fix bugs and contains no financial data.
             </p>
           </div>
         </div>
@@ -181,7 +181,7 @@ const lastUpdated = 'March 1, 2026';
             </p>
             <ul class="trust-list">
               <li><Icon name="check" size={14} /> Safety backup auto-created before every restore</li>
-              <li><Icon name="check" size={14} /> Atomic commit — either all data restores or none of it</li>
+              <li><Icon name="check" size={14} /> Atomic commit. Either all data restores or none of it</li>
               <li><Icon name="check" size={14} /> Rollback available if restore fails</li>
               <li><Icon name="check" size={14} /> No app restart required after restore</li>
             </ul>
@@ -200,8 +200,8 @@ const lastUpdated = 'March 1, 2026';
           <div>
             <h2>What could change.</h2>
             <p>
-              We are committed to the principles above. But BudgetBaby will grow, and we want to be honest
-              about what might evolve — so you are never surprised.
+              We are committed to the principles above. BudgetBaby will grow over time, and this section
+              flags what might evolve so you are never surprised.
             </p>
             <ul class="trust-list change-list">
               <li><Icon name="info" size={14} /> New features may store additional data types on-device (for example, receipt photos). The same on-device-first principle applies.</li>
