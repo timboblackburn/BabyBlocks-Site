@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import GlassCard from '../../components/GlassCard.astro';
 import AppIcon from '../../components/AppIcon.astro';
+import Icon from '../../components/Icon.astro';
 
 const budgetBabyItems = [
   {
@@ -165,21 +166,21 @@ const budgetBabyItems = [
 
           <div class="platform-indicators">
             <div class="platform-item platform-item--done">
-              <span class="platform-icon">📱</span>
+              <span class="platform-icon"><Icon name="smartphone" size={22} /></span>
               <div>
                 <strong>iOS</strong>
                 <span>BudgetBaby live</span>
               </div>
             </div>
             <div class="platform-item platform-item--next">
-              <span class="platform-icon">🤖</span>
+              <span class="platform-icon"><Icon name="android" size={22} /></span>
               <div>
                 <strong>Android</strong>
                 <span>On the roadmap</span>
               </div>
             </div>
             <div class="platform-item platform-item--next">
-              <span class="platform-icon">🌐</span>
+              <span class="platform-icon"><Icon name="globe" size={22} /></span>
               <div>
                 <strong>Web</strong>
                 <span>On the roadmap</span>
@@ -196,7 +197,7 @@ const budgetBabyItems = [
     <div class="container-sm">
       <GlassCard>
         <div class="vote-inner">
-          <div class="vote-icon">💡</div>
+          <div class="vote-icon"><Icon name="lightbulb" size={26} /></div>
           <div>
             <h3>Your idea could become a feature.</h3>
             <p>

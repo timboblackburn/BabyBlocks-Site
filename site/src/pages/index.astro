@@ -661,13 +661,17 @@ import BudgetBabyPreview from '../components/abstract/BudgetBabyPreview.astro';
     position: relative;
   }
   .price-features li::before {
-    content: '✓';
+    content: '';
     position: absolute;
     left: 0;
-    top: 0;
-    color: var(--accent);
-    font-weight: var(--weight-bold);
-    font-size: var(--text-sm);
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    background-color: var(--accent);
+    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>");
+    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>");
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
   }
   .price-cta { width: 100%; }
 

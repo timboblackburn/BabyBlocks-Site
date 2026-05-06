@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import GlassCard from '../../components/GlassCard.astro';
 import AppIcon from '../../components/AppIcon.astro';
+import Icon from '../../components/Icon.astro';
 ---
 
 <Layout
@@ -51,7 +52,7 @@ import AppIcon from '../../components/AppIcon.astro';
         <div class="core-visual" aria-hidden="true">
           <div class="core-mock glass">
             <div class="mock-header">
-              <span class="mock-icon">🧩</span>
+              <span class="mock-icon"><Icon name="puzzle" size={18} /></span>
               <span class="mock-name">BabyBlocks Core</span>
             </div>
 
@@ -89,7 +90,7 @@ import AppIcon from '../../components/AppIcon.astro';
             </div>
 
             <div class="mock-insight">
-              <span class="mock-insight-icon">💡</span>
+              <span class="mock-insight-icon"><Icon name="lightbulb" size={14} /></span>
               <p>You usually spend $90 at the supermarket. Your budget allows $104 this week.</p>
             </div>
           </div>
@@ -110,7 +111,7 @@ import AppIcon from '../../components/AppIcon.astro';
       <div class="core-features">
         <GlassCard glow>
           <div class="cf-item">
-            <div class="cf-icon">📊</div>
+            <div class="cf-icon"><Icon name="bar-chart-2" size={26} /></div>
             <h3>Unified daily dashboard</h3>
             <p>
               Your BudgetBaby Safe to Spend, PantryBaby shopping list status, and data from every
@@ -121,7 +122,7 @@ import AppIcon from '../../components/AppIcon.astro';
 
         <GlassCard glow>
           <div class="cf-item">
-            <div class="cf-icon">🔗</div>
+            <div class="cf-icon"><Icon name="link" size={26} /></div>
             <h3>Cross-app insights</h3>
             <p>
               When BudgetBaby and PantryBaby know about each other, things get smarter.
@@ -133,7 +134,7 @@ import AppIcon from '../../components/AppIcon.astro';
 
         <GlassCard glow>
           <div class="cf-item">
-            <div class="cf-icon">📱</div>
+            <div class="cf-icon"><Icon name="smartphone" size={26} /></div>
             <h3>Home Screen widgets</h3>
             <p>
               See your Safe to Spend and pantry status from the iOS Home Screen without opening a single app.
@@ -144,7 +145,7 @@ import AppIcon from '../../components/AppIcon.astro';
 
         <GlassCard glow>
           <div class="cf-item">
-            <div class="cf-icon">🔔</div>
+            <div class="cf-icon"><Icon name="bell" size={26} /></div>
             <h3>Unified notification centre</h3>
             <p>
               All BabyBlocks notifications in one place. Budget period ending, items running low, bills due.
@@ -155,7 +156,7 @@ import AppIcon from '../../components/AppIcon.astro';
 
         <GlassCard glow>
           <div class="cf-item">
-            <div class="cf-icon">🔑</div>
+            <div class="cf-icon"><Icon name="key" size={26} /></div>
             <h3>Single shared account</h3>
             <p>
               One BabyBlocks account. One sign-in. Your data across every app, with cloud sync
@@ -166,7 +167,7 @@ import AppIcon from '../../components/AppIcon.astro';
 
         <GlassCard glow>
           <div class="cf-item">
-            <div class="cf-icon">🎯</div>
+            <div class="cf-icon"><Icon name="target" size={26} /></div>
             <h3>Life goals, not just app goals</h3>
             <p>
               Budget less and eat better. Save £200 before the summer holiday. Reduce food waste this month.
@@ -240,7 +241,7 @@ import AppIcon from '../../components/AppIcon.astro';
               </a>
             </div>
           </div>
-          <div class="notify-icon" aria-hidden="true">🧩</div>
+          <div class="notify-icon" aria-hidden="true"><Icon name="puzzle" size={28} /></div>
         </div>
       </GlassCard>
     </div>
