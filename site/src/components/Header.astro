@@ -114,8 +114,8 @@ const currentPath = Astro.url.pathname;
     top: 0;
     z-index: 100;
     background: var(--header-bg);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
     border-bottom: 1px solid var(--header-border);
   }
 
@@ -182,11 +182,11 @@ const currentPath = Astro.url.pathname;
 
   .nav-link:hover, .nav-link-btn:hover {
     color: var(--text-primary);
-    background: var(--glass-bg);
+    background: rgba(21, 17, 13, 0.04);
   }
 
   .nav-link.active, .nav-link-btn.active {
-    color: var(--accent-light);
+    color: var(--accent-deep);
   }
 
   /* Dropdown */
@@ -202,12 +202,12 @@ const currentPath = Astro.url.pathname;
     top: calc(100% + var(--space-2));
     left: 50%;
     transform: translateX(-50%) translateY(-8px);
-    background: var(--bg-elevated);
+    background: #FFFFFF;
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-lg);
     padding: var(--space-2);
     list-style: none;
-    min-width: 180px;
+    min-width: 200px;
     opacity: 0;
     visibility: hidden;
     transition: all 0.15s ease;
@@ -230,10 +230,10 @@ const currentPath = Astro.url.pathname;
 
   .dropdown-link:hover {
     color: var(--text-primary);
-    background: var(--glass-bg-hover);
+    background: rgba(21, 17, 13, 0.05);
   }
 
-  .dropdown-link.active { color: var(--accent-light); }
+  .dropdown-link.active { color: var(--accent-deep); }
 
   /* CTA */
   .header-cta { margin-left: auto; flex-shrink: 0; }
@@ -313,7 +313,7 @@ const currentPath = Astro.url.pathname;
 
   .mobile-nav-link:hover, .mobile-nav-link.mobile-sub:hover {
     color: var(--text-primary);
-    background: var(--glass-bg);
+    background: rgba(21, 17, 13, 0.04);
   }
 
   .mobile-cta { margin-top: var(--space-4); padding: 0 var(--space-3); }

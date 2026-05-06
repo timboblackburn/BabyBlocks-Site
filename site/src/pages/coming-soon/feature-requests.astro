@@ -26,7 +26,7 @@ const featureRequestListUrl =
         <div class="label-chip">Public roadmap input</div>
         <h1>Your idea<br /><span class="text-gradient">could become a feature.</span></h1>
         <p class="fr-sub">
-          We build what people actually ask for. Submit an idea below — if enough people want it
+          We build what people actually ask for. Submit an idea below, if enough people want it
           and it fits the app, it ships. We mark requests as approved, in progress, or shipped
           so you can track what's happening.
         </p>
@@ -54,21 +54,21 @@ const featureRequestListUrl =
             </label>
 
             <label class="fr-label">
-              <span class="fr-label-text">Title <span class="fr-help">— short, like a feature name</span></span>
+              <span class="fr-label-text">Title <span class="fr-help">, short, like a feature name</span></span>
               <input type="text" name="title" required minlength="4" maxlength="120"
                 placeholder="e.g. Export to Excel"
                 class="fr-input" aria-label="Title" />
             </label>
 
             <label class="fr-label">
-              <span class="fr-label-text">Describe it <span class="fr-help">— what it does, why you want it</span></span>
+              <span class="fr-label-text">Describe it <span class="fr-help">, what it does, why you want it</span></span>
               <textarea name="description" required minlength="10" maxlength="2000" rows="4"
                 placeholder="What problem would this solve for you? How would you use it?"
                 class="fr-textarea" aria-label="Description"></textarea>
             </label>
 
             <label class="fr-label">
-              <span class="fr-label-text">Email <span class="fr-help">— optional, only used if we have a question</span></span>
+              <span class="fr-label-text">Email <span class="fr-help">, optional, only used if we have a question</span></span>
               <input type="email" name="email" maxlength="255"
                 placeholder="you@example.com"
                 class="fr-input" aria-label="Email" />
@@ -157,7 +157,7 @@ const featureRequestListUrl =
           });
           if (!res.ok) throw new Error('HTTP ' + res.status);
           form.reset();
-          status.textContent = 'Got it. We review every idea — if yours moves forward, it will appear in the list below once approved.';
+          status.textContent = 'Got it. We review every idea, if yours moves forward, it will appear in the list below once approved.';
           status.classList.add('fr-status--success');
         } catch {
           status.innerHTML = 'Couldn\'t reach our servers right now. Email <a href="mailto:support@intriguemmc.com?subject=Feature%20Request">support@intriguemmc.com</a> with your idea and we\'ll log it manually.';
@@ -277,7 +277,7 @@ const featureRequestListUrl =
     font-size: 0.85em;
   }
 
-  /* Inputs — theme-aware via tokens */
+  /* Inputs, theme-aware via tokens */
   .fr-input,
   .fr-textarea,
   .fr-select {

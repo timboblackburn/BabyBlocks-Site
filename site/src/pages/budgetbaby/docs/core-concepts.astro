@@ -44,7 +44,7 @@ const headings = [
     </p>
 
     <div class="doc-mocks-row">
-      <DocMock label="Home — Comfortable" caption="Daily rate is at or above 80% of the per-day budget. Spend confidently.">
+      <DocMock label="Home. Comfortable" caption="Daily rate is at or above 80% of the per-day budget. Spend confidently.">
         <div class="dm-bar"><span class="dm-bar-title" style="font-size:11px;">Home</span><span class="dm-bar-action">+</span></div>
         <div class="dm-card dm-card-accent" style="text-align:center;">
           <div class="dm-hero-label">Safe to Spend Today</div>
@@ -58,7 +58,7 @@ const headings = [
           <div class="dm-kv"><span>Reserved</span><span class="muted">−$1,500</span></div>
         </div>
       </DocMock>
-      <DocMock label="Home — Moderate" caption="Daily rate sits between 50% and 80% of per-day budget. Be thoughtful.">
+      <DocMock label="Home. Moderate" caption="Daily rate sits between 50% and 80% of your daily budget. Pace yourself.">
         <div class="dm-bar"><span class="dm-bar-title" style="font-size:11px;">Home</span><span class="dm-bar-action">+</span></div>
         <div class="dm-card dm-card-warn" style="text-align:center;">
           <div class="dm-hero-label">Safe to Spend Today</div>
@@ -72,7 +72,7 @@ const headings = [
           <div class="dm-kv"><span>Reserved</span><span class="muted">−$540</span></div>
         </div>
       </DocMock>
-      <DocMock label="Home — Overcommitted" caption="Daily rate hit zero — remaining budget is fully spoken for or you've overspent.">
+      <DocMock label="Home. Overcommitted" caption="Daily rate hit zero, remaining budget is fully spoken for or you've overspent.">
         <div class="dm-bar"><span class="dm-bar-title" style="font-size:11px;">Home</span><span class="dm-bar-action">+</span></div>
         <div class="dm-card dm-card-error" style="text-align:center;">
           <div class="dm-hero-label">Safe to Spend Today</div>
@@ -120,7 +120,7 @@ const headings = [
     <div class="doc-tip">
       <strong>See your actual numbers.</strong> Tap the info button next to Safe to Spend on the
       home screen. The breakdown sheet shows period budget, spent, bill reserve, savings reserve,
-      days remaining, and the resulting daily rate — every input is visible.
+      days remaining, and the resulting daily rate, every input is visible.
     </div>
 
     <div class="doc-mocks-row">
@@ -147,12 +147,12 @@ const headings = [
     <p>
       The Safe to Spend number changes color based on the ratio of today's daily rate to your
       <em>average</em> daily budget (period budget ÷ total days). The thresholds are relative, not
-      fixed dollar amounts — which means the same number can be green for one user and yellow for
+      fixed dollar amounts, which means the same number can be green for one user and yellow for
       another, depending on their budget size.
     </p>
     <ul class="doc-status-list">
       <li><span class="status-dot green"></span><strong>Comfortable.</strong> Daily rate ≥ 80% of average daily budget. Spend confidently.</li>
-      <li><span class="status-dot yellow"></span><strong>Moderate.</strong> Daily rate between 50% and 80%. Be thoughtful with discretionary spending.</li>
+      <li><span class="status-dot yellow"></span><strong>Moderate.</strong> Daily rate between 50% and 80%. Skip the impulse buys for now.</li>
       <li><span class="status-dot orange"></span><strong>Tight.</strong> Daily rate is positive but under 50%. Limit discretionary purchases for the rest of the period.</li>
       <li><span class="status-dot red"></span><strong>Overcommitted.</strong> Daily rate is zero or negative. Remaining budget is fully spoken for, or you've overspent.</li>
     </ul>
@@ -161,7 +161,7 @@ const headings = [
     <p>
       Showing a total creates a psychological trap. If you have $600 left and 15 days to go, $600
       feels like a lot. But it's only $40 a day. The daily rate makes the constraint concrete and
-      actionable — when dinner is $50 and Safe to Spend is $38, the decision is obvious.
+      actionable, when dinner is $50 and Safe to Spend is $38, the decision is obvious.
     </p>
     <p>
       The daily rate also self-adjusts as the period progresses. Underspend on Monday and Tuesday's
@@ -215,7 +215,7 @@ const headings = [
         </div>
         <div class="dm-btn dm-btn-primary">Mark Rent Paid</div>
       </DocMock>
-      <DocMock label="After marking paid" caption="Reserve releases — daily rate jumps to $97.62.">
+      <DocMock label="After marking paid" caption="Reserve releases, daily rate jumps to $97.62.">
         <div class="dm-bar"><span class="dm-bar-title">Home</span><span class="dm-bar-action">+</span></div>
         <div class="dm-card dm-card-good" style="text-align:center;">
           <div class="dm-hero-label">Safe to Spend</div>
@@ -250,7 +250,7 @@ const headings = [
       <li>
         <strong>Credit.</strong> Purchases on a credit card. Credit spending counts toward your
         period budget (it affects Safe to Spend) but does <em>not</em> reduce Cash or Debit
-        immediately. It's a deferred liability — the cash transfer happens when you pay the card.
+        immediately. It's a deferred liability, the cash transfer happens when you pay the card.
       </li>
       <li>
         <strong>Savings.</strong> A protected pool for goal money. Savings transactions are
@@ -268,12 +268,12 @@ const headings = [
     <p>
       The four-pool model also handles credit cards correctly. Logging a card purchase as Credit
       shows it in your spending history and Safe to Spend, but Debit stays accurate. When you pay
-      the bill, log a Debit → Credit transfer — Debit drops, Credit zeroes out, and the books match
+      the bill, log a Debit → Credit transfer. Debit drops, Credit zeroes out, and the books match
       reality.
     </p>
 
     <div class="doc-mocks-row">
-      <DocMock label="Money Pools" caption="Each pool tracks a different type of money — never collapsed into one number.">
+      <DocMock label="Money Pools" caption="Each pool tracks a different type of money, never collapsed into one number.">
         <div class="dm-bar"><span class="dm-bar-title">Money Pools</span><span class="dm-bar-action">Edit</span></div>
         <div class="dm-card">
           <div class="dm-row" style="background:transparent; border:none; padding:1px 0;">
@@ -324,7 +324,7 @@ const headings = [
     </div>
 
     <div class="doc-mocks-row">
-      <DocMock label="Credit purchase" caption="Logged as Credit — lowers Safe to Spend, leaves Debit untouched.">
+      <DocMock label="Credit purchase" caption="Logged as Credit, lowers Safe to Spend, leaves Debit untouched.">
         <div class="dm-bar"><span class="dm-bar-title" style="font-size:11px;">Trader Joe's</span><span class="dm-bar-action">Edit</span></div>
         <div class="dm-card dm-card-accent" style="text-align:center;">
           <div class="dm-hero-label">Amount</div>
@@ -360,14 +360,14 @@ const headings = [
 
     <h2 id="priority-colors">Priority colors</h2>
     <p>
-      Every category has a priority color. The color isn't decorative — it changes how BudgetBaby
+      Every category has a priority color. The color isn't decorative, it changes how BudgetBaby
       treats spending in calculations and how it appears in your Insights breakdown.
     </p>
     <ul class="doc-status-list">
       <li>
         <span class="status-dot red"></span>
         <div>
-          <strong>Essentials (red).</strong> Non-negotiable bills and necessities — rent, utilities,
+          <strong>Essentials (red).</strong> Non-negotiable bills and necessities, rent, utilities,
           insurance, loan payments. Unpaid red bills are reserved out of Safe to Spend
           automatically. You physically can't see that money as available spending until you mark
           the bill paid. This is the most important behavior in the priority system.
@@ -376,14 +376,14 @@ const headings = [
       <li>
         <span class="status-dot yellow"></span>
         <div>
-          <strong>Variable (yellow).</strong> Important but flexible spending — groceries, gas,
+          <strong>Variable (yellow).</strong> Important but flexible spending, groceries, gas,
           healthcare. These are needs, not wants, but you can adjust the amount in a tight period.
         </div>
       </li>
       <li>
         <span class="status-dot green"></span>
         <div>
-          <strong>Fun (green).</strong> Lifestyle and enjoyment — dining out, entertainment,
+          <strong>Fun (green).</strong> Lifestyle and enjoyment, dining out, entertainment,
           shopping, hobbies. The first place to look when you need to cut back.
         </div>
       </li>
@@ -428,14 +428,13 @@ const headings = [
 
     <h2 id="bucket-names">Bucket names (renaming)</h2>
     <p>
-      The four priority colors have default display names — Essentials, Variable, Fun, Unplanned —
-      but you can rename them in <strong>Settings → Budget Settings → Bucket Names</strong>. Some
+      The four priority colors have default display names. Essentials, Variable, Fun, Unplanned, but you can rename them in <strong>Settings → Budget Settings → Bucket Names</strong>. Some
       people prefer "Bills / Lifestyle / Future" or "Must / Should / Want / Whoops." The colors and
       behaviors stay the same; only the labels change.
     </p>
     <div class="doc-tip">
       <strong>Renaming is cosmetic.</strong> The Bill Reserve still attaches to red categories
-      regardless of what you call them. Renaming doesn't change priority semantics — it just makes
+      regardless of what you call them. Renaming doesn't change priority semantics, it just makes
       the labels match how you think about your money.
     </div>
 
@@ -449,7 +448,7 @@ const headings = [
     <p>
       When a period ends, the next time you launch BudgetBaby it closes the previous period and
       opens a new one. The previous period becomes read-only and is stored in History. Rollover
-      runs at app launch — if you don't open the app for a few days, the rollover happens the next
+      runs at app launch, if you don't open the app for a few days, the rollover happens the next
       time you do.
     </p>
 
@@ -457,7 +456,7 @@ const headings = [
     <p>
       Cash and Debit balances carry forward automatically. If your Debit pool ended the period at
       $427.50, the new period starts with $427.50 in Debit. Money in your bank account doesn't
-      disappear at the end of a pay period — it's still there, and BudgetBaby treats it that way.
+      disappear at the end of a pay period, it's still there, and BudgetBaby treats it that way.
     </p>
     <p>
       Credit (owed) and Savings balances are managed separately. Credit owed represents what you
@@ -482,7 +481,7 @@ const headings = [
     </p>
 
     <div class="doc-mocks-row">
-      <DocMock label="Period rollover" caption="Cash and Debit carry forward — Credit and Savings stay in their own pools.">
+      <DocMock label="Period rollover" caption="Cash and Debit carry forward. Credit and Savings stay in their own pools.">
         <div class="dm-bar"><span class="dm-bar-title">Period summary</span><span class="dm-bar-action">Close</span></div>
         <div class="dm-card dm-card-good" style="text-align:center;">
           <div class="dm-hero-label">Period closing</div>
@@ -501,7 +500,7 @@ const headings = [
 
     <h2 id="budget-guardrails">Budget Guardrails</h2>
     <p>
-      Some operations are mathematically impossible without breaking your budget — spending more
+      Some operations are mathematically impossible without breaking your budget, spending more
       than allocated, allocating more than total budget, transferring from a pool that has nothing
       in it. BudgetBaby refuses these actions instead of letting them silently corrupt the math.
     </p>
@@ -513,7 +512,7 @@ const headings = [
       </li>
       <li>
         <strong>Soft warning.</strong> The action is allowed but an orange warning card flags the
-        unusual state — for example, an expense that would push a single pool below zero even when
+        unusual state, for example, an expense that would push a single pool below zero even when
         the overall budget can absorb it.
       </li>
       <li>
@@ -531,7 +530,7 @@ const headings = [
     </p>
 
     <div class="doc-mocks-row">
-      <DocMock label="Hard block" caption="The Save button greys out when the math would break — with the exact cap shown.">
+      <DocMock label="Hard block" caption="The Save button greys out when the math would break, with the exact cap shown.">
         <div class="dm-bar"><span class="dm-back">Cancel</span><span class="dm-bar-title">New transfer</span><span class="dm-bar-action" style="opacity:0.4;">Save</span></div>
         <div class="dm-card">
           <div class="dm-kv"><span>From</span><span><span class="dm-dot cash"></span> Cash</span></div>
@@ -581,7 +580,7 @@ const headings = [
     <p>
       When you do opt into cloud backup, the data is encrypted on your device with AES-256-GCM
       before it uploads. We store an encrypted blob we can't read. The encryption key lives in your
-      iOS Keychain. This isn't a compromise between privacy and convenience — it's both.
+      iOS Keychain. This isn't a compromise between privacy and convenience, it's both.
     </p>
 
     <div class="doc-mocks-row">

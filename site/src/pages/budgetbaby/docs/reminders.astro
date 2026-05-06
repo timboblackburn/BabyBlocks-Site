@@ -32,8 +32,8 @@ const headings = [
 
     <h2 id="gating">Free vs Premium</h2>
     <p>
-      The Reminders settings screen — including per-bill day overrides, custom messages, quiet
-      hours, the savings nudge, and the weekly bill summary toggle — is part of the Premium
+      The Reminders settings screen, including per-bill day overrides, custom messages, quiet
+      hours, the savings nudge, and the weekly bill summary toggle, is part of the Premium
       feature set. On the free plan, BudgetBaby still creates bill records and you'll see them on
       the home and Bills screens, but the dedicated Reminders configuration page shows a Premium
       upsell instead of the controls described below.
@@ -59,7 +59,7 @@ const headings = [
       <li>
         <strong>Default reminder days.</strong> Four options: same day (0), 1 day before, 3 days
         before, 7 days before. The factory default is <strong>1 day before</strong>. Multiple
-        offsets can be enabled at once — for example, 7 days before plus same day fires twice per
+        offsets can be enabled at once, for example, 7 days before plus same day fires twice per
         bill.
       </li>
       <li>
@@ -80,7 +80,7 @@ const headings = [
     </div>
 
     <div class="doc-mocks-row">
-      <DocMock label="Settings — Reminders" caption="Global defaults apply to every bill unless individually overridden.">
+      <DocMock label="Settings. Reminders" caption="Global defaults apply to every bill unless individually overridden.">
         <div class="dm-bar"><span class="dm-back">Settings</span><span class="dm-bar-title">Reminders</span><span></span></div>
         <div class="dm-section-label">Default reminder days</div>
         <div class="dm-list">
@@ -98,9 +98,9 @@ const headings = [
         <div class="dm-row"><span class="dm-row-label">Allow Notifications</span><span class="dm-toggle on"></span></div>
         <div class="dm-section-label">Alerts</div>
         <div class="dm-list">
-          <div class="dm-row"><span class="dm-row-label">Lock Screen</span><span style="color:#34D399; font-size:14px;">✓</span></div>
-          <div class="dm-row"><span class="dm-row-label">Notification Centre</span><span style="color:#34D399; font-size:14px;">✓</span></div>
-          <div class="dm-row"><span class="dm-row-label">Banners</span><span style="color:#34D399; font-size:14px;">✓</span></div>
+          <div class="dm-row"><span class="dm-row-label">Lock Screen</span><span style="color:#34D399; font-size:14px;"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+          <div class="dm-row"><span class="dm-row-label">Notification Centre</span><span style="color:#34D399; font-size:14px;"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+          <div class="dm-row"><span class="dm-row-label">Banners</span><span style="color:#34D399; font-size:14px;"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><polyline points="20 6 9 17 4 12"/></svg></span></div>
         </div>
         <div class="dm-row"><span class="dm-row-label">Sounds</span><span class="dm-toggle on"></span></div>
         <div class="dm-row"><span class="dm-row-label">Badges</span><span class="dm-toggle on"></span></div>
@@ -138,7 +138,7 @@ const headings = [
     </ul>
 
     <div class="doc-mocks-row">
-      <DocMock label="Local notification" caption="Local notifications fire even with no internet — scheduled directly with iOS.">
+      <DocMock label="Local notification" caption="Local notifications fire even with no internet, scheduled directly with iOS.">
         <div style="height:30px;"></div>
         <div class="dm-help" style="text-align:center; font-size:8px;">9:00 AM · Tuesday</div>
         <div class="dm-notif" style="margin-top:8px;">
@@ -146,7 +146,7 @@ const headings = [
           <div>
             <div class="dm-notif-app">BudgetBaby</div>
             <div class="dm-notif-title">Upcoming Bill</div>
-            <div class="dm-notif-body">Rent due in 3 days — $1,200</div>
+            <div class="dm-notif-body">Rent due in 3 days, $1,200</div>
           </div>
           <span class="dm-notif-time">now</span>
         </div>
@@ -190,7 +190,7 @@ const headings = [
     </p>
 
     <div class="doc-mocks-row">
-      <DocMock label="Per-bill override" caption="Override day offsets per bill — purple Custom badge marks any override.">
+      <DocMock label="Per-bill override" caption="Override day offsets per bill, purple Custom badge marks any override.">
         <div class="dm-bar"><span class="dm-back">Reminders</span><span class="dm-bar-title">Rent</span><span class="dm-bar-action">Save</span></div>
         <div class="dm-card">
           <div class="dm-kv"><strong>Rent</strong><span class="dm-pill purple">Custom</span></div>
@@ -246,9 +246,9 @@ const headings = [
       uses today:
     </p>
     <ul>
-      <li>Bill, multi-day: title <em>"Upcoming Bill"</em>, body <em>"[name] due in [N] days — $X.XX"</em>.</li>
+      <li>Bill, multi-day: title <em>"Upcoming Bill"</em>, body <em>"[name] due in [N] days, $X.XX"</em>.</li>
       <li>Bill, same day: title <em>"Bill Due Today"</em>, body includes name and amount.</li>
-      <li>Subscription, same day: title <em>"Subscription Renews Today"</em>, body <em>"[name] — $X.XX"</em>.</li>
+      <li>Subscription, same day: title <em>"Subscription Renews Today"</em>, body <em>"[name], $X.XX"</em>.</li>
     </ul>
     <p>If you set a custom message, the body is replaced verbatim. Use it to add context the auto-generated text can't:</p>
     <ul>
@@ -265,7 +265,7 @@ const headings = [
         <div class="dm-card" style="padding:9px 10px;">
           <div class="dm-help" style="font-size:9px; color:var(--text-primary); line-height:1.4;">Decide whether to keep the annual plan this year before the renewal pulls.</div>
         </div>
-        <div class="dm-help">Leave blank for auto: "Adobe CC due in 3 days — $54.99."</div>
+        <div class="dm-help">Leave blank for auto: "Adobe CC due in 3 days, $54.99."</div>
         <div class="dm-section-label">Preview</div>
         <div class="dm-notif">
           <span class="dm-notif-icon"></span>
@@ -286,27 +286,26 @@ const headings = [
     </p>
     <ol>
       <li>Enable the <strong>Quiet Hours</strong> toggle.</li>
-      <li>Set a <strong>From</strong> time — when the quiet window starts.</li>
-      <li>Set an <strong>Until</strong> time — when the window ends.</li>
+      <li>Set a <strong>From</strong> time, when the quiet window starts.</li>
+      <li>Set an <strong>Until</strong> time, when the window ends.</li>
     </ol>
     <p>
       Midnight wrap is handled correctly. A 10:00 PM to 8:00 AM window suppresses notifications
       from 10 PM until 8 AM the next day, including overnight. You don't need to set two windows.
     </p>
     <p>
-      Notifications scheduled inside the quiet window are held and delivered when the window ends
-      — they aren't cancelled. If your reminder time is 7:00 AM and your quiet window ends at 8:00
+      Notifications scheduled inside the quiet window are held and delivered when the window ends, they aren't cancelled. If your reminder time is 7:00 AM and your quiet window ends at 8:00
       AM, the notification fires at 8:00 AM.
     </p>
     <div class="doc-tip">
       <strong>Quiet hours vs iOS Do Not Disturb.</strong> They're separate systems. BudgetBaby's
-      quiet hours suppress at the scheduling level — no notification is issued during the window.
+      quiet hours suppress at the scheduling level, no notification is issued during the window.
       iOS Do Not Disturb receives the notification but silences the alert. Configure them
       consistently for the cleanest experience.
     </div>
 
     <div class="doc-mocks-row">
-      <DocMock label="Quiet hours" caption="Notifications inside the window are held until it ends — never lost.">
+      <DocMock label="Quiet hours" caption="Notifications inside the window are held until it ends, never lost.">
         <div class="dm-bar"><span class="dm-back">Reminders</span><span class="dm-bar-title">Quiet hours</span><span class="dm-bar-action">Save</span></div>
         <div class="dm-row"><span class="dm-row-label">Quiet hours</span><span class="dm-toggle on purple"></span></div>
         <div class="dm-card">
@@ -327,7 +326,7 @@ const headings = [
     </p>
     <ol>
       <li>Enable the <strong>Monthly savings nudge</strong> toggle.</li>
-      <li>Use the day stepper to choose which day of the month (1–28) to receive the nudge.</li>
+      <li>Use the day stepper to choose which day of the month (1-28) to receive the nudge.</li>
       <li>The notification fires at your global reminder time on that day.</li>
     </ol>
     <p>
@@ -348,7 +347,7 @@ const headings = [
           <div class="dm-kv"><strong>Day of month</strong>
             <span class="dm-stepper"><span class="dm-stepper-btn">−</span><span class="dm-stepper-val">15</span><span class="dm-stepper-btn">+</span></span>
           </div>
-          <div class="dm-kv muted"><span>Range</span><span>1 – 28</span></div>
+          <div class="dm-kv muted"><span>Range</span><span>1, 28</span></div>
           <div class="dm-kv"><span>Fires at</span><strong>9:00 AM</strong></div>
         </div>
         <div class="dm-section-label">Active goals</div>
@@ -395,10 +394,10 @@ const headings = [
       <DocMock label="Diagnostic checklist" caption="Walk this iOS-side checklist when reminders go silent.">
         <div class="dm-bar"><span class="dm-back">Settings</span><span class="dm-bar-title">Diagnostic</span><span></span></div>
         <div class="dm-list">
-          <div class="dm-row"><span class="dm-row-label">iOS notification permission</span><span style="color:#34D399; font-size:14px;">✓</span></div>
-          <div class="dm-row"><span class="dm-row-label">Reminder days enabled</span><span style="color:#34D399; font-size:14px;">✓</span></div>
-          <div class="dm-row"><span class="dm-row-label">Focus mode allows app</span><span style="color:#F87171; font-size:14px;">✗</span></div>
-          <div class="dm-row"><span class="dm-row-label">Not in Scheduled Summary</span><span style="color:#34D399; font-size:14px;">✓</span></div>
+          <div class="dm-row"><span class="dm-row-label">iOS notification permission</span><span style="color:#34D399; font-size:14px;"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+          <div class="dm-row"><span class="dm-row-label">Reminder days enabled</span><span style="color:#34D399; font-size:14px;"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+          <div class="dm-row"><span class="dm-row-label">Focus mode allows app</span><span style="color:#F87171; font-size:14px;"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></div>
+          <div class="dm-row"><span class="dm-row-label">Not in Scheduled Summary</span><span style="color:#34D399; font-size:14px;"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><polyline points="20 6 9 17 4 12"/></svg></span></div>
           <div class="dm-row"><span class="dm-row-label">Reschedule on save</span><span style="color:#FBBF24; font-size:14px;">!</span></div>
         </div>
         <div class="dm-card dm-card-warn">

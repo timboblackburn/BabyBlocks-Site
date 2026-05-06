@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import GlassCard from '../../components/GlassCard.astro';
 import AppIcon from '../../components/AppIcon.astro';
+import Icon from '../../components/Icon.astro';
 ---
 
 <Layout
@@ -19,9 +20,9 @@ import AppIcon from '../../components/AppIcon.astro';
           <h1>BabyBlocks<br /><span class="text-gradient">Core</span></h1>
           <p class="core-tagline">The hub that ties it all together.</p>
           <p class="core-desc">
-            As the BabyBlocks ecosystem grows, so does the need for a single place to see the whole picture.
-            BabyBlocks Core is that place. A unified daily view that brings your budget, pantry,
-            and every future app into one calm, coherent dashboard.
+            Once a few of these apps are on your phone, you want one place that pulls them together.
+            BabyBlocks Core is that place. A single daily view that pulls your budget, your pantry,
+            and whatever ships next into one screen so you do not have to bounce between apps.
           </p>
           <div class="core-timeline">
             <div class="timeline-item timeline-done">
@@ -51,7 +52,7 @@ import AppIcon from '../../components/AppIcon.astro';
         <div class="core-visual" aria-hidden="true">
           <div class="core-mock glass">
             <div class="mock-header">
-              <span class="mock-icon">🧩</span>
+              <span class="mock-icon"><Icon name="puzzle" size={18} /></span>
               <span class="mock-name">BabyBlocks Core</span>
             </div>
 
@@ -89,7 +90,7 @@ import AppIcon from '../../components/AppIcon.astro';
             </div>
 
             <div class="mock-insight">
-              <span class="mock-insight-icon">💡</span>
+              <span class="mock-insight-icon"><Icon name="lightbulb" size={14} /></span>
               <p>You usually spend $90 at the supermarket. Your budget allows $104 this week.</p>
             </div>
           </div>
@@ -110,7 +111,7 @@ import AppIcon from '../../components/AppIcon.astro';
       <div class="core-features">
         <GlassCard glow>
           <div class="cf-item">
-            <div class="cf-icon">📊</div>
+            <div class="cf-icon"><Icon name="bar-chart-2" size={26} /></div>
             <h3>Unified daily dashboard</h3>
             <p>
               Your BudgetBaby Safe to Spend, PantryBaby shopping list status, and data from every
@@ -121,7 +122,7 @@ import AppIcon from '../../components/AppIcon.astro';
 
         <GlassCard glow>
           <div class="cf-item">
-            <div class="cf-icon">🔗</div>
+            <div class="cf-icon"><Icon name="link" size={26} /></div>
             <h3>Cross-app insights</h3>
             <p>
               When BudgetBaby and PantryBaby know about each other, things get smarter.
@@ -133,7 +134,7 @@ import AppIcon from '../../components/AppIcon.astro';
 
         <GlassCard glow>
           <div class="cf-item">
-            <div class="cf-icon">📱</div>
+            <div class="cf-icon"><Icon name="smartphone" size={26} /></div>
             <h3>Home Screen widgets</h3>
             <p>
               See your Safe to Spend and pantry status from the iOS Home Screen without opening a single app.
@@ -144,7 +145,7 @@ import AppIcon from '../../components/AppIcon.astro';
 
         <GlassCard glow>
           <div class="cf-item">
-            <div class="cf-icon">🔔</div>
+            <div class="cf-icon"><Icon name="bell" size={26} /></div>
             <h3>Unified notification centre</h3>
             <p>
               All BabyBlocks notifications in one place. Budget period ending, items running low, bills due.
@@ -155,7 +156,7 @@ import AppIcon from '../../components/AppIcon.astro';
 
         <GlassCard glow>
           <div class="cf-item">
-            <div class="cf-icon">🔑</div>
+            <div class="cf-icon"><Icon name="key" size={26} /></div>
             <h3>Single shared account</h3>
             <p>
               One BabyBlocks account. One sign-in. Your data across every app, with cloud sync
@@ -166,7 +167,7 @@ import AppIcon from '../../components/AppIcon.astro';
 
         <GlassCard glow>
           <div class="cf-item">
-            <div class="cf-icon">🎯</div>
+            <div class="cf-icon"><Icon name="target" size={26} /></div>
             <h3>Life goals, not just app goals</h3>
             <p>
               Budget less and eat better. Save £200 before the summer holiday. Reduce food waste this month.
@@ -191,9 +192,9 @@ import AppIcon from '../../components/AppIcon.astro';
           <div class="phil-item">
             <h3>Built last, not first</h3>
             <p>
-              We deliberately didn't build Core first. A hub app with nothing to connect is just a marketing page.
-              We're building the individual apps first, each one complete and valuable on its own,
-              then connecting them when there's actually something worth connecting.
+              Core is on hold on purpose. A hub with nothing to connect is just a marketing page. So
+              we are shipping the individual apps first, each one useful on its own, and only wiring
+              them together when there is something real to wire.
             </p>
             <p>
               BabyBlocks Core ships after PantryBaby because that's when the connection becomes real.
@@ -240,7 +241,7 @@ import AppIcon from '../../components/AppIcon.astro';
               </a>
             </div>
           </div>
-          <div class="notify-icon" aria-hidden="true">🧩</div>
+          <div class="notify-icon" aria-hidden="true"><Icon name="puzzle" size={28} /></div>
         </div>
       </GlassCard>
     </div>

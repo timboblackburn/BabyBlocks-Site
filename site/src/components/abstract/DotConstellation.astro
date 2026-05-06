@@ -1,0 +1,90 @@
+---
+/**
+ * DotConstellation
+ * A faint radial dot grid. SVG `<pattern>` so it tiles cheaply and
+ * scales without aliasing. Used as a background motif in the footer
+ * or behind manifesto/about copy.
+ *
+ * Props
+ *  - tone:    ink | violet | coral | cream  (default: ink)
+ *  - density: tight (12px) | normal (18px) | loose (28px)  (default: normal)
+ *  - opacity: 0..1, intensity dial (default: 0.12)
+ *  - fade:    none | radial | top  (radial = vignette mask;
+ *             top = fade towards top edge) (default: radial)
+ *  - position: CSS positioning string. Defaults to fill the parent.
+ *
+ * No JS. No animation by default. If you choose to animate (slow rotation
+ * for example), gate it on prefers-reduced-motion: no-preference.
+ */
+interface Props {
+  tone?: 'ink' | 'violet' | 'coral' | 'cream';
+  density?: 'tight' | 'normal' | 'loose';
+  opacity?: number;
+  fade?: 'none' | 'radial' | 'top';
+  position?: string;
+  class?: string;
+}
+
+const {
+  tone = 'ink',
+  density = 'normal',
+  opacity = 0.12,
+  fade = 'radial',
+  position = 'inset:0;',
+  class: className = '',
+} = Astro.props;
+
+const dotColor: Record<string, string> = {
+  ink:    '#15110D',
+  violet: '#7C3AED',
+  coral:  '#F25E72',
+  cream:  '#FFF7EF',
+};
+const fill = dotColor[tone];
+
+const stride: Record<string, number> = { tight: 12, normal: 18, loose: 28 };
+const step = stride[density];
+
+const fadeMask = {
+  none:   'none',
+  radial: 'radial-gradient(ellipse at center, black 0%, black 45%, transparent 80%)',
+  top:    'linear-gradient(180deg, black 0%, transparent 100%)',
+}[fade];
+
+const styleStr = [
+  position,
+  `--dot-opacity:${opacity}`,
+  fadeMask !== 'none' ? `--dot-mask:${fadeMask}` : '',
+].filter(Boolean).join(';');
+
+const patternId = `dc-${Math.random().toString(36).slice(2, 8)}`;
+---
+
+<svg
+  class:list={['dot-constellation', fade !== 'none' ? 'has-mask' : '', className]}
+  style={styleStr}
+  preserveAspectRatio="xMidYMid slice"
+  aria-hidden="true"
+>
+  <defs>
+    <pattern id={patternId} x="0" y="0" width={step} height={step} patternUnits="userSpaceOnUse">
+      <circle cx={step / 2} cy={step / 2} r="0.85" fill={fill} />
+    </pattern>
+  </defs>
+  <rect x="0" y="0" width="100%" height="100%" fill={`url(#${patternId})`} />
+</svg>
+
+<style>
+  .dot-constellation {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: var(--dot-opacity);
+    z-index: 0;
+  }
+  .dot-constellation.has-mask {
+    mask-image: var(--dot-mask);
+    -webkit-mask-image: var(--dot-mask);
+  }
+</style>

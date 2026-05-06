@@ -1,79 +1,70 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import GlassCard from '../components/GlassCard.astro';
 import CTASection from '../components/CTASection.astro';
 import Icon from '../components/Icon.astro';
 import AppIcon from '../components/AppIcon.astro';
-import ScreenshotFrame from '../components/ScreenshotFrame.astro';
 import WaitlistForm from '../components/WaitlistForm.astro';
+import PhoneMockup from '../components/abstract/PhoneMockup.astro';
+import BudgetBabyPreview from '../components/abstract/BudgetBabyPreview.astro';
 ---
 
 <Layout
-  title="BabyBlocks: Simple iOS Apps for a Calmer Life"
-  description="BabyBlocks is a suite of simple, visual iOS apps designed to bring clarity and calm to everyday life. BudgetBaby returns to the App Store soon — join the waitlist."
+  title="BabyBlocks: BudgetBaby and other iOS apps for family life"
+  description="BudgetBaby helps you plan bills, spending, and savings without connecting your bank. Built by BabyBlocks, an independent studio."
   canonical="/"
   theme="core"
 >
-  <!-- Hero -->
-  <section class="hero section">
+  <!-- ── Hero ─────────────────────────────────────────────────────────── -->
+  <section class="hero">
     <div class="container">
-      <div class="hero-inner">
-        <div class="hero-content">
-          <div class="label-chip"><span class="label-chip-dot" aria-hidden="true"></span> In App Review</div>
-          <h1>Know what's safe<br /><span class="text-gradient">to spend today.</span></h1>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="brand-row">
+            <img src="/icons/budgetbaby-icon.png" alt="" width="40" height="40" class="brand-glyph" />
+            <span class="brand-pill">BudgetBaby</span>
+            <span class="brand-status" aria-label="Status: in App Review">
+              <span class="brand-status-dot" aria-hidden="true"></span>In App Review
+            </span>
+          </div>
+          <h1 class="display-serif hero-title">
+            Can you actually<br />afford that today?
+          </h1>
           <p class="hero-sub">
-            BudgetBaby gives you one clear number every day. It factors in your bills, your savings goals,
-            and your remaining budget so you never have to guess.
+            BudgetBaby works that out for you. One number on the home screen, every morning.
+            Your rent, your bills, and what you want to save are already taken out, so the
+            number you see is what you can actually spend.
           </p>
-          <div class="hero-actions">
-            <a href="/budgetbaby" class="btn btn-primary btn-lg">
-              Explore BudgetBaby
-            </a>
-            <a href="/budgetbaby/features" class="btn btn-secondary btn-lg">
-              See how it works
-            </a>
-          </div>
-          <p class="hero-note">Free to download · iOS 17+ · Premium $7.99/mo or $69.99/yr</p>
 
-          <div id="hero-waitlist-anchor" class="hero-waitlist">
-            <WaitlistForm
-              app="budgetbaby"
-              heading="Be first when BudgetBaby returns."
-              sub="One email when the new LLC build is live. No spam, no marketing."
-            />
+          <div class="hero-actions">
+            <a href="#hero-waitlist" class="btn btn-dark btn-lg">
+              Email me when it is back
+            </a>
+            <a href="/budgetbaby" class="btn btn-secondary btn-lg">
+              How it works
+            </a>
           </div>
+          <p class="hero-note">iPhone, iOS 17 and up. Free to use. $7.99 a month or $69.99 a year if you want the extras.</p>
         </div>
 
         <div class="hero-visual" aria-hidden="true">
-          <div class="phone-mockup glass">
-            <div class="sts-mock">
-              <div class="sts-label">Safe to Spend Today</div>
-              <div class="sts-amount">$42<span class="sts-cents">.50</span></div>
-              <div class="sts-bar">
-                <div class="sts-bar-fill" style="width: 62%"></div>
-              </div>
-              <div class="sts-pools">
-                <div class="sts-pool">
-                  <Icon name="dollar-sign" size={14} />
-                  <span>Cash</span>
-                  <span class="sts-pool-val">$124</span>
-                </div>
-                <div class="sts-pool">
-                  <Icon name="credit-card" size={14} />
-                  <span>Debit</span>
-                  <span class="sts-pool-val">$843</span>
-                </div>
-                <div class="sts-pool">
-                  <Icon name="credit-card" size={14} />
-                  <span>Credit</span>
-                  <span class="sts-pool-val">$210</span>
-                </div>
-                <div class="sts-pool">
-                  <Icon name="lock" size={14} />
-                  <span>Savings</span>
-                  <span class="sts-pool-val">$1,200</span>
-                </div>
-              </div>
+          <div class="phone-stage">
+            <div class="phone-glow" aria-hidden="true"></div>
+            <div class="phone-block phone-block--peach" aria-hidden="true"></div>
+            <div class="phone-block phone-block--blush" aria-hidden="true"></div>
+
+            {/* Back phone. Insights screen, mirrors the actual app's Insights view. */}
+            <div class="phone-slot phone-slot--back">
+              <PhoneMockup tone="dark" tilt={-3} width={210}>
+                <BudgetBabyPreview variant="insights" />
+              </PhoneMockup>
+            </div>
+
+            {/* Front phone. Home dashboard, faithful to BudgetBaby's HomeView,
+                BudgetSummaryCard, MoneyPoolsCard, and ColorBucketCard. */}
+            <div class="phone-slot phone-slot--front">
+              <PhoneMockup tone="dark" tilt={2} width={230}>
+                <BudgetBabyPreview variant="home" />
+              </PhoneMockup>
             </div>
           </div>
         </div>
@@ -81,313 +72,409 @@ import WaitlistForm from '../components/WaitlistForm.astro';
     </div>
   </section>
 
-  <!-- Trust Strip -->
-  <div class="trust-strip container">
-    <span><Icon name="wifi-off" size={15} /> No bank connections</span>
-    <span><Icon name="cloud-upload" size={15} /> Optional encrypted backup</span>
-    <span><Icon name="smartphone" size={15} /> Built for iOS 17+</span>
-    <span><Icon name="message-circle" size={15} /> Human support</span>
-  </div>
+  <!-- ── Dark feature strip ─────────────────────────────────────────────── -->
+  <section class="dark-band feature-strip">
+    <div class="container">
+      <div class="feature-strip-grid">
+        <div class="feature-tile">
+          <div class="feature-tile-icon"><Icon name="target" size={22} /></div>
+          <h3>One number a day</h3>
+          <p>Open the app. See what is left after rent, bills, and savings. That is your number.</p>
+        </div>
+        <div class="feature-tile">
+          <div class="feature-tile-icon"><Icon name="file-text" size={22} /></div>
+          <h3>You will not miss a bill</h3>
+          <p>Every recurring bill in one list. We nudge you a few days before each one is due.</p>
+        </div>
+        <div class="feature-tile">
+          <div class="feature-tile-icon"><Icon name="bar-chart-2" size={22} /></div>
+          <h3>Logging takes a second</h3>
+          <p>Tap, pick the category, pick the pool. Done. Back to your day.</p>
+        </div>
+        <div class="feature-tile">
+          <div class="feature-tile-icon"><Icon name="lock" size={22} /></div>
+          <h3>Your bank stays out of it</h3>
+          <p>You type what you spend. Nothing leaves your phone unless you flip on backup.</p>
+        </div>
+      </div>
 
-  <!-- Apps Grid -->
+      <div class="dark-trust">
+        <div class="dark-trust-rule" aria-hidden="true"></div>
+        <p class="dark-trust-line">
+          <span class="dark-trust-eyebrow">A few things we will not do</span>
+          Plug into your bank. Sell your data. Show you ads. Keep nudging you to upgrade.
+          <a href="/about">Why <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Apps family ─────────────────────────────────────────────────── -->
   <section class="apps-section section-sm">
     <div class="container">
-      <div class="section-header centered">
-        <span class="eyebrow">The family</span>
-        <h2>Calm iOS apps. One job each.</h2>
-        <p>Each BabyBlocks app solves one problem well. No feature sprawl. No subscription bundles for things you don't need. No bank connections, no advertising, no dark patterns.</p>
+      <div class="apps-section-head">
+        <div>
+          <span class="eyebrow">The other apps</span>
+          <h2 class="display-serif">A couple of other apps in the works.</h2>
+          <p>Each app picks one annoying daily problem and solves just that. You can grab one and skip the others.</p>
+        </div>
       </div>
 
       <div class="apps-grid">
-        <!-- BudgetBaby. In App Review. -->
-        <a href="/budgetbaby" class="app-card glass app-card--featured">
-          <div class="app-card-header">
-            <AppIcon app="budgetbaby" size={52} />
-            <div class="app-status app-status--live">In App Review</div>
+        <a href="/budgetbaby" class="app-card app-card--featured">
+          <div class="app-card-head">
+            <AppIcon app="budgetbaby" size={48} />
+            <span class="app-status app-status--soon">
+              <span class="status-dot status-dot--soon" aria-hidden="true"></span>In App Review
+            </span>
           </div>
           <h3>BudgetBaby</h3>
-          <p>See where your money goes. Know what's safe to spend today. Plan without the stress.</p>
-          <div class="app-meta">
-            <span>iOS 17+</span>
-            <span>·</span>
-            <span>Free to start</span>
-            <span>·</span>
-            <span>Premium $7.99/mo or $69.99/yr</span>
-          </div>
-          <div class="app-cta">
-            Explore BudgetBaby →
-          </div>
+          <p>One number on your home screen tells you what you can spend today.</p>
+          <span class="app-card-link">Learn more <span aria-hidden="true">&rarr;</span></span>
         </a>
 
-        <!-- PantryBaby — Coming Soon -->
-        <div class="app-card glass app-card--soon">
-          <div class="app-card-header">
-            <AppIcon app="pantrybaby" size={52} />
-            <div class="app-status app-status--soon">Coming Soon</div>
+        <a href="/coming-soon/pantrybaby" class="app-card">
+          <div class="app-card-head">
+            <AppIcon app="pantrybaby" size={48} />
+            <span class="app-status app-status--build">
+              <span class="status-dot status-dot--build" aria-hidden="true"></span>In development
+            </span>
           </div>
           <h3>PantryBaby</h3>
-          <p>Your grocery list and pantry memory. Track what you have, what's running low, and what you need. Without having to think about it.</p>
-          <div class="app-meta">
-            <span>In development</span>
-          </div>
-          <a href="/coming-soon/pantrybaby" class="app-cta-link">
-            Get notified →
-          </a>
-        </div>
+          <p>What is in the cupboard, what you are out of, and what to grab on the way home.</p>
+          <span class="app-card-link">Get notified <span aria-hidden="true">&rarr;</span></span>
+        </a>
 
-        <!-- Future -->
-        <div class="app-card glass app-card--future">
-          <div class="app-card-header">
-            <div class="app-icon app-icon--future">
-              <Icon name="box" size={28} />
+        <a href="/coming-soon/babyblocks-core" class="app-card">
+          <div class="app-card-head">
+            <div class="app-icon-future" aria-hidden="true">
+              <Icon name="box" size={22} />
             </div>
-            <div class="app-status app-status--future">In Planning</div>
+            <span class="app-status app-status--future">
+              <span class="status-dot status-dot--future" aria-hidden="true"></span>Coming soon
+            </span>
           </div>
-          <h3>More coming</h3>
-          <p>The ecosystem is expanding. Each new app will follow the same principle: one problem, solved simply.</p>
-          <div class="app-meta">
-            <span>Stay tuned</span>
-          </div>
-        </div>
+          <h3>BabyBlocks Core</h3>
+          <p>A single home for all the apps. Still on paper. Nothing is being coded yet.</p>
+          <span class="app-card-link">Read the idea <span aria-hidden="true">&rarr;</span></span>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- Screenshot Showcase -->
-  <section class="screenshots-section section-sm">
+  <!-- ── Pricing teaser (BudgetBaby) ─────────────────────────────────── -->
+  <section class="pricing-band section-sm">
     <div class="container">
-      <div class="section-header centered">
-        <span class="eyebrow">BudgetBaby</span>
-        <h2>See it for yourself.</h2>
-        <p>Three views. Everything you need to understand your money today.</p>
-      </div>
-      <div class="screenshots-grid">
-        <ScreenshotFrame label="Safe to Spend" caption="Your number, right now">
-          <div class="mock-screen mock-sts">
-            <div class="ms-label">Safe to Spend Today</div>
-            <div class="ms-amount green">$42<span>.50</span></div>
-            <div class="ms-bar"><div class="ms-bar-fill" style="width:62%"></div></div>
-            <div class="ms-row"><span class="ms-row-label">Remaining</span><span>$312.00</span></div>
-            <div class="ms-row"><span class="ms-row-label">Bills due</span><span>$180.00</span></div>
-            <div class="ms-row"><span class="ms-row-label">Savings</span><span>$90.00</span></div>
-            <div class="ms-row"><span class="ms-row-label">Days left</span><span>5</span></div>
-          </div>
-        </ScreenshotFrame>
+      <div class="pricing-band-grid">
+        <div class="pricing-band-copy">
+          <span class="eyebrow">Pricing</span>
+          <h2 class="display-serif">Free works. Pay only if you want more.</h2>
+          <p>The free version is a real budgeting app, not a demo. Premium drops the limits and adds calendar reminders, monthly reports, and unlimited categories. You can cancel from iOS Settings whenever you want.</p>
+          <a href="/budgetbaby" class="btn btn-dark">See what is in each plan</a>
+        </div>
 
-        <ScreenshotFrame label="Money Pools" caption="See where it lives">
-          <div class="mock-screen mock-pools">
-            <div class="ms-label">Money Pools</div>
-            <div class="ms-pool-row">
-              <div class="ms-pool-icon"><Icon name="dollar-sign" size={13} /></div>
-              <div class="ms-pool-info"><span>Cash</span><span class="ms-val">$124</span></div>
+        <div class="pricing-cards">
+          <div class="price-card">
+            <div class="price-card-head">
+              <span class="price-tier">Free</span>
+              <span class="price-amt">$0<small>/always</small></span>
             </div>
-            <div class="ms-pool-row">
-              <div class="ms-pool-icon"><Icon name="credit-card" size={13} /></div>
-              <div class="ms-pool-info"><span>Debit</span><span class="ms-val">$843</span></div>
-            </div>
-            <div class="ms-pool-row">
-              <div class="ms-pool-icon"><Icon name="credit-card" size={13} /></div>
-              <div class="ms-pool-info"><span>Credit</span><span class="ms-val red">–$210</span></div>
-            </div>
-            <div class="ms-pool-row">
-              <div class="ms-pool-icon"><Icon name="lock" size={13} /></div>
-              <div class="ms-pool-info"><span>Savings</span><span class="ms-val">$1,200</span></div>
-            </div>
+            <ul class="price-features">
+              <li>Safe to Spend</li>
+              <li>Track income &amp; bills</li>
+              <li>Basic insights</li>
+              <li>Local-first storage</li>
+            </ul>
+            <a href="/budgetbaby" class="btn btn-secondary price-cta">Get started</a>
           </div>
-        </ScreenshotFrame>
 
-        <ScreenshotFrame label="Insights" caption="Understand the pattern">
-          <div class="mock-screen mock-insights">
-            <div class="ms-label">This Month</div>
-            <div class="ms-bar-chart">
-              <div class="ms-chart-row">
-                <span class="ms-chart-label">Groceries</span>
-                <div class="ms-chart-bar" style="width:72%"></div>
-              </div>
-              <div class="ms-chart-row">
-                <span class="ms-chart-label">Dining</span>
-                <div class="ms-chart-bar" style="width:48%"></div>
-              </div>
-              <div class="ms-chart-row">
-                <span class="ms-chart-label">Transport</span>
-                <div class="ms-chart-bar" style="width:30%"></div>
-              </div>
-              <div class="ms-chart-row">
-                <span class="ms-chart-label">Health</span>
-                <div class="ms-chart-bar" style="width:20%"></div>
-              </div>
+          <div class="price-card price-card--featured">
+            <div class="price-card-head">
+              <span class="price-tier">Premium</span>
+              <span class="price-amt">$7.99<small>/month</small></span>
             </div>
-            <div class="ms-row ms-total"><span class="ms-row-label">Total spent</span><span>$642</span></div>
+            <ul class="price-features">
+              <li>Everything in Free, plus</li>
+              <li>Custom categories</li>
+              <li>Unlimited goals &amp; bills</li>
+              <li>Calendar sync &amp; reports</li>
+            </ul>
+            <a href="/budgetbaby#bb-waitlist" class="btn btn-primary price-cta">Join the waitlist</a>
           </div>
-        </ScreenshotFrame>
+        </div>
       </div>
+
+      <p class="pricing-fineprint">
+        The yearly plan is $69.99 with a 7 day trial. Cancel from iOS Settings whenever you want.
+      </p>
     </div>
   </section>
 
-  <!-- Philosophy -->
-  <section class="philosophy section-sm">
+  <!-- ── Waitlist anchor ─────────────────────────────────────────────── -->
+  <section class="waitlist-section section-sm">
     <div class="container-sm">
-      <div class="section-header centered">
-        <span class="eyebrow">Our Approach</span>
-        <h2>Built on one principle</h2>
-      </div>
-      <div class="principles-grid">
-        <GlassCard glow>
-          <div class="principle">
-            <div class="principle-icon">
-              <Icon name="target" size={28} />
-            </div>
-            <h3>One problem at a time</h3>
-            <p>Every app in the ecosystem tackles a single, well-defined problem. No sprawling all-in-one tools that do everything poorly.</p>
-          </div>
-        </GlassCard>
-        <GlassCard glow>
-          <div class="principle">
-            <div class="principle-icon">
-              <Icon name="eye" size={28} />
-            </div>
-            <h3>Clarity over cleverness</h3>
-            <p>Design that shows you what you need to see, instantly. No dashboards full of charts you'll never read.</p>
-          </div>
-        </GlassCard>
-        <GlassCard glow>
-          <div class="principle">
-            <div class="principle-icon">
-              <Icon name="lock" size={28} />
-            </div>
-            <h3>Privacy by default</h3>
-            <p>Your data lives on your device. Cloud features are optional and always opt-in. We don't sell your information.</p>
-          </div>
-        </GlassCard>
+      <div id="hero-waitlist" class="waitlist-anchor">
+        <WaitlistForm
+          app="budgetbaby"
+          heading="Drop your email. We will tell you the day it is back."
+          sub="One email, just from us. No newsletter, no marketing, no list trades."
+        />
       </div>
     </div>
   </section>
 
   <CTASection
-    heading="Start with BudgetBaby."
-    subheading="Almost ready under our new LLC. Join the waitlist and we'll email you the moment it's live again."
-    primaryLabel="Join the waitlist"
-    primaryHref="#hero-waitlist-anchor"
-    secondaryLabel="Learn more"
+    heading="Want a heads-up when BudgetBaby is back?"
+    subheading="The new build is sitting in App Review. We will send you one email the moment it goes live."
+    primaryLabel="Email me when it is back"
+    primaryHref="#hero-waitlist"
+    secondaryLabel="What is inside the app"
     secondaryHref="/budgetbaby"
   />
 </Layout>
 
 <style>
-  /* Hero */
-  .hero { padding-top: calc(var(--space-20) + var(--space-8)); padding-bottom: var(--space-16); }
+  /* ── Hero ─────────────────────────────────────────────────────────── */
+  .hero {
+    padding-top: calc(var(--space-16) + var(--space-2));
+    padding-bottom: var(--space-20);
+  }
 
-  .hero-inner {
+  .hero-grid {
     display: grid;
-    grid-template-columns: 1fr 360px;
+    grid-template-columns: 1.05fr 1fr;
     gap: var(--space-16);
     align-items: center;
   }
 
-  .hero-content {
+  .hero-copy { max-width: 560px; }
+
+  .brand-row {
     display: flex;
-    flex-direction: column;
-    gap: var(--space-6);
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+    flex-wrap: wrap;
   }
 
-  .hero-content h1 {
-    font-size: clamp(var(--text-4xl), 6vw, var(--text-6xl));
-    line-height: var(--leading-tight);
-    letter-spacing: -0.03em;
+  .brand-glyph {
+    border-radius: 22%;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .brand-pill {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-semibold);
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+  }
+
+  .brand-status {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-left: var(--space-2);
+    padding: 4px 10px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-full);
+    font-size: 11px;
+    font-weight: var(--weight-medium);
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+  .brand-status-dot {
+    width: 6px; height: 6px;
+    border-radius: 999px;
+    background: var(--coral-500);
+    box-shadow: 0 0 0 3px rgba(242, 94, 114, 0.16);
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 5.5vw, 4.25rem);
+    line-height: 1.04;
+    color: var(--text-primary);
+    margin-bottom: var(--space-5);
   }
 
   .hero-sub {
-    font-size: clamp(var(--text-base), 2vw, var(--text-lg));
+    font-size: var(--text-lg);
     color: var(--text-secondary);
-    max-width: 48ch;
     line-height: var(--leading-relaxed);
+    max-width: 48ch;
+    margin-bottom: var(--space-6);
   }
 
   .hero-actions {
     display: flex;
-    gap: var(--space-4);
     flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-4);
   }
 
   .hero-note {
     font-size: var(--text-xs);
     color: var(--text-muted);
+  }
+
+  /* ── Phone stage ─────────────────────────────────────────────────── */
+  .hero-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
+  .phone-stage {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    aspect-ratio: 5 / 4;
+    isolation: isolate;
+  }
+
+  .phone-glow {
+    position: absolute;
+    inset: -10%;
+    background:
+      radial-gradient(circle at 65% 50%, rgba(255, 184, 199, 0.55) 0%, transparent 55%),
+      radial-gradient(circle at 30% 70%, rgba(255, 217, 191, 0.50) 0%, transparent 55%);
+    filter: blur(4px);
+    z-index: -2;
+  }
+
+  .phone-block {
+    position: absolute;
+    border-radius: 50%;
+    z-index: -1;
+  }
+  .phone-block--peach {
+    width: 150px; height: 150px;
+    right: -10%; bottom: 4%;
+    background: var(--peach-200);
+    opacity: 0.85;
+  }
+  .phone-block--blush {
+    width: 70px; height: 70px;
+    right: 16%; top: -4%;
+    background: var(--blush-300);
+    opacity: 0.85;
+  }
+
+  /* Two PhoneMockup instances stacked inside the stage. The back phone
+     (Insights) sits behind and to the left at a slight counter-rotation;
+     the front phone (Home) is the focal element on the right. */
+  .phone-slot {
+    position: absolute;
+  }
+  .phone-slot--back  { left: 6%;  top: 8%;  z-index: 1; }
+  .phone-slot--front { right: 4%; top: 0;   z-index: 2; }
+
+  /* ── Dark feature strip ─────────────────────────────────────────── */
+  .feature-strip { padding-block: var(--space-16); }
+
+  .feature-strip-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-3);
+  }
+
+  .feature-tile {
+    border: 1px solid rgba(255, 247, 239, 0.08);
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
+    background: rgba(255, 247, 239, 0.025);
+    transition: border-color 0.18s ease, transform 0.18s ease;
+  }
+  .feature-tile:hover {
+    border-color: rgba(255, 184, 199, 0.30);
+    transform: translateY(-2px);
+  }
+  .feature-tile-icon {
+    width: 40px; height: 40px;
+    border-radius: 12px;
+    background: linear-gradient(180deg, rgba(255, 207, 216, 0.16), rgba(255, 207, 216, 0.06));
+    border: 1px solid rgba(255, 207, 216, 0.18);
+    color: var(--blush-300);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-4);
+  }
+  .feature-tile h3 {
+    color: #FFF7EF;
+    font-size: var(--text-base);
+    margin-bottom: var(--space-2);
+    font-weight: var(--weight-semibold);
+  }
+  .feature-tile p {
+    color: rgba(255, 247, 239, 0.65);
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
     margin: 0;
   }
 
-  .hero-waitlist {
-    margin-top: var(--space-6);
-    max-width: 32rem;
-    scroll-margin-top: 6rem;
+  .dark-trust {
+    margin-top: var(--space-12);
+    padding-top: var(--space-8);
+    text-align: center;
   }
-
-  /* Phone mockup */
-  .phone-mockup {
-    border-radius: var(--radius-2xl);
-    padding: var(--space-6);
-    background: var(--accent-dim);
-    border-color: var(--accent-border);
-    box-shadow: var(--glow-md), var(--shadow-xl);
+  .dark-trust-rule {
+    width: 36px;
+    height: 1px;
+    background: rgba(255, 247, 239, 0.20);
+    margin: 0 auto var(--space-6);
   }
-
-  .sts-mock { display: flex; flex-direction: column; gap: var(--space-4); }
-
-  .sts-label {
-    font-size: var(--text-xs);
-    color: var(--text-muted);
-    letter-spacing: 0.06em;
+  .dark-trust-line {
+    font-size: var(--text-base);
+    color: rgba(255, 247, 239, 0.78);
+    line-height: var(--leading-relaxed);
+    max-width: 60ch;
+    margin: 0 auto;
+  }
+  .dark-trust-eyebrow {
+    display: block;
+    font-size: 10px;
+    font-weight: var(--weight-semibold);
+    letter-spacing: 0.22em;
     text-transform: uppercase;
+    color: var(--peach-200);
+    margin-bottom: var(--space-3);
   }
-
-  .sts-amount {
-    font-size: 3.2rem;
-    font-weight: 800;
-    color: var(--green);
-    letter-spacing: -0.04em;
-    line-height: 1;
+  .dark-trust-line a {
+    color: var(--peach-200);
+    margin-left: var(--space-2);
+    font-weight: var(--weight-medium);
+    white-space: nowrap;
   }
+  .dark-trust-line a:hover { color: #FFF7EF; }
 
-  .sts-cents { font-size: 1.8rem; opacity: 0.7; }
+  /* ── Apps section ─────────────────────────────────────────── */
+  .apps-section { padding-block: var(--space-20) var(--space-8); }
 
-  .sts-bar {
-    height: 6px;
-    background: var(--glass-border);
-    border-radius: 3px;
-    overflow: hidden;
+  .apps-section-head {
+    margin-bottom: var(--space-10);
+    max-width: 56ch;
   }
-
-  .sts-bar-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--accent), var(--accent-light));
-    border-radius: 3px;
+  .apps-section-head .eyebrow {
+    display: inline-block;
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+    margin-bottom: var(--space-3);
   }
-
-  .sts-pools {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-    padding-top: var(--space-2);
-    border-top: 1px solid var(--glass-border);
+  .apps-section-head h2 {
+    font-size: clamp(var(--text-3xl), 4vw, var(--text-4xl));
+    margin-bottom: var(--space-3);
+    color: var(--text-primary);
   }
-
-  .sts-pool {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    font-size: var(--text-sm);
+  .apps-section-head p {
+    font-size: var(--text-base);
     color: var(--text-secondary);
   }
 
-  .sts-pool svg { color: var(--text-muted); flex-shrink: 0; }
-
-  .sts-pool-val {
-    margin-left: auto;
-    font-weight: var(--weight-semibold);
-    color: var(--text-primary);
-    font-size: var(--text-sm);
-  }
-
-  /* Apps Grid */
   .apps-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -395,274 +482,230 @@ import WaitlistForm from '../components/WaitlistForm.astro';
   }
 
   .app-card {
+    background: #FFFFFF;
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-xl);
     padding: var(--space-6);
     text-decoration: none;
     color: inherit;
     display: flex;
     flex-direction: column;
     gap: var(--space-3);
-    transition: all 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    box-shadow: var(--shadow-sm);
   }
-
-  .app-card:hover { transform: translateY(-3px); }
-
+  .app-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--glass-border-strong);
+  }
   .app-card--featured {
+    background: linear-gradient(180deg, var(--cream-50) 0%, #FFFFFF 100%);
     border-color: var(--accent-border);
-    background: var(--accent-dim);
   }
 
-  .app-card--featured:hover {
-    border-color: rgba(139, 92, 246, 0.35);
-    box-shadow: var(--glow-md);
-  }
-
-  .app-card--soon, .app-card--future { opacity: 0.75; }
-
-  .app-card-header {
+  .app-card-head {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: var(--space-3);
     margin-bottom: var(--space-2);
   }
 
-  .app-icon {
-    width: 52px; height: 52px;
-    border-radius: var(--radius-md);
-    display: flex;
+  .app-icon-future {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    background: var(--cream-200);
+    color: var(--text-muted);
+    display: inline-flex;
     align-items: center;
     justify-content: center;
   }
 
-  .app-icon--budget { background: rgba(139, 92, 246, 0.15); color: var(--accent-light); }
-  .app-icon--pantry { background: rgba(52, 211, 153, 0.12); color: var(--green); }
-  .app-icon--future { background: rgba(255,255,255,0.05); color: var(--text-muted); }
-
+  /* Distinct visual languages so live / soon / build / future are
+     immediately legible without reading the label. */
   .app-status {
-    font-size: var(--text-xs);
+    font-size: 11px;
     font-weight: var(--weight-semibold);
-    padding: var(--space-1) var(--space-2);
-    border-radius: var(--radius-full);
-    letter-spacing: 0.04em;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    text-transform: uppercase;
+    letter-spacing: 0.10em;
   }
+  .app-status--soon   { color: var(--accent-deep); }
+  .app-status--build  { color: var(--text-secondary); }
+  .app-status--future { color: var(--text-faint); }
 
-  .app-status--live {
-    background: rgba(52, 211, 153, 0.15);
-    color: var(--green);
-    border: 1px solid rgba(52, 211, 153, 0.25);
+  .status-dot {
+    width: 7px; height: 7px;
+    border-radius: 999px;
+    flex-shrink: 0;
   }
-
-  .app-status--soon {
-    background: rgba(251, 191, 36, 0.12);
-    color: var(--yellow);
-    border: 1px solid rgba(251, 191, 36, 0.2);
+  /* "Soon", solid coral with halo, the most attention-getting */
+  .status-dot--soon {
+    background: var(--coral-500);
+    box-shadow: 0 0 0 3px rgba(242, 94, 114, 0.16);
   }
-
-  .app-status--future {
-    background: var(--glass-bg);
-    color: var(--text-muted);
-    border: 1px solid var(--glass-border);
+  /* "In development", muted ring, no fill, signals motion-without-imminence */
+  .status-dot--build {
+    background: transparent;
+    box-shadow: inset 0 0 0 1.5px var(--text-muted);
+  }
+  /* "In planning", small dim square, signals not-yet-form */
+  .status-dot--future {
+    background: var(--text-faint);
+    border-radius: 1px;
+    width: 6px; height: 6px;
   }
 
   .app-card h3 {
     font-size: var(--text-xl);
     color: var(--text-primary);
+    font-weight: var(--weight-semibold);
   }
-
   .app-card p {
     font-size: var(--text-sm);
     color: var(--text-secondary);
-    flex: 1;
     line-height: var(--leading-relaxed);
+    flex: 1;
+  }
+  .app-card-link {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    color: var(--accent-deep);
+    margin-top: var(--space-2);
   }
 
-  .app-meta {
-    display: flex;
+  /* ── Pricing band ─────────────────────────────────────────────── */
+  .pricing-band { padding-block: var(--space-16); }
+  .pricing-band-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: var(--space-12);
     align-items: center;
+  }
+  .pricing-band-copy .eyebrow {
+    display: inline-block;
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+    margin-bottom: var(--space-3);
+  }
+  .pricing-band-copy h2 {
+    font-size: clamp(var(--text-2xl), 3.5vw, var(--text-4xl));
+    margin-bottom: var(--space-4);
+  }
+  .pricing-band-copy p {
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-6);
+    max-width: 42ch;
+  }
+
+  .pricing-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+  }
+  .price-card {
+    background: #FFFFFF;
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+  }
+  .price-card--featured {
+    background: linear-gradient(180deg, #FFFFFF 0%, #FFF6F2 100%);
+    border-color: var(--accent-border);
+    box-shadow: var(--shadow-md);
+  }
+  .price-card-head { display: flex; flex-direction: column; gap: var(--space-1); }
+  .price-tier {
+    font-size: var(--text-base);
+    font-weight: var(--weight-semibold);
+    color: var(--accent-deep);
+  }
+  .price-amt {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-bold);
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+  }
+  .price-amt small {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-regular);
+    color: var(--text-muted);
+    letter-spacing: 0;
+    margin-left: 4px;
+  }
+
+  .price-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
     gap: var(--space-2);
+    flex: 1;
+  }
+  .price-features li {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    padding-left: 18px;
+    position: relative;
+  }
+  .price-features li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    background-color: var(--accent);
+    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>");
+    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>");
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+  }
+  .price-cta { width: 100%; }
+
+  .pricing-fineprint {
+    text-align: center;
     font-size: var(--text-xs);
     color: var(--text-muted);
-    margin-top: auto;
+    margin-top: var(--space-8);
   }
 
-  .app-cta {
-    font-size: var(--text-sm);
-    font-weight: var(--weight-semibold);
-    color: var(--accent-light);
-    margin-top: var(--space-2);
-  }
+  /* ── Waitlist ─────────────────────────────────────────────────── */
+  .waitlist-section { padding-block: var(--space-12); }
+  .waitlist-anchor { scroll-margin-top: 6rem; }
 
-  .app-cta-link {
-    font-size: var(--text-sm);
-    font-weight: var(--weight-semibold);
-    color: var(--text-muted);
-    text-decoration: none;
-    margin-top: var(--space-2);
-    display: inline-block;
-    transition: color 0.15s;
-  }
-
-  .app-cta-link:hover { color: var(--text-secondary); }
-
-  /* Screenshots section */
-  .screenshots-section .section-header { margin-bottom: var(--space-12); }
-
-  /* Mock screen content styles */
-  .mock-screen {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-    font-size: 10px;
-    line-height: 1.4;
-    color: var(--text-secondary);
-    height: 100%;
-  }
-
-  .ms-label {
-    font-size: 8px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    font-weight: 600;
-    margin-bottom: var(--space-1);
-  }
-
-  .ms-amount {
-    font-size: 28px;
-    font-weight: 800;
-    letter-spacing: -0.04em;
-    line-height: 1;
-  }
-
-  .ms-amount.green { color: var(--green); }
-
-  .ms-amount span { font-size: 18px; opacity: 0.7; }
-
-  .ms-bar {
-    height: 4px;
-    background: var(--glass-border);
-    border-radius: 2px;
-    overflow: hidden;
-    margin-block: 2px;
-  }
-
-  .ms-bar-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--accent), var(--accent-light));
-    border-radius: 2px;
-  }
-
-  .ms-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 10px;
-    color: var(--text-secondary);
-    padding: 2px 0;
-    border-bottom: 1px solid var(--glass-border);
-  }
-
-  .ms-row-label { color: var(--text-muted); }
-  .ms-total { margin-top: var(--space-2); border-bottom: none; font-weight: 600; }
-
-  /* Pool mock */
-  .ms-pool-row {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 4px 0;
-    border-bottom: 1px solid var(--glass-border);
-    font-size: 10px;
-  }
-
-  .ms-pool-icon {
-    width: 22px; height: 22px;
-    border-radius: 6px;
-    background: var(--glass-bg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--accent-light);
-    flex-shrink: 0;
-  }
-
-  .ms-pool-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex: 1;
-  }
-
-  .ms-val { font-weight: 600; color: var(--text-primary); }
-  .ms-val.red { color: var(--red); }
-
-  /* Bar chart mock */
-  .ms-bar-chart {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    flex: 1;
-    margin-top: var(--space-1);
-  }
-
-  .ms-chart-row {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
-
-  .ms-chart-label {
-    font-size: 8px;
-    color: var(--text-muted);
-    width: 44px;
-    flex-shrink: 0;
-  }
-
-  .ms-chart-bar {
-    height: 8px;
-    background: linear-gradient(90deg, var(--accent), var(--accent-light));
-    border-radius: 4px;
-    opacity: 0.75;
-  }
-
-  /* Principles */
-  .principles-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-5);
-  }
-
-  .principle {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3);
-  }
-
-  .principle-icon {
-    color: var(--accent-light);
-    margin-bottom: var(--space-1);
-    line-height: 1;
-  }
-
-  .principle h3 {
-    font-size: var(--text-lg);
-    font-weight: var(--weight-semibold);
-  }
-
-  .principle p {
-    font-size: var(--text-sm);
-    color: var(--text-secondary);
-    line-height: var(--leading-relaxed);
-  }
-
-  @media (max-width: 900px) {
-    .hero-inner { grid-template-columns: 1fr; }
-    .hero-visual { order: -1; max-width: 320px; }
+  /* ── Responsive ───────────────────────────────────────────────── */
+  @media (max-width: 960px) {
+    .hero-grid { grid-template-columns: 1fr; gap: var(--space-12); }
+    .hero-visual { order: -1; max-width: 460px; margin-inline: auto; width: 100%; }
+    .feature-strip-grid { grid-template-columns: repeat(2, 1fr); }
+    .dark-trust { grid-template-columns: 1fr; }
+    .dark-trust-list { grid-template-columns: repeat(2, 1fr); }
     .apps-grid { grid-template-columns: 1fr; }
-    .principles-grid { grid-template-columns: 1fr; }
+    .pricing-band-grid { grid-template-columns: 1fr; }
+    .pricing-cards { grid-template-columns: 1fr 1fr; }
   }
 
   @media (max-width: 600px) {
-    .hero-actions { flex-direction: column; }
-    .hero-actions .btn { text-align: center; justify-content: center; }
+    .hero-actions { flex-direction: column; align-items: stretch; }
+    .hero-actions .btn { justify-content: center; width: 100%; }
+    .feature-strip-grid { grid-template-columns: 1fr; }
+    .dark-trust-list { grid-template-columns: 1fr; }
+    .pricing-cards { grid-template-columns: 1fr; }
+    .phone-stage { aspect-ratio: 4 / 5; }
+    .phone-slot--back  { left: 2%; }
+    .phone-slot--front { right: 2%; }
   }
 </style>

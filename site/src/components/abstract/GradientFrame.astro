@@ -1,0 +1,117 @@
+---
+/**
+ * GradientFrame
+ * A glassy framing wrapper. 1px border, soft inner gradient, gentle hover
+ * lift. Use around screenshot mocks, feature cards, or any focal element
+ * that wants a presented-on-a-tray feel without a heavy drop shadow.
+ *
+ * Props
+ *  - tone:    cream | ink | peach (default: cream)
+ *  - radius:  md (16) | lg (22) | xl (28) | 2xl (36) (default: xl)
+ *  - padding: none | sm | md | lg (default: md)
+ *  - hover:   true | false, enable hover lift (default: true)
+ *  - tag:     element to render as (default: div)
+ *  - href:    if set, renders as an <a>
+ */
+interface Props {
+  tone?: 'cream' | 'ink' | 'peach';
+  radius?: 'md' | 'lg' | 'xl' | '2xl';
+  padding?: 'none' | 'sm' | 'md' | 'lg';
+  hover?: boolean;
+  href?: string;
+  class?: string;
+}
+
+const {
+  tone = 'cream',
+  radius = 'xl',
+  padding = 'md',
+  hover = true,
+  href,
+  class: className = '',
+} = Astro.props;
+
+const Tag = href ? 'a' : 'div';
+---
+
+<Tag
+  href={href}
+  class:list={[
+    'gradient-frame',
+    `gf-tone-${tone}`,
+    `gf-radius-${radius}`,
+    `gf-pad-${padding}`,
+    hover ? 'gf-hover' : '',
+    className,
+  ]}
+>
+  <slot />
+</Tag>
+
+<style>
+  .gradient-frame {
+    position: relative;
+    display: block;
+    border: 1px solid var(--glass-border, rgba(21, 17, 13, 0.08));
+    background: var(--glass-bg, rgba(255, 255, 255, 0.78));
+    box-shadow: var(--shadow-sm);
+    transition:
+      transform 0.20s ease,
+      box-shadow 0.20s ease,
+      border-color 0.20s ease;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* Inner gradient, quiet top-down warm glaze (or dark equivalent). */
+  .gradient-frame::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0%, transparent 55%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .gf-tone-cream::before {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.65) 0%, rgba(255, 247, 239, 0.10) 60%, transparent 100%);
+  }
+  .gf-tone-peach::before {
+    background: linear-gradient(180deg, rgba(255, 217, 191, 0.45) 0%, transparent 70%);
+  }
+  .gf-tone-ink {
+    background: linear-gradient(180deg, #15131A 0%, #0F0E14 100%);
+    border-color: rgba(255, 247, 239, 0.08);
+    color: #FFF7EF;
+  }
+  .gf-tone-ink::before {
+    background: linear-gradient(180deg, rgba(255, 247, 239, 0.04) 0%, transparent 60%);
+  }
+
+  /* Slot content sits above the gradient overlay. */
+  .gradient-frame > :global(*) {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Radius variants */
+  .gf-radius-md  { border-radius: 16px; }
+  .gf-radius-lg  { border-radius: 22px; }
+  .gf-radius-xl  { border-radius: 28px; }
+  .gf-radius-2xl { border-radius: 36px; }
+
+  /* Padding variants */
+  .gf-pad-none { padding: 0; }
+  .gf-pad-sm   { padding: 16px; }
+  .gf-pad-md   { padding: 24px; }
+  .gf-pad-lg   { padding: 32px; }
+
+  .gf-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--glass-border-strong, rgba(21, 17, 13, 0.14));
+  }
+  .gf-tone-ink.gf-hover:hover {
+    border-color: rgba(255, 247, 239, 0.16);
+  }
+</style>

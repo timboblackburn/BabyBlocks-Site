@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import GlassCard from '../../components/GlassCard.astro';
 
-// KB article detail. Static prerender — getStaticPaths fetches the full
+// KB article detail. Static prerender, getStaticPaths fetches the full
 // article list from the platform at build time and one page is generated
 // per article. Each article's body is rendered from the seeded Markdown.
 
@@ -72,7 +72,7 @@ interface Props {
 
 const { article, allArticles } = Astro.props as Props;
 
-// Tiny Markdown-to-HTML renderer — handles the subset our KB articles use:
+// Tiny Markdown-to-HTML renderer, handles the subset our KB articles use:
 // # / ## / ### headings, paragraphs, **bold**, *italic*, `inline code`,
 // - / 1. lists, [text](url) links. No HTML escape because content is
 // operator-authored.

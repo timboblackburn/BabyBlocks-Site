@@ -1,0 +1,95 @@
+---
+/**
+ * OrbitalField
+ * Calm elliptical rings, a quiet technical-studio motif. Pure SVG so it
+ * scales cleanly and respects motion preferences. No animated by default.
+ *
+ * Props
+ *  - tone:    ink | violet | coral | cream (stroke colour, default: ink)
+ *  - size:    sm | md | lg (default: md)
+ *  - opacity: 0..1 (default: 0.18)
+ *  - rings:   number of rings to draw (default: 4)
+ *  - tilt:    -45..45 deg, ellipse rotation (default: -12)
+ *  - position: CSS positioning string, e.g. "top:6%; right:-6%"
+ *
+ * No JS. No animation. If you ever animate the orbit (slow rotation),
+ * gate it on @media (prefers-reduced-motion: no-preference).
+ */
+interface Props {
+  tone?: 'ink' | 'violet' | 'coral' | 'cream';
+  size?: 'sm' | 'md' | 'lg';
+  opacity?: number;
+  rings?: number;
+  tilt?: number;
+  position?: string;
+  class?: string;
+}
+
+const {
+  tone = 'ink',
+  size = 'md',
+  opacity = 0.18,
+  rings = 4,
+  tilt = -12,
+  position = 'top:0;left:0;',
+  class: className = '',
+} = Astro.props;
+
+const sizes: Record<string, number> = { sm: 280, md: 460, lg: 700 };
+const dim = sizes[size];
+
+const stroke: Record<string, string> = {
+  ink:    '#15110D',
+  violet: '#7C3AED',
+  coral:  '#F25E72',
+  cream:  '#FFF7EF',
+};
+const strokeColor = stroke[tone];
+
+const ringList = Array.from({ length: rings }, (_, i) => {
+  const t = (i + 1) / rings;
+  return {
+    rx: dim * 0.48 * t,
+    ry: dim * 0.48 * t * 0.55,
+    stroke: opacity * (1 - i * 0.12),
+  };
+});
+
+const styleStr = [
+  position,
+  `width:${dim}px`,
+  `height:${dim}px`,
+].join(';');
+---
+
+<svg
+  class:list={['orbital-field', className]}
+  style={styleStr}
+  viewBox={`-${dim / 2} -${dim / 2} ${dim} ${dim}`}
+  preserveAspectRatio="xMidYMid meet"
+  aria-hidden="true"
+>
+  <g transform={`rotate(${tilt})`}>
+    {ringList.map((ring) => (
+      <ellipse
+        cx="0"
+        cy="0"
+        rx={ring.rx}
+        ry={ring.ry}
+        fill="none"
+        stroke={strokeColor}
+        stroke-opacity={ring.stroke}
+        stroke-width="1"
+        vector-effect="non-scaling-stroke"
+      />
+    ))}
+  </g>
+</svg>
+
+<style>
+  .orbital-field {
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+  }
+</style>

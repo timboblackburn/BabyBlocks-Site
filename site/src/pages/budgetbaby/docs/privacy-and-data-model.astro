@@ -53,7 +53,7 @@ const headings = [
     <div class="doc-tip">
       <strong>Anonymous crash reporting.</strong> BudgetBaby uses Firebase Crashlytics to collect anonymous crash reports. These contain a stack trace (which lines of code failed) and device metadata (model, iOS version). They never contain transaction data, amounts, descriptions, or any personally identifiable information.
       <br /><br />
-      You can opt out at any time inside the app: <strong>Settings → Privacy</strong> has a single toggle that turns off both crash reports and any product telemetry. When the toggle is off, RevenueCat (the subscription provider) also runs in anonymous mode — your purchase history is still tracked for restoring purchases, but no user ID is associated with it.
+      You can opt out at any time inside the app: <strong>Settings → Privacy</strong> has a single toggle that turns off both crash reports and any product telemetry. When the toggle is off, RevenueCat (the subscription provider) also runs in anonymous mode, your purchase history is still tracked for restoring purchases, but no user ID is associated with it.
     </div>
 
     <div class="doc-mocks-row">
@@ -65,8 +65,8 @@ const headings = [
         </div>
         <div class="dm-section-label">What's on / off</div>
         <div class="dm-list">
-          <div class="dm-row"><span class="dm-row-label">Anonymous crash reports</span><span style="color:#F87171; font-size:14px;">✗</span></div>
-          <div class="dm-row"><span class="dm-row-label">Product analytics</span><span style="color:#F87171; font-size:14px;">✗</span></div>
+          <div class="dm-row"><span class="dm-row-label">Anonymous crash reports</span><span style="color:#F87171; font-size:14px;"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></div>
+          <div class="dm-row"><span class="dm-row-label">Product analytics</span><span style="color:#F87171; font-size:14px;"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></div>
           <div class="dm-row"><span class="dm-row-label">Subscription telemetry</span><span style="color:#FBBF24; font-size:14px;">Anon</span></div>
           <div class="dm-row"><span class="dm-row-label">Cloud backup</span><span style="color:#F87171; font-size:14px;">Off</span></div>
         </div>
@@ -129,14 +129,14 @@ const headings = [
       <DocMock label="Five guarantees" caption="Promises baked into the architecture, not just policy.">
         <div class="dm-bar"><span></span><span class="dm-bar-title">What we never do</span><span></span></div>
         <div class="dm-list">
-          <div class="dm-row"><span style="color:#F87171; font-size:14px; width:14px;">✗</span><span class="dm-row-label" style="font-size:9px;">Connect to your bank</span></div>
-          <div class="dm-row"><span style="color:#F87171; font-size:14px; width:14px;">✗</span><span class="dm-row-label" style="font-size:9px;">Sell your data</span></div>
-          <div class="dm-row"><span style="color:#F87171; font-size:14px; width:14px;">✗</span><span class="dm-row-label" style="font-size:9px;">Serve ads</span></div>
-          <div class="dm-row"><span style="color:#F87171; font-size:14px; width:14px;">✗</span><span class="dm-row-label" style="font-size:9px;">Read your cloud backups</span></div>
-          <div class="dm-row"><span style="color:#F87171; font-size:14px; width:14px;">✗</span><span class="dm-row-label" style="font-size:9px;">Read your transactions</span></div>
+          <div class="dm-row"><span style="color:#F87171; font-size:14px; width:14px;"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><span class="dm-row-label" style="font-size:9px;">Connect to your bank</span></div>
+          <div class="dm-row"><span style="color:#F87171; font-size:14px; width:14px;"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><span class="dm-row-label" style="font-size:9px;">Sell your data</span></div>
+          <div class="dm-row"><span style="color:#F87171; font-size:14px; width:14px;"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><span class="dm-row-label" style="font-size:9px;">Serve ads</span></div>
+          <div class="dm-row"><span style="color:#F87171; font-size:14px; width:14px;"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><span class="dm-row-label" style="font-size:9px;">Read your cloud backups</span></div>
+          <div class="dm-row"><span style="color:#F87171; font-size:14px; width:14px;"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><span class="dm-row-label" style="font-size:9px;">Read your transactions</span></div>
         </div>
         <div class="dm-card dm-card-good" style="margin-top:auto; text-align:center;">
-          <span class="dm-icon shield" style="width:24px; height:24px; margin:0 auto;">✓</span>
+          <span class="dm-icon shield" style="width:24px; height:24px; margin:0 auto;"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><polyline points="20 6 9 17 4 12"/></svg></span>
           <div class="dm-h2" style="margin-top:4px;">Verifiable by design</div>
           <div class="dm-help" style="text-align:center; color:#A7F3D0;">Encryption keys live only on your devices.</div>
         </div>
@@ -150,7 +150,7 @@ const headings = [
     <p>
       A single toggle controls analytics and crash reports. When off, both Firebase
       Crashlytics and any product telemetry stop. RevenueCat (the subscription provider)
-      switches to anonymous mode — purchases still work and can still be restored, but
+      switches to anonymous mode, purchases still work and can still be restored, but
       no user identifier is associated with your subscription.
     </p>
 
@@ -176,7 +176,7 @@ const headings = [
       Activity Log shows every save, edit, and delete in your data, with the latest
       undoable. Tap the most recent entry's <strong>Undo</strong> button to revert it
       (transactions, allocations, transfers, savings deposits, and other reversible
-      actions are supported). The log is on-device only — it never leaves your phone.
+      actions are supported). The log is on-device only, it never leaves your phone.
     </p>
 
     <h3>Settings → Security</h3>

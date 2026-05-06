@@ -4,6 +4,8 @@ import GlassCard from '../components/GlassCard.astro';
 import CTASection from '../components/CTASection.astro';
 import Icon from '../components/Icon.astro';
 import AppIcon from '../components/AppIcon.astro';
+import OrbitalField from '../components/abstract/OrbitalField.astro';
+import AbstractGlow from '../components/abstract/AbstractGlow.astro';
 
 const ecosystemApps = [
   {
@@ -11,8 +13,8 @@ const ecosystemApps = [
     iconColor: 'budget',
     name: 'BudgetBaby',
     status: 'live',
-    statusLabel: 'Almost ready',
-    tagline: 'Know what\'s safe to spend today.',
+    statusLabel: 'In App Review',
+    tagline: 'Know what is safe to spend today.',
     href: '/budgetbaby',
   },
   {
@@ -20,43 +22,50 @@ const ecosystemApps = [
     iconColor: 'pantry',
     name: 'PantryBaby',
     status: 'soon',
-    statusLabel: 'Coming Soon',
-    tagline: 'Your grocery list + pantry memory.',
+    statusLabel: 'In development',
+    tagline: 'Track what you have. Know what to buy.',
     href: '/coming-soon/pantrybaby',
   },
   {
     appIcon: null,
     iconColor: 'future',
-    name: 'More apps',
+    name: 'BabyBlocks Core',
     status: 'future',
-    statusLabel: 'In Planning',
-    tagline: 'Each solving one problem, well.',
-    href: null,
+    statusLabel: 'Coming soon',
+    tagline: 'A shared home for the apps. Idea stage.',
+    href: '/coming-soon/babyblocks-core',
   },
 ];
 ---
 
 <Layout
   title="About BabyBlocks"
-  description="BabyBlocks is a suite of simple, visual iOS apps built by Intriguing Insight. Clarity, control, and calm. No unnecessary complexity."
+  description="BabyBlocks is an independent iOS app studio. BudgetBaby is the first app, in App Review now. PantryBaby is in development."
   canonical="/about"
   theme="core"
 >
   <!-- Hero -->
   <section class="about-hero section">
+    <OrbitalField tone="ink" size="lg" rings={5} tilt={-14} opacity={0.12}
+                  position="top:-8%; right:-12%;" class="about-hero-orbit" />
+    <AbstractGlow tone="violet" size="lg" opacity={0.16}
+                  position="top:-10%; left:-8%;" class="about-hero-glow" />
     <div class="container">
       <div class="about-hero-inner">
         <div class="about-hero-copy">
-          <div class="label-chip">About</div>
-          <h1>We make apps<br /><span class="text-gradient">that get out of your way.</span></h1>
+          <div class="label-chip"><span class="label-chip-dot" aria-hidden="true"></span>About BabyBlocks</div>
+          <h1 class="display-serif">An independent iOS<br />app studio.</h1>
           <p>
-            BabyBlocks is a small ecosystem of iOS tools built on a straightforward idea:
-            the best app is one that gives you exactly what you need and nothing more.
-            No dashboards full of metrics you won't use. No features added just because the competition has them.
+            BabyBlocks is one person and a small group of contractors building iOS apps for family life.
+            Every app does one job. No bank connections, no advertising, no data sales.
           </p>
           <p>
-            Every BabyBlocks app is designed to solve one specific problem. Clearly, privately, and without fuss.
+            BudgetBaby is the first app. PantryBaby is next. There is no roadmap of ten more.
           </p>
+          <div class="about-hero-actions">
+            <a href="/budgetbaby" class="btn btn-dark">See BudgetBaby</a>
+            <a href="mailto:support@babyblocks.io" class="btn btn-secondary">Email support</a>
+          </div>
         </div>
       </div>
     </div>
@@ -69,17 +78,16 @@ const ecosystemApps = [
         <div class="what-inner">
           <h2>What is BabyBlocks?</h2>
           <p>
-            BabyBlocks is a suite of productivity and lifestyle iOS apps, each focused on a specific area of daily life.
-            The apps share a visual language and philosophy but are designed to work independently.
-            You don't need to use all of them to get value from any one of them.
+            BabyBlocks is a small set of iOS apps for family life. Each app does one job.
+            They share a visual language but each one stands on its own. You can use one without the others.
           </p>
           <p>
-            The suite is built and published by <strong>Intriguing Insight</strong>, a division of Intrigue MMC LLC,
-            built on the belief that personal software should feel calm, not overwhelming.
+            The apps are built and published by <strong>Intriguing Insight</strong>, an Intrigue MMC LLC studio.
+            Intrigue MMC is one founder and a small group of contractors. Not a holding company.
           </p>
           <p>
-            BudgetBaby, the flagship product, originally launched in December 2024. It is now transitioning to our new LLC entity — almost ready to return to the App Store, back online within a couple of weeks.
-            PantryBaby, a grocery and pantry management app, is in development and coming soon.
+            BudgetBaby first launched in December 2024 and is currently in App Review under the new LLC.
+            PantryBaby is in development. There are no other apps in flight right now.
           </p>
         </div>
       </GlassCard>
@@ -90,23 +98,19 @@ const ecosystemApps = [
   <section class="why-section section-sm">
     <div class="container">
       <div class="section-header centered">
-        <span class="eyebrow">Philosophy</span>
-        <h2>Why we built this.</h2>
-        <p>Three ideas that guide every decision we make.</p>
+        <span class="eyebrow">How we build</span>
+        <h2>Three rules.</h2>
+        <p>The same three rules every BabyBlocks app follows.</p>
       </div>
 
       <div class="why-grid">
         <GlassCard glow>
           <div class="why-item">
             <div class="why-num">01</div>
-            <h3>Clarity over complexity</h3>
+            <h3>Answer one question</h3>
             <p>
-              The best financial apps we've used give you one clear number that answers the question you actually have.
-              "Can I afford this right now?" Most apps don't answer that. BudgetBaby does. That's Safe to Spend.
-            </p>
-            <p>
-              We apply the same thinking to every feature: if you have to learn something to use it,
-              we haven't designed it well enough yet.
+              BudgetBaby answers "what is safe to spend today?" PantryBaby will answer "what do I need at the store?"
+              If a feature does not help answer the one question, it does not ship.
             </p>
           </div>
         </GlassCard>
@@ -114,14 +118,10 @@ const ecosystemApps = [
         <GlassCard glow>
           <div class="why-item">
             <div class="why-num">02</div>
-            <h3>Control, not automation</h3>
+            <h3>You enter the data</h3>
             <p>
-              We deliberately chose not to connect BudgetBaby to your bank. Manual tracking has a meaningful advantage:
-              you actually know what you spent, because you logged it.
-            </p>
-            <p>
-              Automation can create a sense of control without the understanding that comes from it.
-              We'd rather you be more aware of your money, not less.
+              BudgetBaby does not connect to your bank. You log what you spend.
+              That is slower, but it is also the reason the numbers match what is actually in your account.
             </p>
           </div>
         </GlassCard>
@@ -129,14 +129,10 @@ const ecosystemApps = [
         <GlassCard glow>
           <div class="why-item">
             <div class="why-num">03</div>
-            <h3>Privacy by default</h3>
+            <h3>Local first</h3>
             <p>
-              Financial data is some of the most sensitive information a person has. BabyBlocks apps store
-              your data on your device by default. Cloud features require explicit opt-in. We don't sell data.
-              We don't use it for advertising.
-            </p>
-            <p>
-              We make money from subscriptions. Not from selling your behavior to third parties.
+              Your data stays on your device. iCloud backup is optional and end to end encrypted.
+              We do not sell data. We do not run ads. The only revenue is subscriptions.
             </p>
           </div>
         </GlassCard>
@@ -148,8 +144,9 @@ const ecosystemApps = [
   <section class="ecosystem-section section-sm">
     <div class="container">
       <div class="section-header centered">
-        <span class="eyebrow">The Ecosystem</span>
-        <h2>Where we are now, and where we're going.</h2>
+        <span class="eyebrow">Apps</span>
+        <h2>Where each app stands.</h2>
+        <p>Honest status for each one. No vague "coming next year" language.</p>
       </div>
 
       <div class="ecosystem-grid">
@@ -174,8 +171,7 @@ const ecosystemApps = [
       </div>
 
       <p class="ecosystem-note">
-        Each app in the BabyBlocks ecosystem is built to stand alone. There's no requirement to use multiple apps.
-        But if you do, they're designed to complement each other naturally.
+        Each app stands on its own. You do not need the others to get value from any one of them.
       </p>
     </div>
   </section>
@@ -187,24 +183,24 @@ const ecosystemApps = [
         <GlassCard>
           <div class="trust-item">
             <div class="trust-icon"><Icon name="lock" size={24} /></div>
-            <h3>Privacy first</h3>
-            <p>Local data by default. Cloud features opt-in only. We don't sell your information or use it for advertising. Full details in our <a href="/budgetbaby/privacy">Privacy Policy</a>.</p>
+            <h3>Local first</h3>
+            <p>Your data stays on your phone. iCloud backup is opt in and end to end encrypted. See the <a href="/budgetbaby/privacy">Privacy Policy</a>.</p>
           </div>
         </GlassCard>
 
         <GlassCard>
           <div class="trust-item">
             <div class="trust-icon"><Icon name="mail" size={24} /></div>
-            <h3>Real support</h3>
-            <p>Real humans read every support email. Reach us at <a href="mailto:support@babyblocks.io">support@babyblocks.io</a> and we'll respond within a couple of business days.</p>
+            <h3>Direct support</h3>
+            <p>Email <a href="mailto:support@babyblocks.io">support@babyblocks.io</a>. The founder reads every message. Reply within two business days.</p>
           </div>
         </GlassCard>
 
         <GlassCard>
           <div class="trust-item">
             <div class="trust-icon"><Icon name="map-pin" size={24} /></div>
-            <h3>Transparent roadmap</h3>
-            <p>Submit and follow feature requests on our <a href="/coming-soon/feature-requests">public roadmap</a>. We build what you actually ask for.</p>
+            <h3>Open requests</h3>
+            <p>Submit feature requests on the <a href="/coming-soon/feature-requests">public list</a>. Most updates start there.</p>
           </div>
         </GlassCard>
       </div>
@@ -219,17 +215,15 @@ const ecosystemApps = [
           <h2>About the company</h2>
           <p>
             BabyBlocks is built and published by <strong>Intriguing Insight</strong>,
-            a division of <strong>Intrigue MMC LLC</strong>.
-            Intriguing Insight is focused on building software that respects the people who use it.
+            an Intrigue MMC LLC studio. Intrigue MMC is one founder, based in Illinois, plus a small group of contractors.
+            No outside investors. No newsroom. No board.
           </p>
           <p>
-            Our apps are premium products sold through the App Store with straightforward subscription pricing.
-            We don't run ads, we don't mine data, and we don't have VC funding pressuring us to monetise
-            in ways that conflict with our users' interests.
+            The apps are sold through the App Store with subscription pricing. Revenue comes from those subscriptions.
+            That is the only revenue.
           </p>
           <p>
-            If you have questions, feedback, or just want to say hi, email us at
-            <a href="mailto:support@babyblocks.io">support@babyblocks.io</a>.
+            Questions or feedback go to <a href="mailto:support@babyblocks.io">support@babyblocks.io</a>.
           </p>
         </div>
       </GlassCard>
@@ -238,21 +232,30 @@ const ecosystemApps = [
 
   <CTASection
     heading="Start with BudgetBaby."
-    subheading="Almost ready under our new LLC. Be first when it returns."
+    subheading="In App Review now. Join the waitlist for one email when it goes live."
     primaryLabel="Join the waitlist"
     primaryHref="/budgetbaby#bb-waitlist"
-    secondaryLabel="Explore features"
+    secondaryLabel="Read the features"
     secondaryHref="/budgetbaby/features"
   />
 </Layout>
 
 <style>
   .about-hero {
+    position: relative;
     padding-top: calc(var(--space-20) + var(--space-8));
+    isolation: isolate;
+    overflow: hidden;
+  }
+
+  .about-hero :global(.about-hero-orbit),
+  .about-hero :global(.about-hero-glow) {
+    z-index: -1;
   }
 
   .about-hero-inner {
     max-width: 720px;
+    position: relative;
   }
 
   .about-hero-copy {
@@ -270,6 +273,13 @@ const ecosystemApps = [
     font-size: var(--text-lg);
     color: var(--text-secondary);
     max-width: 58ch;
+  }
+
+  .about-hero-actions {
+    display: flex;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+    flex-wrap: wrap;
   }
 
   /* What section */

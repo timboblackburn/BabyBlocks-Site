@@ -41,7 +41,7 @@ const headings = [
     <h1>Common Cases</h1>
     <p class="docs-summary">
       Real-world situations and how to resolve them. Each case explains what is happening, why it
-      happens, and the exact steps to fix it — so you can understand the system, not just follow steps.
+      happens, and the exact steps to fix it, so you can understand the system, not just follow steps.
     </p>
 
     <!-- ─── SAFE TO SPEND ─────────────────────────────────────────────── -->
@@ -63,7 +63,7 @@ const headings = [
           <div class="dm-kv"><strong>Spendable</strong><strong class="red">$0</strong></div>
         </div>
       </DocMock>
-      <DocMock label="After fix" caption="Mark the bills you've already paid — reserve releases, daily rate returns.">
+      <DocMock label="After fix" caption="Mark the bills you've already paid, reserve releases, daily rate returns.">
         <div class="dm-bar"><span class="dm-bar-title">Home</span><span class="dm-bar-action">+</span></div>
         <div class="dm-card dm-card-good" style="text-align:center;">
           <div class="dm-hero-label">Safe to Spend</div>
@@ -95,9 +95,9 @@ const headings = [
           <li>Your income was entered incorrectly and is lower than your actual take-home pay.</li>
         </ul>
         <ol>
-          <li>Tap the info button next to Safe to Spend on the Home screen. This expands the full breakdown — Budget, Spent, Bill Reserve, Savings Reserve, Remaining, Days Remaining, and the resulting daily rate.</li>
+          <li>Tap the info button next to Safe to Spend on the Home screen. This expands the full breakdown. Budget, Spent, Bill Reserve, Savings Reserve, Remaining, Days Remaining, and the resulting daily rate.</li>
           <li>Look at Bill Reserve. If it is large, go to Settings → Bills. Any unpaid red (Essentials) bill is fully reserved. If you have already paid one of those bills externally, mark it paid in BudgetBaby. The reserve releases immediately and Safe to Spend rises.</li>
-          <li>If Savings Reserve is the issue, this is expected behavior — it is money committed to your savings allocation. To change it, go to Settings → Budget Settings and adjust the Savings slider.</li>
+          <li>If Savings Reserve is the issue, this is expected behavior, it is money committed to your savings allocation. To change it, go to Settings → Budget Settings and adjust the Savings slider.</li>
           <li>If you are near period end with very few days remaining, the denominator is small. Even a modest reserve can push the daily rate to zero. Check the History tab to see what you have spent.</li>
           <li>Verify your income: Settings → Budget Settings → Income per Period. Confirm it is your actual take-home pay, not gross salary.</li>
         </ol>
@@ -113,7 +113,7 @@ const headings = [
       <div class="case-body">
         <p class="case-what"><strong>What is happening.</strong> These two numbers measure completely different things and are not expected to match. Safe to Spend is a daily spending allowance from your remaining budget. Your bank balance is the actual dollars in your account. They diverge for several normal reasons.</p>
         <ul>
-          <li><strong>Bills not yet marked paid.</strong> If rent ($2,000) is due this week but not marked paid in BudgetBaby, the full $2,000 is reserved from Safe to Spend. Your bank still shows that money because you have not paid yet — BudgetBaby is correctly anticipating the outflow.</li>
+          <li><strong>Bills not yet marked paid.</strong> If rent ($2,000) is due this week but not marked paid in BudgetBaby, the full $2,000 is reserved from Safe to Spend. Your bank still shows that money because you have not paid yet. BudgetBaby is correctly anticipating the outflow.</li>
           <li><strong>Carryover from previous periods.</strong> Your bank balance includes money from past months. Safe to Spend only works within the current budget period.</li>
           <li><strong>Credit card float.</strong> Purchases charged to a credit card reduced Safe to Spend but have not yet cleared your bank. The bank balance looks higher than reality.</li>
           <li><strong>Debit pool ≠ bank account.</strong> The Debit pool is what BudgetBaby calculates based on your starting balance plus income minus logged Debit transactions. It tracks what you tell BudgetBaby, not what the bank reports.</li>
@@ -135,7 +135,7 @@ const headings = [
         <p class="case-what"><strong>What is happening.</strong> Marking a bill paid removes it from the Bill Reserve, which should raise Safe to Spend. If it did not visibly change, one of the following is true.</p>
         <ul>
           <li>The bill's priority is not red. Only red (Essentials) bills are included in the Bill Reserve. Yellow (Variable), green (Fun), and gray (Unplanned) bills are never reserved.</li>
-          <li>Another red (Essentials) bill is now the binding constraint — the reserve dropped for the paid bill, but another large red (Essentials) bill is still unpaid.</li>
+          <li>Another red (Essentials) bill is now the binding constraint, the reserve dropped for the paid bill, but another large red (Essentials) bill is still unpaid.</li>
           <li>You are at period end with zero or near-zero days remaining. The daily rate denominator approaches 1, so even a large reserve change produces a tiny per-day change.</li>
         </ul>
         <ol>
@@ -210,7 +210,7 @@ const headings = [
         <h3 id="pool-wrong-method" class="case-title">I logged a purchase with the wrong payment method</h3>
       </div>
       <div class="case-body">
-        <p class="case-what"><strong>What is happening.</strong> The transaction is affecting the wrong pool. A credit card purchase logged as Debit reduces your Debit balance immediately, but the real debit from your bank does not happen until you pay the credit card bill — so your Debit pool shows a lower balance than it should.</p>
+        <p class="case-what"><strong>What is happening.</strong> The transaction is affecting the wrong pool. A credit card purchase logged as Debit reduces your Debit balance immediately, but the real debit from your bank does not happen until you pay the credit card bill, so your Debit pool shows a lower balance than it should.</p>
         <ol>
           <li>Find the transaction in the Transactions tab or in the relevant period's history.</li>
           <li>Tap it to open the detail view.</li>
@@ -260,11 +260,11 @@ const headings = [
         <h3 id="bill-reappears" class="case-title">A bill keeps appearing as unpaid even though I pay it every month</h3>
       </div>
       <div class="case-body">
-        <p class="case-what"><strong>What is happening.</strong> Bills in BudgetBaby are recurring — they regenerate each period. Marking a bill paid in one period clears it for that period only. The next period, the bill reappears unpaid because you have not paid it yet for the new period. This is correct behavior.</p>
+        <p class="case-what"><strong>What is happening.</strong> Bills in BudgetBaby are recurring, they regenerate each period. Marking a bill paid in one period clears it for that period only. The next period, the bill reappears unpaid because you have not paid it yet for the new period. This is correct behavior.</p>
         <ol>
           <li>When you pay a bill in the real world, open BudgetBaby and go to the Bills tab.</li>
           <li>Find the bill and tap the checkmark or the Mark Paid button.</li>
-          <li>Optionally log the payment as a transaction too — this keeps your Debit pool accurate. Marking a bill paid releases the Bill Reserve; logging the transaction reduces the pool balance.</li>
+          <li>Optionally log the payment as a transaction too, this keeps your Debit pool accurate. Marking a bill paid releases the Bill Reserve; logging the transaction reduces the pool balance.</li>
         </ol>
         <div class="case-tip">The fastest workflow: as soon as a payment clears your bank, mark the bill paid and log the Debit transaction in one go. Both steps together keep Safe to Spend and your pool balance accurate simultaneously.</div>
       </div>
@@ -276,7 +276,7 @@ const headings = [
         <h3 id="bill-missing" class="case-title">A bill is not appearing in the current period</h3>
       </div>
       <div class="case-body">
-        <p class="case-what"><strong>What is happening.</strong> A recurring bill only appears in a period if its due date falls within that period's date range. If the bill is due on the 1st and your current period runs from the 3rd to the 16th, it does not appear — its due date is outside the window.</p>
+        <p class="case-what"><strong>What is happening.</strong> A recurring bill only appears in a period if its due date falls within that period's date range. If the bill is due on the 1st and your current period runs from the 3rd to the 16th, it does not appear, its due date is outside the window.</p>
         <ol>
           <li>Go to Bills tab and tap the bill to see its due date and recurrence schedule.</li>
           <li>Check the current period's date range in the Budget tab (the period header shows start and end dates).</li>
@@ -317,11 +317,11 @@ const headings = [
         <ol>
           <li>Go to Settings → Premium Features (or Settings → Subscription).</li>
           <li>Tap <strong>Restore Purchases</strong>. This contacts Apple and refreshes subscription state immediately.</li>
-          <li>Wait 5–10 seconds for the verification to complete. Features should unlock without restarting the app.</li>
+          <li>Wait 5-10 seconds for the verification to complete. Features should unlock without restarting the app.</li>
           <li>If Restore Purchases shows "Nothing to restore," the purchase may not have gone through on Apple's side. Check your Apple ID email for a receipt. If no receipt arrived, go to iOS Settings → App Store → Apple ID → Subscriptions to confirm it is listed and active.</li>
           <li>If the subscription is listed in iOS Settings as active but BudgetBaby still shows it locked, force-close the app and reopen it. StoreKit occasionally needs a fresh session to pick up the updated entitlement.</li>
         </ol>
-        <div class="case-tip">Restore Purchases is always safe to tap. It does not create a duplicate charge — it only reads your existing purchase history from Apple.</div>
+        <div class="case-tip">Restore Purchases is always safe to tap. It does not create a duplicate charge, it only reads your existing purchase history from Apple.</div>
       </div>
     </div>
 
@@ -406,11 +406,11 @@ const headings = [
         <ol>
           <li>On the new iPhone, go to iOS Settings → (your name) → iCloud → Keychain. Ensure iCloud Keychain is enabled. This syncs the encryption key used to decrypt your backup.</li>
           <li>Sign in to BudgetBaby: Settings → Account. Use the same account as the old device.</li>
-          <li>Go to Settings → Backup &amp; Restore. Wait 1–2 minutes for the backup list to populate — iCloud Keychain may need a moment to deliver the key.</li>
+          <li>Go to Settings → Backup &amp; Restore. Wait 1-2 minutes for the backup list to populate, iCloud Keychain may need a moment to deliver the key.</li>
           <li>Tap the backup and tap Restore. Confirm the prompt.</li>
           <li>If the backup list is empty after waiting, check that both iPhones are signed in to the same Apple ID and iCloud account.</li>
         </ol>
-        <p>If you did not create a cloud backup before switching phones, data recovery options are very limited — see <a href="/budgetbaby/docs/backup-and-restore#keychain-loss">If you lose iCloud Keychain access</a>.</p>
+        <p>If you did not create a cloud backup before switching phones, data recovery options are very limited, see <a href="/budgetbaby/docs/backup-and-restore#keychain-loss">If you lose iCloud Keychain access</a>.</p>
       </div>
     </div>
 
@@ -427,7 +427,7 @@ const headings = [
           <li>Tap it and tap Restore. Confirm the prompt.</li>
           <li>Your data returns to the state it was in immediately before the unwanted restore.</li>
         </ol>
-        <div class="case-tip">Safety backups are local only — they will be lost if you uninstall the app. If you want to preserve it, create a regular cloud backup from it before doing anything else.</div>
+        <div class="case-tip">Safety backups are local only, they will be lost if you uninstall the app. If you want to preserve it, create a regular cloud backup from it before doing anything else.</div>
       </div>
     </div>
 
@@ -457,7 +457,7 @@ const headings = [
         <h3 id="notif-stopped" class="case-title">Bill reminders suddenly stopped arriving</h3>
       </div>
       <div class="case-body">
-        <p class="case-what"><strong>What is happening.</strong> BudgetBaby uses iOS local notifications scheduled on your device — not a server. If they stop arriving, something changed on the iOS side: notification permission was revoked, a Focus mode was enabled, or the app needs to reschedule.</p>
+        <p class="case-what"><strong>What is happening.</strong> BudgetBaby uses iOS local notifications scheduled on your device, not a server. If they stop arriving, something changed on the iOS side: notification permission was revoked, a Focus mode was enabled, or the app needs to reschedule.</p>
         <ol>
           <li>Go to iOS Settings → BudgetBaby → Notifications. Verify Allow Notifications is on. Without this, no notifications can arrive.</li>
           <li>Check iOS Settings → Focus. If any Focus mode is active, open it and ensure BudgetBaby is in the allowed apps list.</li>
@@ -474,10 +474,10 @@ const headings = [
         <h3 id="notif-paid-bills" class="case-title">I am getting reminders for bills I already paid</h3>
       </div>
       <div class="case-body">
-        <p class="case-what"><strong>What is happening.</strong> Notifications are scheduled in advance when you save your reminder settings. A notification already scheduled for a future date has no way to know the bill was paid after scheduling — it fires anyway.</p>
+        <p class="case-what"><strong>What is happening.</strong> Notifications are scheduled in advance when you save your reminder settings. A notification already scheduled for a future date has no way to know the bill was paid after scheduling, it fires anyway.</p>
         <ol>
           <li>After marking a bill paid, go to Settings → Reminders and tap Save. This cancels all currently scheduled notifications and reschedules only for upcoming unpaid bills.</li>
-          <li>If this happens frequently, consider adjusting your reminder days to trigger earlier — for example, 3 days before instead of same day. This gives you time to mark the bill paid before the reminder fires.</li>
+          <li>If this happens frequently, consider adjusting your reminder days to trigger earlier, for example, 3 days before instead of same day. This gives you time to mark the bill paid before the reminder fires.</li>
         </ol>
         <p>This is a known limitation of iOS local notification scheduling. The reschedule-on-save approach is the correct solution.</p>
       </div>
@@ -487,7 +487,7 @@ const headings = [
     <h2 id="budget-setup">Budget setup changes</h2>
 
     <div class="doc-mocks-row">
-      <DocMock label="Budget Settings" caption="Update pay frequency or income — changes apply to the next period.">
+      <DocMock label="Budget Settings" caption="Update pay frequency or income, changes apply to the next period.">
         <div class="dm-bar"><span class="dm-back">Settings</span><span class="dm-bar-title">Budget Settings</span><span class="dm-bar-action">Save</span></div>
         <div class="dm-card">
           <div class="dm-h2">Pay frequency</div>
@@ -512,7 +512,7 @@ const headings = [
         <div class="dm-card dm-card-accent" style="text-align:center;">
           <div class="dm-hero-label">Per period</div>
           <div class="dm-hero-amount" style="font-size:22px;">$300<span class="dm-cents">.00</span></div>
-          <div class="dm-hero-sub">was $480 — eased while bills are tight</div>
+          <div class="dm-hero-sub">was $480, eased while bills are tight</div>
         </div>
         <div class="dm-section-label">Goals receiving the contribution</div>
         <div class="dm-list">
@@ -549,7 +549,7 @@ const headings = [
       <div class="case-body">
         <p class="case-what"><strong>What is happening.</strong> The 50/30/20 default split (Needs/Wants/Savings) is a starting point. If your real fixed costs consistently exceed 50% of take-home pay, your Needs bucket is too small and Safe to Spend will always feel insufficient.</p>
         <ol>
-          <li>Review which categories you've assigned the red color. Red categories drive the Bill Reserve. If a streaming service or gym membership is marked red, change it to green (Fun) — only reserve money for bills you absolutely must pay.</li>
+          <li>Review which categories you've assigned the red color. Red categories drive the Bill Reserve. If a streaming service or gym membership is marked red, change it to green (Fun), only reserve money for bills you absolutely must pay.</li>
           <li>Look at your monthly category targets. If your real essential outflows consistently exceed what you've planned for red categories, your savings target may be too aggressive. Lower the savings target until Safe to Spend is realistic, then raise it back as you build cushion.</li>
           <li>Check whether surplus carryover is enabled in Settings → Budget Settings. If you consistently come in under budget, enabling carryover lets accumulated surplus add to future periods' capacity.</li>
           <li>Check the Insights tab for a Spending Breakdown by category. This shows where money actually goes vs. what you have allocated, which often reveals a mismatch between perceived and actual spending.</li>

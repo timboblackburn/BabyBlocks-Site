@@ -18,7 +18,7 @@ interface Props {
 
 const {
   title,
-  description = 'BabyBlocks: simple, visual iOS apps for a calmer life. BudgetBaby helps you stay in control of your money without the stress.',
+  description = 'BudgetBaby helps you plan bills, spending, and savings without connecting your bank. Built by BabyBlocks, an independent studio.',
   ogTitle,
   ogDescription,
   canonical,
@@ -55,7 +55,7 @@ const orgJsonLd = JSON.stringify({
 });
 
 const isLight = theme === 'core' || theme === 'pantry';
-const themeColor = theme === 'pantry' ? '#F7F5F2' : theme === 'core' ? '#EEEEFC' : '#09090F';
+const themeColor = theme === 'pantry' ? '#F4F1EA' : theme === 'core' ? '#FFF7EF' : '#0B0A0F';
 
 const pageTitle = title.includes('BabyBlocks') ? title : `${title} | BabyBlocks`;
 const ogT = ogTitle ?? pageTitle;
@@ -105,14 +105,13 @@ const canonicalURL = canonical ? `${siteURL}${canonical}` : null;
     <meta name="color-scheme" content={isLight ? 'light' : 'dark'} />
     <meta name="theme-color" content={themeColor} />
 
-    <!-- Fraunces serif. Family touchpoint shared with intriguemmc.com and
-         intriguinginsight.com. Used sparingly on a single accent moment per
-         page to keep the BabyBlocks personality intact while signalling the
-         family DNA. -->
+    <!-- Editorial type pairing. Fraunces is the family touchpoint shared with
+         intriguemmc.com and intriguinginsight.com (used on display headlines).
+         Inter is the body / UI face, calm, modern, highly legible at small sizes. -->
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,450;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
 

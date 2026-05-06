@@ -5,108 +5,111 @@ import CTASection from '../../components/CTASection.astro';
 import Icon from '../../components/Icon.astro';
 import ScreenshotFrame from '../../components/ScreenshotFrame.astro';
 import WaitlistForm from '../../components/WaitlistForm.astro';
+import PhoneMockup from '../../components/abstract/PhoneMockup.astro';
+import BudgetBabyPreview from '../../components/abstract/BudgetBabyPreview.astro';
+import AbstractGlow from '../../components/abstract/AbstractGlow.astro';
 
 const features = [
   {
     icon: 'target',
     title: 'Safe to Spend',
-    desc: 'A single daily number that tells you exactly how much you can spend without missing bills or breaking your savings plan. Green means go. Red means stop.',
+    desc: 'One number on the home screen tells you what you have left for today. If it is green, you are fine. If it is red, hold off.',
   },
   {
     icon: 'layers',
     title: 'Money Pools',
-    desc: 'Track Cash, Debit, Credit, and Savings as separate pools. Understand where your money actually lives, not just what the total says.',
+    desc: 'See your Cash, Card, and Savings as three separate buckets. So you can tell where the money is, not just the grand total.',
   },
   {
     icon: 'tag',
     title: 'Priority Categories',
-    desc: 'Color-code every expense: Critical (rent, insurance), Important (groceries, gas), Discretionary (dining, hobbies). See your spending for what it actually is.',
+    desc: 'Tag every expense as Essentials, Variable, Fun, or Unplanned. See where the month actually went, in colour, in a glance.',
   },
   {
     icon: 'file-text',
     title: 'Recurring Bills',
-    desc: 'Log every fixed expense once. BudgetBaby tracks due dates, sends reminders up to a week in advance, and factors upcoming bills into your Safe to Spend.',
+    desc: 'Add each bill once. We track the due date and ping you a few days early. Upcoming bills already drop out of your daily number.',
   },
   {
     icon: 'star',
     title: 'Savings Goals',
-    desc: 'Set a target, track progress with visual rings, and celebrate milestones at 25%, 50%, 75%, and 100%. Your savings budget is reserved and not counted as spending.',
+    desc: 'Pick a goal. Watch the ring fill up. The amount you set aside does not count against your daily spend.',
   },
   {
     icon: 'cloud-upload',
     title: 'Cloud Backup',
-    desc: 'Your data is AES-256 encrypted before it leaves your device. Restore to any device in seconds with no app restart needed.',
+    desc: 'Optional iCloud backup, encrypted on your phone before it leaves. Phone breaks, you restore in a few taps.',
   },
   {
     icon: 'bar-chart-2',
-    title: 'Insights Drill-Downs',
-    desc: 'Tap any category trend to see every transaction in that period. Premium users get full month analysis: budget stats, category breakdown, and all transactions in one view.',
+    title: 'Insights you can use',
+    desc: 'Tap any category to see every transaction inside it. Premium adds month-by-month analysis with the full breakdown on one screen.',
   },
   {
     icon: 'camera',
-    title: 'Receipt Attachments',
-    desc: 'Attach a photo receipt to any transaction from the activity log or detail view. Tap to expand full-screen. One tap to remove.',
+    title: 'Photos of receipts',
+    desc: 'Snap the receipt, attach it to the transaction. Tap to view it full-screen later. One tap to delete.',
   },
   {
     icon: 'bell',
-    title: 'Advanced Reminders',
-    desc: 'Custom reminder schedules per bill and subscription, personalized message text, quiet hours, and a monthly savings nudge. All configurable, all premium.',
+    title: 'Reminders that fit your life',
+    desc: 'Pick when each bill or subscription pings you. Set quiet hours. Get a monthly nudge to top up your savings goal. (Premium.)',
   },
 ];
 
 const steps = [
   {
     num: '01',
-    title: 'Set your budget',
-    desc: 'Tell BudgetBaby your pay frequency and income. The 8-step onboarding takes about 3 minutes.',
+    title: 'Set it up once',
+    desc: 'Tell us how often you get paid and roughly how much. The whole setup is eight short steps and takes about three minutes.',
   },
   {
     num: '02',
-    title: 'Track as you spend',
-    desc: 'Log expenses with a tap. Assign to a category, choose your payment pool, and keep moving.',
+    title: 'Tap as you go',
+    desc: 'Bought lunch? Open the app, tap, pick the category. Done. Back to your day.',
   },
   {
     num: '03',
-    title: 'Know your number',
-    desc: 'The Safe to Spend figure updates in real time. Open the app, glance at the number, make the call.',
+    title: 'Glance and decide',
+    desc: 'Considering a purchase? Open the app. Look at the number. If it is healthy, go for it. If not, you just saved yourself a problem.',
   },
 ];
 
 const faqs = [
   {
-    q: 'What is Safe to Spend?',
-    a: 'Safe to Spend is a daily number. It takes your remaining budget, subtracts upcoming bill obligations and your savings reserve, then divides by the days remaining in your period. It updates every time you log a transaction.',
+    q: 'What is this Safe to Spend number?',
+    a: 'It is what you have left to spend today after your upcoming bills, your savings target, and what you have already spent are taken out. Every time you log something, the number updates.',
   },
   {
-    q: 'Does my data stay on my device?',
-    a: 'Yes. All budget data is stored locally using SwiftData. Cloud sync and backup are optional features that require you to sign in. They are never on by default.',
+    q: 'Does it know about my bank account?',
+    a: 'No. We never see your bank, your statements, or your card. You type what you spend. That is the whole reason the numbers match what is actually in your account.',
   },
   {
-    q: 'What\'s the difference between free and premium?',
-    a: 'The free tier is fully usable: Safe to Spend, unlimited transactions, 3 savings goals, 3 recurring bills, 3 subscriptions, 5 custom categories, and 1 CSV export per month. Premium ($7.99/mo or $69.99/yr) removes all limits and adds advanced insights, calendar sync, unlimited exports (CSV and PDF), and up to 5 cloud backup slots.',
+    q: 'Does my data leave my phone?',
+    a: 'Not unless you ask it to. Everything sits on your device by default. iCloud backup is optional and we encrypt your data on your phone before it goes anywhere.',
   },
   {
-    q: 'Does BudgetBaby connect to my bank?',
-    a: 'No. BudgetBaby is intentionally manual. You log what you spend. That means no bank credentials ever touch the app, and no third-party data sharing.',
+    q: 'What is the difference between free and premium?',
+    a: 'The free version is the real app, not a demo. You get Safe to Spend, unlimited transactions, three savings goals, three recurring bills, three subscriptions, five custom categories, and one CSV export a month. Premium ($7.99 a month or $69.99 a year) drops the limits and adds calendar sync, monthly reports, PDF exports, and up to five backup slots.',
   },
   {
-    q: 'What happens when my budget period ends?',
-    a: 'BudgetBaby archives the finished period (read-only) and opens a new one. Any surplus budget optionally carries over. Your Cash and Debit balances always carry forward automatically.',
+    q: 'What happens when the month ends?',
+    a: 'The finished period gets archived (you can still look at it, just not edit it) and a new one starts. Surplus money can carry over if you want. Your Cash and Card balances always carry forward.',
   },
   {
-    q: 'Can I export my data?',
-    a: 'Free users get 1 CSV export per month. Premium users get unlimited exports in both CSV and PDF formats, including full spending breakdowns and progress bars.',
+    q: 'Can I get my data out?',
+    a: 'Yes. Free users export one CSV a month. Premium gets unlimited exports in CSV and PDF, with the full breakdown and category progress bars.',
   },
   {
-    q: 'What iOS version does BudgetBaby require?',
-    a: 'iOS 17.0 or later. BudgetBaby is built with SwiftUI and SwiftData, modern iOS-only technologies that allow it to be fast, private, and responsive.',
+    q: 'Will it run on my iPhone?',
+    a: 'You need iPhone with iOS 17 or later. The app is built in Swift and SwiftData, so it is iPhone-only and very fast.',
   },
 ];
 ---
 
 <Layout
-  title="BudgetBaby: Know Your Safe to Spend"
-  description="BudgetBaby is a premium iOS budgeting app built for simplicity and clarity. Know what's safe to spend today. Track your Money Pools. Never miss a bill."
+  title="BudgetBaby for iOS: Plan bills, spending, and savings"
+  description="BudgetBaby is an iOS budgeting app. It plans bills, spending, and savings without connecting your bank. Free tier with optional Premium."
   canonical="/budgetbaby"
 >
   <script is:inline type="application/ld+json" set:html={JSON.stringify({
@@ -148,69 +151,47 @@ const faqs = [
 
   <!-- Hero -->
   <section class="bb-hero section">
+    <AbstractGlow tone="peach" size="xl" opacity={0.30}
+                  position="top:-12%; right:-8%;" class="bb-hero-glow" />
+    <AbstractGlow tone="coral" size="lg" opacity={0.18}
+                  position="top:30%; left:-10%;" class="bb-hero-glow" />
     <div class="container">
       <div class="hero-inner">
         <div class="hero-copy">
-          <div class="label-chip">Coming back soon · Almost ready</div>
-          <h1>Know what's safe<br /><span class="text-gradient">to spend today.</span></h1>
+          <div class="label-chip"><span class="label-chip-dot" aria-hidden="true"></span>In App Review</div>
+          <h1 class="display-serif">Can you actually<br />afford that today?</h1>
           <p>
-            BudgetBaby tracks your money across every pool: Cash, Debit, Credit, and Savings.
-            One number tells you how much you can spend right now without jeopardizing your bills or goals.
+            BudgetBaby works it out for you. It tracks Cash, Card, and Savings as three
+            buckets, then shows one number on the home screen that already accounts for your
+            rent, your bills, and what you said you would save. If the number is green, go
+            for it. If it is small, maybe wait a day.
           </p>
           <p class="hero-note hero-note--callout">
-            We're transitioning to our new LLC — almost ready to return to the App Store within a couple of weeks.
+            The first version launched in December 2024. The new build is sitting with Apple right now.
           </p>
           <div class="hero-actions">
             <a href="#bb-waitlist" class="btn btn-primary btn-lg">
-              Join the waitlist
+              Email me when it is back
             </a>
             <a href="/budgetbaby/features" class="btn btn-secondary btn-lg">
-              See how it works
+              Tour the features
             </a>
           </div>
-          <p class="hero-note">Free to download · iOS 17+ · Premium $7.99/mo or $69.99/yr</p>
+          <p class="hero-note">iPhone, iOS 17 and up. Free to use. Premium is $7.99 a month or $69.99 a year.</p>
 
           <div id="bb-waitlist" class="hero-waitlist">
             <WaitlistForm
               app="budgetbaby"
-              heading="Be first when BudgetBaby returns."
-              sub="One email when the new LLC build is live. No spam, no marketing."
+              heading="Drop your email. We will tell you the day it is back."
+              sub="One email, just from us. No newsletter, no marketing list."
             />
           </div>
         </div>
 
         <div class="hero-visual" aria-hidden="true">
-          <div class="phone-mockup glass">
-            <div class="safe-to-spend-mock">
-              <div class="mock-label">Safe to Spend Today</div>
-              <div class="mock-amount">$42<span class="mock-cents">.50</span></div>
-              <div class="mock-bar">
-                <div class="mock-bar-fill" style="width: 62%"></div>
-              </div>
-              <div class="mock-pools">
-                <div class="mock-pool">
-                  <span class="mock-pool-icon"><Icon name="dollar-sign" size={14} /></span>
-                  <span>Cash</span>
-                  <span class="mock-pool-amount">$124</span>
-                </div>
-                <div class="mock-pool">
-                  <span class="mock-pool-icon"><Icon name="landmark" size={14} /></span>
-                  <span>Debit</span>
-                  <span class="mock-pool-amount">$843</span>
-                </div>
-                <div class="mock-pool">
-                  <span class="mock-pool-icon"><Icon name="credit-card" size={14} /></span>
-                  <span>Credit</span>
-                  <span class="mock-pool-amount">$210</span>
-                </div>
-                <div class="mock-pool">
-                  <span class="mock-pool-icon"><Icon name="lock" size={14} /></span>
-                  <span>Savings</span>
-                  <span class="mock-pool-amount">$1,200</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          <PhoneMockup tone="dark" width={240} tilt={-2} class="bb-hero-phone">
+            <BudgetBabyPreview variant="home" />
+          </PhoneMockup>
         </div>
       </div>
     </div>
@@ -220,9 +201,9 @@ const faqs = [
   <section class="features section">
     <div class="container">
       <div class="section-header centered">
-        <span class="eyebrow">Core Features</span>
-        <h2>Everything you need.<br />Nothing you don't.</h2>
-        <p>BudgetBaby is built around how people actually think about money. Not how accountants do.</p>
+        <span class="eyebrow">What is in it</span>
+        <h2>Nine things, no fluff.</h2>
+        <p>Each feature here exists because someone using the app actually needed it. If a thing did not earn its place, we cut it.</p>
       </div>
 
       <div class="feature-grid">
@@ -249,9 +230,9 @@ const faqs = [
   <section class="screenshots-section section-sm">
     <div class="container">
       <div class="section-header centered">
-        <span class="eyebrow">The App</span>
-        <h2>See it in action.</h2>
-        <p>Every view is designed to give you exactly the information you need — nothing more.</p>
+        <span class="eyebrow">A peek inside</span>
+        <h2>Three screens, three answers.</h2>
+        <p>How much can I spend today, where is my money sitting, and where did it all go this month.</p>
       </div>
 
       <div class="screenshots-grid">
@@ -267,7 +248,7 @@ const faqs = [
           </div>
         </ScreenshotFrame>
 
-        <ScreenshotFrame caption="See where it lives" label="Money Pools">
+        <ScreenshotFrame caption="Where the money sits" label="Money Pools">
           <div class="mock-screen-pools">
             <div class="ss-label">Your Pools</div>
             <div class="ss-pool-row">
@@ -278,28 +259,22 @@ const faqs = [
             </div>
             <div class="ss-pool-row">
               <span class="ss-pool-dot debit"></span>
-              <span class="ss-pool-name">Debit</span>
+              <span class="ss-pool-name">Card</span>
               <span class="ss-pool-bar-wrap"><div class="ss-pool-bar" style="width:78%"></div></span>
-              <span class="ss-pool-amt">$843</span>
+              <span class="ss-pool-amt">$1,720</span>
             </div>
             <div class="ss-pool-row">
               <span class="ss-pool-dot credit"></span>
-              <span class="ss-pool-name">Credit</span>
-              <span class="ss-pool-bar-wrap"><div class="ss-pool-bar" style="width:22%"></div></span>
-              <span class="ss-pool-amt">$210</span>
-            </div>
-            <div class="ss-pool-row">
-              <span class="ss-pool-dot savings"></span>
               <span class="ss-pool-name">Savings</span>
-              <span class="ss-pool-bar-wrap"><div class="ss-pool-bar" style="width:100%"></div></span>
-              <span class="ss-pool-amt">$1,200</span>
+              <span class="ss-pool-bar-wrap"><div class="ss-pool-bar" style="width:80%"></div></span>
+              <span class="ss-pool-amt">$3,200</span>
             </div>
             <div class="ss-divider"></div>
-            <div class="ss-row bold"><span>Total</span><span class="green">$2,377</span></div>
+            <div class="ss-row bold"><span>Total</span><span class="green">$5,044</span></div>
           </div>
         </ScreenshotFrame>
 
-        <ScreenshotFrame caption="Understand the pattern" label="Spending Trends">
+        <ScreenshotFrame caption="Where it all went" label="Spending Trends">
           <div class="mock-screen-insights">
             <div class="ss-label">Spending by Category</div>
             <div class="ss-chart">
@@ -318,17 +293,17 @@ const faqs = [
             </div>
             <div class="ss-cat-row">
               <span class="ss-cat-dot critical"></span>
-              <span class="ss-cat-name">Critical</span>
+              <span class="ss-cat-name">Essentials</span>
               <span class="ss-cat-amt">$640</span>
             </div>
             <div class="ss-cat-row">
               <span class="ss-cat-dot important"></span>
-              <span class="ss-cat-name">Important</span>
+              <span class="ss-cat-name">Variable</span>
               <span class="ss-cat-amt">$310</span>
             </div>
             <div class="ss-cat-row">
               <span class="ss-cat-dot discretionary"></span>
-              <span class="ss-cat-name">Discretionary</span>
+              <span class="ss-cat-name">Fun</span>
               <span class="ss-cat-amt">$175</span>
             </div>
           </div>
@@ -342,8 +317,8 @@ const faqs = [
     <div class="container">
       <div class="section-header centered">
         <span class="eyebrow">Pricing</span>
-        <h2>Free is real. Premium is more.</h2>
-        <p>The free tier is a complete budgeting app. Premium removes limits and adds power features.</p>
+        <h2>Free works. Premium does more.</h2>
+        <p>The free tier is a working budgeting app. Premium removes limits and adds reports, calendar sync, and unlimited categories.</p>
       </div>
 
       <div class="pricing-table-wrap glass">
@@ -367,7 +342,7 @@ const faqs = [
               <td>Unlimited</td>
             </tr>
             <tr>
-              <td>Money Pools (Cash, Debit, Credit, Savings)</td>
+              <td>Money Pools (Cash, Card, Savings)</td>
               <td class="check">Yes</td>
               <td class="check">Yes</td>
             </tr>
@@ -441,7 +416,7 @@ const faqs = [
       </div>
 
       <p class="pricing-note">
-        Premium: $7.99/month or $69.99/year. 7-day free trial on annual plan. Cancel anytime in iOS Settings.
+        Premium is $7.99/month or $69.99/year. The annual plan includes a 7 day free trial. Manage and cancel in iOS Settings.
       </p>
     </div>
   </section>
@@ -450,8 +425,8 @@ const faqs = [
   <section class="how-it-works section-sm">
     <div class="container">
       <div class="section-header centered">
-        <span class="eyebrow">How It Works</span>
-        <h2>Three steps. That's it.</h2>
+        <span class="eyebrow">How it works</span>
+        <h2>Three steps.</h2>
       </div>
 
       <div class="steps-grid">
@@ -471,18 +446,17 @@ const faqs = [
     <div class="container-sm">
       <GlassCard accent padding="lg">
         <div class="designed-inner">
-          <h2>Designed for clarity, not complexity.</h2>
+          <h2>What BudgetBaby does not do.</h2>
           <p>
-            BudgetBaby doesn't try to replace your bank or automate your finances.
-            It gives you one honest number, Safe to Spend, and the context to trust it.
-            Your data stays on your device. Cloud features are always opt-in.
-            No ads, no data brokering, no algorithmic nudges.
+            It does not connect to your bank. It does not predict the future. It does not auto categorise.
+            You enter what you spend. The app calculates Safe to Spend from there.
           </p>
           <p>
-            Built by <strong>Intriguing Insight</strong>, focused on building software that respects the people who use it.
+            Built by <strong>Intriguing Insight</strong>, an Intrigue MMC LLC studio. Independently funded.
+            Subscription revenue only. No ads.
           </p>
           <a href="/about" class="btn btn-ghost" style="margin-top: var(--space-2);">
-            Learn about BabyBlocks →
+            About BabyBlocks <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
       </GlassCard>
@@ -494,7 +468,7 @@ const faqs = [
     <div class="container-sm">
       <div class="section-header">
         <span class="eyebrow">FAQ</span>
-        <h2>Common questions</h2>
+        <h2>Common questions.</h2>
       </div>
 
       <div class="faq-list">
@@ -520,18 +494,25 @@ const faqs = [
   </section>
 
   <CTASection
-    heading="Be first when BudgetBaby returns."
-    subheading="Almost ready under our new LLC. Join the waitlist and we'll email you the moment it's live again."
+    heading="One email when BudgetBaby is back."
+    subheading="In App Review now. We will email you the day it goes live."
     primaryLabel="Join the waitlist"
     primaryHref="#bb-waitlist"
-    secondaryLabel="See how it works"
+    secondaryLabel="See the features"
     secondaryHref="/budgetbaby/features"
   />
 </Layout>
 
 <style>
   /* Hero */
-  .bb-hero { padding-top: calc(var(--space-20) + var(--space-8)); }
+  .bb-hero {
+    position: relative;
+    padding-top: calc(var(--space-20) + var(--space-8));
+    isolation: isolate;
+    overflow: hidden;
+  }
+  .bb-hero :global(.bb-hero-glow) { z-index: -1; }
+  .bb-hero :global(.bb-hero-phone) { margin-inline: auto; }
 
   .hero-inner {
     display: grid;
@@ -570,12 +551,13 @@ const faqs = [
 
   .hero-note--callout {
     font-size: var(--text-sm);
-    color: var(--text-secondary);
-    background: rgba(255, 255, 255, 0.04);
-    border-left: 2px solid var(--accent, #5fcfd6);
-    padding: 0.6rem 0.85rem;
+    color: var(--ink-800);
+    background: rgba(255, 255, 255, 0.7);
+    border-left: 2px solid var(--coral-500);
+    padding: 0.7rem 0.95rem;
     border-radius: 0.4rem;
     margin: 0.75rem 0;
+    box-shadow: var(--shadow-sm);
   }
 
   .hero-waitlist {
@@ -584,14 +566,26 @@ const faqs = [
     scroll-margin-top: 6rem;
   }
 
-  /* Phone Mockup */
+  /* Phone mockup, a deliberate dark-on-cream island, like the reference. */
   .phone-mockup {
     border-radius: var(--radius-2xl);
     padding: var(--space-6);
-    background: rgba(30, 8, 69, 0.35);
-    border-color: rgba(139, 92, 246, 0.2);
-    box-shadow: var(--glow-md), var(--shadow-xl);
+    background: linear-gradient(180deg, #131217 0%, #0E0D12 100%);
+    border: 1px solid rgba(255, 247, 239, 0.08);
+    color: #FFF7EF;
+    box-shadow:
+      0 24px 60px rgba(60, 30, 20, 0.18),
+      0 6px 18px rgba(60, 30, 20, 0.10);
   }
+  .phone-mockup .mock-label { color: rgba(255, 247, 239, 0.55); }
+  .phone-mockup .mock-amount { color: var(--peach-200); }
+  .phone-mockup .mock-pool { color: rgba(255, 247, 239, 0.78); }
+  .phone-mockup .mock-pool-icon { color: rgba(255, 247, 239, 0.50); }
+  .phone-mockup .mock-pool-amount { color: #FFF7EF; }
+  .phone-mockup .mock-bar {
+    background: rgba(255, 247, 239, 0.10);
+  }
+  .phone-mockup .mock-pools { border-top-color: rgba(255, 247, 239, 0.08); }
 
   .safe-to-spend-mock {
     display: flex;

@@ -171,7 +171,7 @@ const headings = [
     </ul>
 
     <div class="doc-mocks-row">
-      <DocMock label="Backup & Restore" caption="Tap Create Backup — encryption, upload, and slot tracking are automatic.">
+      <DocMock label="Backup & Restore" caption="Tap Create Backup, encryption, upload, and slot tracking are automatic.">
         <div class="dm-bar"><span class="dm-back">Settings</span><span class="dm-bar-title">Backup</span><span></span></div>
         <div class="dm-card dm-card-accent">
           <div class="dm-kv"><strong>Slots used</strong><strong style="color:#A78BFA">2 / 5</strong></div>
@@ -185,7 +185,7 @@ const headings = [
         </div>
         <div class="dm-btn dm-btn-primary">+ Create Backup</div>
       </DocMock>
-      <DocMock label="Backup running" caption="Backups complete in 5–15 seconds for most users.">
+      <DocMock label="Backup running" caption="Backups complete in 5-15 seconds for most users.">
         <div class="dm-bar"><span></span><span class="dm-bar-title">Creating backup…</span><span></span></div>
         <div class="dm-card dm-card-accent" style="align-items:center; text-align:center;">
           <div class="dm-ring-wrap" style="margin:8px auto 4px;">
@@ -196,8 +196,8 @@ const headings = [
           <div class="dm-help">2.4 MB · AES-256-GCM</div>
         </div>
         <div class="dm-card">
-          <div class="dm-kv"><span><span style="color:#34D399;">✓</span> Snapshot built</span><span class="muted">1.4s</span></div>
-          <div class="dm-kv"><span><span style="color:#34D399;">✓</span> Encrypted in memory</span><span class="muted">0.2s</span></div>
+          <div class="dm-kv"><span><span style="color:#34D399;"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><polyline points="20 6 9 17 4 12"/></svg></span> Snapshot built</span><span class="muted">1.4s</span></div>
+          <div class="dm-kv"><span><span style="color:#34D399;"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><polyline points="20 6 9 17 4 12"/></svg></span> Encrypted in memory</span><span class="muted">0.2s</span></div>
           <div class="dm-kv"><span><span style="color:#A78BFA;">●</span> Uploading to server</span><span class="muted">3.8s</span></div>
         </div>
       </DocMock>
@@ -208,7 +208,7 @@ const headings = [
       <li>Go to <strong>Settings → Backup &amp; Restore</strong>.</li>
       <li>Select the backup you want to restore from the list. The list shows the creation date and time of each backup.</li>
       <li>Tap <strong>Restore</strong>.</li>
-      <li>Read the confirmation dialog carefully. It explains what will happen and that a safety backup will be created first. Tap Confirm.</li>
+      <li>Read the confirmation dialog. It tells you exactly what will happen and that a safety backup goes up first. Tap Confirm.</li>
       <li>BudgetBaby creates a safety backup of your current data, then downloads and decrypts the selected backup, then replaces your current data with the restored data. No app restart is required.</li>
     </ol>
     <div class="doc-warning">
@@ -222,7 +222,7 @@ const headings = [
     </p>
 
     <div class="doc-mocks-row">
-      <DocMock label="Restore confirmation" caption="The confirm sheet describes exactly what will happen — and what gets safety-backed-up.">
+      <DocMock label="Restore confirmation" caption="The confirm sheet describes exactly what will happen, and what gets safety-backed-up.">
         <div class="dm-sheet-handle"></div>
         <div class="dm-bar"><span></span><span class="dm-bar-title">Confirm restore</span><span class="dm-bar-action">Cancel</span></div>
         <div class="dm-card dm-card-warn" style="text-align:center;">
@@ -284,7 +284,7 @@ const headings = [
     <p>
       A migration file is a single <code>.bbbackup</code> file that contains your entire
       BudgetBaby dataset, encrypted with a passphrase you set. It works no matter what
-      Apple ID or iCloud account is on the new device — the only thing that matters is
+      Apple ID or iCloud account is on the new device, the only thing that matters is
       the passphrase.
     </p>
     <ol>
@@ -311,7 +311,7 @@ const headings = [
         </div>
         <div class="dm-section-label">Passphrase</div>
         <div class="dm-card" style="font-family:var(--font-mono); letter-spacing:0.4em; font-size:12px; text-align:center; padding:8px;">••••••••••</div>
-        <div class="dm-help">Pick something memorable. We never see this — you cannot recover it later.</div>
+        <div class="dm-help">Pick something memorable. We never see this, you cannot recover it later.</div>
         <div class="dm-btn dm-btn-primary">Export & Share…</div>
       </DocMock>
     </div>
@@ -345,8 +345,8 @@ const headings = [
           <div class="dm-help" style="text-align:center; color:#FDBA74;">iCloud Keychain is syncing. Restore unlocks once the key arrives.</div>
         </div>
         <div class="dm-card">
-          <div class="dm-kv"><span><span style="color:#34D399;">✓</span> Account signed in</span><span class="muted"></span></div>
-          <div class="dm-kv"><span><span style="color:#34D399;">✓</span> Backup downloaded</span><span class="muted">2.4 MB</span></div>
+          <div class="dm-kv"><span><span style="color:#34D399;"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><polyline points="20 6 9 17 4 12"/></svg></span> Account signed in</span><span class="muted"></span></div>
+          <div class="dm-kv"><span><span style="color:#34D399;"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><polyline points="20 6 9 17 4 12"/></svg></span> Backup downloaded</span><span class="muted">2.4 MB</span></div>
           <div class="dm-kv"><span><span style="color:#FBBF24;">●</span> Encryption key syncing…</span><span class="muted">~1 min</span></div>
           <div class="dm-kv"><span><span style="color:var(--text-faint);">○</span> Restore</span><span class="muted">pending</span></div>
         </div>

@@ -6,18 +6,18 @@ import AppIcon from '../components/AppIcon.astro';
 ---
 
 <Layout
-  title="What's Coming | BabyBlocks"
-  description="See what's next in the BabyBlocks ecosystem. PantryBaby and BabyBlocks Core are in the pipeline. Here's what we're building."
+  title="What is Coming | BabyBlocks"
+  description="What is next from BabyBlocks. PantryBaby is in development. BabyBlocks Core is at the idea stage. Honest status for each."
   canonical="/coming-soon"
   theme="core"
 >
   <section class="coming-hero section">
     <div class="container">
       <div class="coming-copy">
-        <div class="label-chip">On the horizon</div>
-        <h1>What's next<br /><span class="text-gradient">from BabyBlocks.</span></h1>
+        <div class="label-chip">What is next</div>
+        <h1>What is being<br /><span class="text-gradient">built next.</span></h1>
         <p class="coming-sub">
-          We build one thing at a time, and we build it right. Here's where the ecosystem is headed.
+          One app at a time. PantryBaby is in development. BabyBlocks Core is at the idea stage.
         </p>
       </div>
     </div>
@@ -27,56 +27,55 @@ import AppIcon from '../components/AppIcon.astro';
   <section class="pipeline section-sm">
     <div class="container">
       <div class="pipeline-grid">
-        <!-- PantryBaby — In Development -->
+        <!-- PantryBaby, in development -->
         <a href="/coming-soon/pantrybaby" class="pipeline-card glass pipeline-card--pantry">
           <div class="pipeline-top">
             <div class="pipeline-icon"><AppIcon app="pantrybaby" size={44} /></div>
-            <span class="pipeline-status status-active">In Development</span>
+            <span class="pipeline-status status-active">In development</span>
           </div>
           <h2>PantryBaby</h2>
-          <p class="pipeline-tagline">Your grocery list + pantry memory.</p>
+          <p class="pipeline-tagline">Track what you have. Know what to buy.</p>
           <p class="pipeline-desc">
-            Track what you have, what's running low, and what you need to buy. All in one place.
-            Never forget your pantry inventory at the store again.
+            A simple pantry log and shopping list. See what is running low at a glance.
+            No bar code scans required.
           </p>
           <div class="pipeline-features">
             <span class="pf-tag">Pantry inventory</span>
-            <span class="pf-tag">Smart shopping lists</span>
+            <span class="pf-tag">Shopping list</span>
             <span class="pf-tag">14 storage areas</span>
             <span class="pf-tag">Expiry tracking</span>
           </div>
           <div class="pipeline-cta">
-            Learn more about PantryBaby →
+            Read about PantryBaby <span aria-hidden="true">&rarr;</span>
           </div>
         </a>
 
-        <!-- BabyBlocks Core — In Planning -->
+        <!-- BabyBlocks Core, idea stage -->
         <a href="/coming-soon/babyblocks-core" class="pipeline-card glass pipeline-card--core">
           <div class="pipeline-top">
             <div class="pipeline-icon"><Icon name="home" size={32} /></div>
-            <span class="pipeline-status status-planning">In Planning</span>
+            <span class="pipeline-status status-planning">Coming soon</span>
           </div>
           <h2>BabyBlocks Core</h2>
-          <p class="pipeline-tagline">The hub that ties it all together.</p>
+          <p class="pipeline-tagline">A shared home for the apps.</p>
           <p class="pipeline-desc">
-            One unified dashboard for your entire BabyBlocks life. Budget, pantry, and more,
-            surfaced in a single daily view with cross-app insights and Home Screen widgets.
+            One daily view across BudgetBaby and PantryBaby. Idea stage, not yet in development.
           </p>
           <div class="pipeline-features">
             <span class="pf-tag">Unified dashboard</span>
-            <span class="pf-tag">Cross-app insights</span>
+            <span class="pf-tag">Cross-app view</span>
             <span class="pf-tag">Home Screen widgets</span>
             <span class="pf-tag">Shared account</span>
           </div>
           <div class="pipeline-cta">
-            Learn more about BabyBlocks Core →
+            Read the brief <span aria-hidden="true">&rarr;</span>
           </div>
         </a>
       </div>
 
       <p class="pipeline-note">
-        More apps are in the ideation stage. The ecosystem grows one problem at a time.
-        <a href="/coming-soon/feature-requests" target="_blank" rel="noopener noreferrer">Vote on what comes next →</a>
+        That is the full list right now. Nothing else is in the pipeline.
+        <a href="/coming-soon/feature-requests" target="_blank" rel="noopener noreferrer">Submit a request <span aria-hidden="true">&rarr;</span></a>
       </p>
     </div>
   </section>
@@ -87,14 +86,14 @@ import AppIcon from '../components/AppIcon.astro';
       <GlassCard accent padding="lg">
         <div class="philosophy-inner">
           <div class="philosophy-copy">
-            <h2>One problem at a time.</h2>
+            <h2>One app at a time.</h2>
             <p>
-              Every app in the BabyBlocks ecosystem is built around a single, well-defined problem.
-              We don't ship half-built feature sets or bundle things together just to look more valuable.
-              When PantryBaby ships, it will do one thing exceptionally well: help you know what's in your kitchen.
+              Each app answers one question. BudgetBaby answers "what is safe to spend today?"
+              PantryBaby will answer "what do I need at the store?" If a feature does not help answer the
+              one question, it does not ship.
             </p>
             <p>
-              The ecosystem grows slowly and deliberately. That's the point.
+              That is the only reason there are not more apps yet.
             </p>
           </div>
         </div>
@@ -106,37 +105,37 @@ import AppIcon from '../components/AppIcon.astro';
   <section class="live-now section-sm">
     <div class="container">
       <div class="section-header centered">
-        <span class="eyebrow">Coming back soon</span>
-        <h2>The flagship is almost ready.</h2>
-        <p>BudgetBaby is transitioning to our LLC entity. Back on the App Store within 2 weeks. Join the waitlist to be first.</p>
+        <span class="eyebrow">Already built</span>
+        <h2>BudgetBaby is in App Review.</h2>
+        <p>The new LLC build is in App Review now. Join the waitlist for one email when it goes live.</p>
       </div>
 
       <div class="live-grid">
         <GlassCard glow>
           <div class="live-item">
             <div class="live-icon"><Icon name="target" size={28} /></div>
-            <h3>Know your Safe to Spend</h3>
-            <p>One number that tells you exactly how much you can spend today without breaking your budget.</p>
+            <h3>Safe to Spend</h3>
+            <p>One daily number, after bills and savings are set aside.</p>
           </div>
         </GlassCard>
         <GlassCard glow>
           <div class="live-item">
             <div class="live-icon"><Icon name="layers" size={28} /></div>
             <h3>Money Pools</h3>
-            <p>Track Cash, Debit, Credit, and Savings as separate pools. See where your money actually lives, not just a single bank balance.</p>
+            <p>Cash, Card, and Savings as three buckets. See where the money actually lives.</p>
           </div>
         </GlassCard>
         <GlassCard glow>
           <div class="live-item">
             <div class="live-icon"><Icon name="lock" size={28} /></div>
-            <h3>Privacy by default</h3>
-            <p>Your budget data stays on your device. Cloud backup is optional and encrypted before it ever leaves. We can't read it.</p>
+            <h3>Local first</h3>
+            <p>Your data stays on the phone. iCloud backup is optional and encrypted before it leaves.</p>
           </div>
         </GlassCard>
       </div>
 
       <div class="live-cta">
-        <a href="/budgetbaby" class="btn btn-primary btn-lg">Explore BudgetBaby →</a>
+        <a href="/budgetbaby" class="btn btn-primary btn-lg">Read about BudgetBaby <span aria-hidden="true">&rarr;</span></a>
       </div>
     </div>
   </section>
@@ -148,13 +147,13 @@ import AppIcon from '../components/AppIcon.astro';
         <div class="roadmap-teaser-inner">
           <div class="roadmap-teaser-icon"><Icon name="map-pin" size={28} /></div>
           <div>
-            <h3>See what's coming to BudgetBaby.</h3>
+            <h3>The full roadmap.</h3>
             <p>
-              Shared budgets, Android, a web dashboard, and more are on the roadmap.
-              The full breakdown lives on the roadmap page, along with where each app fits into the bigger picture.
+              Shared budgets, Android, a web dashboard, and more are on the roadmap. Each item has a
+              status and a target window. None of it is committed beyond what is listed.
             </p>
             <a href="/coming-soon/roadmap" class="btn btn-secondary" style="margin-top: var(--space-4);">
-              View the full roadmap →
+              See the roadmap <span aria-hidden="true">&rarr;</span>
             </a>
           </div>
         </div>

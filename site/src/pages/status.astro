@@ -5,7 +5,7 @@ import Icon from '../components/Icon.astro';
 ---
 
 <Layout
-  title="Status — BabyBlocks"
+  title="Status | BabyBlocks"
   description="Current operational status of BudgetBaby services: App Store, cloud sync, push notifications, and authentication."
   canonical="/status"
 >
@@ -51,7 +51,7 @@ import Icon from '../components/Icon.astro';
             <p>
               If you're experiencing an issue not reflected here, contact us at
               <a href="mailto:support@babyblocks.io">support@babyblocks.io</a>.
-              We respond within 1–2 business days. Data loss issues are flagged same day.
+              We respond within 1-2 business days. Data loss issues are flagged same day.
             </p>
           </div>
         </div>
@@ -64,7 +64,7 @@ import Icon from '../components/Icon.astro';
   <section class="history-section section-sm">
     <div class="container-sm">
       <h2 class="history-heading">Incident history</h2>
-      <p class="history-sub">Past 90 days — all times UTC</p>
+      <p class="history-sub">Past 90 days. All times UTC.</p>
 
       <div id="history-empty" class="history-empty glass">
         <Icon name="check" size={20} />
@@ -115,7 +115,7 @@ import Icon from '../components/Icon.astro';
 
   // Treat in_development as non-degraded for headline + banner. Public
   // visitors see "In Development" as a forward-looking signal, not a
-  // service issue — so it doesn't pull the overall headline into
+  // service issue, so it doesn't pull the overall headline into
   // "Service disruption" or "Partial degradation".
   function isHealthy(s: string) {
     return s === 'operational' || s === 'in_development';
@@ -242,7 +242,7 @@ import Icon from '../components/Icon.astro';
       }
 
     } catch {
-      // Silently leave the page in loading state — don't show error to users
+      // Silently leave the page in loading state, don't show error to users
       const headline = document.getElementById('status-headline');
       const sub = document.getElementById('status-sub');
       if (headline) headline.innerHTML = 'All systems <span class="text-gradient">operational.</span>';
@@ -369,7 +369,7 @@ import Icon from '../components/Icon.astro';
     border: 1px solid rgba(52, 211, 153, 0.2);
   }
 
-  /* Cycle 88: blue, not yellow — "in development" is forward-looking,
+  /* Cycle 88: blue, not yellow, "in development" is forward-looking,
      not a service issue. Distinct from 'degraded' so visitors don't
      read it as a warning. */
   .svc-badge--in-development {
