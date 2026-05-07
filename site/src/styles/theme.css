@@ -50,8 +50,9 @@
 
   --text-primary:   var(--ink-900);
   --text-secondary: rgba(21, 17, 13, 0.74);
-  --text-muted:     rgba(21, 17, 13, 0.55);
-  --text-faint:     rgba(21, 17, 13, 0.36);
+  /* WCAG AA body text needs >= 4.5:1 contrast on cream. 0.62 alpha hits that. */
+  --text-muted:     rgba(21, 17, 13, 0.62);
+  --text-faint:     rgba(21, 17, 13, 0.42);
 
   /* Status */
   --green:  #2F9E6E;
