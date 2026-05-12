@@ -19,6 +19,17 @@ import BudgetBabyPreview from '../components/abstract/BudgetBabyPreview.astro';
     <div class="container">
       <div class="hero-grid">
         <div class="hero-copy">
+          <a
+            href="https://intriguinginsight.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="lineage-chip"
+          >
+            <span class="lineage-chip-faint">A solution from</span>
+            <span class="lineage-chip-strong">Intriguing Insight</span>
+            <span class="lineage-chip-sep" aria-hidden="true">·</span>
+            <span class="lineage-chip-faint">Intrigue MMC LLC</span>
+          </a>
           <div class="brand-row">
             <img src="/icons/budgetbaby-icon.png" alt="" width="40" height="40" class="brand-glyph" />
             <span class="brand-pill">BudgetBaby</span>
@@ -276,6 +287,32 @@ import BudgetBabyPreview from '../components/abstract/BudgetBabyPreview.astro';
   }
 
   .hero-copy { max-width: 560px; }
+
+  /* Lineage chip. Sits above the BudgetBaby brand row so visitors who want
+     to resolve "who made this" can see the chain (studio + holding company)
+     without having to go to /about. */
+  .lineage-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(122, 32, 48, 0.22);
+    background: rgba(122, 32, 48, 0.05);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    margin-bottom: var(--space-4);
+    transition: border-color 140ms ease, background 140ms ease;
+  }
+  .lineage-chip:hover {
+    border-color: rgba(122, 32, 48, 0.4);
+    background: rgba(122, 32, 48, 0.08);
+  }
+  .lineage-chip-faint { color: var(--text-secondary, #6b7280); }
+  .lineage-chip-strong { color: #7A2030; font-weight: 600; }
+  .lineage-chip-sep { color: var(--text-tertiary, #9ca3af); }
 
   .brand-row {
     display: flex;
