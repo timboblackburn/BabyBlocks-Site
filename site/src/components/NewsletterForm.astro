@@ -17,16 +17,26 @@ const {
 
 const formId = `newsletter-form-${list}`;
 
-// BabyBlocks Platform's public newsletter endpoint. Default points at
-// production; override at build time with PUBLIC_NEWSLETTER_URL if needed
-// (e.g. for staging).
+// FoundryDesk leads endpoint, scoped to the `intriguinginsight` brand
+// (the studio that publishes BabyBlocks). The leads endpoint REQUIRES a
+// Bearer token unique to the brand; we read it from PUBLIC_CRM_LEAD_TOKEN
+// at build time and inject it into the inline script via define:vars.
+//
+// Override PUBLIC_CRM_LEAD_URL at build time to hit staging or a
+// different brand. If PUBLIC_CRM_LEAD_TOKEN is empty (token not yet
+// provisioned), the form falls back to the mailto link with an explicit
+// error rather than silently dropping the submission.
 const newsletterUrl =
-  import.meta.env.PUBLIC_NEWSLETTER_URL ??
-  'https://api.babyblocks.io/api/public/newsletter';
+  import.meta.env.PUBLIC_CRM_LEAD_URL ??
+  'https://crm.intriguemmc.com/api/leads/intriguinginsight';
+const newsletterToken = import.meta.env.PUBLIC_CRM_LEAD_TOKEN ?? '';
+
+// Render timestamp for the FoundryDesk spam check.
+const renderedAt = Date.now();
 ---
 
 <GlassCard padding="md">
-  <form id={formId} class="newsletter-form" data-list={list} novalidate>
+  <form id={formId} class="newsletter-form" data-list={list} data-rendered-at={renderedAt} novalidate>
     <h2 class="newsletter-heading">{heading}</h2>
     <p class="newsletter-sub">{sub}</p>
 
@@ -54,6 +64,16 @@ const newsletterUrl =
       </button>
     </div>
 
+    {/* Honeypot. Real users never see or fill this; bots usually do. */}
+    <input
+      type="text"
+      name="company"
+      tabindex="-1"
+      autocomplete="off"
+      class="newsletter-honeypot"
+      aria-hidden="true"
+    />
+
     <p class="newsletter-status" aria-live="polite"></p>
 
     <p class="newsletter-fallback">
@@ -62,7 +82,10 @@ const newsletterUrl =
   </form>
 </GlassCard>
 
-<script is:inline define:vars={{ formId, newsletterUrl, fallbackMailto }}>
+<script is:inline define:vars={{ formId, newsletterUrl, newsletterToken, fallbackMailto }}>
+  // Posts to FoundryDesk /api/leads/intriguinginsight with the brand's
+  // Bearer captureToken. Empty token short-circuits to the mailto
+  // fallback rather than POSTing and silently 401ing on the server.
   const form = document.getElementById(formId);
   if (form) {
     const status = form.querySelector('.newsletter-status');
@@ -77,11 +100,21 @@ const newsletterUrl =
 
       const fd = new FormData(form);
       const list = form.dataset.list;
+      const renderedAt = Number(form.dataset.renderedAt || Date.now());
       const name = (fd.get('name') || '').toString().trim();
       const email = (fd.get('email') || '').toString().trim().toLowerCase();
+      const hp = (fd.get('company') || '').toString().trim();
 
       if (!email || !email.includes('@') || !email.includes('.')) {
         status.textContent = 'Please enter a valid email.';
+        status.classList.add('newsletter-status--error');
+        return;
+      }
+
+      // If the captureToken hasn't been provisioned at build time, fail
+      // loud rather than hitting the server and getting a silent 401.
+      if (!newsletterToken) {
+        status.innerHTML = "We can't subscribe you right now. Email <a href=\"mailto:" + fallbackMailto + "\">" + fallbackMailto + "</a> and we'll add you manually.";
         status.classList.add('newsletter-status--error');
         return;
       }
@@ -93,8 +126,22 @@ const newsletterUrl =
       try {
         const res = await fetch(newsletterUrl, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, name, list }),
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + newsletterToken,
+          },
+          body: JSON.stringify({
+            email,
+            name,
+            source: 'babyblocks-newsletter',
+            payload: {
+              list,
+              brandName: 'BabyBlocks',
+              path: location.pathname,
+              _hp: hp,
+              _t: renderedAt,
+            },
+          }),
         });
         if (res.status === 429) throw new Error('rate');
         if (!res.ok) throw new Error('HTTP ' + res.status);
@@ -228,5 +275,15 @@ const newsletterUrl =
   .newsletter-fallback a {
     color: var(--text-secondary);
     text-decoration: underline;
+  }
+
+  /* Honeypot: invisible to humans, irresistible to bots. */
+  .newsletter-honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
   }
 </style>

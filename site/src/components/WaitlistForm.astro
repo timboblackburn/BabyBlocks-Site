@@ -17,19 +17,26 @@ const {
 
 const formId = `waitlist-form-${app}`;
 
-// BabyBlocks platform's public waitlist endpoint. Default points at
-// production; override at build time with PUBLIC_WAITLIST_URL for staging.
-// The platform writes a contacts doc tagged `waitlist:<app>` and a
-// Cloud Function attempts an email-match auto-link to the matching
-// CRM customer record (if one exists). No bearer token, endpoint is
-// rate-limited per-IP server-side.
+// FoundryDesk public waitlist endpoint. Default points at the production
+// CRM under the `intriguinginsight` brand (the studio that publishes the
+// BabyBlocks family). Override at build time with PUBLIC_WAITLIST_URL if
+// you need to hit staging or a different brand slug.
+//
+// FoundryDesk dedupes by email+brand, stores position + joinedAt + ipHash
+// in payload.waitlist, fires `lead.captured`, and emails the founder.
+// No bearer token required; rate-limited per-IP, 6 reqs/60s per brand.
+// Honeypot + render-timestamp included in the body for spam scoring.
 const waitlistUrl =
   import.meta.env.PUBLIC_WAITLIST_URL ??
-  'https://api.babyblocks.io/api/public/waitlist';
+  'https://crm.intriguemmc.com/api/waitlist/intriguinginsight';
+
+// Timestamp the moment the page rendered. FoundryDesk uses the gap
+// between this and the submit time as one of its spam signals.
+const renderedAt = Date.now();
 ---
 
 <GlassCard padding="md">
-  <form id={formId} class="waitlist-form" data-app={app} novalidate>
+  <form id={formId} class="waitlist-form" data-app={app} data-rendered-at={renderedAt} novalidate>
     <h2 class="waitlist-heading">{heading}</h2>
     <p class="waitlist-sub">{sub}</p>
 
@@ -58,6 +65,16 @@ const waitlistUrl =
       </button>
     </div>
 
+    {/* Honeypot. Real users never see or fill this; bots usually do. */}
+    <input
+      type="text"
+      name="company"
+      tabindex="-1"
+      autocomplete="off"
+      class="waitlist-honeypot"
+      aria-hidden="true"
+    />
+
     <p class="waitlist-status" aria-live="polite"></p>
 
     <p class="waitlist-fallback">
@@ -69,9 +86,11 @@ const waitlistUrl =
 
 <script is:inline define:vars={{ formId, waitlistUrl, fallbackMailto }}>
   // Self-contained vanilla JS, no framework, runs once per form on the page.
-  // Posts to the BabyBlocks platform's public waitlist endpoint, which
-  // rate-limits per-IP server-side and writes a contacts doc tagged
-  // `waitlist:<app>`. No bearer token, public endpoint by design.
+  // Posts to FoundryDesk's public waitlist endpoint at
+  // /api/waitlist/intriguinginsight. FoundryDesk dedupes by lowercase
+  // email, stores the product (BudgetBaby / PantryBaby / etc.) in
+  // payload.productName, fires lead.captured for automations, and emails
+  // the founder. Honeypot + render-timestamp included for spam scoring.
   const form = document.getElementById(formId);
   if (form) {
     const status = form.querySelector('.waitlist-status');
@@ -86,14 +105,24 @@ const waitlistUrl =
 
       const fd = new FormData(form);
       const app = form.dataset.app;
+      const renderedAt = Number(form.dataset.renderedAt || Date.now());
       const name = (fd.get('name') || '').toString().trim();
       const email = (fd.get('email') || '').toString().trim().toLowerCase();
+      const hp = (fd.get('company') || '').toString().trim();
 
       if (!name || !email || !email.includes('@') || !email.includes('.')) {
         status.textContent = 'Please enter a name and a valid email.';
         status.classList.add('waitlist-status--error');
         return;
       }
+
+      // Map the internal app slug to a clean display name. The display
+      // name lands in the founder's email notification from FoundryDesk.
+      const productName = app === 'budgetbaby'
+        ? 'BudgetBaby'
+        : app === 'pantrybaby'
+          ? 'PantryBaby'
+          : 'BabyBlocks Core';
 
       submit.disabled = true;
       label.style.opacity = '0.4';
@@ -103,14 +132,24 @@ const waitlistUrl =
         const res = await fetch(waitlistUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, name, app }),
+          body: JSON.stringify({
+            email,
+            name,
+            _hp: hp,
+            _t: renderedAt,
+            payload: {
+              productName,
+              productSlug: app,
+              source: 'babyblocks-waitlist',
+              path: location.pathname,
+            },
+          }),
         });
         if (res.status === 429) throw new Error('rate');
         if (!res.ok) throw new Error('HTTP ' + res.status);
 
         form.reset();
-        const niceName = app === 'budgetbaby' ? 'BudgetBaby' : app === 'pantrybaby' ? 'PantryBaby' : 'BabyBlocks Core';
-        status.textContent = "You're on the list. We'll email " + email + " the moment " + niceName + " is live.";
+        status.textContent = "You're on the list. We'll email " + email + " the moment " + productName + " is live.";
         status.classList.add('waitlist-status--success');
         try {
           if (typeof window.plausible === 'function') {
@@ -241,5 +280,15 @@ const waitlistUrl =
   .waitlist-fallback a {
     color: var(--text-secondary);
     text-decoration: underline;
+  }
+
+  /* Honeypot: invisible to humans, irresistible to bots. */
+  .waitlist-honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
   }
 </style>
