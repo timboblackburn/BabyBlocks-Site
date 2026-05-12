@@ -112,9 +112,19 @@ const waitlistUrl =
         const niceName = app === 'budgetbaby' ? 'BudgetBaby' : app === 'pantrybaby' ? 'PantryBaby' : 'BabyBlocks Core';
         status.textContent = "You're on the list. We'll email " + email + " the moment " + niceName + " is live.";
         status.classList.add('waitlist-status--success');
+        try {
+          if (typeof window.plausible === 'function') {
+            window.plausible('waitlist_signup', { props: { app: app } });
+          }
+        } catch (_) { /* analytics never breaks UX */ }
       } catch (err) {
         status.innerHTML = "Couldn't reach our servers right now. Email us at <a href=\"mailto:" + fallbackMailto + "?subject=Waitlist:%20" + app + "\">" + fallbackMailto + "</a> and we'll add you manually.";
         status.classList.add('waitlist-status--error');
+        try {
+          if (typeof window.plausible === 'function') {
+            window.plausible('waitlist_signup_error', { props: { app: app } });
+          }
+        } catch (_) { /* swallow */ }
       } finally {
         submit.disabled = false;
         label.style.opacity = '1';

@@ -126,6 +126,31 @@ const canonicalURL = canonical ? `${siteURL}${canonical}` : null;
     <!-- Analytics. Plausible. Privacy-friendly, no cookies, GDPR-compliant. -->
     <script is:inline defer data-domain="babyblocks.io" src="https://plausible.io/js/script.js"></script>
 
+    <!-- Event tracker. Fires Plausible custom events for any element with
+         a data-event attribute. -->
+    <script is:inline>
+      (function () {
+        document.addEventListener('click', function (e) {
+          var el = e.target && e.target.closest ? e.target.closest('[data-event]') : null;
+          if (!el) return;
+          var event = el.getAttribute('data-event');
+          if (!event) return;
+          var props = {};
+          for (var i = 0; i < el.attributes.length; i++) {
+            var attr = el.attributes[i];
+            if (attr.name.indexOf('data-event-') === 0 && attr.name !== 'data-event') {
+              props[attr.name.slice('data-event-'.length)] = attr.value;
+            }
+          }
+          try {
+            if (typeof window.plausible === 'function') {
+              window.plausible(event, Object.keys(props).length ? { props: props } : undefined);
+            }
+          } catch (_) { /* analytics never breaks UX */ }
+        });
+      })();
+    </script>
+
     <!-- Structured data. Always emit Organization with parentOrganization
          pointing to Intrigue MMC LLC; pages can pass `structuredData` for
          per-page SoftwareApplication, Article, or BreadcrumbList specifics. -->

@@ -102,9 +102,19 @@ const newsletterUrl =
         form.reset();
         status.textContent = 'Subscribed. Watch your inbox for updates.';
         status.classList.add('newsletter-status--success');
+        try {
+          if (typeof window.plausible === 'function') {
+            window.plausible('newsletter_signup', { props: { list: list } });
+          }
+        } catch (_) { /* analytics never breaks UX */ }
       } catch (err) {
         status.innerHTML = "Couldn't reach our servers right now. Email <a href=\"mailto:" + fallbackMailto + "\">" + fallbackMailto + "</a> and we'll add you manually.";
         status.classList.add('newsletter-status--error');
+        try {
+          if (typeof window.plausible === 'function') {
+            window.plausible('newsletter_signup_error', { props: { list: list } });
+          }
+        } catch (_) { /* swallow */ }
       } finally {
         submit.disabled = false;
         label.style.opacity = '1';
