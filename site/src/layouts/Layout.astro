@@ -123,8 +123,15 @@ const canonicalURL = canonical ? `${siteURL}${canonical}` : null;
       rel="stylesheet"
     />
 
-    <!-- Analytics. Plausible. Privacy-friendly, no cookies, GDPR-compliant. -->
-    <script is:inline defer data-domain="babyblocks.io" src="https://plausible.io/js/script.js"></script>
+    <!-- Analytics. Plausible. Privacy-friendly, no cookies, GDPR-compliant.
+         script.tagged-events.js keeps auto-pageview tracking AND exposes
+         window.plausible() for waitlist/newsletter form handlers + the
+         event tracker below. Plain script.js doesn't expose the callable,
+         so custom events would no-op. -->
+    <script is:inline defer data-domain="babyblocks.io" src="https://plausible.io/js/script.tagged-events.js"></script>
+    <script is:inline>
+      window.plausible = window.plausible || function () { (window.plausible.q = window.plausible.q || []).push(arguments) };
+    </script>
 
     <!-- Event tracker. Fires Plausible custom events for any element with
          a data-event attribute. -->
