@@ -23,21 +23,21 @@ export const STATUS: Record<StatusKey, StatusDef> = {
   },
   appReview: {
     key: 'appReview',
-    label: 'In App Review',
+    label: 'Join the waitlist',
     dot: '#F59E0B',
-    description: 'Submitted to the App Store. Awaiting Apple review.',
+    description: 'Submitted to the App Store. Join the waitlist to get one email when it goes live.',
   },
   inBuild: {
     key: 'inBuild',
-    label: 'In build',
+    label: 'Join the waitlist',
     dot: '#7A2030',
-    description: 'Active development. Not yet shipped.',
+    description: 'Active development. Join the waitlist to get one email when it launches.',
   },
   comingSoon: {
     key: 'comingSoon',
-    label: 'Coming soon',
+    label: 'Join the waitlist',
     dot: '#6B6861',
-    description: 'Planned. Not yet started or scoped.',
+    description: 'On the roadmap. Join the waitlist to be the first to know.',
   },
 };
 

@@ -35,9 +35,15 @@ import BudgetBabyPreview from '../components/abstract/BudgetBabyPreview.astro';
           <div class="brand-row">
             <img src="/icons/budgetbaby-icon.png" alt="" width="40" height="40" class="brand-glyph" />
             <span class="brand-pill">BudgetBaby</span>
-            <span class="brand-status" aria-label="Status: in App Review">
-              <span class="brand-status-dot" aria-hidden="true"></span>In App Review
-            </span>
+            <a
+              href="#hero-waitlist"
+              class="brand-status"
+              aria-label="Join the waitlist"
+              data-event="status_chip_click"
+              data-event-source="hero"
+            >
+              <span class="brand-status-dot" aria-hidden="true"></span>Join the waitlist
+            </a>
           </div>
           <h1 class="display-serif hero-title">
             Know what's safe<br />to spend today.
@@ -57,7 +63,7 @@ import BudgetBabyPreview from '../components/abstract/BudgetBabyPreview.astro';
             </a>
           </div>
           <p class="hero-launch-note">
-            BudgetBaby is in App Review. One email when it goes live. Nothing else.
+            One email when it goes live. Nothing else.
           </p>
 
           <!-- Honest status row. No fabricated stars or avatars until there
@@ -149,7 +155,7 @@ import BudgetBabyPreview from '../components/abstract/BudgetBabyPreview.astro';
           <div class="app-card-head">
             <AppIcon app="budgetbaby" size={48} />
             <span class="app-status app-status--soon">
-              <span class="status-dot status-dot--soon" aria-hidden="true"></span>In App Review
+              <span class="status-dot status-dot--soon" aria-hidden="true"></span>Join the waitlist
             </span>
           </div>
           <h3>BudgetBaby</h3>
@@ -161,7 +167,7 @@ import BudgetBabyPreview from '../components/abstract/BudgetBabyPreview.astro';
           <div class="app-card-head">
             <AppIcon app="pantrybaby" size={48} />
             <span class="app-status app-status--build">
-              <span class="status-dot status-dot--build" aria-hidden="true"></span>In development
+              <span class="status-dot status-dot--build" aria-hidden="true"></span>Join the waitlist
             </span>
           </div>
           <h3>PantryBaby</h3>
@@ -175,7 +181,7 @@ import BudgetBabyPreview from '../components/abstract/BudgetBabyPreview.astro';
               <Icon name="box" size={22} />
             </div>
             <span class="app-status app-status--future">
-              <span class="status-dot status-dot--future" aria-hidden="true"></span>Coming soon
+              <span class="status-dot status-dot--future" aria-hidden="true"></span>Join the waitlist
             </span>
           </div>
           <h3>BabyBlocks Core</h3>
@@ -256,7 +262,7 @@ import BudgetBabyPreview from '../components/abstract/BudgetBabyPreview.astro';
 
   <CTASection
     heading="Ready to budget with confidence?"
-    subheading="BudgetBaby is in App Review. Drop your email and we'll send you one notification the moment it's live on the App Store."
+    subheading="Drop your email. We'll send one notification the moment BudgetBaby is live on the App Store."
     primaryLabel="Join the waitlist"
     primaryHref="#hero-waitlist"
     secondaryLabel="How BudgetBaby works"
@@ -339,6 +345,13 @@ import BudgetBabyPreview from '../components/abstract/BudgetBabyPreview.astro';
     font-weight: var(--weight-medium);
     color: var(--text-muted);
     letter-spacing: 0.02em;
+    text-decoration: none;
+    transition: background 140ms ease, color 140ms ease, border-color 140ms ease;
+  }
+  a.brand-status:hover {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: var(--coral-500);
+    color: var(--text-primary);
   }
   .brand-status-dot {
     width: 6px; height: 6px;

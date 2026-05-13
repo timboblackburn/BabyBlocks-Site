@@ -6,163 +6,51 @@ import CTASection from '../components/CTASection.astro';
 
 <Layout
   title="Changelog | BudgetBaby"
-  description="BudgetBaby version history. See what's new in every release."
+  description="BudgetBaby is pre-launch. The changelog starts the day it ships."
   canonical="/changelog"
 >
   <section class="changelog-hero section">
     <div class="container">
       <div class="changelog-hero-inner">
-        <div class="label-chip">Changelog</div>
-        <h1>What's new in <span class="text-gradient">BudgetBaby.</span></h1>
-        <p>Every release, documented. We ship meaningful updates, not changelog padding.</p>
+        <a href="/budgetbaby#bb-waitlist" class="label-chip" aria-label="Join the waitlist">Join the waitlist</a>
+        <h1>The changelog starts<br /><span class="text-gradient">on launch day.</span></h1>
+        <p>
+          BudgetBaby is pre-launch. There is nothing to log yet. Join the waitlist on the
+          <a href="/budgetbaby#bb-waitlist">BudgetBaby page</a> and we will email you the day
+          v1 ships. After that, every release will be documented here.
+        </p>
       </div>
     </div>
   </section>
 
   <section class="changelog-body section-sm">
     <div class="container-sm">
-
-      <!-- v2.1.0 -->
-      <div class="cl-entry">
-        <div class="cl-meta">
-          <span class="cl-version">v2.1.0</span>
-          <span class="cl-date">March 2026</span>
-          <span class="cl-badge new">New</span>
+      <GlassCard>
+        <div class="cl-placeholder">
+          <h2>What this page will look like</h2>
+          <p>
+            One entry per release. Honest about what changed and why. No filler, no padding,
+            no fake patch numbers to make it look like we ship more than we do. Every entry
+            will have a version number, a date, and a short list of real changes.
+          </p>
+          <p>
+            We will keep this page short on purpose. If you want to see every fix and tweak,
+            the public roadmap on the
+            <a href="/coming-soon/feature-requests">feature requests page</a> is the better
+            place to follow along.
+          </p>
         </div>
-        <GlassCard>
-          <details class="cl-details" open>
-            <summary class="cl-summary">
-              <h2>Insights Drill-Downs, Receipt Attachments &amp; Reminders Overhaul</h2>
-              <svg class="cl-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </summary>
-            <div class="cl-body">
-              <div class="cl-group">
-                <h3>Insights Drill-Downs</h3>
-                <ul>
-                  <li>Tap any period row in Spending Trends to see every transaction for that category and month, newest to oldest. Each transaction is tappable for full detail.</li>
-                  <li><strong>Premium:</strong> Tap any month in Month History for a complete period analysis: budget stats card, category breakdown ranked by spend with fill bars, and all transactions with date headers.</li>
-                </ul>
-              </div>
-              <div class="cl-group">
-                <h3>Receipt Attachments</h3>
-                <ul>
-                  <li>Attach a photo receipt to any transaction from the activity log or transaction detail view.</li>
-                  <li>Tap the thumbnail to view full-screen. Remove with one tap.</li>
-                  <li>JPEG compressed at 70% quality for efficient on-device storage.</li>
-                </ul>
-              </div>
-              <div class="cl-group">
-                <h3>Reminders Overhaul (Premium)</h3>
-                <ul>
-                  <li>Per-subscription reminder schedules. Set custom days before per subscription, not just per bill.</li>
-                  <li>Custom notification message text per bill and subscription.</li>
-                  <li>Quiet hours: set a window (e.g. 10 PM, 8 AM) to suppress all reminders.</li>
-                  <li>Monthly savings goal nudge: a mid-month reminder to fund your savings goals, on a day you choose.</li>
-                </ul>
-              </div>
-            </div>
-          </details>
-        </GlassCard>
-      </div>
-
-      <!-- v2.0.4 -->
-      <div class="cl-entry">
-        <div class="cl-meta">
-          <span class="cl-version">v2.0.4</span>
-          <span class="cl-date">January 2026</span>
-        </div>
-        <GlassCard>
-          <details class="cl-details">
-            <summary class="cl-summary">
-              <h2>Data Integrity Audit, Onboarding Simplification &amp; UI Polish</h2>
-              <svg class="cl-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </summary>
-            <div class="cl-body">
-              <div class="cl-group">
-                <h3>Data Integrity</h3>
-                <ul>
-                  <li>Full audit of all save, delete, and cloud sync operations. Added rollback protection to the budget period rollover flow. This is the primary safeguard against a rare edge case that could cause the active budget to vanish.</li>
-                  <li>Cloud sync now blocks rather than warns on entity count drops greater than 25% post-download.</li>
-                  <li>Collapse detection now correctly identifies periods-exist-but-none-active as a collapse state.</li>
-                  <li>Restore service now correctly syncs the data integrity baseline after an atomic restore.</li>
-                </ul>
-              </div>
-              <div class="cl-group">
-                <h3>Onboarding</h3>
-                <ul>
-                  <li>Simplified 8-step onboarding: removed redundant steps, tightened copy throughout.</li>
-                  <li>USD set as the default currency for new installs.</li>
-                  <li>TestFlight: premium features now available for testing without a subscription.</li>
-                </ul>
-              </div>
-              <div class="cl-group">
-                <h3>UI Polish</h3>
-                <ul>
-                  <li>Miscellaneous layout fixes across the transaction log, category detail, and settings screens.</li>
-                  <li>Improved empty state handling in several list views.</li>
-                  <li>Performance improvements for large transaction datasets.</li>
-                </ul>
-              </div>
-            </div>
-          </details>
-        </GlassCard>
-      </div>
-
-      <!-- v2.0.0 -->
-      <div class="cl-entry">
-        <div class="cl-meta">
-          <span class="cl-version">v2.0.0</span>
-          <span class="cl-date">December 2024</span>
-          <span class="cl-badge launch">Launch</span>
-        </div>
-        <GlassCard>
-          <details class="cl-details">
-            <summary class="cl-summary">
-              <h2>Initial App Store Release</h2>
-              <svg class="cl-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </summary>
-            <div class="cl-body">
-              <div class="cl-group">
-                <h3>Core Features</h3>
-                <ul>
-                  <li><strong>Safe to Spend.</strong> A single daily number calculated from your remaining budget, upcoming bills, savings reserve, and days remaining.</li>
-                  <li><strong>Money Pools.</strong> Track Cash, Card, and Savings as distinct pools with individual balances.</li>
-                  <li><strong>Priority Categories.</strong> Critical, Important, Discretionary, and Buffer with 100+ SF Symbol icons.</li>
-                  <li><strong>Recurring Bills.</strong> Due date tracking, payment status, and reminders up to 7 days in advance.</li>
-                  <li><strong>Savings Goals.</strong> Visual progress rings with milestone celebrations at 25%, 50%, 75%, and 100%.</li>
-                  <li><strong>Budget Period management.</strong> Archive, carryover, and period end rollover.</li>
-                </ul>
-              </div>
-              <div class="cl-group">
-                <h3>Premium Features (at launch)</h3>
-                <ul>
-                  <li><strong>Cloud Backup &amp; Restore.</strong> AES-256-GCM encrypted, up to 5 slots, instant restore.</li>
-                  <li><strong>Analytics &amp; Insights.</strong> Month over month trends, spending predictions, subscription audit.</li>
-                  <li><strong>Calendar Sync.</strong> Bill and subscription due dates in iOS Calendar.</li>
-                  <li><strong>Unlimited exports.</strong> CSV and PDF with full spending breakdowns.</li>
-                </ul>
-              </div>
-            </div>
-          </details>
-        </GlassCard>
-      </div>
-
+      </GlassCard>
     </div>
   </section>
 
   <CTASection
-    heading="Always getting better."
-    subheading="Feature requests are public and voteable. We build what you ask for."
+    heading="We will tell you the day v1 ships."
+    subheading="Join the waitlist for one email when BudgetBaby is live on the App Store."
     primaryLabel="Join the waitlist"
     primaryHref="/budgetbaby#bb-waitlist"
-    secondaryLabel="Vote on features"
-    secondaryHref="/coming-soon/feature-requests"
+    secondaryLabel="See the features"
+    secondaryHref="/budgetbaby/features"
   />
 </Layout>
 
@@ -188,106 +76,36 @@ import CTASection from '../components/CTASection.astro';
     color: var(--text-secondary);
   }
 
+  .changelog-hero-inner p a {
+    color: var(--accent-deep);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
   .changelog-body { padding-block: var(--space-4); }
 
-  .cl-entry {
-    margin-bottom: var(--space-6);
-  }
-
-  .cl-meta {
+  .cl-placeholder {
     display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    margin-bottom: var(--space-3);
-  }
-
-  .cl-version {
-    font-size: var(--text-sm);
-    font-weight: var(--weight-bold);
-    color: var(--accent-light);
-    font-family: var(--font-mono);
-  }
-
-  .cl-date {
-    font-size: var(--text-sm);
-    color: var(--text-muted);
-  }
-
-  .cl-badge {
-    font-size: var(--text-xs);
-    font-weight: var(--weight-semibold);
-    padding: 2px var(--space-2);
-    border-radius: var(--radius-full);
-  }
-
-  .cl-badge.new {
-    background: rgba(52, 211, 153, 0.15);
-    color: var(--green);
-    border: 1px solid rgba(52, 211, 153, 0.25);
-  }
-
-  .cl-badge.launch {
-    background: rgba(139, 92, 246, 0.15);
-    color: var(--accent-light);
-    border: 1px solid rgba(139, 92, 246, 0.25);
-  }
-
-  .cl-details { width: 100%; }
-
-  .cl-summary {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
     gap: var(--space-4);
-    padding: var(--space-5) var(--space-6);
-    cursor: pointer;
-    list-style: none;
-    transition: background 0.15s;
+    padding: var(--space-4);
   }
 
-  .cl-summary::-webkit-details-marker { display: none; }
-  .cl-summary::marker { display: none; }
-  .cl-summary:hover { background: var(--glass-bg-hover); border-radius: var(--radius-xl); }
-
-  .cl-summary h2 {
-    font-size: var(--text-lg);
-    font-weight: var(--weight-semibold);
+  .cl-placeholder h2 {
+    font-family: var(--font-serif);
+    font-size: var(--text-2xl);
+    color: var(--text-primary);
   }
 
-  .cl-chevron {
-    flex-shrink: 0;
-    color: var(--text-muted);
-    transition: transform 0.2s ease;
-  }
-
-  details[open] .cl-chevron { transform: rotate(180deg); }
-
-  .cl-body {
-    padding: 0 var(--space-6) var(--space-6);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-5);
-  }
-
-  .cl-group h3 {
-    font-size: var(--text-xs);
-    font-weight: var(--weight-semibold);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: var(--space-3);
-  }
-
-  .cl-group ul {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-    padding-left: var(--space-4);
-  }
-
-  .cl-group li {
-    font-size: var(--text-sm);
+  .cl-placeholder p {
+    font-size: var(--text-base);
+    line-height: 1.6;
     color: var(--text-secondary);
-    line-height: var(--leading-relaxed);
+  }
+
+  .cl-placeholder a {
+    color: var(--accent-deep);
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 </style>
