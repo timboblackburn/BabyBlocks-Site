@@ -60,15 +60,23 @@ const height = Math.round(width * ratio);
     flex-shrink: 0;
   }
 
+  /* Lift shadow tuned for cream/paper backgrounds. The device is near-black,
+     so a low-saturation cool shadow with a defined dark cast reads as a real
+     drop shadow instead of haze. The inset hairline gives the device a clean
+     edge against light surfaces. */
   .phone-shadow-lift {
     box-shadow:
-      0 0 0 1.5px rgba(255, 247, 239, 0.04) inset,
-      0 30px 70px rgba(60, 30, 20, 0.20),
-      0 8px 22px rgba(60, 30, 20, 0.10);
+      0 0 0 1px rgba(15, 14, 20, 0.85),
+      0 1px 0 rgba(255, 255, 255, 0.08) inset,
+      0 24px 36px -12px rgba(15, 14, 20, 0.42),
+      0 12px 18px -8px rgba(15, 14, 20, 0.28),
+      0 4px 8px rgba(15, 14, 20, 0.16);
   }
 
   .phone-shadow-flat {
-    box-shadow: 0 0 0 1.5px rgba(255, 247, 239, 0.06) inset;
+    box-shadow:
+      0 0 0 1px rgba(15, 14, 20, 0.85),
+      0 1px 0 rgba(255, 255, 255, 0.08) inset;
   }
 
   .phone-frame-notch {
