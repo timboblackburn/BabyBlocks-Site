@@ -47,7 +47,7 @@ export const PRODUCT_STATUS: Record<string, StatusKey> = {
   'intriguing-insight': 'live',
   'think-sharper':      'live',
   babyblocks:           'live',
-  budgetbaby:           'appReview',
+  budgetbaby:           'live',
   pantrybaby:           'inBuild',
   'babyblocks-core':    'comingSoon',
   foundry:              'live',

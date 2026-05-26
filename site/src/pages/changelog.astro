@@ -2,22 +2,23 @@
 import Layout from '../layouts/Layout.astro';
 import GlassCard from '../components/GlassCard.astro';
 import CTASection from '../components/CTASection.astro';
+import { BUDGETBABY_APP_STORE_URL } from '../data/appStore';
 ---
 
 <Layout
   title="Changelog | BudgetBaby"
-  description="BudgetBaby is pre-launch. The changelog starts the day it ships."
+  description="BudgetBaby is live on the App Store. Release notes appear here as updates ship."
   canonical="/changelog"
 >
   <section class="changelog-hero section">
     <div class="container">
       <div class="changelog-hero-inner">
-        <a href="/budgetbaby#bb-waitlist" class="label-chip" aria-label="Join the waitlist">Join the waitlist</a>
-        <h1>The changelog starts<br /><span class="text-gradient">on launch day.</span></h1>
+        <a href={BUDGETBABY_APP_STORE_URL} class="label-chip" target="_blank" rel="noopener" aria-label="Download on the App Store">Download on the App Store</a>
+        <h1>Every release,<br /><span class="text-gradient">documented here.</span></h1>
         <p>
-          BudgetBaby is pre-launch. There is nothing to log yet. Join the waitlist on the
-          <a href="/budgetbaby#bb-waitlist">BudgetBaby page</a> and we will email you the day
-          v1 ships. After that, every release will be documented here.
+          BudgetBaby is live on the App Store. Changelog entries will appear here as updates
+          ship. <a href={BUDGETBABY_APP_STORE_URL} target="_blank" rel="noopener">Download BudgetBaby</a>
+          to get the latest version.
         </p>
       </div>
     </div>
@@ -45,10 +46,10 @@ import CTASection from '../components/CTASection.astro';
   </section>
 
   <CTASection
-    heading="We will tell you the day v1 ships."
-    subheading="Join the waitlist for one email when BudgetBaby is live on the App Store."
-    primaryLabel="Join the waitlist"
-    primaryHref="/budgetbaby#bb-waitlist"
+    heading="BudgetBaby is live on the App Store."
+    subheading="Download it today. Free to use, with optional Premium."
+    primaryLabel="Download on the App Store"
+    primaryHref={BUDGETBABY_APP_STORE_URL}
     secondaryLabel="See the features"
     secondaryHref="/budgetbaby/features"
   />

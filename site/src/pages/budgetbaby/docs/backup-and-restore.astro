@@ -9,6 +9,7 @@ const headings = [
   { id: 'restoring',          text: 'Restoring from backup' },
   { id: 'safety-backups',     text: 'Safety backups' },
   { id: 'new-device',         text: 'Moving to a new device' },
+  { id: 'recovery-code',      text: 'Export a recovery code' },
   { id: 'keychain-loss',      text: 'If you lose iCloud Keychain access' },
   { id: 'managing-backups',   text: 'Managing and deleting backups' },
 ];
@@ -353,20 +354,51 @@ const headings = [
       </DocMock>
     </div>
 
+    <h2 id="recovery-code">Export a recovery code</h2>
+    <p>
+      A <strong>recovery code</strong> is a one-time export of your encryption key in a
+      human-readable form: 32 characters, base32-encoded, generated on-device. You write it down
+      (or store it in a password manager). If you ever lose your iPhone <em>and</em> iCloud Keychain
+      doesn't restore your key for any reason, the recovery code reconstructs it.
+    </p>
+    <p>
+      To export one: <strong>Settings → Backup &amp; Restore → Export Recovery Code</strong>.
+      You will see the 32-character code one time. Copy it, write it down, store it somewhere
+      that is not your iPhone. A password manager, a printed copy in a safe, or a safe deposit
+      box all work. The code is the same length and entropy as a bank-grade key, so even a single
+      copy in one secure place is enough.
+    </p>
+    <div class="doc-tip">
+      <strong>We recommend doing this right after your first cloud backup.</strong> The recovery
+      code is the difference between "Keychain loss is fully recoverable" and "Keychain loss
+      means starting over." Two minutes of work, zero ongoing maintenance.
+    </div>
+    <p>
+      The code itself never leaves your device unless you choose to email or copy it. Like the
+      encryption key it represents, we never see it.
+    </p>
+
     <h2 id="keychain-loss">If you lose iCloud Keychain access</h2>
     <p>
       This is the most serious data recovery scenario. If you cannot access your iCloud Keychain
       (for example, if you were not using iCloud Keychain and lost your old device with no replacement),
-      the encryption key needed to decrypt your backups may not be recoverable.
+      the encryption key needed to decrypt your backups may not be recoverable from Apple alone.
     </p>
     <p>
       Because we designed the encryption so that only you hold the key, we cannot decrypt backups on
       your behalf even if you contact us. This is a deliberate privacy guarantee, not an accident.
     </p>
     <p>
+      The single best protection against this scenario is the <strong>recovery code</strong>
+      described in the previous section. If you exported one and stored it somewhere safe (password
+      manager, printed copy, safe deposit box), Keychain loss is fully recoverable. Without it, your
+      options narrow to the list below.
+    </p>
+    <p>
       Steps to try before concluding the key is gone:
     </p>
     <ul>
+      <li><strong>If you exported a recovery code:</strong> on the new device, open BudgetBaby → Settings → Backup &amp; Restore → Use Recovery Code. Enter the 32-character code. The key is reconstructed and your cloud backups become decryptable immediately. This works even if iCloud Keychain is unavailable.</li>
       <li>Check whether your old iPhone still turns on. The Keychain key is on the device. You can sign in on the new device, enable iCloud Keychain, and let the old device sync the key while both devices are on the same iCloud account.</li>
       <li>Check if you have an iPhone device backup from before the loss. Restoring that backup to a device and enabling BudgetBaby will restore the local Keychain, including the encryption key.</li>
       <li>Contact Apple Support about Keychain recovery options. In some cases Apple can help recover iCloud Keychain contents through their account recovery process.</li>
@@ -374,22 +406,27 @@ const headings = [
     <p>
       If the key truly cannot be recovered, your cloud backups are not accessible. However, if you
       have a new device and re-install BudgetBaby, you can start a new account and begin fresh.
-      For future protection, always enable iCloud Keychain on all your devices.
+      For future protection, export a recovery code right after your first backup, and enable iCloud
+      Keychain on all your devices.
     </p>
 
     <div class="doc-mocks-row">
-      <DocMock label="Recovery options" caption="Try the full recovery sequence before assuming the key is lost.">
+      <DocMock label="Recovery options" caption="Recovery code is the surest path. Try it first, then the fallbacks.">
         <div class="dm-bar"><span class="dm-back">Account</span><span class="dm-bar-title">Recovery</span><span></span></div>
+        <div class="dm-card dm-card-good">
+          <div class="dm-kv"><span class="dm-pill green">1</span><strong>Recovery code</strong></div>
+          <div class="dm-help">Enter the 32-character code you exported. Works without iCloud Keychain.</div>
+        </div>
         <div class="dm-card">
-          <div class="dm-kv"><span class="dm-pill purple">1</span><strong>Old iPhone still on?</strong></div>
+          <div class="dm-kv"><span class="dm-pill purple">2</span><strong>Old iPhone still on?</strong></div>
           <div class="dm-help">Sign in on it and let iCloud Keychain re-sync the key.</div>
         </div>
         <div class="dm-card">
-          <div class="dm-kv"><span class="dm-pill purple">2</span><strong>iPhone device backup</strong></div>
+          <div class="dm-kv"><span class="dm-pill purple">3</span><strong>iPhone device backup</strong></div>
           <div class="dm-help">Restore an older iPhone backup that contains the Keychain.</div>
         </div>
         <div class="dm-card">
-          <div class="dm-kv"><span class="dm-pill purple">3</span><strong>Apple account recovery</strong></div>
+          <div class="dm-kv"><span class="dm-pill purple">4</span><strong>Apple account recovery</strong></div>
           <div class="dm-help">Apple may be able to restore Keychain via account recovery.</div>
         </div>
         <div class="dm-card dm-card-error">

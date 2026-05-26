@@ -6,6 +6,7 @@ import Icon from '../components/Icon.astro';
 import AppIcon from '../components/AppIcon.astro';
 import OrbitalField from '../components/abstract/OrbitalField.astro';
 import AbstractGlow from '../components/abstract/AbstractGlow.astro';
+import { BUDGETBABY_APP_STORE_URL } from '../data/appStore';
 
 const ecosystemApps = [
   {
@@ -13,7 +14,7 @@ const ecosystemApps = [
     iconColor: 'budget',
     name: 'BudgetBaby',
     status: 'live',
-    statusLabel: 'Join the waitlist',
+    statusLabel: 'Live on the App Store',
     tagline: 'Know what is safe to spend today.',
     href: '/budgetbaby',
   },
@@ -40,7 +41,7 @@ const ecosystemApps = [
 
 <Layout
   title="About BabyBlocks"
-  description="BabyBlocks is an independent iOS app studio. BudgetBaby is the first app. Join the waitlist to be notified the day it goes live."
+  description="BabyBlocks is an independent iOS app studio. BudgetBaby is the first app. Download BudgetBaby on the App Store."
   canonical="/about"
   theme="core"
 >
@@ -56,7 +57,7 @@ const ecosystemApps = [
           <div class="label-chip"><span class="label-chip-dot" aria-hidden="true"></span>About BabyBlocks</div>
           <h1 class="display-serif">An independent iOS<br />app studio.</h1>
           <p>
-            BabyBlocks is one person and a small group of contractors building iOS apps for family life.
+            BabyBlocks builds focused iOS apps for family life.
             Every app does one job. No bank connections, no advertising, no data sales.
           </p>
           <p>
@@ -83,14 +84,18 @@ const ecosystemApps = [
           </p>
           <p>
             The apps are built and published by <strong>Intriguing Insight</strong>, an
-            independent studio under <strong>Intrigue MMC LLC</strong>. One founder, a small
-            group of contractors, no board, no outside money. Long horizons, small bets,
-            things we would use ourselves.
+            independent studio under <strong>Intrigue MMC LLC</strong>. No board, no outside
+            money. Long horizons, small bets, things we would use ourselves.
           </p>
           <p>
-            BudgetBaby is the first app. Join the waitlist on the
-            <a href="/budgetbaby">BudgetBaby page</a> to be notified the day it goes live on the
-            App Store. PantryBaby is next. No other apps are in flight right now.
+            Every app on this site started because we needed it and could not find it.
+            We only ship solutions to problems we have ourselves, and every one of these
+            apps lives on our own phones.
+          </p>
+          <p>
+            BudgetBaby is the first app. Download BudgetBaby on the App Store from the
+            <a href="/budgetbaby">BudgetBaby page</a>. PantryBaby is next.
+            No other apps are in flight right now.
           </p>
         </div>
       </GlassCard>
@@ -218,9 +223,8 @@ const ecosystemApps = [
           <h2>About the company</h2>
           <p>
             BabyBlocks is built and published by <strong>Intriguing Insight</strong>, an
-            independent studio under <strong>Intrigue MMC LLC</strong>. One founder based in
-            Illinois, a small group of contractors. No outside investors. No newsroom.
-            No board.
+            independent studio under <strong>Intrigue MMC LLC</strong>, based in
+            Illinois. No outside investors. No newsroom. No board.
           </p>
           <p>
             The apps are sold through the App Store with subscription pricing. Revenue comes from those subscriptions.
@@ -236,9 +240,9 @@ const ecosystemApps = [
 
   <CTASection
     heading="Start with BudgetBaby."
-    subheading="Join the waitlist for one email when it goes live on the App Store."
-    primaryLabel="Join the waitlist"
-    primaryHref="/budgetbaby#bb-waitlist"
+    subheading="BudgetBaby is live on the App Store. Download it today."
+    primaryLabel="Download on the App Store"
+    primaryHref={BUDGETBABY_APP_STORE_URL}
     secondaryLabel="Read the features"
     secondaryHref="/budgetbaby/features"
   />

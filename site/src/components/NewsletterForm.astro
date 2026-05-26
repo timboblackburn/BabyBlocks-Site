@@ -17,21 +17,16 @@ const {
 
 const formId = `newsletter-form-${list}`;
 
-// FoundryDesk leads endpoint, scoped to the `intriguinginsight` brand
-// (the studio that publishes BabyBlocks). The leads endpoint REQUIRES a
-// Bearer token unique to the brand; we read it from PUBLIC_CRM_LEAD_TOKEN
-// at build time and inject it into the inline script via define:vars.
+// BabyBlocks-Platform newsletter intake. Public endpoint, no auth
+// header required; IP-rate-limited (5/min) on the server side. Body
+// shape is { email, name?, list? } where list ∈ {general, product, changelog}.
 //
-// Override PUBLIC_CRM_LEAD_URL at build time to hit staging or a
-// different brand. If PUBLIC_CRM_LEAD_TOKEN is empty (token not yet
-// provisioned), the form falls back to the mailto link with an explicit
-// error rather than silently dropping the submission.
+// BabyBlocks has its own CRM stack — bb-ticket-service on Cloudflare
+// at api.babyblocks.io. Do not route this to FoundryDesk.
 const newsletterUrl =
   import.meta.env.PUBLIC_CRM_LEAD_URL ??
-  'https://crm.intriguemmc.com/api/leads/intriguinginsight';
-const newsletterToken = import.meta.env.PUBLIC_CRM_LEAD_TOKEN ?? '';
+  'https://api.babyblocks.io/api/public/newsletter';
 
-// Render timestamp for the FoundryDesk spam check.
 const renderedAt = Date.now();
 ---
 
@@ -82,10 +77,9 @@ const renderedAt = Date.now();
   </form>
 </GlassCard>
 
-<script is:inline define:vars={{ formId, newsletterUrl, newsletterToken, fallbackMailto }}>
-  // Posts to FoundryDesk /api/leads/intriguinginsight with the brand's
-  // Bearer captureToken. Empty token short-circuits to the mailto
-  // fallback rather than POSTing and silently 401ing on the server.
+<script is:inline define:vars={{ formId, newsletterUrl, fallbackMailto }}>
+  // Posts to BabyBlocks-Platform's public newsletter endpoint at
+  // api.babyblocks.io. No auth header; rate-limited per IP server-side.
   const form = document.getElementById(formId);
   if (form) {
     const status = form.querySelector('.newsletter-status');
@@ -111,14 +105,6 @@ const renderedAt = Date.now();
         return;
       }
 
-      // If the captureToken hasn't been provisioned at build time, fail
-      // loud rather than hitting the server and getting a silent 401.
-      if (!newsletterToken) {
-        status.innerHTML = "We can't subscribe you right now. Email <a href=\"mailto:" + fallbackMailto + "\">" + fallbackMailto + "</a> and we'll add you manually.";
-        status.classList.add('newsletter-status--error');
-        return;
-      }
-
       submit.disabled = true;
       label.style.opacity = '0.4';
       spinner.classList.add('is-spinning');
@@ -126,21 +112,11 @@ const renderedAt = Date.now();
       try {
         const res = await fetch(newsletterUrl, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + newsletterToken,
-          },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             email,
             name,
-            source: 'babyblocks-newsletter',
-            payload: {
-              list,
-              brandName: 'BabyBlocks',
-              path: location.pathname,
-              _hp: hp,
-              _t: renderedAt,
-            },
+            list,
           }),
         });
         if (res.status === 429) throw new Error('rate');

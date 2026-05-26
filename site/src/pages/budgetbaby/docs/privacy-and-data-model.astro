@@ -43,7 +43,7 @@ const headings = [
       <li>Savings goals and savings transactions</li>
       <li>Money transfers between pools</li>
       <li>Reminder configuration</li>
-      <li>User and household profile fields</li>
+      <li>User profile fields</li>
       <li>App settings, preferences, and the activity log (BudgetChangeLog)</li>
     </ul>
     <p>
@@ -247,12 +247,18 @@ const headings = [
             <td>In-app purchase processing</td>
             <td>Handled entirely by Apple. We never see your payment information.</td>
           </tr>
+          <tr>
+            <td><strong>PostHog</strong></td>
+            <td>Optional in-app product analytics, off by default</td>
+            <td>An anonymous deterministic user ID and structural event facts only. No free-form strings, no amounts, no descriptions. Disabled entirely unless you opt in.</td>
+          </tr>
         </tbody>
       </table>
     </div>
     <p>
-      Firebase and RevenueCat have their own privacy policies. Links to those policies are in our
-      <a href="/budgetbaby/privacy">Privacy Policy</a>.
+      For the full canonical list with vendor regions, data flows, and retention periods, see
+      our <a href="/sub-processors">sub-processors and retention page</a>. Firebase and RevenueCat
+      have their own privacy policies linked from our <a href="/budgetbaby/privacy">Privacy Policy</a>.
     </p>
 
     <div class="doc-mocks-row">

@@ -4,7 +4,7 @@ import GlassCard from '../../components/GlassCard.astro';
 import CTASection from '../../components/CTASection.astro';
 import Icon from '../../components/Icon.astro';
 import ScreenshotFrame from '../../components/ScreenshotFrame.astro';
-import WaitlistForm from '../../components/WaitlistForm.astro';
+import { BUDGETBABY_APP_STORE_URL } from '../../data/appStore';
 import PhoneMockup from '../../components/abstract/PhoneMockup.astro';
 import BudgetBabyPreview from '../../components/abstract/BudgetBabyPreview.astro';
 import AbstractGlow from '../../components/abstract/AbstractGlow.astro';
@@ -158,8 +158,8 @@ const faqs = [
     <div class="container">
       <div class="hero-inner">
         <div class="hero-copy">
-          <a href="#bb-waitlist" class="label-chip" aria-label="Join the waitlist">
-            <span class="label-chip-dot" aria-hidden="true"></span>Join the waitlist
+          <a href={BUDGETBABY_APP_STORE_URL} class="label-chip" aria-label="Download BudgetBaby on the App Store" target="_blank" rel="noopener">
+            <span class="label-chip-dot" aria-hidden="true"></span>Live on the App Store
           </a>
           <h1 class="display-serif">Can you actually<br />afford that today?</h1>
           <p>
@@ -169,8 +169,8 @@ const faqs = [
             for it. If it is small, maybe wait a day.
           </p>
           <div class="hero-actions">
-            <a href="#bb-waitlist" class="btn btn-primary btn-lg">
-              Join the waitlist
+            <a href={BUDGETBABY_APP_STORE_URL} class="btn btn-primary btn-lg" target="_blank" rel="noopener" data-event="app_store_click">
+              Download on the App Store
             </a>
             <a href="/budgetbaby/features" class="btn btn-secondary btn-lg">
               Tour the features
@@ -179,11 +179,9 @@ const faqs = [
           <p class="hero-note">iPhone, iOS 17 and up. Free to use. Premium is $7.99 a month or $69.99 a year.</p>
 
           <div id="bb-waitlist" class="hero-waitlist">
-            <WaitlistForm
-              app="budgetbaby"
-              heading="Drop your email. We will email you the day it goes live."
-              sub="One email, just from us. No newsletter, no marketing list."
-            />
+            <a href={BUDGETBABY_APP_STORE_URL} class="btn btn-primary btn-lg" target="_blank" rel="noopener" data-event="app_store_click">
+              Download on the App Store
+            </a>
           </div>
         </div>
 
@@ -493,10 +491,10 @@ const faqs = [
   </section>
 
   <CTASection
-    heading="One email when BudgetBaby is live."
-    subheading="Join the waitlist and we'll email you the day it goes live on the App Store."
-    primaryLabel="Join the waitlist"
-    primaryHref="#bb-waitlist"
+    heading="BudgetBaby is live on the App Store."
+    subheading="Free to use, with optional Premium. iPhone, iOS 17 and up."
+    primaryLabel="Download on the App Store"
+    primaryHref={BUDGETBABY_APP_STORE_URL}
     secondaryLabel="See the features"
     secondaryHref="/budgetbaby/features"
   />

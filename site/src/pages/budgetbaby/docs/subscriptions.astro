@@ -1,6 +1,7 @@
 ---
 import DocsLayout from '../../../layouts/DocsLayout.astro';
 import DocMock from '../../../components/DocMock.astro';
+import { BUDGETBABY_APP_STORE_URL } from '../../../data/appStore';
 
 const headings = [
   { id: 'free-vs-premium',     text: 'Free vs Premium' },
@@ -56,10 +57,12 @@ const headings = [
         </ul>
 
         <a
-          href="/budgetbaby#bb-waitlist"
+          href={BUDGETBABY_APP_STORE_URL}
           class="plan-action plan-action-free"
+          target="_blank"
+          rel="noopener"
         >
-          Join the waitlist
+          Download on the App Store
         </a>
       </div>
 

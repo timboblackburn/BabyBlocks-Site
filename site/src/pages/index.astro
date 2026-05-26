@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import CTASection from '../components/CTASection.astro';
 import Icon from '../components/Icon.astro';
 import AppIcon from '../components/AppIcon.astro';
-import WaitlistForm from '../components/WaitlistForm.astro';
+import { BUDGETBABY_APP_STORE_URL } from '../data/appStore';
 import PhoneMockup from '../components/abstract/PhoneMockup.astro';
 import BudgetBabyPreview from '../components/abstract/BudgetBabyPreview.astro';
 ---
@@ -36,13 +36,15 @@ import BudgetBabyPreview from '../components/abstract/BudgetBabyPreview.astro';
             <img src="/icons/budgetbaby-icon.png" alt="" width="40" height="40" class="brand-glyph" />
             <span class="brand-pill">BudgetBaby</span>
             <a
-              href="#hero-waitlist"
+              href={BUDGETBABY_APP_STORE_URL}
               class="brand-status"
-              aria-label="Join the waitlist"
-              data-event="status_chip_click"
+              aria-label="Download BudgetBaby on the App Store"
+              target="_blank"
+              rel="noopener"
+              data-event="app_store_click"
               data-event-source="hero"
             >
-              <span class="brand-status-dot" aria-hidden="true"></span>Join the waitlist
+              <span class="brand-status-dot" aria-hidden="true"></span>Live on the App Store
             </a>
           </div>
           <h1 class="display-serif hero-title">
@@ -55,15 +57,15 @@ import BudgetBabyPreview from '../components/abstract/BudgetBabyPreview.astro';
           </p>
 
           <div class="hero-actions">
-            <a href="#hero-waitlist" class="btn btn-dark btn-lg" data-event="hero_waitlist_click">
-              Get notified when it launches
+            <a href={BUDGETBABY_APP_STORE_URL} class="btn btn-dark btn-lg" target="_blank" rel="noopener" data-event="app_store_click">
+              Download on the App Store
             </a>
             <a href="/budgetbaby" class="btn btn-secondary btn-lg" data-event="how_it_works_click">
               How it works
             </a>
           </div>
           <p class="hero-launch-note">
-            One email when it goes live. Nothing else.
+            Free on the App Store. Premium is optional.
           </p>
 
           <!-- Honest status row. No fabricated stars or avatars until there
@@ -197,8 +199,8 @@ import BudgetBabyPreview from '../components/abstract/BudgetBabyPreview.astro';
     <div class="container">
       <div class="pricing-head section-header centered">
         <span class="eyebrow">Pricing</span>
-        <h2 class="display-serif">Simple, transparent pricing.</h2>
-        <p>Free is a real budgeting app, not a demo. Pay only when you want the extras.</p>
+        <h2 class="display-serif">Same price across the family.</h2>
+        <p>BudgetBaby Premium and PantryBaby Premium are priced identically. Buy one or both; each subscription is per-app. Free tiers are real apps, not demos.</p>
       </div>
 
       <div class="pricing-cards">
@@ -206,18 +208,19 @@ import BudgetBabyPreview from '../components/abstract/BudgetBabyPreview.astro';
           <div class="price-card-head">
             <span class="price-tier">Monthly</span>
             <div class="price-amt-row">
-              <span class="price-amt">$2.99</span>
+              <span class="price-amt">$7.99</span>
               <span class="price-period">/month</span>
             </div>
+            <span class="price-save">per app</span>
           </div>
           <ul class="price-features">
-            <li>Safe to Spend number, daily</li>
-            <li>Unlimited bills &amp; income</li>
-            <li>Money Pools (Cash, Card, Savings)</li>
-            <li>Spending by category</li>
-            <li>Local-first, private storage</li>
+            <li>Everything in the free tier</li>
+            <li>Unlimited custom categories / lists</li>
+            <li>Cloud backup and restore</li>
+            <li>Calendar sync &amp; reminders</li>
+            <li>Premium-only insights</li>
           </ul>
-          <a href="#hero-waitlist" class="btn btn-secondary price-cta">Get started</a>
+          <a href={BUDGETBABY_APP_STORE_URL} class="btn btn-secondary price-cta" target="_blank" rel="noopener" data-event="app_store_click">Get BudgetBaby</a>
         </div>
 
         <div class="price-card price-card--featured">
@@ -225,46 +228,46 @@ import BudgetBabyPreview from '../components/abstract/BudgetBabyPreview.astro';
           <div class="price-card-head">
             <span class="price-tier">Annual</span>
             <div class="price-amt-row">
-              <span class="price-amt">$24.99</span>
+              <span class="price-amt">$69.99</span>
               <span class="price-period">/year</span>
             </div>
-            <span class="price-save">Save 30% vs monthly</span>
+            <span class="price-save">Save 27% vs monthly · per app</span>
           </div>
           <ul class="price-features">
-            <li>Everything in Monthly, plus</li>
-            <li>Calendar sync &amp; bill reminders</li>
-            <li>Monthly spending reports</li>
-            <li>Unlimited custom categories</li>
-            <li>7-day free trial</li>
+            <li>Everything in Monthly</li>
+            <li>Two months free</li>
+            <li>Priority support</li>
+            <li>Early access to new features</li>
+            <li>Free trial on first sign-up</li>
           </ul>
-          <a href="#hero-waitlist" class="btn btn-primary price-cta">Start free trial</a>
+          <a href={BUDGETBABY_APP_STORE_URL} class="btn btn-primary price-cta" target="_blank" rel="noopener" data-event="app_store_click">Start free trial</a>
         </div>
       </div>
 
       <p class="pricing-fineprint">
-        A free tier is available with core budgeting features. Premium unlocks the extras. Cancel anytime from iOS Settings.
+        Free tier is a real app with core features for both BudgetBaby and PantryBaby. Premium unlocks the extras per-app. Cancel anytime from iOS Settings. Prices shown in USD; localised prices may vary slightly by store region.
       </p>
     </div>
   </section>
 
-  <!-- ── Waitlist anchor ─────────────────────────────────────────────── -->
+  <!-- ── Download anchor ──────────────────────────────────────────────── -->
   <section class="waitlist-section section-sm">
     <div class="container-sm">
-      <div id="hero-waitlist" class="waitlist-anchor">
-        <WaitlistForm
-          app="budgetbaby"
-          heading="Drop your email. We'll tell you the day it's back."
-          sub="One email, just from us. No newsletter, no marketing, no list trades."
-        />
+      <div id="hero-waitlist" class="waitlist-anchor" style="text-align: center;">
+        <h2 style="margin-bottom: var(--space-3);">BudgetBaby is live on the App Store.</h2>
+        <p style="color: var(--text-secondary); margin-bottom: var(--space-6);">Free to use, with optional Premium. iPhone, iOS 17 and up.</p>
+        <a href={BUDGETBABY_APP_STORE_URL} class="btn btn-primary btn-lg" target="_blank" rel="noopener" data-event="app_store_click">
+          Download on the App Store
+        </a>
       </div>
     </div>
   </section>
 
   <CTASection
     heading="Ready to budget with confidence?"
-    subheading="Drop your email. We'll send one notification the moment BudgetBaby is live on the App Store."
-    primaryLabel="Join the waitlist"
-    primaryHref="#hero-waitlist"
+    subheading="BudgetBaby is live on the App Store. Free to use, with optional Premium."
+    primaryLabel="Download on the App Store"
+    primaryHref={BUDGETBABY_APP_STORE_URL}
     secondaryLabel="How BudgetBaby works"
     secondaryHref="/budgetbaby"
   />

@@ -135,6 +135,13 @@ const headings = [
       <li><strong>Focus modes.</strong> Active Focus modes (Do Not Disturb, Sleep, Work, etc.) can hold notifications until the Focus ends.</li>
       <li><strong>Scheduled Summary.</strong> iOS 15+ can group notifications into a delivery summary. Apps in your summary list are batched, not delivered immediately.</li>
       <li><strong>App not opened recently.</strong> Local notifications are scheduled when the configuration is saved. If you've added bills since the last save, opening Settings → Reminders triggers a re-schedule.</li>
+      <li>
+        <strong>BudgetBaby's own throttle.</strong> To prevent notification fatigue we cap
+        non-critical reminders at <strong>two per day</strong>. The cap does not apply to bill
+        due-date reminders or other financially time-sensitive alerts, which always go through.
+        If you expected a weekly summary or savings nudge on a day that already had two
+        engagement-tier alerts, that is why.
+      </li>
     </ul>
 
     <div class="doc-mocks-row">

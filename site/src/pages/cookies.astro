@@ -1,0 +1,174 @@
+---
+import Layout from '../layouts/Layout.astro';
+import GlassCard from '../components/GlassCard.astro';
+import Icon from '../components/Icon.astro';
+
+const lastUpdated = 'May 16, 2026';
+---
+
+<Layout
+  title="Cookies and trackers | BabyBlocks"
+  description="What babyblocks.io stores in your browser, what it tracks, and what it does not. No cookies, no third-party ad pixels."
+  canonical="/cookies"
+>
+  <section class="sec-hero section">
+    <div class="container">
+      <div class="sec-hero-inner">
+        <div class="label-chip">Cookies</div>
+        <h1>This website doesn't use cookies.<br /><span class="text-gradient">Here's the full picture anyway.</span></h1>
+        <p>
+          We could have written a 3,000-word cookie policy. Instead, the honest version is short:
+          babyblocks.io sets no cookies, uses one privacy-friendly analytics tool, and loads no
+          third-party ad pixels. The detail is below.
+        </p>
+        <p class="sec-updated">Last updated: {lastUpdated}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec-section section-sm">
+    <div class="container-sm">
+      <GlassCard accent padding="lg">
+        <div class="sec-block">
+          <div class="sec-block-icon"><Icon name="check" size={28} /></div>
+          <div>
+            <h2>The short version</h2>
+            <ul class="sec-list">
+              <li><Icon name="check" size={14} /> Zero cookies set by babyblocks.io itself.</li>
+              <li><Icon name="check" size={14} /> Zero advertising or social-media tracking pixels.</li>
+              <li><Icon name="check" size={14} /> One first-party, cookieless analytics tool (Plausible) to count page views and form submissions.</li>
+              <li><Icon name="check" size={14} /> A small amount of <code>localStorage</code> is used for UI preferences only (such as remembering whether you dismissed a banner).</li>
+            </ul>
+          </div>
+        </div>
+      </GlassCard>
+    </div>
+  </section>
+
+  <section class="sec-section section-sm">
+    <div class="container-sm">
+      <GlassCard padding="lg">
+        <div class="sec-block">
+          <div class="sec-block-icon"><Icon name="bar-chart-2" size={28} /></div>
+          <div>
+            <h2>Analytics</h2>
+            <p>
+              We use <a href="https://plausible.io/data-policy" target="_blank" rel="noopener noreferrer">Plausible Analytics</a>
+              to understand which pages are visited, which forms are submitted, and which links are clicked.
+              Plausible is <strong>cookieless by design</strong>. It does not use cookies,
+              does not collect personal data, does not build a profile of you, and does not share data
+              with anyone else. Page-view data is aggregated and anonymized at the source.
+            </p>
+            <p>
+              What Plausible records when you visit: the URL you opened, the page that linked to you (if any),
+              your browser, your operating system, and your country. It does not record your IP address,
+              your screen size, your name, your email, or anything you type into the page.
+            </p>
+            <p>
+              If you want to block analytics anyway, the standard browser-level Do Not Track and
+              tracker-blocking extensions (uBlock Origin, Brave Shields, Firefox Enhanced Tracking Protection)
+              already block Plausible without us needing to do anything.
+            </p>
+          </div>
+        </div>
+      </GlassCard>
+    </div>
+  </section>
+
+  <section class="sec-section section-sm">
+    <div class="container-sm">
+      <GlassCard padding="lg">
+        <div class="sec-block">
+          <div class="sec-block-icon"><Icon name="info" size={28} /></div>
+          <div>
+            <h2>Local storage</h2>
+            <p>
+              A small amount of data is kept in your browser's <code>localStorage</code> for UI state only.
+              Typical examples: remembering that you closed a one-time announcement banner, or your
+              choice of theme if you override the system preference. None of this is sent to our servers,
+              and clearing your browser data wipes it instantly.
+            </p>
+          </div>
+        </div>
+      </GlassCard>
+    </div>
+  </section>
+
+  <section class="sec-section section-sm">
+    <div class="container-sm">
+      <GlassCard padding="lg">
+        <div class="sec-block">
+          <div class="sec-block-icon"><Icon name="x-circle" size={28} /></div>
+          <div>
+            <h2>What we do not do</h2>
+            <ul class="sec-list muted">
+              <li><Icon name="x-circle" size={14} /> No Google Analytics, no Google Tag Manager.</li>
+              <li><Icon name="x-circle" size={14} /> No Facebook Pixel, no Meta tracking, no TikTok Pixel, no LinkedIn Insight Tag.</li>
+              <li><Icon name="x-circle" size={14} /> No advertising cookies. We do not run advertising.</li>
+              <li><Icon name="x-circle" size={14} /> No cross-site tracking. We do not build a profile of you across the web.</li>
+              <li><Icon name="x-circle" size={14} /> No session replay. We do not record your scrolling, clicking, or typing.</li>
+              <li><Icon name="x-circle" size={14} /> No data shared or sold to anyone.</li>
+            </ul>
+          </div>
+        </div>
+      </GlassCard>
+    </div>
+  </section>
+
+  <section class="sec-section section-sm">
+    <div class="container-sm">
+      <GlassCard padding="lg">
+        <div class="sec-block">
+          <div class="sec-block-icon"><Icon name="smartphone" size={28} /></div>
+          <div>
+            <h2>iOS apps</h2>
+            <p>
+              The BudgetBaby and PantryBaby apps do not run in a browser, so cookies do not apply.
+              For the in-app analytics, crash reporting, and subscription handling that the apps use,
+              see the per-product privacy policies:
+              <a href="/budgetbaby/privacy">BudgetBaby Privacy</a> and
+              <a href="/pantrybaby/privacy">PantryBaby Privacy</a>.
+            </p>
+          </div>
+        </div>
+      </GlassCard>
+    </div>
+  </section>
+
+  <section class="sec-section section-sm">
+    <div class="container-sm">
+      <GlassCard padding="lg">
+        <div class="sec-block">
+          <div class="sec-block-icon"><Icon name="mail" size={28} /></div>
+          <div>
+            <h2>Questions</h2>
+            <p>
+              Email <a href="mailto:support@babyblocks.io">support@babyblocks.io</a> if you spot a
+              tracker on this site that we have not disclosed. We will either explain it or remove it.
+            </p>
+          </div>
+        </div>
+      </GlassCard>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .sec-hero { padding-top: calc(var(--space-20) + var(--space-8)); }
+  .sec-hero-inner { max-width: 720px; display: flex; flex-direction: column; gap: var(--space-6); }
+  .sec-hero-inner h1 { font-size: clamp(var(--text-4xl), 6vw, var(--text-6xl)); letter-spacing: -0.03em; }
+  .sec-hero-inner p { font-size: var(--text-lg); color: var(--text-secondary); max-width: 56ch; }
+  .sec-updated { font-size: var(--text-xs) !important; color: var(--text-muted) !important; max-width: none !important; }
+  .sec-section { padding-block: var(--space-4); }
+  .sec-block { display: flex; gap: var(--space-6); }
+  .sec-block-icon { color: var(--accent-light); flex-shrink: 0; padding-top: var(--space-1); }
+  .sec-block h2 { font-size: var(--text-2xl); margin-bottom: var(--space-4); }
+  .sec-block p { font-size: var(--text-base); color: var(--text-secondary); line-height: var(--leading-relaxed); margin-bottom: var(--space-4); }
+  .sec-block p:last-child { margin-bottom: 0; }
+  .sec-block code { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 3px; padding: 1px 5px; font-size: 0.92em; }
+  .sec-block a { color: var(--accent-light); text-decoration: none; }
+  .sec-block a:hover { text-decoration: underline; }
+  .sec-list { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); margin-bottom: 0; padding-left: 0; }
+  .sec-list li { display: flex; align-items: flex-start; gap: var(--space-2); font-size: var(--text-sm); color: var(--text-secondary); }
+  .sec-list.muted li { color: var(--text-muted); }
+</style>

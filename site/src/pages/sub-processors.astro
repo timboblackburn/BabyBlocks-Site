@@ -1,0 +1,359 @@
+---
+import Layout from '../layouts/Layout.astro';
+import GlassCard from '../components/GlassCard.astro';
+import Icon from '../components/Icon.astro';
+
+const lastUpdated = 'May 16, 2026';
+
+interface SubProcessor {
+  name: string;
+  vendor: string;
+  purpose: string;
+  data: string;
+  location: string;
+  link: string;
+}
+
+const subProcessors: SubProcessor[] = [
+  {
+    name: 'Firebase Authentication',
+    vendor: 'Google LLC',
+    purpose: 'User account sign-in and identity verification',
+    data: 'Email address, hashed password, authentication tokens',
+    location: 'United States (multi-region)',
+    link: 'https://firebase.google.com/support/privacy',
+  },
+  {
+    name: 'Firebase Firestore',
+    vendor: 'Google LLC',
+    purpose: 'Optional cloud sync of app data',
+    data: 'Sync payload (encrypted in transit via TLS, encrypted at rest)',
+    location: 'United States (multi-region)',
+    link: 'https://firebase.google.com/support/privacy',
+  },
+  {
+    name: 'Firebase Storage',
+    vendor: 'Google LLC',
+    purpose: 'Optional cloud backup of app database',
+    data: 'Encrypted backup files only (we cannot decrypt them)',
+    location: 'United States (multi-region)',
+    link: 'https://firebase.google.com/support/privacy',
+  },
+  {
+    name: 'Firebase Crashlytics',
+    vendor: 'Google LLC',
+    purpose: 'Anonymous crash reporting and stability monitoring',
+    data: 'Stack traces, device model, OS version, app version. No personal or financial data.',
+    location: 'United States',
+    link: 'https://firebase.google.com/support/privacy',
+  },
+  {
+    name: 'RevenueCat',
+    vendor: 'RevenueCat, Inc.',
+    purpose: 'Subscription state and in-app purchase reconciliation',
+    data: 'App Store receipt, anonymized subscriber ID, subscription status. No financial data beyond the purchase itself.',
+    location: 'United States',
+    link: 'https://www.revenuecat.com/privacy/',
+  },
+  {
+    name: 'Apple App Store / StoreKit',
+    vendor: 'Apple Inc.',
+    purpose: 'Payment processing for app and subscription purchases',
+    data: 'Apple ID, purchase records. Payment details never reach our servers.',
+    location: 'Apple-controlled (per your Apple ID region)',
+    link: 'https://www.apple.com/legal/privacy/',
+  },
+  {
+    name: 'Apple Push Notification service (APNs)',
+    vendor: 'Apple Inc.',
+    purpose: 'Delivering server-sent push notifications to the iOS apps',
+    data: 'Anonymous device push token only. Message contents are not stored on our servers beyond the moment of send.',
+    location: 'Apple-controlled (per your Apple ID region)',
+    link: 'https://www.apple.com/legal/privacy/',
+  },
+  {
+    name: 'PostHog',
+    vendor: 'PostHog Inc.',
+    purpose: 'Optional in-app product analytics (off by default; opt-in)',
+    data: 'Anonymous deterministic user ID, structural event facts (which feature was used, how often). No free-form strings, no amounts, no descriptions.',
+    location: 'United States (US Cloud) or European Union (EU Cloud), depending on routing',
+    link: 'https://posthog.com/privacy',
+  },
+  {
+    name: 'Plausible Analytics',
+    vendor: 'Plausible Insights OÜ',
+    purpose: 'Cookieless website analytics for babyblocks.io',
+    data: 'Page URL, referrer, browser type, OS, country. No IP address, no cookies, no personal identifiers.',
+    location: 'European Union (Germany)',
+    link: 'https://plausible.io/data-policy',
+  },
+  {
+    name: 'Cloudflare',
+    vendor: 'Cloudflare, Inc.',
+    purpose: 'Content delivery, DNS, edge runtime for website + support backend',
+    data: 'Request IP address (transient log), HTTP request metadata. No request body inspection beyond TLS-terminated edge routing.',
+    location: 'Globally distributed edge network',
+    link: 'https://www.cloudflare.com/privacypolicy/',
+  },
+  {
+    name: 'Microsoft Graph (Outlook)',
+    vendor: 'Microsoft Corporation',
+    purpose: 'Outbound transactional and operational email (support replies, account verification)',
+    data: 'Recipient email address, message content of the email we send',
+    location: 'United States and European Union',
+    link: 'https://privacy.microsoft.com/privacystatement',
+  },
+];
+
+interface Retention {
+  category: string;
+  period: string;
+  notes: string;
+}
+
+const retention: Retention[] = [
+  {
+    category: 'Account record (email, sign-in method)',
+    period: 'Kept until you delete your account',
+    notes: 'Account deletion via Settings → About → Delete Account removes the record within 30 days.',
+  },
+  {
+    category: 'Cloud backups (encrypted)',
+    period: 'Kept until you delete them or your account',
+    notes: 'You control individual backup slot lifetimes. We cannot read them.',
+  },
+  {
+    category: 'Cloud sync data',
+    period: 'Kept while sync is enabled; removed within 30 days of disable or account deletion',
+    notes: 'Encrypted in transit and at rest.',
+  },
+  {
+    category: 'Anonymous crash reports',
+    period: '90 days',
+    notes: 'Default Firebase Crashlytics retention.',
+  },
+  {
+    category: 'In-app analytics events',
+    period: '14 months',
+    notes: 'Aggregated facts only. Anonymous after this window.',
+  },
+  {
+    category: 'Website analytics (Plausible)',
+    period: 'Aggregated and retained indefinitely at the aggregate level; no individual record exists',
+    notes: 'No cookies, no per-visitor record to expire.',
+  },
+  {
+    category: 'Support tickets and replies',
+    period: '2 years from ticket close',
+    notes: 'Includes any diagnostics bundles you attached. Sooner on request via data-request form.',
+  },
+  {
+    category: 'Diagnostics bundles attached to tickets',
+    period: '90 days after ticket close',
+    notes: 'Bundles contain no transaction amounts or descriptions by design.',
+  },
+  {
+    category: 'Marketing email contacts (waitlist, newsletter)',
+    period: 'Until you unsubscribe',
+    notes: 'Unsubscribe link in every email.',
+  },
+  {
+    category: 'Server access logs (Cloudflare edge)',
+    period: '30 days',
+    notes: 'For security investigation and abuse mitigation only.',
+  },
+];
+---
+
+<Layout
+  title="Sub-processors and data retention | BabyBlocks"
+  description="Companies that may process data on our behalf, what data each receives, where it lives, and how long it is kept."
+  canonical="/sub-processors"
+>
+  <section class="sec-hero section">
+    <div class="container">
+      <div class="sec-hero-inner">
+        <div class="label-chip">Sub-processors</div>
+        <h1>Who processes your data on our behalf.<br /><span class="text-gradient">And how long any of it is kept.</span></h1>
+        <p>
+          We use a small number of vendors to run the apps, the website, and the support
+          infrastructure. This page names every one of them, what they receive, where they
+          operate, and how long we keep each kind of record.
+        </p>
+        <p class="sec-updated">Last updated: {lastUpdated}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec-section section-sm">
+    <div class="container-sm">
+      <GlassCard accent padding="lg">
+        <div class="sec-block">
+          <div class="sec-block-icon"><Icon name="info" size={28} /></div>
+          <div>
+            <h2>What "sub-processor" means here</h2>
+            <p>
+              A sub-processor is a third-party service we hire to handle a specific function
+              on our behalf. Sign-in, payment reconciliation, crash reporting, sending email,
+              and so on. Each sub-processor only receives the minimum data they need to do their
+              job, and we have a written agreement with each one that constrains what they can do
+              with it. We do not sell data to anyone.
+            </p>
+          </div>
+        </div>
+      </GlassCard>
+    </div>
+  </section>
+
+  <section class="sec-section section-sm">
+    <div class="container-sm">
+      <GlassCard padding="lg">
+        <div class="sec-block-wide">
+          <h2>Current sub-processors</h2>
+          <div class="sp-table-wrap">
+            <table class="sp-table">
+              <thead>
+                <tr>
+                  <th>Service</th>
+                  <th>Vendor</th>
+                  <th>Purpose</th>
+                  <th>Data received</th>
+                  <th>Region</th>
+                  <th>Policy</th>
+                </tr>
+              </thead>
+              <tbody>
+                {subProcessors.map((sp) => (
+                  <tr>
+                    <td><strong>{sp.name}</strong></td>
+                    <td>{sp.vendor}</td>
+                    <td>{sp.purpose}</td>
+                    <td>{sp.data}</td>
+                    <td>{sp.location}</td>
+                    <td>
+                      <a href={sp.link} target="_blank" rel="noopener noreferrer">View →</a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </GlassCard>
+    </div>
+  </section>
+
+  <section class="sec-section section-sm">
+    <div class="container-sm">
+      <GlassCard padding="lg">
+        <div class="sec-block-wide">
+          <h2>Data retention schedule</h2>
+          <p class="sp-intro">
+            Different kinds of data are kept for different lengths of time. The table below
+            covers every category we hold. You can shorten any of these for your own data via
+            the <a href="/data-request">data request form</a>.
+          </p>
+          <div class="sp-table-wrap">
+            <table class="sp-table">
+              <thead>
+                <tr>
+                  <th>Category</th>
+                  <th>Retention period</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                {retention.map((r) => (
+                  <tr>
+                    <td><strong>{r.category}</strong></td>
+                    <td>{r.period}</td>
+                    <td>{r.notes}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </GlassCard>
+    </div>
+  </section>
+
+  <section class="sec-section section-sm">
+    <div class="container-sm">
+      <GlassCard padding="lg">
+        <div class="sec-block">
+          <div class="sec-block-icon"><Icon name="bell" size={28} /></div>
+          <div>
+            <h2>Notice of changes</h2>
+            <p>
+              When we add, remove, or replace a sub-processor we update this page and bump the
+              "last updated" date at the top. Material changes (a new sub-processor that receives
+              identifiable user data) are also announced in the next product release notes.
+              If you would like to be notified by email when this page changes, write to
+              <a href="mailto:support@babyblocks.io">support@babyblocks.io</a> with the subject
+              <strong>[Subscribe: sub-processors]</strong>.
+            </p>
+          </div>
+        </div>
+      </GlassCard>
+    </div>
+  </section>
+
+  <section class="sec-section section-sm">
+    <div class="container-sm">
+      <GlassCard padding="lg">
+        <div class="sec-block">
+          <div class="sec-block-icon"><Icon name="mail" size={28} /></div>
+          <div>
+            <h2>Questions</h2>
+            <p>
+              Email <a href="mailto:support@babyblocks.io">support@babyblocks.io</a>. If you are
+              exercising a privacy right (copy, correct, or delete), the
+              <a href="/data-request">data request form</a> is the fastest path.
+            </p>
+          </div>
+        </div>
+      </GlassCard>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .sec-hero { padding-top: calc(var(--space-20) + var(--space-8)); }
+  .sec-hero-inner { max-width: 720px; display: flex; flex-direction: column; gap: var(--space-6); }
+  .sec-hero-inner h1 { font-size: clamp(var(--text-4xl), 6vw, var(--text-6xl)); letter-spacing: -0.03em; }
+  .sec-hero-inner p { font-size: var(--text-lg); color: var(--text-secondary); max-width: 56ch; }
+  .sec-updated { font-size: var(--text-xs) !important; color: var(--text-muted) !important; max-width: none !important; }
+  .sec-section { padding-block: var(--space-4); }
+  .sec-block { display: flex; gap: var(--space-6); }
+  .sec-block-wide { display: flex; flex-direction: column; gap: var(--space-4); }
+  .sec-block-icon { color: var(--accent-light); flex-shrink: 0; padding-top: var(--space-1); }
+  .sec-block h2, .sec-block-wide h2 { font-size: var(--text-2xl); margin-bottom: var(--space-4); }
+  .sec-block p, .sec-block-wide p { font-size: var(--text-base); color: var(--text-secondary); line-height: var(--leading-relaxed); margin-bottom: var(--space-4); }
+  .sec-block p:last-child, .sec-block-wide p:last-child { margin-bottom: 0; }
+  .sec-block a, .sec-block-wide a { color: var(--accent-light); text-decoration: none; }
+  .sec-block a:hover, .sec-block-wide a:hover { text-decoration: underline; }
+  .sp-intro { margin-bottom: var(--space-2); }
+  .sp-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .sp-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+  }
+  .sp-table th, .sp-table td {
+    text-align: left;
+    padding: var(--space-3) var(--space-3);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    vertical-align: top;
+  }
+  .sp-table th {
+    font-weight: var(--weight-semibold);
+    color: var(--text-primary);
+    font-size: var(--text-xs);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-bottom-color: rgba(255,255,255,0.12);
+  }
+  .sp-table tbody tr:last-child td { border-bottom: none; }
+</style>

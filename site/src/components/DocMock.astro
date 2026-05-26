@@ -73,6 +73,14 @@ const { caption, label, size = 'md' } = Astro.props;
     flex-direction: column;
     position: relative;
     border: 1px solid rgba(255, 255, 255, 0.05);
+    /* Re-bind text vars for the dark phone screen so dm-* children stay readable
+       on light-themed docs pages. */
+    --text-primary:   #F4F1EA;
+    --text-secondary: rgba(244, 241, 234, 0.78);
+    --text-muted:     rgba(244, 241, 234, 0.62);
+    --text-faint:     rgba(244, 241, 234, 0.45);
+    --accent-light:   #C4B5FD;
+    color: var(--text-primary);
   }
 
   .doc-mock-statusbar {

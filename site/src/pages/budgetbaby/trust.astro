@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import GlassCard from '../../components/GlassCard.astro';
 import CTASection from '../../components/CTASection.astro';
 import Icon from '../../components/Icon.astro';
+import { BUDGETBABY_APP_STORE_URL } from '../../data/appStore';
 
 const lastUpdated = 'May 6, 2026';
 ---
@@ -230,7 +231,7 @@ const lastUpdated = 'May 6, 2026';
             <p>
               If you have questions about how your data is handled, email us at
               <a href="mailto:support@babyblocks.io">support@babyblocks.io</a>.
-              We respond within 1-2 business days. Data-related issues are flagged same day.
+              We respond within two business days. Data-related issues are flagged same day.
             </p>
             <p>
               You can also read the full <a href="/budgetbaby/privacy">Privacy Policy</a> and
@@ -244,9 +245,9 @@ const lastUpdated = 'May 6, 2026';
 
   <CTASection
     heading="Start with BudgetBaby."
-    subheading="Local-first, privacy-respecting, and free when it launches. Join the waitlist."
-    primaryLabel="Join the waitlist"
-    primaryHref="/budgetbaby#bb-waitlist"
+    subheading="Local-first, privacy-respecting, and free to use, with optional Premium."
+    primaryLabel="Download on the App Store"
+    primaryHref={BUDGETBABY_APP_STORE_URL}
     secondaryLabel="Read the Privacy Policy"
     secondaryHref="/budgetbaby/privacy"
   />

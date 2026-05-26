@@ -20,6 +20,11 @@ export const docsNav: DocNavGroup[] = [
     group: 'Core Concepts',
     items: [
       { label: 'How BudgetBaby Works', href: '/budgetbaby/docs/core-concepts' },
+    ],
+  },
+  {
+    group: 'Features',
+    items: [
       { label: 'Reminders', href: '/budgetbaby/docs/reminders' },
     ],
   },
@@ -32,7 +37,7 @@ export const docsNav: DocNavGroup[] = [
     ],
   },
   {
-    group: 'Subscriptions',
+    group: 'Account & Billing',
     items: [
       { label: 'Plans and Purchases', href: '/budgetbaby/docs/subscriptions' },
     ],

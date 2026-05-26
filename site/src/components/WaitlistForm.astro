@@ -17,21 +17,17 @@ const {
 
 const formId = `waitlist-form-${app}`;
 
-// FoundryDesk public waitlist endpoint. Default points at the production
-// CRM under the `intriguinginsight` brand (the studio that publishes the
-// BabyBlocks family). Override at build time with PUBLIC_WAITLIST_URL if
-// you need to hit staging or a different brand slug.
+// BabyBlocks-Platform public waitlist endpoint. Body: { email, name,
+// app } where app is one of {budgetbaby, pantrybaby, babyblocks-core}.
+// Server dedupes by primaryEmail and appends `waitlist:<app>` to the
+// contact's audience list. Public endpoint, IP-rate-limited 5/min.
 //
-// FoundryDesk dedupes by email+brand, stores position + joinedAt + ipHash
-// in payload.waitlist, fires `lead.captured`, and emails the founder.
-// No bearer token required; rate-limited per-IP, 6 reqs/60s per brand.
-// Honeypot + render-timestamp included in the body for spam scoring.
+// BabyBlocks has its own CRM stack — bb-ticket-service on Cloudflare
+// at api.babyblocks.io. Do not route this to FoundryDesk.
 const waitlistUrl =
   import.meta.env.PUBLIC_WAITLIST_URL ??
-  'https://crm.intriguemmc.com/api/waitlist/intriguinginsight';
+  'https://api.babyblocks.io/api/public/waitlist';
 
-// Timestamp the moment the page rendered. FoundryDesk uses the gap
-// between this and the submit time as one of its spam signals.
 const renderedAt = Date.now();
 ---
 
@@ -86,11 +82,9 @@ const renderedAt = Date.now();
 
 <script is:inline define:vars={{ formId, waitlistUrl, fallbackMailto }}>
   // Self-contained vanilla JS, no framework, runs once per form on the page.
-  // Posts to FoundryDesk's public waitlist endpoint at
-  // /api/waitlist/intriguinginsight. FoundryDesk dedupes by lowercase
-  // email, stores the product (BudgetBaby / PantryBaby / etc.) in
-  // payload.productName, fires lead.captured for automations, and emails
-  // the founder. Honeypot + render-timestamp included for spam scoring.
+  // Posts to BabyBlocks-Platform's public waitlist endpoint at
+  // api.babyblocks.io. Server dedupes by email and appends the
+  // `waitlist:<app>` audience tag for the relevant product.
   const form = document.getElementById(formId);
   if (form) {
     const status = form.querySelector('.waitlist-status');
@@ -116,8 +110,8 @@ const renderedAt = Date.now();
         return;
       }
 
-      // Map the internal app slug to a clean display name. The display
-      // name lands in the founder's email notification from FoundryDesk.
+      // Map the internal app slug to a clean display name for the
+      // success message shown to the user.
       const productName = app === 'budgetbaby'
         ? 'BudgetBaby'
         : app === 'pantrybaby'
@@ -135,14 +129,7 @@ const renderedAt = Date.now();
           body: JSON.stringify({
             email,
             name,
-            _hp: hp,
-            _t: renderedAt,
-            payload: {
-              productName,
-              productSlug: app,
-              source: 'babyblocks-waitlist',
-              path: location.pathname,
-            },
+            app,
           }),
         });
         if (res.status === 429) throw new Error('rate');

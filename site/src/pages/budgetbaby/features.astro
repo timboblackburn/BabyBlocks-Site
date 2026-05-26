@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import CTASection from '../../components/CTASection.astro';
 import Icon from '../../components/Icon.astro';
+import { BUDGETBABY_APP_STORE_URL } from '../../data/appStore';
 
 const features = [
   {
@@ -265,10 +266,10 @@ const tagOrder = ['Core', 'Bills', 'Savings', 'Planning', 'Insights', 'Premium']
   ))}
 
   <CTASection
-    heading="Ready when BudgetBaby returns?"
-    subheading="The new LLC build is almost ready. Everything on this page is in the build heading to your iPhone."
-    primaryLabel="Join the waitlist"
-    primaryHref="/budgetbaby#bb-waitlist"
+    heading="BudgetBaby is live on the App Store."
+    subheading="Everything on this page is in the app on your iPhone. Download it today."
+    primaryLabel="Download on the App Store"
+    primaryHref={BUDGETBABY_APP_STORE_URL}
     secondaryLabel="Read the documentation"
     secondaryHref="/budgetbaby/documentation"
   />

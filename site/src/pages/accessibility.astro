@@ -1,0 +1,145 @@
+---
+import Layout from '../layouts/Layout.astro';
+import GlassCard from '../components/GlassCard.astro';
+import Icon from '../components/Icon.astro';
+
+const lastUpdated = 'May 16, 2026';
+---
+
+<Layout
+  title="Accessibility | BabyBlocks"
+  description="BabyBlocks accessibility statement. Our standards, what we support today, known limitations, and how to report a barrier."
+  canonical="/accessibility"
+>
+  <section class="sec-hero section">
+    <div class="container">
+      <div class="sec-hero-inner">
+        <div class="label-chip">Accessibility</div>
+        <h1>Built to be used by everyone.<br /><span class="text-gradient">Standards, support, and where we still fall short.</span></h1>
+        <p>
+          We design BudgetBaby, PantryBaby, and this website to be usable by as many people as possible.
+          This page describes what we support today, what we are still working on, and how to tell us when we get it wrong.
+        </p>
+        <p class="sec-updated">Last updated: {lastUpdated}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec-section section-sm">
+    <div class="container-sm">
+      <GlassCard accent padding="lg">
+        <div class="sec-block">
+          <div class="sec-block-icon"><Icon name="target" size={28} /></div>
+          <div>
+            <h2>Our target</h2>
+            <p>
+              We aim to meet the Web Content Accessibility Guidelines (<strong>WCAG 2.1 Level AA</strong>) on
+              the website, and the Apple Human Interface Guidelines for accessibility on the iOS apps.
+              We do not yet have a third-party audit. This statement reflects our own assessment.
+            </p>
+          </div>
+        </div>
+      </GlassCard>
+    </div>
+  </section>
+
+  <section class="sec-section section-sm">
+    <div class="container-sm">
+      <GlassCard padding="lg">
+        <div class="sec-block">
+          <div class="sec-block-icon"><Icon name="check" size={28} /></div>
+          <div>
+            <h2>What is supported today</h2>
+            <h3>iOS apps (BudgetBaby and PantryBaby)</h3>
+            <ul class="sec-list">
+              <li><Icon name="check" size={14} /> Dynamic Type. Text scales with the system text size setting.</li>
+              <li><Icon name="check" size={14} /> VoiceOver. Every interactive element has an accessibility label.</li>
+              <li><Icon name="check" size={14} /> Reduce Motion. Animations honor the system setting.</li>
+              <li><Icon name="check" size={14} /> Dark Mode and Light Mode, with a manual override in app settings.</li>
+              <li><Icon name="check" size={14} /> System tinting. Interactive elements use system-managed accent colors.</li>
+              <li><Icon name="check" size={14} /> Haptic feedback for confirmation events, which respects the system haptics setting</li>
+              <li><Icon name="check" size={14} /> All currency and date input fields work with the standard iOS keyboard, including the dictation key</li>
+              <li><Icon name="check" size={14} /> Face ID and Touch ID are optional, not required</li>
+            </ul>
+            <h3>Website (babyblocks.io)</h3>
+            <ul class="sec-list">
+              <li><Icon name="check" size={14} /> Semantic HTML with proper heading order on every page</li>
+              <li><Icon name="check" size={14} /> Skip-to-content links on long pages</li>
+              <li><Icon name="check" size={14} /> Keyboard navigation across all pages, including modal sheets and forms</li>
+              <li><Icon name="check" size={14} /> Color contrast meets WCAG AA on body text and primary controls</li>
+              <li><Icon name="check" size={14} /> Forms have associated labels and clear error messages</li>
+              <li><Icon name="check" size={14} /> Images that carry meaning have descriptive alt text; decorative images are marked as such</li>
+            </ul>
+          </div>
+        </div>
+      </GlassCard>
+    </div>
+  </section>
+
+  <section class="sec-section section-sm">
+    <div class="container-sm">
+      <GlassCard padding="lg">
+        <div class="sec-block">
+          <div class="sec-block-icon"><Icon name="info" size={28} /></div>
+          <div>
+            <h2>Known limitations</h2>
+            <p>We document gaps publicly. These are the issues we know about and are working on.</p>
+            <ul class="sec-list muted">
+              <li><Icon name="x-circle" size={14} /> Some hand-drawn iPhone mockups inside documentation pages are illustrative only and are not announced by screen readers. Equivalent prose appears in the same section.</li>
+              <li><Icon name="x-circle" size={14} /> The iOS apps are currently English-only. Localized accessibility labels follow the i18n work tracked in our roadmap.</li>
+              <li><Icon name="x-circle" size={14} /> Chart visualizations in BudgetBaby Insights do not yet have a tabular alternative. A data-table view is planned.</li>
+              <li><Icon name="x-circle" size={14} /> We have not yet conducted formal testing with users who rely on Switch Control.</li>
+            </ul>
+          </div>
+        </div>
+      </GlassCard>
+    </div>
+  </section>
+
+  <section class="sec-section section-sm">
+    <div class="container-sm">
+      <GlassCard padding="lg">
+        <div class="sec-block">
+          <div class="sec-block-icon"><Icon name="mail" size={28} /></div>
+          <div>
+            <h2>Report an accessibility barrier</h2>
+            <p>
+              If something does not work for you, tell us. Email
+              <a href="mailto:support@babyblocks.io">support@babyblocks.io</a> with
+              <strong>[Accessibility]</strong> at the start of the subject line. We treat accessibility
+              reports the same as security reports. Flagged on arrival, triaged same-day.
+            </p>
+            <p>
+              Please include the device, the assistive technology you use, the page or screen, and what you expected to happen.
+              If you can attach a screen recording, even better.
+            </p>
+            <p>
+              We commit to acknowledging accessibility reports within two business days and providing
+              a planned resolution date within ten business days.
+            </p>
+          </div>
+        </div>
+      </GlassCard>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .sec-hero { padding-top: calc(var(--space-20) + var(--space-8)); }
+  .sec-hero-inner { max-width: 720px; display: flex; flex-direction: column; gap: var(--space-6); }
+  .sec-hero-inner h1 { font-size: clamp(var(--text-4xl), 6vw, var(--text-6xl)); letter-spacing: -0.03em; }
+  .sec-hero-inner p { font-size: var(--text-lg); color: var(--text-secondary); max-width: 56ch; }
+  .sec-updated { font-size: var(--text-xs) !important; color: var(--text-muted) !important; max-width: none !important; }
+  .sec-section { padding-block: var(--space-4); }
+  .sec-block { display: flex; gap: var(--space-6); }
+  .sec-block-icon { color: var(--accent-light); flex-shrink: 0; padding-top: var(--space-1); }
+  .sec-block h2 { font-size: var(--text-2xl); margin-bottom: var(--space-4); }
+  .sec-block h3 { font-size: var(--text-lg); margin-top: var(--space-4); margin-bottom: var(--space-2); }
+  .sec-block p { font-size: var(--text-base); color: var(--text-secondary); line-height: var(--leading-relaxed); margin-bottom: var(--space-4); }
+  .sec-block p:last-child { margin-bottom: 0; }
+  .sec-block a { color: var(--accent-light); text-decoration: none; }
+  .sec-block a:hover { text-decoration: underline; }
+  .sec-list { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); margin-bottom: var(--space-4); padding-left: 0; }
+  .sec-list li { display: flex; align-items: flex-start; gap: var(--space-2); font-size: var(--text-sm); color: var(--text-secondary); }
+  .sec-list.muted li { color: var(--text-muted); }
+</style>

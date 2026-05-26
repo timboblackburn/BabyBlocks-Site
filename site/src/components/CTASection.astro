@@ -1,5 +1,6 @@
 ---
 import AbstractGlow from './abstract/AbstractGlow.astro';
+import { BUDGETBABY_APP_STORE_URL } from '../data/appStore';
 
 interface Props {
   heading?: string;
@@ -11,10 +12,10 @@ interface Props {
 }
 
 const {
-  heading = 'One email when BudgetBaby is live.',
-  subheading = 'Join the waitlist for one email the day it goes live on the App Store.',
-  primaryLabel = 'Join the waitlist',
-  primaryHref = '/budgetbaby#bb-waitlist',
+  heading = 'BudgetBaby is live on the App Store.',
+  subheading = 'Free to use, with optional Premium. iPhone, iOS 17 and up.',
+  primaryLabel = 'Download on the App Store',
+  primaryHref = BUDGETBABY_APP_STORE_URL,
   secondaryLabel = 'See the features',
   secondaryHref = '/budgetbaby/features',
 } = Astro.props;
