@@ -8,6 +8,15 @@ export interface DocNavGroup {
   items: DocNavItem[];
 }
 
+/**
+ * LAUNCH GATE for the Group Sharing docs. Group sharing is still in beta and not in
+ * the public App Store release, so its doc page is hidden: it is omitted from the docs
+ * navigation below AND the page itself redirects away (see group-sharing.astro) while
+ * this is false. Flip to `true` in the same release that ships group sharing publicly,
+ * and the page + nav entry go live together.
+ */
+export const GROUP_SHARING_DOC_PUBLISHED = false;
+
 export const docsNav: DocNavGroup[] = [
   {
     group: 'Getting Started',
@@ -25,7 +34,10 @@ export const docsNav: DocNavGroup[] = [
   {
     group: 'Features',
     items: [
-      { label: 'Group Sharing', href: '/budgetbaby/docs/group-sharing' },
+      // Group Sharing is hidden from the nav until GROUP_SHARING_DOC_PUBLISHED is true.
+      ...(GROUP_SHARING_DOC_PUBLISHED
+        ? [{ label: 'Group Sharing', href: '/budgetbaby/docs/group-sharing' }]
+        : []),
       { label: 'Reminders', href: '/budgetbaby/docs/reminders' },
     ],
   },

@@ -1,5 +1,14 @@
 ---
 import DocsLayout from '../../../layouts/DocsLayout.astro';
+import { GROUP_SHARING_DOC_PUBLISHED } from '../../../data/docsNav';
+
+// LAUNCH GATE: group sharing is beta-only and not in the public release yet, so this
+// page is hidden. Until GROUP_SHARING_DOC_PUBLISHED is flipped to true (in the release
+// that ships group sharing), anyone hitting this URL is redirected to the docs home and
+// the page is not linked from the nav. Flip the one flag in docsNav.ts to publish.
+if (!GROUP_SHARING_DOC_PUBLISHED) {
+  return Astro.redirect('/budgetbaby/docs');
+}
 
 const headings = [
   { id: 'what-it-is',     text: 'What group sharing is' },
