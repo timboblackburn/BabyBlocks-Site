@@ -25,6 +25,7 @@ export const docsNav: DocNavGroup[] = [
   {
     group: 'Features',
     items: [
+      { label: 'Group Sharing', href: '/budgetbaby/docs/group-sharing' },
       { label: 'Reminders', href: '/budgetbaby/docs/reminders' },
     ],
   },

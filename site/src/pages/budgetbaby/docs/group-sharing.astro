@@ -1,0 +1,130 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+
+const headings = [
+  { id: 'what-it-is',     text: 'What group sharing is' },
+  { id: 'requirements',   text: 'Requirements' },
+  { id: 'cloud-sync',     text: 'Why Cloud Sync is required' },
+  { id: 'setup',          text: 'Setting up a group' },
+  { id: 'budget',         text: 'The group needs its own budget' },
+  { id: 'splitting',      text: 'Assigning and splitting bills' },
+  { id: 'settle-up',      text: 'Settle up' },
+  { id: 'seats',          text: 'Seats and roles' },
+  { id: 'troubleshooting', text: 'A member sees nothing' },
+];
+---
+
+<DocsLayout
+  title="Group Sharing"
+  description="Share a budget with a partner or family in BudgetBaby. Requirements, how Cloud Sync moves data between devices, setting up the group budget, assigning and splitting bills, settle-up, seats and roles, and troubleshooting when a member sees nothing."
+  canonical="/budgetbaby/docs/group-sharing"
+  headings={headings}
+>
+  <div class="docs-content">
+    <h1>Group Sharing</h1>
+    <p class="docs-summary">
+      Group sharing lets two or more people share one budget, split bills, and settle up.
+      Because each person uses their own phone and their own account, group data travels
+      between devices through the cloud. The single most important requirement is that
+      Cloud Sync is on for every member, on every device.
+    </p>
+
+    <h2 id="what-it-is">What group sharing is</h2>
+    <p>
+      A group is a shared budget that more than one person can see and edit. The person who
+      creates the group is the admin. They invite others, set up the group's budget, and assign
+      or split bills so each member can see their own share. Members can record payments and
+      mark their share settled. Your personal budget stays separate and private; a group is an
+      additional, shared budget you switch into.
+    </p>
+
+    <h2 id="requirements">Requirements</h2>
+    <ul>
+      <li><strong>Cloud Sync on, for every member, on every device.</strong> This is how group data moves between phones. See the next section.</li>
+      <li><strong>A group plan with a seat for each member who needs Premium access.</strong> Membership itself is free; a seat grants a member the Premium feature set. The group budget and a member's assigned share are visible without a seat.</li>
+      <li><strong>The group has its own budget.</strong> A group does not inherit anyone's personal budget. The admin sets up a budget while switched into the group.</li>
+      <li><strong>A connection.</strong> Changes made offline are saved on the device and sync to other members once you reconnect.</li>
+    </ul>
+
+    <h2 id="cloud-sync">Why Cloud Sync is required</h2>
+    <p>
+      BudgetBaby is offline-first: your data lives on your device. Two phones never connect to
+      each other directly. The only path between members is the cloud:
+    </p>
+    <pre class="docs-flow">Admin's phone  --upload-->  cloud  --download-->  Member's phone</pre>
+    <p>
+      With Cloud Sync turned off, the admin's group budget, bills, and splits never leave their
+      phone, so other members have nothing to download and see an empty group. For this reason,
+      BudgetBaby turns Cloud Sync on automatically when you create or join a group, and keeps it
+      on while you are a member. If Cloud Sync is ever off, or a sync cannot complete, the app
+      shows a banner in the group so you know your changes are not reaching other members yet.
+    </p>
+
+    <h2 id="setup">Setting up a group</h2>
+    <ol>
+      <li>Go to Settings, then Group, and create a group (or join one with an invite code or QR link).</li>
+      <li>Cloud Sync turns on automatically as part of creating or joining.</li>
+      <li>Switch into the group from the budget switcher at the top of the Home screen. The group is listed under Groups.</li>
+      <li>Invite members from the group screen using Invite a member.</li>
+    </ol>
+
+    <h2 id="budget">The group needs its own budget</h2>
+    <p>
+      A common point of confusion: a group does not use your personal budget. After creating the
+      group, switch into it from the budget switcher, and on the Home screen choose Set up your
+      monthly budget. That budget belongs to the group and syncs to every member. Until the group
+      has its own budget, members switched into the group will see No Budget Set.
+    </p>
+
+    <h2 id="splitting">Assigning and splitting bills</h2>
+    <p>
+      While switched into the group, open Settings, then Group, then Assign and split bills.
+      Pick a bill and either assign the whole bill to one member or split it. Splits support
+      four modes:
+    </p>
+    <ul>
+      <li><strong>Equal</strong> divides the bill evenly among the people you include.</li>
+      <li><strong>Amounts</strong> lets you type each person's exact share; the shares must add up to the bill before you can save.</li>
+      <li><strong>Percent</strong> divides by percentage; the percentages must total 100.</li>
+      <li><strong>Shares</strong> divides by ratio, for example 2 to 1.</li>
+    </ul>
+    <p>
+      You can choose who pays the bill to the vendor (the person everyone else reimburses), or
+      leave it as the shared pool. Once saved, each member sees their own share on their Home and
+      Bills screens.
+    </p>
+
+    <h2 id="settle-up">Settle up</h2>
+    <p>
+      Every member can open Your share and settle-up from the group screen to see what they owe,
+      record a payment, and mark a share paid. Recording a payment notifies the person who is owed.
+      The settle-up ledger is self-reported: members record their own payments, and only the person
+      who made a payment can record it.
+    </p>
+
+    <h2 id="seats">Seats and roles</h2>
+    <p>
+      A group plan includes a number of seats (Pair includes two, Family includes more). The admin
+      assigns seats from Manage seats. A member can request a seat, and the admin approves it there.
+      A member without a seat is still a full member and can see the group budget and their assigned
+      share; a seat adds the Premium feature set for that member. Roles are admin, member, and a
+      read-only viewer. Admin-only actions include setting up the group budget, assigning and
+      splitting bills, and managing seats.
+    </p>
+
+    <h2 id="troubleshooting">A member sees nothing</h2>
+    <p>
+      If a member is in the group but sees no budget or bills, check these in order:
+    </p>
+    <ul>
+      <li><strong>Cloud Sync is on for both people.</strong> The admin needs it on to upload; the member needs it on to download. This is the most common cause. The group screen shows a banner when Cloud Sync is off or a sync has not completed.</li>
+      <li><strong>The group has its own budget.</strong> If the admin only set up a personal budget, the group is empty. Switch into the group and set up the group's budget.</li>
+      <li><strong>Both devices are online.</strong> Offline changes sync once you reconnect.</li>
+      <li><strong>The member has switched into the group.</strong> Use the budget switcher at the top of Home and select the group under Groups.</li>
+    </ul>
+    <p>
+      After the admin's changes have synced, the member can switch into the group and will see the
+      group budget and their assigned share.
+    </p>
+  </div>
+</DocsLayout>
