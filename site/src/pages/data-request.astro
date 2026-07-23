@@ -212,6 +212,17 @@ const lastUpdated = 'May 6, 2026';
           return;
         }
 
+        // No online endpoint configured — do NOT fetch('') and fake a success.
+        // Give the user a real, compliant path instead of a false confirmation.
+        if (!dsrUrl) {
+          form.reset();
+          setStatus(
+            "Online requests aren't available yet. Email support@babyblocks.io with your request type (access, export, or deletion) and the email on your account — we respond within 30 days.",
+            'error'
+          );
+          return;
+        }
+
         if (submit) submit.disabled = true;
         const originalLabel = label ? label.textContent : null;
         if (label) label.textContent = 'Submitting…';
@@ -278,15 +289,17 @@ const lastUpdated = 'May 6, 2026';
     align-items: flex-start;
     gap: 0.75rem;
     padding: 0.75rem;
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--hairline);
     border-radius: 10px;
     cursor: pointer;
-    background: rgba(255, 255, 255, 0.5);
-    transition: border-color 0.15s, background 0.15s;
+    background: var(--surface);
+    box-shadow: var(--shadow-card-sm);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
   }
   .dsr-radio:hover {
-    border-color: rgba(0, 0, 0, 0.18);
-    background: rgba(255, 255, 255, 0.75);
+    border-color: var(--accent-border);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-card);
   }
   .dsr-radio input[type="radio"] {
     margin-top: 0.25rem;
@@ -324,16 +337,18 @@ const lastUpdated = 'May 6, 2026';
     width: 100%;
     padding: 0.7rem 0.9rem;
     font-size: 0.925rem;
-    border: 1px solid rgba(0, 0, 0, 0.12);
+    border: 1px solid var(--hairline-strong);
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.7);
+    background: var(--surface);
     font-family: inherit;
-    transition: border-color 0.15s;
+    transition: box-shadow 0.15s, border-color 0.15s, background 0.15s;
   }
   .dsr-field input:focus,
   .dsr-field textarea:focus {
     outline: none;
-    border-color: rgba(0, 0, 0, 0.4);
+    background: #FFFFFF;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-dim);
   }
   .dsr-field textarea {
     resize: vertical;
