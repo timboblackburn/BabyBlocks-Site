@@ -26,7 +26,7 @@ const headings = [
     <h2 id="before-you-write">Before you write</h2>
 
     <div class="doc-mocks-row">
-      <DocMock label="Self-serve checks" caption="Three minutes of pre-flight resolves most issues without an email.">
+      <DocMock shot="/screenshots/screen-home.png" label="Self-serve checks" caption="Three minutes of pre-flight resolves most issues without an email.">
         <div class="dm-bar"><span></span><span class="dm-bar-title">Before contacting</span><span></span></div>
         <div class="dm-list">
           <div class="dm-row"><span class="dm-icon support">1</span><span class="dm-row-label">Force-quit & reopen<div class="dm-row-meta" style="font-size:8px;">App switcher</div></span></div>
@@ -80,19 +80,7 @@ Support report attached: (yes, see below / no)
     <h2 id="how-to-send">Generating and sending a report</h2>
 
     <div class="doc-mocks-row">
-      <DocMock label="Pre-filled email" caption="The Mail share-sheet route includes the BB-XXXX-XXXX code automatically.">
-        <div class="dm-bar"><span class="dm-back">Cancel</span><span class="dm-bar-title">New Message</span><span class="dm-bar-action">Send</span></div>
-        <div class="dm-card" style="padding:8px 9px; gap:3px;">
-          <div class="dm-kv"><span class="muted">To:</span><strong>support@babyblocks.io</strong></div>
-          <div class="dm-kv"><span class="muted">From:</span><span class="muted">insightintriguing@…</span></div>
-          <div class="dm-kv"><span class="muted">Subject:</span><strong>[BB-9F3K-2A17] Bills not appearing</strong></div>
-        </div>
-        <div class="dm-card" style="padding:8px 9px; min-height:60px;">
-          <div class="dm-help" style="font-size:8.5px; color:var(--text-secondary); line-height:1.4;">App version: 2.1.3 (412)<br/>iOS version: 17.4.1<br/>Device: iPhone 15 Pro<br/>Account: Premium<br/><br/>What happened…</div>
-        </div>
-        <div class="dm-row"><span class="dm-icon upload" style="background:linear-gradient(135deg,#475569,#1e293b);">A</span><span class="dm-row-label">BudgetBaby_Diagnostics_…<div class="dm-row-meta" style="font-size:8px;">512 KB · attached</div></span></div>
-      </DocMock>
-      <DocMock label="Report archive" caption="Every report is kept for 90 days under Settings → Support.">
+      <DocMock shot="/screenshots/screen-insights.png" label="Report archive" caption="Every report is kept for 90 days under Settings → Support.">
         <div class="dm-bar"><span class="dm-back">Support</span><span class="dm-bar-title">Archive</span><span class="dm-bar-action">⋯</span></div>
         <div class="dm-section-label">Recent reports</div>
         <div class="dm-list">
@@ -131,25 +119,6 @@ Support report attached: (yes, see below / no)
     <h2 id="response-times">Response times</h2>
 
     <div class="doc-mocks-row">
-      <DocMock label="Triage tiers" caption="Data-loss reports are flagged for same-day triage.">
-        <div class="dm-bar"><span></span><span class="dm-bar-title">Response times</span><span></span></div>
-        <div class="dm-card">
-          <div class="dm-kv"><strong>Standard</strong><span class="dm-pill green">1-2 business days</span></div>
-          <div class="dm-help">Bug reports, billing questions, how-tos.</div>
-        </div>
-        <div class="dm-card dm-card-warn">
-          <div class="dm-kv"><strong>Data loss</strong><span class="dm-pill orange">Same day</span></div>
-          <div class="dm-help" style="color:#FDBA74;">Flagged on intake. Don't uninstall before you hear back.</div>
-        </div>
-        <div class="dm-card dm-card-accent">
-          <div class="dm-kv"><strong>Security</strong><span class="dm-pill purple">2 business days</span></div>
-          <div class="dm-help">Use [Security] in the subject line.</div>
-        </div>
-        <div class="dm-card">
-          <div class="dm-kv muted"><span>Channel</span><strong>Email only</strong></div>
-          <div class="dm-kv muted"><span>Read by</span><strong>A human</strong></div>
-        </div>
-      </DocMock>
     </div>
     <ul>
       <li><strong>Standard issues:</strong> Reply within 1-2 business days.</li>

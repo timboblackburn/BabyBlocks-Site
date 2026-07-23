@@ -44,7 +44,7 @@ const headings = [
     </p>
 
     <div class="doc-mocks-row">
-      <DocMock label="Home. Comfortable" caption="Daily rate is at or above 80% of the per-day budget. Spend confidently.">
+      <DocMock shot="/screenshots/screen-home.png" label="Home. Comfortable" caption="Daily rate is at or above 80% of the per-day budget. Spend confidently.">
         <div class="dm-bar"><span class="dm-bar-title" style="font-size:11px;">Home</span><span class="dm-bar-action">+</span></div>
         <div class="dm-card dm-card-accent" style="text-align:center;">
           <div class="dm-hero-label">Safe to Spend Today</div>
@@ -56,34 +56,6 @@ const headings = [
           <div class="dm-kv"><span>Period budget</span><strong>$3,000</strong></div>
           <div class="dm-kv"><span>Spent</span><span class="red">−$350</span></div>
           <div class="dm-kv"><span>Reserved</span><span class="muted">−$1,500</span></div>
-        </div>
-      </DocMock>
-      <DocMock label="Home. Moderate" caption="Daily rate sits between 50% and 80% of your daily budget. Pace yourself.">
-        <div class="dm-bar"><span class="dm-bar-title" style="font-size:11px;">Home</span><span class="dm-bar-action">+</span></div>
-        <div class="dm-card dm-card-warn" style="text-align:center;">
-          <div class="dm-hero-label">Safe to Spend Today</div>
-          <div class="dm-hero-amount yellow">$31<span class="dm-cents">.20</span></div>
-          <div class="dm-hero-sub">10 days remaining · slow down</div>
-          <div class="dm-bar-track" style="margin-top:6px;"><div class="dm-bar-fill orange" style="width:42%"></div></div>
-        </div>
-        <div class="dm-card">
-          <div class="dm-kv"><span>Period budget</span><strong>$3,000</strong></div>
-          <div class="dm-kv"><span>Spent</span><span class="red">−$2,150</span></div>
-          <div class="dm-kv"><span>Reserved</span><span class="muted">−$540</span></div>
-        </div>
-      </DocMock>
-      <DocMock label="Home. Overcommitted" caption="Daily rate hit zero, remaining budget is fully spoken for or you've overspent.">
-        <div class="dm-bar"><span class="dm-bar-title" style="font-size:11px;">Home</span><span class="dm-bar-action">+</span></div>
-        <div class="dm-card dm-card-error" style="text-align:center;">
-          <div class="dm-hero-label">Safe to Spend Today</div>
-          <div class="dm-hero-amount red">$0<span class="dm-cents">.00</span></div>
-          <div class="dm-hero-sub">3 days remaining · pause discretionary</div>
-          <div class="dm-bar-track" style="margin-top:6px;"><div class="dm-bar-fill red" style="width:100%"></div></div>
-        </div>
-        <div class="dm-card">
-          <div class="dm-kv"><span>Period budget</span><strong>$3,000</strong></div>
-          <div class="dm-kv"><span>Spent</span><span class="red">−$2,930</span></div>
-          <div class="dm-kv"><span>Bills due</span><span class="red">$140</span></div>
         </div>
       </DocMock>
     </div>
@@ -124,7 +96,7 @@ const headings = [
     </div>
 
     <div class="doc-mocks-row">
-      <DocMock label="Breakdown sheet" caption="Tap (i) on the home screen to see every component of the calculation.">
+      <DocMock shot="/screenshots/screen-insights.png" label="Breakdown sheet" caption="Tap (i) on the home screen to see every component of the calculation.">
         <div class="dm-sheet-handle"></div>
         <div class="dm-bar"><span></span><span class="dm-bar-title">Safe to Spend</span><span class="dm-bar-action">Done</span></div>
         <div class="dm-card dm-card-accent" style="text-align:center;">
@@ -197,7 +169,7 @@ const headings = [
     </div>
 
     <div class="doc-mocks-row">
-      <DocMock label="Before paying rent" caption="Bill reserved at $900, daily rate $54.76.">
+      <DocMock shot="/screenshots/screen-bills.png" label="Before paying rent" caption="Bill reserved at $900, daily rate $54.76.">
         <div class="dm-bar"><span class="dm-bar-title">Home</span><span class="dm-bar-action">+</span></div>
         <div class="dm-card dm-card-warn" style="text-align:center;">
           <div class="dm-hero-label">Safe to Spend</div>
@@ -214,20 +186,6 @@ const headings = [
           <div class="dm-kv"><span>Reserved</span><strong class="red">−$900</strong></div>
         </div>
         <div class="dm-btn dm-btn-primary">Mark Rent Paid</div>
-      </DocMock>
-      <DocMock label="After marking paid" caption="Reserve releases, daily rate jumps to $97.62.">
-        <div class="dm-bar"><span class="dm-bar-title">Home</span><span class="dm-bar-action">+</span></div>
-        <div class="dm-card dm-card-good" style="text-align:center;">
-          <div class="dm-hero-label">Safe to Spend</div>
-          <div class="dm-hero-amount green">$97<span class="dm-cents">.62</span></div>
-          <div class="dm-hero-sub">21 days · all bills paid</div>
-        </div>
-        <div class="dm-card">
-          <div class="dm-row" style="background:transparent; border:none; padding:0;"><span class="dm-dot critical"></span><span class="dm-row-label">Rent</span><span class="dm-pill green">Paid</span></div>
-          <div class="dm-kv-divider"></div>
-          <div class="dm-kv"><span>Bill reserve</span><strong class="green">$0</strong></div>
-        </div>
-        <div class="dm-help">+$42.86 a day available now that rent is settled.</div>
       </DocMock>
     </div>
 
@@ -273,7 +231,7 @@ const headings = [
     </p>
 
     <div class="doc-mocks-row">
-      <DocMock label="Money Pools" caption="Each pool tracks a different type of money, never collapsed into one number.">
+      <DocMock shot="/screenshots/live-allocate.png" label="Money Pools" caption="Each pool tracks a different type of money, never collapsed into one number.">
         <div class="dm-bar"><span class="dm-bar-title">Money Pools</span><span class="dm-bar-action">Edit</span></div>
         <div class="dm-card">
           <div class="dm-row" style="background:transparent; border:none; padding:1px 0;">
@@ -297,7 +255,7 @@ const headings = [
           <div class="dm-row" style="background:transparent; border:none; padding:1px 0;">
             <span class="dm-icon savings">S</span>
             <span class="dm-row-label">Savings<div class="dm-row-meta" style="font-size:8px;">Protected</div></span>
-            <span class="dm-row-meta" style="color:#A78BFA; font-weight:600;">$3,200</span>
+            <span class="dm-row-meta" style="color:#F0563C; font-weight:600;">$3,200</span>
           </div>
         </div>
         <div class="dm-card dm-card-accent" style="text-align:center;">
@@ -324,7 +282,7 @@ const headings = [
     </div>
 
     <div class="doc-mocks-row">
-      <DocMock label="Credit purchase" caption="Logged as Credit, lowers Safe to Spend, leaves Debit untouched.">
+      <DocMock shot="/screenshots/live-settings.png" label="Credit purchase" caption="Logged as Credit, lowers Safe to Spend, leaves Debit untouched.">
         <div class="dm-bar"><span class="dm-bar-title" style="font-size:11px;">Trader Joe's</span><span class="dm-bar-action">Edit</span></div>
         <div class="dm-card dm-card-accent" style="text-align:center;">
           <div class="dm-hero-label">Amount</div>
@@ -340,7 +298,7 @@ const headings = [
           <div class="dm-kv"><span>Effect on Safe to Spend</span><span class="red">−$120</span></div>
         </div>
       </DocMock>
-      <DocMock label="Pay the card" caption="Log a Debit→Credit transfer when the card statement clears.">
+      <DocMock shot="/screenshots/screen-logging.png" label="Pay the card" caption="Log a Debit→Credit transfer when the card statement clears.">
         <div class="dm-bar"><span class="dm-back">Cancel</span><span class="dm-bar-title">Transfer</span><span class="dm-bar-action">Save</span></div>
         <div class="dm-card">
           <div class="dm-kv"><span>From</span><span><span class="dm-dot debit"></span> Debit</span></div>
@@ -404,26 +362,6 @@ const headings = [
     </p>
 
     <div class="doc-mocks-row">
-      <DocMock label="Categories" caption="Every category carries a priority color. Red bills are reserved automatically.">
-        <div class="dm-bar"><span class="dm-bar-title">Categories</span><span class="dm-bar-action">+</span></div>
-        <div class="dm-section-label">Essentials (red)</div>
-        <div class="dm-list">
-          <div class="dm-row"><span class="dm-dot critical"></span><span class="dm-row-label">Rent / Mortgage</span><span class="dm-row-meta">$1,200</span></div>
-          <div class="dm-row"><span class="dm-dot critical"></span><span class="dm-row-label">Utilities</span><span class="dm-row-meta">$185</span></div>
-          <div class="dm-row"><span class="dm-dot critical"></span><span class="dm-row-label">Internet</span><span class="dm-row-meta">$70</span></div>
-          <div class="dm-row"><span class="dm-dot critical"></span><span class="dm-row-label">Phone</span><span class="dm-row-meta">$45</span></div>
-        </div>
-        <div class="dm-section-label">Variable (yellow)</div>
-        <div class="dm-list">
-          <div class="dm-row"><span class="dm-dot important"></span><span class="dm-row-label">Groceries</span><span class="dm-row-meta">$310</span></div>
-          <div class="dm-row"><span class="dm-dot important"></span><span class="dm-row-label">Transport</span><span class="dm-row-meta">$140</span></div>
-        </div>
-        <div class="dm-section-label">Fun (green)</div>
-        <div class="dm-list">
-          <div class="dm-row"><span class="dm-dot discretionary"></span><span class="dm-row-label">Dining Out</span><span class="dm-row-meta">$95</span></div>
-          <div class="dm-row"><span class="dm-dot discretionary"></span><span class="dm-row-label">Coffee &amp; Cafe</span><span class="dm-row-meta">$32</span></div>
-        </div>
-      </DocMock>
     </div>
 
     <h2 id="bucket-names">Bucket names (renaming)</h2>
@@ -481,21 +419,6 @@ const headings = [
     </p>
 
     <div class="doc-mocks-row">
-      <DocMock label="Period rollover" caption="Cash and Debit carry forward. Credit and Savings stay in their own pools.">
-        <div class="dm-bar"><span class="dm-bar-title">Period summary</span><span class="dm-bar-action">Close</span></div>
-        <div class="dm-card dm-card-good" style="text-align:center;">
-          <div class="dm-hero-label">Period closing</div>
-          <div class="dm-hero-amount" style="font-size:18px; color:#34D399;">Mar 28</div>
-          <div class="dm-hero-sub">$2,180 of $2,400 spent · $220 surplus</div>
-        </div>
-        <div class="dm-section-label">Carrying forward</div>
-        <div class="dm-list">
-          <div class="dm-row"><span class="dm-icon cash">$</span><span class="dm-row-label">Cash</span><span class="dm-row-meta" style="color:#34D399;">→ $42</span></div>
-          <div class="dm-row"><span class="dm-icon debit">B</span><span class="dm-row-label">Debit</span><span class="dm-row-meta" style="color:#34D399;">→ $1,608</span></div>
-          <div class="dm-row"><span class="dm-icon savings">S</span><span class="dm-row-label">Surplus carryover</span><span class="dm-row-meta" style="color:#A78BFA;">→ $220</span></div>
-        </div>
-        <div class="dm-help">Next period opens automatically the next time you launch the app.</div>
-      </DocMock>
     </div>
 
     <h2 id="budget-guardrails">Budget Guardrails</h2>
@@ -530,34 +453,6 @@ const headings = [
     </p>
 
     <div class="doc-mocks-row">
-      <DocMock label="Hard block" caption="The Save button greys out when the math would break, with the exact cap shown.">
-        <div class="dm-bar"><span class="dm-back">Cancel</span><span class="dm-bar-title">New transfer</span><span class="dm-bar-action" style="opacity:0.4;">Save</span></div>
-        <div class="dm-card">
-          <div class="dm-kv"><span>From</span><span><span class="dm-dot cash"></span> Cash</span></div>
-          <div class="dm-kv"><span>To</span><span><span class="dm-dot debit"></span> Debit</span></div>
-        </div>
-        <div class="dm-card dm-card-error" style="text-align:center;">
-          <div class="dm-hero-label">Amount</div>
-          <div class="dm-hero-amount red" style="font-size:22px;">$120<span class="dm-cents">.00</span></div>
-        </div>
-        <div class="dm-card dm-card-error">
-          <div class="dm-kv"><strong>Exceeds source pool</strong><span class="red">!</span></div>
-          <div class="dm-help" style="color:#FCA5A5;">Cash holds $60. The most you can transfer is $60.</div>
-        </div>
-        <div class="dm-btn dm-btn-disabled">Save disabled</div>
-      </DocMock>
-      <DocMock label="Auto-correction" caption="On launch, BudgetBaby logs and explains any past-version drift.">
-        <div class="dm-bar"><span class="dm-back">Settings</span><span class="dm-bar-title">Activity Log</span><span></span></div>
-        <div class="dm-card dm-card-warn">
-          <div class="dm-kv"><strong>Auto-corrected</strong><span class="dm-pill orange">System</span></div>
-          <div class="dm-help" style="color:#FDBA74;">A budget remainder of −$8.40 from Feb 14 was zeroed via a BudgetAdjustment.</div>
-        </div>
-        <div class="dm-section-label">Recent activity</div>
-        <div class="dm-list">
-          <div class="dm-row"><span class="dm-icon shield">A</span><span class="dm-row-label">BudgetAdjustment +$8.40<div class="dm-row-meta" style="font-size:8px;">Today, 9:41 AM</div></span><span class="dm-pill purple">Auto</span></div>
-          <div class="dm-row"><span class="dm-icon target">T</span><span class="dm-row-label">Allocation edit<div class="dm-row-meta" style="font-size:8px;">Yesterday</div></span><span class="dm-pill muted">Manual</span></div>
-        </div>
-      </DocMock>
     </div>
 
     <h2 id="why-local-first">Why local-first</h2>
@@ -584,7 +479,7 @@ const headings = [
     </p>
 
     <div class="doc-mocks-row">
-      <DocMock label="On-device storage" caption="No account required. Everything works offline. Encryption handled by iOS.">
+      <DocMock shot="/screenshots/screen-backup.png" label="On-device storage" caption="No account required. Everything works offline. Encryption handled by iOS.">
         <div class="dm-bar"><span class="dm-back">Settings</span><span class="dm-bar-title">Privacy</span><span></span></div>
         <div class="dm-card dm-card-good" style="text-align:center;">
           <span class="dm-icon shield" style="width:30px; height:30px; margin:0 auto;">L</span>

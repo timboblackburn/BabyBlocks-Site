@@ -48,7 +48,7 @@ const headings = [
     <h2 id="safe-to-spend">Safe to Spend confusion</h2>
 
     <div class="doc-mocks-row">
-      <DocMock label="Symptom" caption="STS at $0 with several unpaid red (Essentials) bills consuming the reserve.">
+      <DocMock shot="/screenshots/screen-bills.png" label="Symptom" caption="STS at $0 with several unpaid red (Essentials) bills consuming the reserve.">
         <div class="dm-bar"><span class="dm-bar-title">Home</span><span class="dm-bar-action">+</span></div>
         <div class="dm-card dm-card-error" style="text-align:center;">
           <div class="dm-hero-label">Safe to Spend</div>
@@ -61,19 +61,6 @@ const headings = [
           <div class="dm-kv"><span>Savings reserve</span><span class="muted">−$300</span></div>
           <div class="dm-kv-divider"></div>
           <div class="dm-kv"><strong>Spendable</strong><strong class="red">$0</strong></div>
-        </div>
-      </DocMock>
-      <DocMock label="After fix" caption="Mark the bills you've already paid, reserve releases, daily rate returns.">
-        <div class="dm-bar"><span class="dm-bar-title">Home</span><span class="dm-bar-action">+</span></div>
-        <div class="dm-card dm-card-good" style="text-align:center;">
-          <div class="dm-hero-label">Safe to Spend</div>
-          <div class="dm-hero-amount green">$41<span class="dm-cents">.66</span></div>
-          <div class="dm-hero-sub">12 days · all bills paid</div>
-        </div>
-        <div class="dm-card">
-          <div class="dm-row" style="background:transparent; border:none; padding:1px 0;"><span class="dm-dot critical"></span><span class="dm-row-label">Rent</span><span class="dm-pill green">Paid</span></div>
-          <div class="dm-row" style="background:transparent; border:none; padding:1px 0;"><span class="dm-dot critical"></span><span class="dm-row-label">Utilities</span><span class="dm-pill green">Paid</span></div>
-          <div class="dm-row" style="background:transparent; border:none; padding:1px 0;"><span class="dm-dot critical"></span><span class="dm-row-label">Insurance</span><span class="dm-pill green">Paid</span></div>
         </div>
       </DocMock>
     </div>
@@ -150,7 +137,7 @@ const headings = [
     <h2 id="pool-balances">Pool balance issues</h2>
 
     <div class="doc-mocks-row">
-      <DocMock label="Pool drift" caption="Debit goes negative when starting balance was never set.">
+      <DocMock shot="/screenshots/live-allocate.png" label="Pool drift" caption="Debit goes negative when starting balance was never set.">
         <div class="dm-bar"><span class="dm-bar-title">Money Pools</span><span class="dm-bar-action">Edit</span></div>
         <div class="dm-card dm-card-error">
           <div class="dm-row" style="background:transparent; border:none; padding:1px 0;">
@@ -168,7 +155,7 @@ const headings = [
         </div>
         <div class="dm-btn dm-btn-primary">Set Starting Balance</div>
       </DocMock>
-      <DocMock label="Edit transaction" caption="Re-categorise a wrongly-classified credit card buy.">
+      <DocMock shot="/screenshots/screen-logging.png" label="Edit transaction" caption="Re-categorise a wrongly-classified credit card buy.">
         <div class="dm-bar"><span class="dm-back">Cancel</span><span class="dm-bar-title">Edit</span><span class="dm-bar-action">Save</span></div>
         <div class="dm-card dm-card-accent" style="text-align:center;">
           <div class="dm-hero-label">Amount</div>
@@ -181,7 +168,7 @@ const headings = [
         <div class="dm-section-label">Payment method</div>
         <div class="dm-list">
           <div class="dm-row"><span class="dm-dot debit"></span><span class="dm-row-label">Debit</span><span class="dm-row-meta" style="text-decoration:line-through; opacity:0.5;">Was</span></div>
-          <div class="dm-row" style="background:rgba(139,92,246,0.12); border-color:rgba(167,139,250,0.4);"><span class="dm-dot credit"></span><span class="dm-row-label">Credit</span><span class="dm-pill purple">Now</span></div>
+          <div class="dm-row" style="background:rgba(240, 86, 60, 0.12); border-color:rgba(240, 86, 60, 0.4);"><span class="dm-dot credit"></span><span class="dm-row-label">Credit</span><span class="dm-pill purple">Now</span></div>
         </div>
         <div class="dm-help">Both pools recalculate the moment you tap Save.</div>
       </DocMock>
@@ -241,17 +228,6 @@ const headings = [
     <h2 id="bills">Bill and payment tracking</h2>
 
     <div class="doc-mocks-row">
-      <DocMock label="Bills tab" caption="Each period regenerates the schedule. Tap the check to mark paid.">
-        <div class="dm-bar"><span class="dm-bar-title">Bills</span><span class="dm-bar-action">+</span></div>
-        <div class="dm-section-label">This period</div>
-        <div class="dm-list">
-          <div class="dm-row"><span class="dm-icon bills">R</span><span class="dm-row-label">Rent<div class="dm-row-meta" style="font-size:8px;">Due Mar 1 · Essentials</div></span><span class="dm-pill green">Paid</span></div>
-          <div class="dm-row"><span class="dm-icon bills">U</span><span class="dm-row-label">Utilities<div class="dm-row-meta" style="font-size:8px;">Due Mar 8 · Essentials</div></span><span class="dm-pill red">Unpaid</span></div>
-          <div class="dm-row"><span class="dm-icon bills">I</span><span class="dm-row-label">Insurance<div class="dm-row-meta" style="font-size:8px;">Due Mar 15 · Essentials</div></span><span class="dm-pill yellow">Soon</span></div>
-          <div class="dm-row"><span class="dm-icon star">N</span><span class="dm-row-label">Netflix<div class="dm-row-meta" style="font-size:8px;">Due Mar 18 · Fun</div></span><span class="dm-pill muted">Subs</span></div>
-        </div>
-        <div class="dm-btn dm-btn-primary">Mark Utilities Paid</div>
-      </DocMock>
     </div>
 
     <div class="case">
@@ -291,7 +267,7 @@ const headings = [
     <h2 id="premium-billing">Premium and billing</h2>
 
     <div class="doc-mocks-row">
-      <DocMock label="Locked feature" caption="Locked Premium views show a Restore Purchases shortcut.">
+      <DocMock shot="/screenshots/screen-backup.png" label="Locked feature" caption="Locked Premium views show a Restore Purchases shortcut.">
         <div class="dm-bar"><span class="dm-back">Insights</span><span class="dm-bar-title">Trends</span><span></span></div>
         <div class="dm-card dm-card-warn" style="text-align:center;">
           <span class="dm-icon lock" style="width:30px; height:30px; margin:0 auto;"><span class="dm-glyph-lock"></span></span>
@@ -362,21 +338,6 @@ const headings = [
     <h2 id="backup-restore">Backup and restore</h2>
 
     <div class="doc-mocks-row">
-      <DocMock label="No backup found" caption="If no cloud backup existed before app deletion, the data is gone.">
-        <div class="dm-bar"><span class="dm-back">Account</span><span class="dm-bar-title">Backups</span><span></span></div>
-        <div class="dm-card dm-card-error" style="text-align:center;">
-          <span class="dm-icon danger" style="width:30px; height:30px; margin:0 auto;">!</span>
-          <div class="dm-h2" style="margin-top:6px;">No backups yet</div>
-          <div class="dm-help" style="text-align:center; color:#FCA5A5;">This account has no cloud backups. Local data is gone after uninstall.</div>
-        </div>
-        <div class="dm-card">
-          <div class="dm-kv"><span>Account signed in</span><span class="green">Yes</span></div>
-          <div class="dm-kv"><span>iCloud Keychain</span><span class="green">Synced</span></div>
-          <div class="dm-kv"><span>Cloud backups</span><strong class="red">0</strong></div>
-        </div>
-        <div class="dm-btn dm-btn-primary">Start Fresh Setup</div>
-        <div class="dm-help" style="text-align:center;">Create a backup right after onboarding.</div>
-      </DocMock>
     </div>
 
     <div class="case">
@@ -435,7 +396,7 @@ const headings = [
     <h2 id="notifications">Notifications</h2>
 
     <div class="doc-mocks-row">
-      <DocMock label="Reschedule on save" caption="Tapping Save in Reminders cancels old notifications and books fresh ones.">
+      <DocMock shot="/screenshots/live-reminders.png" label="Reschedule on save" caption="Tapping Save in Reminders cancels old notifications and books fresh ones.">
         <div class="dm-bar"><span class="dm-back">Settings</span><span class="dm-bar-title">Reminders</span><span class="dm-bar-action">Save</span></div>
         <div class="dm-card dm-card-good">
           <div class="dm-kv"><strong>Just rescheduled</strong><span class="dm-pill green">42 alerts</span></div>
@@ -487,7 +448,7 @@ const headings = [
     <h2 id="budget-setup">Budget setup changes</h2>
 
     <div class="doc-mocks-row">
-      <DocMock label="Budget Settings" caption="Update pay frequency or income, changes apply to the next period.">
+      <DocMock shot="/screenshots/live-income.png" label="Budget Settings" caption="Update pay frequency or income, changes apply to the next period.">
         <div class="dm-bar"><span class="dm-back">Settings</span><span class="dm-bar-title">Budget Settings</span><span class="dm-bar-action">Save</span></div>
         <div class="dm-card">
           <div class="dm-h2">Pay frequency</div>
@@ -507,7 +468,7 @@ const headings = [
           <div class="dm-help" style="color:#FDBA74;">Current period continues with the old settings. End early to apply now.</div>
         </div>
       </DocMock>
-      <DocMock label="Lower savings target" caption="Lower the monthly savings target so Safe to Spend reflects what's realistic.">
+      <DocMock shot="/screenshots/screen-goals.png" label="Lower savings target" caption="Lower the monthly savings target so Safe to Spend reflects what's realistic.">
         <div class="dm-bar"><span class="dm-back">Setup</span><span class="dm-bar-title">Savings target</span><span class="dm-bar-action">Save</span></div>
         <div class="dm-card dm-card-accent" style="text-align:center;">
           <div class="dm-hero-label">Per period</div>
@@ -574,8 +535,9 @@ const headings = [
   /* ── Case block ─────────────────────────────────────────────────── */
   .case {
     margin-bottom: var(--space-6);
-    border: 1px solid var(--glass-border);
+    border: 1px solid var(--hairline);
     border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-card);
     overflow: hidden;
   }
 
@@ -584,8 +546,8 @@ const headings = [
     align-items: center;
     gap: var(--space-3);
     padding: var(--space-4) var(--space-5);
-    background: rgba(255, 255, 255, 0.03);
-    border-bottom: 1px solid var(--glass-border);
+    background: var(--surface-alt);
+    border-bottom: 1px solid var(--hairline);
     /* Override global h3 margin so the header stays flush */
     margin: 0;
   }

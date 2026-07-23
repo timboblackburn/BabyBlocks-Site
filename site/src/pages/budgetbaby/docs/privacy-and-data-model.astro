@@ -8,6 +8,7 @@ const headings = [
   { id: 'what-we-never-do',  text: 'What we never do' },
   { id: 'controls',           text: 'Your in-app controls' },
   { id: 'third-party',        text: 'Third-party services' },
+  { id: 'account-separation', text: 'Data and account separation' },
   { id: 'your-rights',        text: 'Your rights' },
 ];
 ---
@@ -57,7 +58,7 @@ const headings = [
     </div>
 
     <div class="doc-mocks-row">
-      <DocMock label="Privacy toggle" caption="A single switch controls analytics, crash reports, and RevenueCat anonymity.">
+      <DocMock shot="/screenshots/screen-insights.png" label="Privacy toggle" caption="A single switch controls analytics, crash reports, and RevenueCat anonymity.">
         <div class="dm-bar"><span class="dm-back">Settings</span><span class="dm-bar-title">Privacy</span><span></span></div>
         <div class="dm-card dm-card-good">
           <div class="dm-kv"><strong>Local-only mode</strong><span class="dm-toggle on"></span></div>
@@ -97,7 +98,7 @@ const headings = [
     <p>We do not store passwords directly. Authentication is handled by Firebase Auth, which means your credentials go to Firebase, not to our own servers.</p>
 
     <div class="doc-mocks-row">
-      <DocMock label="Cloud features" caption="Both backup and sync are explicit opt-in. Off by default.">
+      <DocMock shot="/screenshots/screen-backup.png" label="Cloud features" caption="Both backup and sync are explicit opt-in. Off by default.">
         <div class="dm-bar"><span class="dm-back">Settings</span><span class="dm-bar-title">Account</span><span></span></div>
         <div class="dm-card">
           <div class="dm-kv"><strong>Cloud backup</strong><span class="dm-toggle on purple"></span></div>
@@ -126,7 +127,7 @@ const headings = [
     </ul>
 
     <div class="doc-mocks-row">
-      <DocMock label="Five guarantees" caption="Promises baked into the architecture, not just policy.">
+      <DocMock shot="/screenshots/screen-home.png" label="Five guarantees" caption="Promises baked into the architecture, not just policy.">
         <div class="dm-bar"><span></span><span class="dm-bar-title">What we never do</span><span></span></div>
         <div class="dm-list">
           <div class="dm-row"><span style="color:#F87171; font-size:14px; width:14px;"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><span class="dm-row-label" style="font-size:9px;">Connect to your bank</span></div>
@@ -155,20 +156,6 @@ const headings = [
     </p>
 
     <div class="doc-mocks-row">
-      <DocMock label="Activity log" caption="Every save, edit, and delete is timestamped and undoable.">
-        <div class="dm-bar"><span class="dm-back">Settings</span><span class="dm-bar-title">Activity</span><span></span></div>
-        <div class="dm-list">
-          <div class="dm-row" style="background:rgba(139,92,246,0.12); border-color:rgba(167,139,250,0.4);">
-            <span class="dm-icon target">T</span>
-            <span class="dm-row-label">Logged $42.18 · Groceries<div class="dm-row-meta" style="font-size:8px;">Today, 6:14 PM</div></span>
-            <span class="dm-pill purple">Undo</span>
-          </div>
-          <div class="dm-row"><span class="dm-icon target">T</span><span class="dm-row-label">Edited bill: Rent<div class="dm-row-meta" style="font-size:8px;">Today, 5:50 PM</div></span><span class="dm-row-meta" style="font-size:8px;">·</span></div>
-          <div class="dm-row"><span class="dm-icon target">T</span><span class="dm-row-label">Marked Rent paid<div class="dm-row-meta" style="font-size:8px;">Mar 1</div></span><span class="dm-row-meta" style="font-size:8px;">·</span></div>
-          <div class="dm-row"><span class="dm-icon star">G</span><span class="dm-row-label">Goal contribution +$200<div class="dm-row-meta" style="font-size:8px;">Feb 28</div></span><span class="dm-row-meta" style="font-size:8px;">·</span></div>
-        </div>
-        <div class="dm-help">Log lives on-device only. Never uploaded.</div>
-      </DocMock>
     </div>
 
     <h3>Settings → Activity &amp; History</h3>
@@ -188,22 +175,6 @@ const headings = [
     </p>
 
     <div class="doc-mocks-row">
-      <DocMock label="Security" caption="Optional Face ID lock and a recovery wizard for biometric edge cases.">
-        <div class="dm-bar"><span class="dm-back">Settings</span><span class="dm-bar-title">Security</span><span></span></div>
-        <div class="dm-card">
-          <div class="dm-kv"><strong>Require Face ID</strong><span class="dm-toggle on"></span></div>
-          <div class="dm-help">On launch and before destructive actions.</div>
-        </div>
-        <div class="dm-card">
-          <div class="dm-kv"><strong>Hide amounts when locked</strong><span class="dm-toggle on"></span></div>
-        </div>
-        <div class="dm-card">
-          <div class="dm-kv"><strong>Recovery code</strong><span class="dm-pill green">Set</span></div>
-          <div class="dm-help">Generated Mar 02 · stored only by you</div>
-          <div class="dm-btn dm-btn-secondary" style="margin-top:4px;">Regenerate</div>
-        </div>
-        <div class="dm-row"><span class="dm-icon danger">!</span><span class="dm-row-label">Wipe data after 10 fails</span><span class="dm-toggle"></span></div>
-      </DocMock>
     </div>
 
     <h2 id="third-party">Third-party services</h2>
@@ -262,18 +233,32 @@ const headings = [
     </p>
 
     <div class="doc-mocks-row">
-      <DocMock label="Third parties" caption="Each service receives only what's needed for its job.">
-        <div class="dm-bar"><span></span><span class="dm-bar-title">Third-party services</span><span></span></div>
-        <div class="dm-list">
-          <div class="dm-row"><span class="dm-icon shield">F</span><span class="dm-row-label">Firebase Auth<div class="dm-row-meta" style="font-size:8px;">Sign-in only</div></span><span class="dm-pill green">No tx</span></div>
-          <div class="dm-row"><span class="dm-icon shield">F</span><span class="dm-row-label">Crashlytics<div class="dm-row-meta" style="font-size:8px;">Anonymous crashes</div></span><span class="dm-pill green">No PII</span></div>
-          <div class="dm-row"><span class="dm-icon shield">F</span><span class="dm-row-label">Firestore<div class="dm-row-meta" style="font-size:8px;">Cloud sync (opt-in)</div></span><span class="dm-pill purple">Encrypted</span></div>
-          <div class="dm-row"><span class="dm-icon shield">R</span><span class="dm-row-label">RevenueCat<div class="dm-row-meta" style="font-size:8px;">Subscriptions</div></span><span class="dm-pill green">No $</span></div>
-          <div class="dm-row"><span class="dm-icon shield">A</span><span class="dm-row-label">StoreKit<div class="dm-row-meta" style="font-size:8px;">Apple</div></span><span class="dm-pill green">Apple-only</span></div>
-        </div>
-        <div class="dm-help">Full disclosures live in the Privacy Policy.</div>
-      </DocMock>
     </div>
+
+    <h2 id="account-separation">Data and account separation</h2>
+    <p>
+      BudgetBaby (and our companion app PantryBaby) store data per device, not per
+      Apple account. If two people share a single iPhone or iPad and sign in with
+      different Apple IDs, the app will detect the mismatch on next launch and
+      surface a sign-in prompt rather than silently merging or wiping data. This
+      is a deliberate safety layer, not an oversight: it stops a roommate, partner,
+      or returning user from accidentally overwriting another person's records.
+    </p>
+    <p>
+      Backup encryption keys live in the iOS Keychain with iCloud Keychain sync
+      enabled. That means when you replace or restore a device, your existing
+      cloud backups remain decryptable without any extra step. The tradeoff is
+      that the key travels with your Apple account inside iCloud Keychain (which
+      is end-to-end encrypted by Apple) instead of staying pinned to a single
+      device. We believe sync-enabled keys are the right default because the most
+      common backup failure we see is "I got a new phone and lost my key."
+    </p>
+    <p>
+      A device-only backup key option is on the roadmap for operators who prefer
+      keys that never leave the originating device. When shipped it will live at
+      Settings &rarr; Security &rarr; "Device-only backup key" and is purely opt-in;
+      the default will remain iCloud Keychain sync.
+    </p>
 
     <h2 id="your-rights">Your rights</h2>
     <ul>

@@ -293,7 +293,7 @@ const headings = [
     </div>
 
     <div class="doc-mocks-row">
-      <DocMock label="Free home" caption="Same Safe to Spend, all four pools, full priority system on the free tier.">
+      <DocMock shot="/screenshots/live-allocate.png" label="Free home" caption="Same Safe to Spend, all four pools, full priority system on the free tier.">
         <div class="dm-bar"><span class="dm-bar-title">Home</span><span class="dm-bar-action">+</span></div>
         <div class="dm-card dm-card-accent" style="text-align:center;">
           <div class="dm-hero-label">Safe to Spend</div>
@@ -308,7 +308,7 @@ const headings = [
         </div>
         <div class="dm-help">Free tier · 1 backup slot · 3 bills · 5 categories</div>
       </DocMock>
-      <DocMock label="Premium upsell" caption="Unlock unlimited bills, multi-day reminders, PDF exports, sync, and more.">
+      <DocMock shot="/screenshots/live-reminders.png" label="Premium upsell" caption="Unlock unlimited bills, multi-day reminders, PDF exports, sync, and more.">
         <div class="dm-bar"><span class="dm-back">Settings</span><span class="dm-bar-title">Premium</span><span></span></div>
         <div class="dm-card dm-card-accent" style="text-align:center;">
           <span class="dm-pill purple" style="margin:0 auto;">Best Value</span>
@@ -343,7 +343,7 @@ const headings = [
     </p>
 
     <div class="doc-mocks-row">
-      <DocMock label="Apple confirmation" caption="Apple handles every charge. We never see card details.">
+      <DocMock shot="/screenshots/screen-home.png" label="Apple confirmation" caption="Apple handles every charge. We never see card details.">
         <div style="height:20px;"></div>
         <div class="dm-dialog">
           <div class="dm-help" style="text-align:center; font-size:7.5px; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-muted);">Confirm Subscription</div>
@@ -379,7 +379,7 @@ const headings = [
     </p>
 
     <div class="doc-mocks-row">
-      <DocMock label="Restore Purchases" caption="One tap re-verifies the receipt with Apple, never creates a new charge.">
+      <DocMock shot="/screenshots/screen-logging.png" label="Restore Purchases" caption="One tap re-verifies the receipt with Apple, never creates a new charge.">
         <div class="dm-bar"><span class="dm-back">Settings</span><span class="dm-bar-title">Premium</span><span></span></div>
         <div class="dm-card dm-card-good">
           <div class="dm-kv"><strong>Premium</strong><span class="dm-pill green">Active</span></div>
@@ -418,12 +418,12 @@ const headings = [
     </div>
 
     <div class="doc-mocks-row">
-      <DocMock label="iOS Subscriptions" caption="Cancel only happens in iOS Settings → Apple ID → Subscriptions.">
+      <DocMock shot="/screenshots/screen-bills.png" label="iOS Subscriptions" caption="Cancel only happens in iOS Settings → Apple ID → Subscriptions.">
         <div class="dm-bar"><span class="dm-back">Apple ID</span><span class="dm-bar-title">Subscriptions</span><span></span></div>
         <div class="dm-section-label">Active</div>
         <div class="dm-list">
-          <div class="dm-row" style="background:rgba(139,92,246,0.12); border-color:rgba(167,139,250,0.4);">
-            <span class="dm-icon" style="background:linear-gradient(135deg, #8B5CF6, #6D28D9);">B</span>
+          <div class="dm-row" style="background:rgba(240, 86, 60, 0.12); border-color:rgba(240, 86, 60, 0.4);">
+            <span class="dm-icon" style="background:#F0563C;">B</span>
             <span class="dm-row-label">BudgetBaby Premium<div class="dm-row-meta" style="font-size:8px;">$69.99/year · renews May 03, 2027</div></span>
             <span class="dm-row-chevron"></span>
           </div>
@@ -469,40 +469,31 @@ const headings = [
     display: flex;
     flex-direction: column;
     gap: var(--space-5);
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    border-radius: var(--radius-xl);
+    background: var(--surface);
+    border: var(--border-w) solid var(--hairline);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-card);
     padding: var(--space-6);
   }
 
   .plan-premium {
-    background: var(--accent-dim);
+    background: var(--tint-soft);
     border-color: var(--accent-border);
-    box-shadow:
-      0 0 0 1px var(--accent-border),
-      0 0 40px -8px var(--accent-glow),
-      inset 0 1px 0 rgba(255,255,255,0.06);
   }
 
-  /* Recommended badge */
+  /* Recommended: a quiet inline mark, not a pill badge. */
   .plan-recommended {
     position: absolute;
-    top: -12px;
-    left: 50%;
-    transform: translateX(-50%);
+    top: var(--space-6);
+    right: var(--space-6);
     display: inline-flex;
     align-items: center;
-    padding: 3px var(--space-4);
-    background: linear-gradient(135deg, var(--purple-600), var(--purple-500));
-    border: 1px solid var(--accent-border);
-    border-radius: 100px;
     font-size: var(--text-xs);
     font-weight: var(--weight-semibold);
-    letter-spacing: 0.06em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--text-primary);
+    color: var(--accent-deep);
     white-space: nowrap;
-    box-shadow: 0 2px 12px -2px var(--accent-glow);
   }
 
   /* Header */
@@ -630,7 +621,7 @@ const headings = [
   }
 
   .pf-soon::before {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23A78BFA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpolyline points='12 6 12 12 16 14'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23F0563C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpolyline points='12 6 12 12 16 14'/%3E%3C/svg%3E");
   }
 
   /* Actions */
@@ -663,7 +654,7 @@ const headings = [
     color: var(--text-muted);
     text-align: center;
     padding: var(--space-3) var(--space-4);
-    background: rgba(139, 92, 246, 0.08);
+    background: rgba(240, 86, 60, 0.08);
     border: 1px solid var(--accent-border);
     border-radius: var(--radius-md);
     font-weight: var(--weight-medium);

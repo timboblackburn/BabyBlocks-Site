@@ -57,10 +57,10 @@ const headings = [
     </p>
 
     <div class="doc-mocks-row">
-      <DocMock label="Welcome" caption="The first launch greets you with a single primary action, start onboarding.">
+      <DocMock shot="/screenshots/live-welcome.png" label="Welcome" caption="The first launch greets you with a single primary action, start onboarding.">
         <div class="dm-bar"><span></span><span class="dm-bar-action">Skip</span></div>
         <div style="text-align:center; padding:18px 4px 8px;">
-          <div style="width:54px; height:54px; margin:0 auto 10px; border-radius:14px; background:linear-gradient(135deg, #8B5CF6, #6D28D9); display:flex; align-items:center; justify-content:center; font-size:26px; font-weight:800; color:white; box-shadow:0 8px 18px -4px rgba(139,92,246,0.5);">B</div>
+          <div style="width:54px; height:54px; margin:0 auto 10px; border-radius:14px; background:#F0563C; display:flex; align-items:center; justify-content:center; font-size:26px; font-weight:800; color:white; box-shadow:0 8px 18px -4px rgba(240,86,60,0.45);">B</div>
           <div class="dm-title" style="font-size:14px;">Welcome to BudgetBaby</div>
           <div class="dm-help" style="margin-top:4px;">Set up your budget in about 5-10 minutes. Your data stays on this device.</div>
         </div>
@@ -178,7 +178,7 @@ const headings = [
     </div>
 
     <div class="doc-mocks-row">
-      <DocMock label="Step 5. Your Budget" caption="Enter take-home pay and pay frequency. Income drives every other number.">
+      <DocMock shot="/screenshots/live-income.png" label="Step 5. Your Budget" caption="Enter take-home pay and pay frequency. Income drives every other number.">
         <div class="dm-bar"><span class="dm-back">Back</span><span class="dm-bar-title">Your Budget</span><span class="dm-bar-action">Next</span></div>
         <div class="dm-bar-track" style="height:3px; margin-bottom:6px;">
           <div class="dm-bar-fill" style="width:31%"></div>
@@ -199,7 +199,7 @@ const headings = [
         <div class="dm-help">Bi-weekly = 14-day periods.</div>
         <div class="dm-btn dm-btn-primary" style="margin-top:auto;">Continue</div>
       </DocMock>
-      <DocMock label="Step 7. Current Balances" caption="Enter what's actually in each pool today. Carries forward each period.">
+      <DocMock shot="/screenshots/live-allocate.png" label="Step 7. Current Balances" caption="Enter what's actually in each pool today. Carries forward each period.">
         <div class="dm-bar"><span class="dm-back">Back</span><span class="dm-bar-title">Current Balances</span><span class="dm-bar-action">Next</span></div>
         <div class="dm-bar-track" style="height:3px; margin-bottom:6px;">
           <div class="dm-bar-fill" style="width:44%"></div>
@@ -212,7 +212,7 @@ const headings = [
         </div>
         <div class="dm-help">Rough estimates are fine, adjust anytime.</div>
       </DocMock>
-      <DocMock label="Step 8. Essentials" caption="Pre-loaded red categories. Add or remove anything before continuing.">
+      <DocMock shot="/screenshots/screen-buckets.png" label="Step 8. Essentials" caption="Pre-loaded red categories. Add or remove anything before continuing.">
         <div class="dm-bar"><span class="dm-back">Back</span><span class="dm-bar-title">Essentials</span><span class="dm-bar-action">Next</span></div>
         <div class="dm-bar-track" style="height:3px; margin-bottom:6px;">
           <div class="dm-bar-fill" style="width:50%"></div>
@@ -254,18 +254,7 @@ const headings = [
     </div>
 
     <div class="doc-mocks-row">
-      <DocMock label="Money Setup" caption="Tap each pool to set or update its current balance.">
-        <div class="dm-bar"><span class="dm-back">Settings</span><span class="dm-bar-title">Money Setup</span><span></span></div>
-        <div class="dm-section-label">Pools</div>
-        <div class="dm-list">
-          <div class="dm-row"><span class="dm-icon cash">$</span><span class="dm-row-label">Cash<div class="dm-row-meta" style="font-size:8px;">Wallet</div></span><span class="dm-row-meta">$60</span><span class="dm-row-chevron"></span></div>
-          <div class="dm-row"><span class="dm-icon debit">B</span><span class="dm-row-label">Debit<div class="dm-row-meta" style="font-size:8px;">Checking account</div></span><span class="dm-row-meta" style="color:#34D399; font-weight:600;">$1,847</span><span class="dm-row-chevron"></span></div>
-          <div class="dm-row"><span class="dm-icon credit">C</span><span class="dm-row-label">Credit<div class="dm-row-meta" style="font-size:8px;">Owed</div></span><span class="dm-row-meta">$120</span><span class="dm-row-chevron"></span></div>
-          <div class="dm-row"><span class="dm-icon savings">S</span><span class="dm-row-label">Savings<div class="dm-row-meta" style="font-size:8px;">Protected</div></span><span class="dm-row-meta">$3,200</span><span class="dm-row-chevron"></span></div>
-        </div>
-        <div class="dm-help">Cash and Debit balances carry forward each period.</div>
-      </DocMock>
-      <DocMock label="Edit Debit balance" caption="Enter the actual checking balance shown in your banking app.">
+      <DocMock shot="/screenshots/screen-home.png" label="Edit Debit balance" caption="Enter the actual checking balance shown in your banking app.">
         <div class="dm-bar"><span class="dm-back">Cancel</span><span class="dm-bar-title">Debit</span><span class="dm-bar-action">Save</span></div>
         <div class="dm-card dm-card-accent">
           <div class="dm-hero-label">Current balance</div>
@@ -354,7 +343,7 @@ const headings = [
     </div>
 
     <div class="doc-mocks-row">
-      <DocMock label="Add Transaction" caption="Tap + on the home screen to open the Add Transaction sheet.">
+      <DocMock shot="/screenshots/screen-logging.png" label="Add Transaction" caption="Tap + on the home screen to open the Add Transaction sheet.">
         <div class="dm-sheet-handle"></div>
         <div class="dm-bar"><span class="dm-bar-action">Cancel</span><span class="dm-bar-title">New Transaction</span><span class="dm-bar-action">Save</span></div>
         <div class="dm-card dm-card-accent" style="text-align:center;">
@@ -368,19 +357,6 @@ const headings = [
           <div class="dm-kv"><span>Note</span><span class="muted">Trader Joe's</span></div>
         </div>
         <div class="dm-help">Safe to Spend updates the moment you save.</div>
-      </DocMock>
-      <DocMock label="Home, after save" caption="Safe to Spend recalculates instantly across the days remaining.">
-        <div class="dm-bar"><span class="dm-bar-title" style="font-size:11px;">Home</span><span class="dm-bar-action">+</span></div>
-        <div class="dm-card dm-card-accent" style="align-items:center; text-align:center;">
-          <div class="dm-hero-label">Safe to Spend Today</div>
-          <div class="dm-hero-amount green">$56<span class="dm-cents">.40</span></div>
-          <div class="dm-hero-sub">14 days remaining in this period</div>
-        </div>
-        <div class="dm-section-label">Recent</div>
-        <div class="dm-list">
-          <div class="dm-row"><span class="dm-dot important"></span><span class="dm-row-label">Groceries<div class="dm-row-meta" style="font-size:8px;">Debit · Trader Joe's</div></span><span class="dm-row-meta" style="color:#F87171;">−$42.18</span></div>
-          <div class="dm-row"><span class="dm-dot discretionary"></span><span class="dm-row-label">Coffee &amp; Cafe<div class="dm-row-meta" style="font-size:8px;">Cash</div></span><span class="dm-row-meta" style="color:#F87171;">−$4.85</span></div>
-        </div>
       </DocMock>
     </div>
 
@@ -416,36 +392,6 @@ const headings = [
     </ul>
 
     <div class="doc-mocks-row">
-      <DocMock label="Period header" caption="Each period has a date range, a budget, and a live status pill.">
-        <div class="dm-bar"><span class="dm-bar-title">This Period</span><span class="dm-bar-action">History</span></div>
-        <div class="dm-card dm-card-accent">
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <span class="dm-hero-label">Mar 15. Mar 28</span>
-            <span class="dm-pill green">Active</span>
-          </div>
-          <div class="dm-hero-amount" style="font-size:22px;">Day 6 of 14</div>
-          <div class="dm-bar-track" style="margin-top:4px;">
-            <div class="dm-bar-fill" style="width:43%"></div>
-          </div>
-        </div>
-        <div class="dm-card">
-          <div class="dm-kv"><span>Period budget</span><strong>$2,400</strong></div>
-          <div class="dm-kv"><span>Spent so far</span><span class="red">−$612</span></div>
-          <div class="dm-kv"><span>Reserved for red bills</span><span class="muted">−$900</span></div>
-          <div class="dm-kv-divider"></div>
-          <div class="dm-kv"><strong>Remaining spendable</strong><strong class="green">$888</strong></div>
-        </div>
-      </DocMock>
-      <DocMock label="History" caption="Closed periods become read-only, every transaction stays accessible.">
-        <div class="dm-bar"><span class="dm-back">Back</span><span class="dm-bar-title">History</span><span></span></div>
-        <div class="dm-list">
-          <div class="dm-row"><span class="dm-icon calendar">M</span><span class="dm-row-label">Mar 1. Mar 14<div class="dm-row-meta" style="font-size:8px;">$2,180 spent · 92%</div></span><span class="dm-pill muted">Closed</span></div>
-          <div class="dm-row"><span class="dm-icon calendar">F</span><span class="dm-row-label">Feb 15. Feb 28<div class="dm-row-meta" style="font-size:8px;">$1,940 spent · 80%</div></span><span class="dm-pill muted">Closed</span></div>
-          <div class="dm-row"><span class="dm-icon calendar">F</span><span class="dm-row-label">Feb 1. Feb 14<div class="dm-row-meta" style="font-size:8px;">$2,310 spent · 96%</div></span><span class="dm-pill muted">Closed</span></div>
-          <div class="dm-row"><span class="dm-icon calendar">J</span><span class="dm-row-label">Jan 18. Jan 31<div class="dm-row-meta" style="font-size:8px;">$2,055 spent · 85%</div></span><span class="dm-pill muted">Closed</span></div>
-        </div>
-        <div class="dm-help">Tap any period to inspect transactions and pool balances.</div>
-      </DocMock>
     </div>
 
     <h2 id="first-week">Your first week</h2>
@@ -486,7 +432,7 @@ const headings = [
     </ul>
 
     <div class="doc-mocks-row">
-      <DocMock label="Breakdown sheet" caption="Tap (i) on Safe to Spend to see exactly what's reserved and why.">
+      <DocMock shot="/screenshots/screen-insights.png" label="Breakdown sheet" caption="Tap (i) on Safe to Spend to see exactly what's reserved and why.">
         <div class="dm-sheet-handle"></div>
         <div class="dm-bar"><span></span><span class="dm-bar-title">Safe to Spend</span><span class="dm-bar-action">Done</span></div>
         <div class="dm-card">

@@ -80,7 +80,7 @@ const headings = [
     </div>
 
     <div class="doc-mocks-row">
-      <DocMock label="Settings. Reminders" caption="Global defaults apply to every bill unless individually overridden.">
+      <DocMock shot="/screenshots/live-reminders.png" label="Settings. Reminders" caption="Global defaults apply to every bill unless individually overridden.">
         <div class="dm-bar"><span class="dm-back">Settings</span><span class="dm-bar-title">Reminders</span><span></span></div>
         <div class="dm-section-label">Default reminder days</div>
         <div class="dm-list">
@@ -92,18 +92,6 @@ const headings = [
         <div class="dm-section-label">Reminder time</div>
         <div class="dm-row"><span class="dm-row-label">Fire at</span><span class="dm-time-box">9:00 AM</span></div>
         <div class="dm-row"><span class="dm-row-label">Weekly bill summary</span><span class="dm-toggle on"></span></div>
-      </DocMock>
-      <DocMock label="iOS permission" caption="Without iOS notification permission, no BudgetBaby reminders can fire.">
-        <div class="dm-bar"><span class="dm-back">BudgetBaby</span><span class="dm-bar-title">Notifications</span><span></span></div>
-        <div class="dm-row"><span class="dm-row-label">Allow Notifications</span><span class="dm-toggle on"></span></div>
-        <div class="dm-section-label">Alerts</div>
-        <div class="dm-list">
-          <div class="dm-row"><span class="dm-row-label">Lock Screen</span><span style="color:#34D399; font-size:14px;"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><polyline points="20 6 9 17 4 12"/></svg></span></div>
-          <div class="dm-row"><span class="dm-row-label">Notification Centre</span><span style="color:#34D399; font-size:14px;"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><polyline points="20 6 9 17 4 12"/></svg></span></div>
-          <div class="dm-row"><span class="dm-row-label">Banners</span><span style="color:#34D399; font-size:14px;"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><polyline points="20 6 9 17 4 12"/></svg></span></div>
-        </div>
-        <div class="dm-row"><span class="dm-row-label">Sounds</span><span class="dm-toggle on"></span></div>
-        <div class="dm-row"><span class="dm-row-label">Badges</span><span class="dm-toggle on"></span></div>
       </DocMock>
     </div>
 
@@ -145,29 +133,6 @@ const headings = [
     </ul>
 
     <div class="doc-mocks-row">
-      <DocMock label="Local notification" caption="Local notifications fire even with no internet, scheduled directly with iOS.">
-        <div style="height:30px;"></div>
-        <div class="dm-help" style="text-align:center; font-size:8px;">9:00 AM · Tuesday</div>
-        <div class="dm-notif" style="margin-top:8px;">
-          <span class="dm-notif-icon"></span>
-          <div>
-            <div class="dm-notif-app">BudgetBaby</div>
-            <div class="dm-notif-title">Upcoming Bill</div>
-            <div class="dm-notif-body">Rent due in 3 days, $1,200</div>
-          </div>
-          <span class="dm-notif-time">now</span>
-        </div>
-        <div class="dm-notif" style="margin-top:6px; opacity:0.85;">
-          <span class="dm-notif-icon"></span>
-          <div>
-            <div class="dm-notif-app">BudgetBaby</div>
-            <div class="dm-notif-title">Weekly bill summary</div>
-            <div class="dm-notif-body">3 bills, $1,420 total this week.</div>
-          </div>
-          <span class="dm-notif-time">9:00</span>
-        </div>
-        <div class="dm-help" style="margin-top:auto; text-align:center;">Scheduled on-device. No server, no internet required.</div>
-      </DocMock>
     </div>
 
     <h2 id="per-bill">Per-bill settings</h2>
@@ -197,7 +162,7 @@ const headings = [
     </p>
 
     <div class="doc-mocks-row">
-      <DocMock label="Per-bill override" caption="Override day offsets per bill, purple Custom badge marks any override.">
+      <DocMock shot="/screenshots/screen-bills.png" label="Per-bill override" caption="Override day offsets per bill, purple Custom badge marks any override.">
         <div class="dm-bar"><span class="dm-back">Reminders</span><span class="dm-bar-title">Rent</span><span class="dm-bar-action">Save</span></div>
         <div class="dm-card">
           <div class="dm-kv"><strong>Rent</strong><span class="dm-pill purple">Custom</span></div>
@@ -231,16 +196,6 @@ const headings = [
     </p>
 
     <div class="doc-mocks-row">
-      <DocMock label="Subscriptions" caption="Each subscription card shows its next billing date.">
-        <div class="dm-bar"><span class="dm-back">Reminders</span><span class="dm-bar-title">Subscriptions</span><span></span></div>
-        <div class="dm-list">
-          <div class="dm-row"><span class="dm-icon star">N</span><span class="dm-row-label">Netflix<div class="dm-row-meta" style="font-size:8px;">Renews Mar 18 · $15.49</div></span><span class="dm-pill purple">Custom</span></div>
-          <div class="dm-row"><span class="dm-icon star">S</span><span class="dm-row-label">Spotify Family<div class="dm-row-meta" style="font-size:8px;">Renews Mar 22 · $16.99</div></span><span class="dm-row-chevron"></span></div>
-          <div class="dm-row"><span class="dm-icon star">A</span><span class="dm-row-label">Adobe CC<div class="dm-row-meta" style="font-size:8px;">Renews Apr 02 · $54.99</div></span><span class="dm-row-chevron"></span></div>
-          <div class="dm-row"><span class="dm-icon star">i</span><span class="dm-row-label">iCloud+ 2TB<div class="dm-row-meta" style="font-size:8px;">Renews Apr 11 · $9.99</div></span><span class="dm-row-chevron"></span></div>
-        </div>
-        <div class="dm-help">Cards expand for per-subscription overrides.</div>
-      </DocMock>
     </div>
 
     <h2 id="custom-messages">Custom messages</h2>
@@ -266,24 +221,6 @@ const headings = [
     </ul>
 
     <div class="doc-mocks-row">
-      <DocMock label="Custom message" caption="Your wording replaces the auto-generated body when the notification fires.">
-        <div class="dm-bar"><span class="dm-back">Reminders</span><span class="dm-bar-title">Adobe CC</span><span class="dm-bar-action">Save</span></div>
-        <div class="dm-section-label">Custom message</div>
-        <div class="dm-card" style="padding:9px 10px;">
-          <div class="dm-help" style="font-size:9px; color:var(--text-primary); line-height:1.4;">Decide whether to keep the annual plan this year before the renewal pulls.</div>
-        </div>
-        <div class="dm-help">Leave blank for auto: "Adobe CC due in 3 days, $54.99."</div>
-        <div class="dm-section-label">Preview</div>
-        <div class="dm-notif">
-          <span class="dm-notif-icon"></span>
-          <div>
-            <div class="dm-notif-app">BudgetBaby</div>
-            <div class="dm-notif-title">Upcoming Bill</div>
-            <div class="dm-notif-body">Decide whether to keep the annual plan this year before the renewal pulls.</div>
-          </div>
-          <span class="dm-notif-time">9am</span>
-        </div>
-      </DocMock>
     </div>
 
     <h2 id="quiet-hours">Quiet hours</h2>
@@ -312,18 +249,6 @@ const headings = [
     </div>
 
     <div class="doc-mocks-row">
-      <DocMock label="Quiet hours" caption="Notifications inside the window are held until it ends, never lost.">
-        <div class="dm-bar"><span class="dm-back">Reminders</span><span class="dm-bar-title">Quiet hours</span><span class="dm-bar-action">Save</span></div>
-        <div class="dm-row"><span class="dm-row-label">Quiet hours</span><span class="dm-toggle on purple"></span></div>
-        <div class="dm-card">
-          <div class="dm-kv"><strong>From</strong><span class="dm-time-box">10:00 PM</span></div>
-          <div class="dm-kv"><strong>Until</strong><span class="dm-time-box">8:00 AM</span></div>
-          <div class="dm-kv-divider"></div>
-          <div class="dm-kv muted"><span>Window length</span><span>10 hours</span></div>
-          <div class="dm-kv muted"><span>Wraps midnight</span><span class="green">Yes</span></div>
-        </div>
-        <div class="dm-help">Notifications scheduled inside this window deliver at 8:00 AM.</div>
-      </DocMock>
     </div>
 
     <h2 id="savings-nudge">Monthly savings nudge</h2>
@@ -347,22 +272,6 @@ const headings = [
     </div>
 
     <div class="doc-mocks-row">
-      <DocMock label="Savings nudge" caption="Single mid-month push reminding you to fund your goals.">
-        <div class="dm-bar"><span class="dm-back">Reminders</span><span class="dm-bar-title">Savings</span><span class="dm-bar-action">Save</span></div>
-        <div class="dm-row"><span class="dm-row-label">Monthly savings nudge</span><span class="dm-toggle on purple"></span></div>
-        <div class="dm-card">
-          <div class="dm-kv"><strong>Day of month</strong>
-            <span class="dm-stepper"><span class="dm-stepper-btn">−</span><span class="dm-stepper-val">15</span><span class="dm-stepper-btn">+</span></span>
-          </div>
-          <div class="dm-kv muted"><span>Range</span><span>1, 28</span></div>
-          <div class="dm-kv"><span>Fires at</span><strong>9:00 AM</strong></div>
-        </div>
-        <div class="dm-section-label">Active goals</div>
-        <div class="dm-list">
-          <div class="dm-row"><span class="dm-icon target">E</span><span class="dm-row-label">Emergency fund</span><span class="dm-row-meta">62%</span></div>
-          <div class="dm-row"><span class="dm-icon star">V</span><span class="dm-row-label">Vacation</span><span class="dm-row-meta">38%</span></div>
-        </div>
-      </DocMock>
     </div>
 
     <h2 id="not-arriving">If notifications are not arriving</h2>
@@ -398,20 +307,6 @@ const headings = [
     </ol>
 
     <div class="doc-mocks-row">
-      <DocMock label="Diagnostic checklist" caption="Walk this iOS-side checklist when reminders go silent.">
-        <div class="dm-bar"><span class="dm-back">Settings</span><span class="dm-bar-title">Diagnostic</span><span></span></div>
-        <div class="dm-list">
-          <div class="dm-row"><span class="dm-row-label">iOS notification permission</span><span style="color:#34D399; font-size:14px;"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><polyline points="20 6 9 17 4 12"/></svg></span></div>
-          <div class="dm-row"><span class="dm-row-label">Reminder days enabled</span><span style="color:#34D399; font-size:14px;"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><polyline points="20 6 9 17 4 12"/></svg></span></div>
-          <div class="dm-row"><span class="dm-row-label">Focus mode allows app</span><span style="color:#F87171; font-size:14px;"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></div>
-          <div class="dm-row"><span class="dm-row-label">Not in Scheduled Summary</span><span style="color:#34D399; font-size:14px;"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><polyline points="20 6 9 17 4 12"/></svg></span></div>
-          <div class="dm-row"><span class="dm-row-label">Reschedule on save</span><span style="color:#FBBF24; font-size:14px;">!</span></div>
-        </div>
-        <div class="dm-card dm-card-warn">
-          <div class="dm-kv"><strong>1 issue found</strong><span class="dm-pill orange">Focus</span></div>
-          <div class="dm-help" style="color:#FDBA74;">Sleep Focus is blocking BudgetBaby. Add it to Allowed Apps.</div>
-        </div>
-      </DocMock>
     </div>
   </div>
 </DocsLayout>
