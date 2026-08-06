@@ -2,7 +2,7 @@
 # Deploy command: npx wrangler deploy
 # Build first with: cd site && npm ci && npm run build
 
-name = "babyblocks-site"
+name = "babyblockssite"
 compatibility_date = "2025-01-01"
 # global_fetch_strictly_public — at the runtime level, blocks any
 # fetch() to a private/link-local IP. Static-asset workers don't
