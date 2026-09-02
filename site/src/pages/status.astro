@@ -242,11 +242,12 @@ import Icon from '../components/Icon.astro';
       }
 
     } catch {
-      // Silently leave the page in loading state, don't show error to users
+      // The status fetch failed. Never claim "operational" when we don't know —
+      // show an honest unknown state and point people to support.
       const headline = document.getElementById('status-headline');
       const sub = document.getElementById('status-sub');
-      if (headline) headline.innerHTML = 'All systems <span class="text-gradient">operational.</span>';
-      if (sub) sub.textContent = 'Status information temporarily unavailable. Contact support@babyblocks.io for urgent issues.';
+      if (headline) headline.innerHTML = 'Live status <span class="text-gradient">unavailable.</span>';
+      if (sub) sub.textContent = 'We could not load live status right now. Email support@babyblocks.io for urgent issues.';
     }
   }
 

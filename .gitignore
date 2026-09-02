@@ -24,3 +24,6 @@ Thumbs.db
 
 # Wrangler local cache
 .wrangler/
+
+# Internal-only specs must never enter this public repo
+INTERNAL_*.md

@@ -9,6 +9,8 @@ interface Props {
   ogTitle?: string;
   ogDescription?: string;
   canonical?: string;
+  /** Absolute-from-root path to a page-specific social image, e.g. '/og/budgetbaby.png'. */
+  ogImage?: string;
   /** 'core' = BabyBlocks brand light lavender (default). 'pantry' = PantryBaby (light sage).
    *  'dark' kept for legacy callers but no longer the site default. */
   theme?: 'dark' | 'core' | 'pantry';
@@ -25,6 +27,7 @@ const {
   ogTitle,
   ogDescription,
   canonical,
+  ogImage = '/og-image.png',
   theme = 'core',
   structuredData,
   noindex = false,
@@ -59,13 +62,14 @@ const orgJsonLd = JSON.stringify({
 });
 
 const isLight = theme === 'core' || theme === 'pantry';
-const themeColor = theme === 'pantry' ? '#F4F1EA' : theme === 'core' ? '#FFF7EF' : '#0B0A0F';
+const themeColor = theme === 'pantry' ? '#F1EEE4' : theme === 'core' ? '#F7F2EA' : '#1B1714';
 
 const pageTitle = title.includes('BabyBlocks') ? title : `${title} | BabyBlocks`;
 const ogT = ogTitle ?? pageTitle;
 const ogD = ogDescription ?? description;
 const siteURL = 'https://babyblocks.io';
 const canonicalURL = canonical ? `${siteURL}${canonical}` : null;
+const ogImageURL = `${siteURL}${ogImage}`;
 ---
 
 <!doctype html>
@@ -88,7 +92,7 @@ const canonicalURL = canonical ? `${siteURL}${canonical}` : null;
     <meta property="og:site_name" content="BabyBlocks" />
 
     <!-- Open Graph Image -->
-    <meta property="og:image" content={`${siteURL}/og-image.png`} />
+    <meta property="og:image" content={ogImageURL} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/png" />
@@ -97,7 +101,10 @@ const canonicalURL = canonical ? `${siteURL}${canonical}` : null;
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={ogT} />
     <meta name="twitter:description" content={ogD} />
-    <meta name="twitter:image" content={`${siteURL}/og-image.png`} />
+    <meta name="twitter:image" content={ogImageURL} />
+
+    <!-- Smart App Banner: offers BudgetBaby to Safari visitors on iPhone -->
+    <meta name="apple-itunes-app" content="app-id=6764697339" />
 
     <!-- PWA manifest -->
     <link rel="manifest" href="/manifest.json" />
@@ -113,13 +120,14 @@ const canonicalURL = canonical ? `${siteURL}${canonical}` : null;
     <meta name="color-scheme" content={isLight ? 'light' : 'dark'} />
     <meta name="theme-color" content={themeColor} />
 
-    <!-- Editorial type pairing. Fraunces is the family touchpoint shared with
-         intriguemmc.com and intriguinginsight.com (used on display headlines).
-         Inter is the body / UI face, calm, modern, highly legible at small sizes. -->
+    <!-- Calm & Premium type system. Schibsted Grotesk carries the display
+         headlines (refined, grown-up). Hanken Grotesk is the body / UI face,
+         calm and highly legible at small sizes. Numbers use the body sans
+         with tabular figures; there is no monospace face. -->
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,450;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;600;700&family=Hanken+Grotesk:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
 

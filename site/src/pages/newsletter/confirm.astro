@@ -1,0 +1,111 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import GlassCard from '../../components/GlassCard.astro';
+
+// Newsletter double-opt-in confirmation landing page.
+//
+// The bb-ticket-service `/api/public/newsletter` endpoint emails subscribers
+// a link to this page with a `token` query param. The page calls
+// `/api/public/newsletter/confirm?token=<token>` from the browser and
+// renders one of three states based on the response.
+//
+// Pure client-side fetch. The page must remain a static Astro build so it
+// can ship to Cloudflare Pages without an SSR runtime.
+
+const ticketServiceUrl =
+  import.meta.env.PUBLIC_TICKET_SERVICE_URL ??
+  'https://api.babyblocks.io';
+---
+
+<Layout
+  title="Confirm Subscription | BabyBlocks"
+  description="Confirm your BabyBlocks newsletter subscription."
+  canonical="/newsletter/confirm"
+  theme="core"
+>
+  <section class="section">
+    <div class="container" style="max-width: 600px;">
+      <GlassCard padding="lg">
+        <h1 id="confirm-heading" style="margin-top: 0;">Confirming your subscription…</h1>
+        <p id="confirm-body" class="newsletter-confirm-body">
+          One moment while we verify your confirmation link.
+        </p>
+        <p id="confirm-fallback" class="newsletter-confirm-fallback" hidden>
+          Trouble? Email <a href="mailto:contact@babyblocks.io">contact@babyblocks.io</a> and
+          we will sort it out by hand.
+        </p>
+      </GlassCard>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .newsletter-confirm-body {
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--text-secondary);
+    margin: 0.75rem 0 0 0;
+  }
+  .newsletter-confirm-fallback {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin: 1rem 0 0 0;
+  }
+</style>
+
+<script is:inline define:vars={{ ticketServiceUrl }}>
+  (function () {
+    const heading = document.getElementById('confirm-heading');
+    const body = document.getElementById('confirm-body');
+    const fallback = document.getElementById('confirm-fallback');
+    if (!heading || !body) return;
+
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get('token');
+
+    function showError(msg) {
+      heading.textContent = 'Confirmation failed';
+      body.textContent = msg;
+      if (fallback) fallback.hidden = false;
+    }
+
+    if (!token) {
+      showError('This confirmation link is missing its token. Try clicking the link from your email again.');
+      return;
+    }
+
+    fetch(
+      ticketServiceUrl + '/api/public/newsletter/confirm?token=' + encodeURIComponent(token)
+    )
+      .then(function (res) {
+        return res.json().then(function (data) { return { ok: res.ok, data: data }; });
+      })
+      .then(function (result) {
+        if (result.ok && result.data && result.data.success) {
+          heading.textContent = 'You’re in.';
+          body.textContent =
+            'Your subscription is confirmed. Watch your inbox for occasional updates. Unsubscribe anytime from any email we send.';
+        } else if (
+          result.data &&
+          result.data.error === 'invalid_or_expired_token'
+        ) {
+          showError(
+            'This link is no longer valid. It may have already been used, or it has expired (links are good for 24 hours). Please re-submit the newsletter form to receive a fresh link.'
+          );
+        } else if (result.data && result.data.error === 'rate_limited') {
+          showError(
+            'Too many confirmation attempts from your IP. Please wait a minute and try again.'
+          );
+        } else {
+          showError(
+            'Something went wrong on our side. Please try again in a minute or email us directly.'
+          );
+        }
+      })
+      .catch(function () {
+        showError(
+          'Could not reach our servers. Please check your connection and try again.'
+        );
+      });
+  })();
+</script>

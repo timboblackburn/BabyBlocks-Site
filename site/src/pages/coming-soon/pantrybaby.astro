@@ -155,9 +155,9 @@ import WaitlistForm from '../../components/WaitlistForm.astro';
       <GlassCard accent padding="lg">
         <div class="bb-cta-inner">
           <div>
-            <p class="bb-cta-label">Coming back soon</p>
+            <p class="bb-cta-label">Available now</p>
             <h2>Looking for the budgeting app?</h2>
-            <p>BudgetBaby, the BabyBlocks flagship, is almost ready under our new LLC. Back on the App Store within a couple of weeks.</p>
+            <p>BudgetBaby, the BabyBlocks flagship, is live on the App Store. Free to use, with optional Premium.</p>
             <a href="/budgetbaby" class="btn btn-primary" style="margin-top: var(--space-4);">
               Explore BudgetBaby →
             </a>
@@ -191,10 +191,7 @@ import WaitlistForm from '../../components/WaitlistForm.astro';
     font-size: clamp(var(--text-5xl), 8vw, var(--text-7xl));
     letter-spacing: -0.03em;
     line-height: 0.95;
-    background: linear-gradient(135deg, #4A7B6E, #3D9970, #6AAF96);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #3A6A5D;
   }
 
   .coming-tagline {
@@ -255,9 +252,9 @@ import WaitlistForm from '../../components/WaitlistForm.astro';
   /* Pantry mock */
   .pantry-mock {
     padding: var(--space-6);
-    background: rgba(255, 255, 255, 0.75) !important;
-    border-color: rgba(74, 123, 110, 0.2) !important;
-    box-shadow: 0 0 40px rgba(74, 123, 110, 0.1), var(--shadow-xl);
+    background: var(--surface) !important;
+    border-color: var(--ink) !important;
+    box-shadow: var(--shadow-block);
     display: flex;
     flex-direction: column;
     gap: var(--space-4);

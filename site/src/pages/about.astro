@@ -5,63 +5,78 @@ import CTASection from '../components/CTASection.astro';
 import Icon from '../components/Icon.astro';
 import AppIcon from '../components/AppIcon.astro';
 import OrbitalField from '../components/abstract/OrbitalField.astro';
-import AbstractGlow from '../components/abstract/AbstractGlow.astro';
 import { BUDGETBABY_APP_STORE_URL } from '../data/appStore';
+import { statusFor, type StatusKey } from '../data/status';
+
+// Statuses come from the single source of truth (src/data/status.ts), not hardcoded
+// here, so a status change (e.g. PantryBaby going live) updates every surface at once.
+// The status flag uses a short label; the CTA-style waitlist label lives in status.ts.
+const FLAG_LABEL: Record<StatusKey, string> = {
+  live: 'Live',
+  appReview: 'In review',
+  inBuild: 'In build',
+  comingSoon: 'Coming soon',
+};
 
 const ecosystemApps = [
   {
     appIcon: 'budgetbaby' as const,
     iconColor: 'budget',
+    key: 'budgetbaby',
     name: 'BudgetBaby',
-    status: 'live',
-    statusLabel: 'Live on the App Store',
     tagline: 'Know what is safe to spend today.',
     href: '/budgetbaby',
   },
   {
     appIcon: 'pantrybaby' as const,
     iconColor: 'pantry',
+    key: 'pantrybaby',
     name: 'PantryBaby',
-    status: 'soon',
-    statusLabel: 'Join the waitlist',
     tagline: 'Track what you have. Know what to buy.',
     href: '/coming-soon/pantrybaby',
   },
   {
     appIcon: null,
     iconColor: 'future',
+    key: 'babyblocks-core',
     name: 'BabyBlocks Core',
-    status: 'future',
-    statusLabel: 'Join the waitlist',
     tagline: 'A shared home for the apps. Idea stage.',
     href: '/coming-soon/babyblocks-core',
   },
-];
+].map((app) => {
+  const statusKey = statusFor(app.key).key;
+  return {
+    ...app,
+    statusKey,
+    statusLabel: FLAG_LABEL[statusKey],
+    isLive: statusKey === 'live',
+    isFuture: statusKey === 'comingSoon',
+  };
+});
 ---
 
 <Layout
   title="About BabyBlocks"
   description="BabyBlocks is an independent iOS app studio. BudgetBaby is the first app. Download BudgetBaby on the App Store."
   canonical="/about"
+  ogImage="/og/about.png"
   theme="core"
 >
   <!-- Hero -->
   <section class="about-hero section">
-    <OrbitalField tone="ink" size="lg" rings={5} tilt={-14} opacity={0.12}
+    <OrbitalField tone="ink" size="lg" rings={5} tilt={-14} opacity={0.10}
                   position="top:-8%; right:-12%;" class="about-hero-orbit" />
-    <AbstractGlow tone="violet" size="lg" opacity={0.16}
-                  position="top:-10%; left:-8%;" class="about-hero-glow" />
     <div class="container">
       <div class="about-hero-inner">
         <div class="about-hero-copy">
           <div class="label-chip"><span class="label-chip-dot" aria-hidden="true"></span>About BabyBlocks</div>
           <h1 class="display-serif">An independent iOS<br />app studio.</h1>
           <p>
-            BabyBlocks builds focused iOS apps for family life.
-            Every app does one job. No bank connections, no advertising, no data sales.
+            We build small iOS apps for family life, and each one sticks to a single job.
+            No bank connections, nothing sold to advertisers, no quietly selling your data.
           </p>
           <p>
-            BudgetBaby is the first app. PantryBaby is next. There is no roadmap of ten more.
+            BudgetBaby is out now and PantryBaby is next. We're not sitting on a roadmap of ten more apps.
           </p>
           <div class="about-hero-actions">
             <a href="/budgetbaby" class="btn btn-dark">See BudgetBaby</a>
@@ -84,8 +99,8 @@ const ecosystemApps = [
           </p>
           <p>
             The apps are built and published by <strong>Intriguing Insight</strong>, an
-            independent studio under <strong>Intrigue MMC LLC</strong>. No board, no outside
-            money. Long horizons, small bets, things we would use ourselves.
+            independent studio under <strong>Intrigue MMC LLC</strong>. There's no board and no
+            outside money, so we can take our time and build the kind of thing we'd actually keep on our own phones.
           </p>
           <p>
             Every app on this site started because we needed it and could not find it.
@@ -106,9 +121,9 @@ const ecosystemApps = [
   <section class="why-section section-sm">
     <div class="container">
       <div class="section-header centered">
-        <span class="eyebrow">How we build</span>
-        <h2>Three rules.</h2>
-        <p>The same three rules every BabyBlocks app follows.</p>
+        <span class="eyebrow">How it's built</span>
+        <h2>Three rules every app follows.</h2>
+        <p>The same three, across the whole family.</p>
       </div>
 
       <div class="why-grid">
@@ -140,7 +155,7 @@ const ecosystemApps = [
             <h3>Local first</h3>
             <p>
               Your data stays on your device. iCloud backup is optional and end to end encrypted.
-              We do not sell data. We do not run ads. The only revenue is subscriptions.
+              Nothing sold, no ads. The only revenue is subscriptions.
             </p>
           </div>
         </GlassCard>
@@ -153,25 +168,27 @@ const ecosystemApps = [
     <div class="container">
       <div class="section-header centered">
         <span class="eyebrow">Apps</span>
-        <h2>Where each app stands.</h2>
-        <p>Honest status for each one. No vague "coming next year" language.</p>
+        <h2>Where each one stands today.</h2>
+        <p>Straight status on every app. No hand-waving, no "coming next year."</p>
       </div>
 
       <div class="ecosystem-grid">
         {ecosystemApps.map((app) => (
-          <div class={`eco-card glass ${app.status === 'future' ? 'eco-card--future' : ''}`}>
+          <div class={`eco-card glass ${app.isFuture ? 'eco-card--future' : ''}`}>
             <div class="eco-card-top">
               {app.appIcon
                 ? <AppIcon app={app.appIcon} size={44} />
                 : <div class={`eco-icon eco-icon--${app.iconColor}`}><Icon name="box" size={26} /></div>
               }
-              <span class={`eco-status eco-status--${app.status}`}>{app.statusLabel}</span>
+              <span class={`status-flag ${app.isLive ? 'status-flag--live' : 'status-flag--wait'}`}>
+                <span class="status-flag-dot" aria-hidden="true"></span>{app.statusLabel}
+              </span>
             </div>
             <h3>{app.name}</h3>
             <p>{app.tagline}</p>
             {app.href && (
               <a href={app.href} class="eco-link">
-                {app.status === 'live' ? 'Learn more →' : 'Get notified →'}
+                {app.isLive ? 'Learn more →' : 'Get notified →'}
               </a>
             )}
           </div>
@@ -200,7 +217,7 @@ const ecosystemApps = [
           <div class="trust-item">
             <div class="trust-icon"><Icon name="mail" size={24} /></div>
             <h3>Direct support</h3>
-            <p>Email <a href="mailto:support@babyblocks.io">support@babyblocks.io</a>. The founder reads every message. Reply within two business days.</p>
+            <p>Email <a href="mailto:support@babyblocks.io">support@babyblocks.io</a>. We read every message and reply within two business days.</p>
           </div>
         </GlassCard>
 
@@ -240,7 +257,7 @@ const ecosystemApps = [
 
   <CTASection
     heading="Start with BudgetBaby."
-    subheading="BudgetBaby is live on the App Store. Download it today."
+    subheading="It's on the App Store now. Free to start, and you can grab it today."
     primaryLabel="Download on the App Store"
     primaryHref={BUDGETBABY_APP_STORE_URL}
     secondaryLabel="Read the features"
@@ -256,8 +273,7 @@ const ecosystemApps = [
     overflow: hidden;
   }
 
-  .about-hero :global(.about-hero-orbit),
-  .about-hero :global(.about-hero-glow) {
+  .about-hero :global(.about-hero-orbit) {
     z-index: -1;
   }
 
@@ -360,39 +376,15 @@ const ecosystemApps = [
   .eco-icon {
     width: 48px; height: 48px;
     border-radius: var(--radius-md);
+    border: var(--border-w) solid var(--hairline);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
   }
-  .eco-icon--budget { background: rgba(139, 92, 246, 0.15); color: var(--accent-light); }
-  .eco-icon--pantry { background: rgba(52, 211, 153, 0.12); color: var(--green); }
-  .eco-icon--future { background: rgba(255,255,255,0.05); color: var(--text-muted); }
-
-  .eco-status {
-    font-size: var(--text-xs);
-    font-weight: var(--weight-semibold);
-    padding: var(--space-1) var(--space-2);
-    border-radius: var(--radius-full);
-  }
-
-  .eco-status--live {
-    background: rgba(52, 211, 153, 0.15);
-    color: var(--green);
-    border: 1px solid rgba(52, 211, 153, 0.25);
-  }
-
-  .eco-status--soon {
-    background: rgba(251, 191, 36, 0.12);
-    color: var(--yellow);
-    border: 1px solid rgba(251, 191, 36, 0.2);
-  }
-
-  .eco-status--future {
-    background: var(--glass-bg);
-    color: var(--text-muted);
-    border: 1px solid var(--glass-border);
-  }
+  .eco-icon--budget { background: var(--accent-dim); color: var(--accent-deep); }
+  .eco-icon--pantry { background: var(--accent-dim); color: var(--accent-deep); }
+  .eco-icon--future { background: var(--sand-200); color: var(--text-muted); }
 
   .eco-card h3 { font-size: var(--text-xl); }
 

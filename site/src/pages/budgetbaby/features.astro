@@ -178,12 +178,12 @@ const features = [
   },
   {
     icon: 'refresh-cw',
-    tag: 'Premium',
+    tag: 'Premium · rolling out',
     title: 'Cloud Sync',
-    what: 'End-to-end encrypted multi-device sync so the same budget shows up on iPhone and iPad, kept consistent in the background.',
-    why: 'Your budget should follow your devices, not the other way around. Cloud Sync keeps every transaction, bill, and balance in step without you ever having to manually back up and restore.',
-    replaces: 'Manually exporting a backup on one device and restoring it on another. Living with one device having stale data.',
-    detail: 'Premium feature, currently rolling out. Encrypted at rest in Firebase Firestore; data encrypted on-device before leaving. Toggle in Settings → Account → Cloud Sync.',
+    what: 'Encrypted backup that keeps your budget safe and restores it on a new iPhone. Live sync is rolling out now, so it may not be in your build yet.',
+    why: 'You should never lose your budget or have to export and restore it by hand. Your data is encrypted on your phone before it ever leaves it.',
+    replaces: 'Manually exporting a backup on one device and restoring it on another.',
+    detail: 'Premium feature, rolling out. Encrypted at rest in Firebase Firestore; data is encrypted on-device before leaving. iPhone only. Toggle in Settings → Account → Cloud Sync when it reaches your build.',
   },
   {
     icon: 'zap',
@@ -267,7 +267,7 @@ const tagOrder = ['Core', 'Bills', 'Savings', 'Planning', 'Insights', 'Premium']
 
   <CTASection
     heading="BudgetBaby is live on the App Store."
-    subheading="Everything on this page is in the app on your iPhone. Download it today."
+    subheading="Built for your iPhone. Download it today."
     primaryLabel="Download on the App Store"
     primaryHref={BUDGETBABY_APP_STORE_URL}
     secondaryLabel="Read the documentation"
@@ -389,7 +389,8 @@ const tagOrder = ['Core', 'Bills', 'Savings', 'Planning', 'Insights', 'Premium']
   .feature-detail {
     font-size: var(--text-xs) !important;
     color: var(--text-muted) !important;
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
+    font-variant-numeric: tabular-nums;
     line-height: var(--leading-relaxed);
   }
 

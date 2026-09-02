@@ -76,8 +76,8 @@ const currentPath = Astro.url.pathname;
     </nav>
 
     <div class="header-cta">
-      <a href={BUDGETBABY_APP_STORE_URL} class="btn btn-primary" aria-label="Download BudgetBaby on the App Store" target="_blank" rel="noopener" data-event="app_store_click">
-        Download
+      <a href={BUDGETBABY_APP_STORE_URL} class="btn btn-primary" aria-label="Get BudgetBaby on the App Store" target="_blank" rel="noopener" data-event="app_store_click">
+        Get BudgetBaby
       </a>
     </div>
 
@@ -116,9 +116,7 @@ const currentPath = Astro.url.pathname;
     top: 0;
     z-index: 100;
     background: var(--header-bg);
-    backdrop-filter: blur(20px) saturate(140%);
-    -webkit-backdrop-filter: blur(20px) saturate(140%);
-    border-bottom: 1px solid var(--header-border);
+    border-bottom: var(--border-w) solid var(--hairline);
   }
 
   .header-inner {
@@ -139,9 +137,10 @@ const currentPath = Astro.url.pathname;
   .logo-mark {
     width: 24px;
     height: 24px;
-    border-radius: 6px;
+    border-radius: 7px;
     display: block;
     flex-shrink: 0;
+    border: 1px solid var(--hairline);
   }
 
   .logo-text {
@@ -184,7 +183,7 @@ const currentPath = Astro.url.pathname;
 
   .nav-link:hover, .nav-link-btn:hover {
     color: var(--text-primary);
-    background: rgba(21, 17, 13, 0.04);
+    background: rgba(38, 33, 28, 0.05);
   }
 
   .nav-link.active, .nav-link-btn.active {
@@ -204,18 +203,16 @@ const currentPath = Astro.url.pathname;
     top: calc(100% + var(--space-2));
     left: 50%;
     transform: translateX(-50%) translateY(-8px);
-    background: #FFFFFF;
-    border: 1px solid var(--glass-border);
+    background: var(--surface);
+    border: var(--border-w) solid var(--hairline);
     border-radius: var(--radius-lg);
     padding: var(--space-2);
     list-style: none;
     min-width: 200px;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.15s ease;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    box-shadow: var(--shadow-lg);
+    transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s ease;
+    box-shadow: var(--shadow-block);
     z-index: 10;
   }
 
@@ -232,7 +229,7 @@ const currentPath = Astro.url.pathname;
 
   .dropdown-link:hover {
     color: var(--text-primary);
-    background: rgba(21, 17, 13, 0.05);
+    background: rgba(38, 33, 28, 0.05);
   }
 
   .dropdown-link.active { color: var(--accent-deep); }
@@ -259,10 +256,10 @@ const currentPath = Astro.url.pathname;
   .bar {
     display: block;
     width: 20px;
-    height: 1.5px;
-    background: var(--text-secondary);
+    height: 2px;
+    background: var(--ink);
     border-radius: 2px;
-    transition: all 0.2s ease;
+    transition: transform 0.2s ease, opacity 0.2s ease;
   }
 
   .mobile-menu-toggle[aria-expanded="true"] .bar:nth-child(1) {
@@ -277,10 +274,8 @@ const currentPath = Astro.url.pathname;
 
   /* Mobile nav */
   .mobile-nav {
-    border-top: 1px solid var(--header-border);
+    border-top: var(--border-w) solid var(--hairline);
     background: var(--mobile-nav-bg);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
   }
 
   .mobile-nav[hidden] { display: none; }
@@ -315,7 +310,7 @@ const currentPath = Astro.url.pathname;
 
   .mobile-nav-link:hover, .mobile-nav-link.mobile-sub:hover {
     color: var(--text-primary);
-    background: rgba(21, 17, 13, 0.04);
+    background: rgba(38, 33, 28, 0.05);
   }
 
   .mobile-cta { margin-top: var(--space-4); padding: 0 var(--space-3); }

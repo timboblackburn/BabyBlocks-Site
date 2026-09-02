@@ -44,14 +44,12 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .code {
+    font-family: var(--font-display);
+    font-variant-numeric: tabular-nums;
     font-size: clamp(4rem, 12vw, 8rem);
-    font-weight: var(--weight-extrabold);
+    font-weight: var(--weight-bold);
     line-height: 1;
-    background: linear-gradient(135deg, var(--purple-400), var(--purple-600));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    opacity: 0.3;
+    color: var(--accent-deep);
   }
 
   h1 {

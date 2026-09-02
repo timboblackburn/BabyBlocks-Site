@@ -9,6 +9,7 @@ import AppIcon from '../components/AppIcon.astro';
   title="What is Coming | BabyBlocks"
   description="What is next from BabyBlocks. PantryBaby is in development. BabyBlocks Core is at the idea stage. Honest status for each."
   canonical="/coming-soon"
+  ogImage="/og/coming-soon.png"
   theme="core"
 >
   <section class="coming-hero section">
@@ -202,23 +203,21 @@ import AppIcon from '../components/AppIcon.astro';
     gap: var(--space-4);
     text-decoration: none;
     color: inherit;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.16s ease-out, box-shadow 0.16s ease-out;
   }
 
   .pipeline-card--pantry {
-    border-color: rgba(74, 123, 110, 0.22);
-    background: rgba(74, 123, 110, 0.07);
+    background: rgba(74, 123, 110, 0.10);
   }
 
   .pipeline-card--core {
-    border-color: var(--glass-border-accent);
     background: var(--accent-dim);
-    opacity: 0.88;
+    opacity: 0.92;
   }
 
   .pipeline-card:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--glow-md);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card-lg);
     opacity: 1;
   }
 
@@ -244,9 +243,9 @@ import AppIcon from '../components/AppIcon.astro';
   }
 
   .status-planning {
-    background: rgba(107, 95, 199, 0.1);
-    color: var(--accent);
-    border: 1px solid rgba(107, 95, 199, 0.2);
+    background: var(--accent-dim);
+    color: var(--accent-deep);
+    border: 1px solid var(--accent-border);
   }
 
   .pipeline-card h2 {

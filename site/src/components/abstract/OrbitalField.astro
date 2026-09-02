@@ -5,7 +5,7 @@
  * scales cleanly and respects motion preferences. No animated by default.
  *
  * Props
- *  - tone:    ink | violet | coral | cream (stroke colour, default: ink)
+ *  - tone:    ink | coral | cream (stroke colour, default: ink)
  *  - size:    sm | md | lg (default: md)
  *  - opacity: 0..1 (default: 0.18)
  *  - rings:   number of rings to draw (default: 4)
@@ -16,7 +16,7 @@
  * gate it on @media (prefers-reduced-motion: no-preference).
  */
 interface Props {
-  tone?: 'ink' | 'violet' | 'coral' | 'cream';
+  tone?: 'ink' | 'coral' | 'cream';
   size?: 'sm' | 'md' | 'lg';
   opacity?: number;
   rings?: number;
@@ -39,10 +39,9 @@ const sizes: Record<string, number> = { sm: 280, md: 460, lg: 700 };
 const dim = sizes[size];
 
 const stroke: Record<string, string> = {
-  ink:    '#15110D',
-  violet: '#7C3AED',
-  coral:  '#F25E72',
-  cream:  '#FFF7EF',
+  ink:    '#26211C',
+  coral:  '#C75D4A',
+  cream:  '#FBF8F2',
 };
 const strokeColor = stroke[tone];
 

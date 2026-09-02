@@ -12,7 +12,7 @@ const {
   list = 'general',
   heading = 'Stay in the loop.',
   sub = 'Occasional updates. No spam, unsubscribe anytime.',
-  fallbackMailto = 'contact@intriguinginsight.com',
+  fallbackMailto = 'support@babyblocks.io',
 } = Astro.props;
 
 const formId = `newsletter-form-${list}`;
@@ -21,7 +21,7 @@ const formId = `newsletter-form-${list}`;
 // header required; IP-rate-limited (5/min) on the server side. Body
 // shape is { email, name?, list? } where list ∈ {general, product, changelog}.
 //
-// BabyBlocks has its own CRM stack — bb-ticket-service on Cloudflare
+// BabyBlocks has its own CRM stack. bb-ticket-service on Cloudflare
 // at api.babyblocks.io. Do not route this to FoundryDesk.
 const newsletterUrl =
   import.meta.env.PUBLIC_CRM_LEAD_URL ??
@@ -105,6 +105,14 @@ const renderedAt = Date.now();
         return;
       }
 
+      // Honeypot: real people never fill the hidden "company" field. Silently drop bots.
+      if (hp) {
+        form.reset();
+        status.textContent = 'Almost there. Check your inbox for a confirmation link to finish subscribing.';
+        status.classList.add('newsletter-status--success');
+        return;
+      }
+
       submit.disabled = true;
       label.style.opacity = '0.4';
       spinner.classList.add('is-spinning');
@@ -117,13 +125,17 @@ const renderedAt = Date.now();
             email,
             name,
             list,
+            company: hp,
+            renderedAt,
           }),
         });
         if (res.status === 429) throw new Error('rate');
         if (!res.ok) throw new Error('HTTP ' + res.status);
 
         form.reset();
-        status.textContent = 'Subscribed. Watch your inbox for updates.';
+        // Double opt-in: server now sends a confirmation email instead of
+        // subscribing immediately. UI copy reflects the pending state.
+        status.textContent = 'Almost there. Check your inbox for a confirmation link to finish subscribing.';
         status.classList.add('newsletter-status--success');
         try {
           if (typeof window.plausible === 'function') {
@@ -197,6 +209,7 @@ const renderedAt = Date.now();
   .newsletter-input:focus {
     outline: none;
     border-color: var(--accent, #5fcfd6);
+    box-shadow: 0 0 0 3px rgba(95, 207, 214, 0.35);
     background: rgba(255, 255, 255, 0.09);
   }
 
