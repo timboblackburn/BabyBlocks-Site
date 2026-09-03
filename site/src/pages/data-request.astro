@@ -3,24 +3,58 @@ import Layout from '../layouts/Layout.astro';
 import GlassCard from '../components/GlassCard.astro';
 import Icon from '../components/Icon.astro';
 
-// Phase 36c, public Data Subject Request form. Posts to a private
-// compliance endpoint (env-configured). The brand slug `babyblocks`
-// is fixed because this page lives on the BabyBlocks site.
+// OPTION B — the online form is taken down.
 //
-// PUBLIC_CRM_BASE_URL must be set in the Cloudflare Pages project
-// (Settings → Environment variables → Production AND Preview) before this
-// page can submit anything. `scripts/assert-dsr-config.mjs` fails the build
-// if this page still contains a submitting form while the variable is unset,
-// so an unconfigured form can no longer reach production silently.
-// See site/README.md § "Data-request form configuration".
-const crmBase = import.meta.env.PUBLIC_CRM_BASE_URL ?? '';
-const dsrUrl = crmBase ? `${crmBase.replace(/\/$/, '')}/api/compliance/babyblocks/dsr-submit` : '';
-const lastUpdated = 'May 6, 2026';
+// This page previously carried a form that posted to a compliance endpoint. It
+// shipped with an empty submit target and told customers "Thanks. We got it"
+// while recording their statutory request nowhere. The endpoint it was meant to
+// post to (/api/compliance/babyblocks/dsr-submit) has never been built.
+//
+// Rather than keep a form that cannot do what it claims, this page hands the
+// customer the path that actually works today: email. The page itself is kept,
+// because the privacy policy links here and a 404 on the route named as THE way
+// to exercise a GDPR/CCPA right would be worse than an honest page.
+//
+// When the compliance endpoint exists, restore the form from the previous commit
+// on this branch (OPTION A) — it is written to fail closed and to claim success
+// only on a 2xx — and set PUBLIC_CRM_BASE_URL in Cloudflare Pages first.
+// scripts/assert-dsr-config.mjs enforces that ordering.
+
+const SUPPORT_EMAIL = 'support@babyblocks.io';
+const lastUpdated = 'September 2, 2026';
+
+const accessBody = [
+  'I am requesting a copy of the data BabyBlocks holds about me (GDPR Art. 15 / CCPA Right to Know).',
+  '',
+  'Email address on my account:',
+  '',
+  'Other email addresses I may have used with you (optional):',
+  '',
+  'Anything that helps you locate my records (optional):',
+  '',
+].join('\n');
+
+const deletionBody = [
+  'I am requesting deletion of the data BabyBlocks holds about me (GDPR Art. 17 / CCPA Right to Delete).',
+  '',
+  'Email address on my account:',
+  '',
+  'Other email addresses I may have used with you (optional):',
+  '',
+].join('\n');
+
+const accessMailto =
+  `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent('Data request — send me a copy of my data')}` +
+  `&body=${encodeURIComponent(accessBody)}`;
+
+const deletionMailto =
+  `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent('Data request — delete my data')}` +
+  `&body=${encodeURIComponent(deletionBody)}`;
 ---
 
 <Layout
   title="Data request | BabyBlocks"
-  description="Request a copy of, or deletion of, the data BabyBlocks holds about you. We respond within 30 days."
+  description="Request a copy of, or deletion of, the data BabyBlocks holds about you. Email us and we respond within 30 days."
   canonical="/data-request"
 >
   <!-- Hero -->
@@ -30,102 +64,51 @@ const lastUpdated = 'May 6, 2026';
         <div class="label-chip">Your data</div>
         <h1>Your data, your call.<br /><span class="text-gradient">Access or delete on your terms.</span></h1>
         <p>
-          You can ask us for a copy of the data we hold about you, or ask us to delete it. We respond within 30 days. There is no fee. Both options are available below.
+          You can ask us for a copy of the data we hold about you, or ask us to delete it. We respond within 30 days. There is no fee.
         </p>
         <p class="sec-updated">Last updated: {lastUpdated}</p>
       </div>
     </div>
   </section>
 
-  <!-- Form -->
+  <!-- How to make a request -->
   <section class="sec-section section-sm">
     <div class="container-sm">
       <GlassCard accent padding="lg">
         <div class="sec-block">
           <div class="sec-block-icon"><Icon name="mail" size={28} /></div>
           <div>
-            <h2>Submit a request</h2>
+            <h2>Make a request by email</h2>
             <p>
-              Choose the kind of request below, give us the email address you used with us, and we will email you a verification link before processing the request.
+              Requests are handled by a person, over email. Pick the one you want below — the
+              message opens pre-written, and you only need to add the email address on your
+              account.
             </p>
 
-            <form
-              id="dsr-form"
-              class="dsr-form"
-              novalidate
-              aria-label="Data subject request form"
-            >
-              <fieldset class="dsr-fieldset">
-                <legend>What kind of request?</legend>
-
-                <label class="dsr-radio">
-                  <input type="radio" name="kind" value="dsar" checked required />
-                  <span class="dsr-radio-body">
-                    <span class="dsr-radio-title">Send me a copy of my data</span>
-                    <span class="dsr-radio-sub">
-                      GDPR Art. 15 / CCPA "Right to Know". You will get an export of every record we have linked to your email.
-                    </span>
-                  </span>
-                </label>
-
-                <label class="dsr-radio">
-                  <input type="radio" name="kind" value="rtbf" required />
-                  <span class="dsr-radio-body">
-                    <span class="dsr-radio-title">Delete my data</span>
-                    <span class="dsr-radio-sub">
-                      GDPR Art. 17 / CCPA "Right to Delete". We delete every record linked to your email, except where law requires us to retain it (tax records, fraud history).
-                    </span>
-                  </span>
-                </label>
-              </fieldset>
-
-              <label class="dsr-field">
-                <span class="dsr-label">Email address you used with us</span>
-                <input
-                  type="email"
-                  name="email"
-                  autocomplete="email"
-                  required
-                  placeholder="you@example.com"
-                />
-                <span class="dsr-help">
-                  We will email a verification link to this address before processing.
+            <div class="dsr-choices">
+              <a class="dsr-choice" href={accessMailto}>
+                <span class="dsr-choice-title">Send me a copy of my data</span>
+                <span class="dsr-choice-sub">
+                  GDPR Art. 15 / CCPA "Right to Know". You get an export of every record we have
+                  linked to your email.
                 </span>
-              </label>
+              </a>
 
-              <label class="dsr-field">
-                <span class="dsr-label">
-                  Anything else we should know?
-                  <span class="dsr-optional">(optional)</span>
+              <a class="dsr-choice" href={deletionMailto}>
+                <span class="dsr-choice-title">Delete my data</span>
+                <span class="dsr-choice-sub">
+                  GDPR Art. 17 / CCPA "Right to Delete". We delete every record linked to your
+                  email, except where law requires us to retain it (tax records, fraud history).
                 </span>
-                <textarea
-                  name="note"
-                  rows="4"
-                  maxlength="2000"
-                  placeholder="If you used multiple email addresses, mention them here. Or share any context that helps us locate your records."
-                ></textarea>
-              </label>
+              </a>
+            </div>
 
-              <!-- Honeypot -->
-              <div class="dsr-honeypot" aria-hidden="true">
-                <label>
-                  Company website
-                  <input type="text" name="company_website" tabindex="-1" autocomplete="off" />
-                </label>
-              </div>
-
-              <div class="dsr-actions">
-                <button id="dsr-submit" type="submit" class="btn btn-primary">
-                  <span id="dsr-submit-label">Submit request</span>
-                </button>
-                <p
-                  id="dsr-status"
-                  class="dsr-status"
-                  aria-live="polite"
-                  role="status"
-                ></p>
-              </div>
-            </form>
+            <p class="dsr-manual">
+              Prefer to write it yourself? Email
+              <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a> with the subject
+              <strong>"Data request"</strong>, say whether you want access, an export, or
+              deletion, and include the email address on your account.
+            </p>
           </div>
         </div>
       </GlassCard>
@@ -141,15 +124,21 @@ const lastUpdated = 'May 6, 2026';
           <div>
             <h2>What happens next</h2>
             <ol class="dsr-steps">
-              <li>You submit the form on this page.</li>
-              <li>We email you a verification link to confirm the request came from you, not someone impersonating you.</li>
-              <li>You click the link. We start processing.</li>
+              <li>You email us the request.</li>
               <li>
-                Within 30 days you receive your data export by email. For deletion requests, you receive a confirmation that we have deleted your records.
+                We reply to confirm the request came from you, not someone impersonating you.
+                Because you wrote from the address on the account, that is usually the same reply.
+              </li>
+              <li>We start processing.</li>
+              <li>
+                Within 30 days you receive your data export by email. For deletion requests, you
+                receive a confirmation that we have deleted your records.
               </li>
             </ol>
             <p class="sec-note">
-              Most BabyBlocks data lives on your device or in your iCloud. We do not hold it on our servers. Your request covers the data we DO hold (account email, support tickets, purchase records).
+              Most BabyBlocks data lives on your device or in your iCloud. We do not hold it on our
+              servers. Your request covers the data we DO hold (account email, support tickets,
+              purchase records).
             </p>
           </div>
         </div>
@@ -157,260 +146,71 @@ const lastUpdated = 'May 6, 2026';
     </div>
   </section>
 
-  <!-- Trouble using this form -->
+  <!-- Why there is no form -->
   <section class="sec-section section-sm">
     <div class="container-sm">
       <GlassCard padding="lg">
         <div class="sec-block">
           <div class="sec-block-icon"><Icon name="mail" size={28} /></div>
           <div>
-            <h2>Trouble using this form?</h2>
+            <h2>Why there is no form here</h2>
             <p>
-              Email <a href="mailto:support@babyblocks.io">support@babyblocks.io</a>
-              with the subject "Data request" and we will process it by hand.
+              There used to be one. It could not reliably record what people submitted, so we took
+              it down rather than leave a form that might accept your request and lose it. Email is
+              the path we can stand behind today, and it carries the same 30-day commitment.
+            </p>
+            <p class="sec-note">
+              If you emailed a request through the old form and never heard back, please send it
+              again to <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>. We will treat it as
+              having been made on the original date.
             </p>
           </div>
         </div>
       </GlassCard>
     </div>
   </section>
-
-  <script is:inline define:vars={{ dsrUrl }}>
-    (function () {
-      const form = document.getElementById('dsr-form');
-      if (!form) return;
-      const status = document.getElementById('dsr-status');
-      const submit = document.getElementById('dsr-submit');
-      const label = document.getElementById('dsr-submit-label');
-      const renderedAt = Date.now();
-
-      function setStatus(text, kind) {
-        if (!status) return;
-        status.textContent = text;
-        status.className = 'dsr-status';
-        if (kind === 'error') status.classList.add('is-error');
-        else if (kind === 'ok') status.classList.add('is-ok');
-      }
-
-      // The ONLY place a success message may be produced is a 2xx response from
-      // the compliance endpoint. Nothing before the network call is allowed to say
-      // "we got it" — a statutory request that was never transmitted was not got.
-      const EMAIL_FALLBACK =
-        "Email support@babyblocks.io with your request type (access, export, or deletion) and the email on your account — we respond within 30 days.";
-
-      form.addEventListener('submit', async function (e) {
-        e.preventDefault();
-
-        // FAIL CLOSED, FIRST. With no endpoint configured nothing can succeed, so
-        // say so before anything else and never reset the user's typing.
-        if (!dsrUrl) {
-          setStatus("Online requests aren't available yet. " + EMAIL_FALLBACK, 'error');
-          return;
-        }
-
-        const fd = new FormData(form);
-        const kind = String(fd.get('kind') || '');
-        const email = String(fd.get('email') || '').trim().toLowerCase();
-        const note = String(fd.get('note') || '').trim();
-        const hp = String(fd.get('company_website') || '');
-
-        if (kind !== 'dsar' && kind !== 'rtbf') {
-          setStatus('Pick a request kind first.', 'error');
-          return;
-        }
-        if (!email || !email.includes('@') || !email.includes('.')) {
-          setStatus('That email looks off. Try again?', 'error');
-          return;
-        }
-
-        // Spam heuristics: a filled honeypot, or a submit faster than a human
-        // could plausibly read the form. Both previously printed "Thanks. We got
-        // it" BEFORE any network call, so an autofilled field or a fast human was
-        // told their legal request had succeeded when nothing had been sent.
-        // They now decline honestly and hand back a working path. A real person
-        // who tripped the timer can simply submit again a moment later.
-        const submittedTooFast = Date.now() - renderedAt < 1500;
-        if (hp || submittedTooFast) {
-          setStatus(
-            "We couldn't submit that automatically, so nothing has been sent yet. " +
-              "Try once more in a moment, or " + EMAIL_FALLBACK,
-            'error'
-          );
-          return;
-        }
-
-        if (submit) submit.disabled = true;
-        const originalLabel = label ? label.textContent : null;
-        if (label) label.textContent = 'Submitting…';
-
-        try {
-          const res = await fetch(dsrUrl, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              kind: kind,
-              subjectEmail: email,
-              note: note || undefined,
-            }),
-          });
-          if (res.status === 429) {
-            setStatus(
-              "Too many requests from your network right now. Please try again in a minute.",
-              'error'
-            );
-            return;
-          }
-          if (!res.ok) throw new Error('network');
-          // Only here — after a 2xx from the compliance endpoint — may we say this.
-          form.reset();
-          setStatus(
-            "Thanks. We got it. Check your email for the verification link. We respond within 30 days.",
-            'ok'
-          );
-        } catch (err) {
-          setStatus(
-            "We couldn't reach our servers just now, so your request has NOT been recorded. " + EMAIL_FALLBACK,
-            'error'
-          );
-        } finally {
-          if (submit) submit.disabled = false;
-          if (label && originalLabel) label.textContent = originalLabel;
-        }
-      });
-    })();
-  </script>
 </Layout>
 
 <style>
-  .dsr-form {
+  .dsr-choices {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
-    margin-top: 1.25rem;
-  }
-  .dsr-fieldset {
-    border: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-  }
-  .dsr-fieldset legend {
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    font-size: 0.95rem;
-  }
-  .dsr-radio {
-    display: flex;
-    align-items: flex-start;
     gap: 0.75rem;
-    padding: 0.75rem;
-    border: 1px solid var(--hairline);
+    margin: 1.25rem 0 1rem;
+  }
+  .dsr-choice {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--hairline-strong);
     border-radius: 10px;
-    cursor: pointer;
     background: var(--surface);
+    color: var(--text-primary);
+    text-decoration: none;
     box-shadow: var(--shadow-card-sm);
     transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
   }
-  .dsr-radio:hover {
+  .dsr-choice:hover {
     border-color: var(--accent-border);
     transform: translateY(-1px);
     box-shadow: var(--shadow-card);
   }
-  .dsr-radio input[type="radio"] {
-    margin-top: 0.25rem;
+  .dsr-choice:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
   }
-  .dsr-radio-body {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-  }
-  .dsr-radio-title {
+  .dsr-choice-title {
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 1rem;
   }
-  .dsr-radio-sub {
-    font-size: 0.825rem;
+  .dsr-choice-sub {
+    font-size: 0.85rem;
+    line-height: 1.55;
     color: var(--text-muted);
   }
-  .dsr-field {
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-  }
-  .dsr-label {
-    font-weight: 600;
-    font-size: 0.925rem;
-  }
-  .dsr-optional {
-    font-weight: 400;
-    color: var(--text-muted);
-    margin-left: 0.25rem;
-  }
-  /* BUG L-4: these fields had no `color` of their own, so they inherited the
-     page ink (#F5F0E6) — fine on the dark surface, but the focus rule below
-     flipped the background to #FFFFFF and left the text cream: a measured
-     1.14:1. A person entering their email to exercise a statutory right could
-     not see what they were typing. The colour is now explicit, and focus no
-     longer inverts the field. */
-  .dsr-field input,
-  .dsr-field textarea {
-    width: 100%;
-    padding: 0.7rem 0.9rem;
-    font-size: 0.925rem;
-    color: var(--text-primary);            /* #F5F0E6 on #141029 — 15.2:1 */
-    border: 1px solid var(--hairline-strong);
-    border-radius: 8px;
-    background: var(--surface);
-    font-family: inherit;
-    transition: box-shadow 0.15s, border-color 0.15s, background 0.15s;
-  }
-  .dsr-field input::placeholder,
-  .dsr-field textarea::placeholder {
-    color: var(--text-muted);              /* 5.0:1 on the field background */
-    opacity: 1;                            /* Firefox dims placeholders by default */
-  }
-  .dsr-field input:focus,
-  .dsr-field textarea:focus {
-    outline: none;
-    background: var(--surface-alt);        /* stays dark; text stays readable */
-    color: var(--text-primary);
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px var(--accent-dim);
-  }
-  .dsr-field textarea {
-    resize: vertical;
-    min-height: 90px;
-  }
-  .dsr-help {
-    font-size: 0.78rem;
-    color: var(--text-muted);
-  }
-  .dsr-honeypot {
-    display: none;
-  }
-  .dsr-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-top: 0.25rem;
-  }
-  .dsr-status {
-    font-size: 0.825rem;
-    min-height: 1rem;
-    margin: 0;
-  }
-  /* The status line now carries the honest outcome of a statutory request, so it
-     has to be readable. The previous #b91c1c / #047857 were chosen for a light
-     background and measure 2.8:1 and 3.3:1 on this page's #141029 — both fail
-     WCAG AA. These clear 7:1. */
-  .dsr-status.is-error {
-    color: #F2938A;
-  }
-  .dsr-status.is-ok {
-    color: #7ED9A0;
+  .dsr-manual {
+    font-size: 0.9rem;
   }
   .dsr-steps {
     margin: 0.5rem 0 0.75rem 1.25rem;
@@ -419,5 +219,14 @@ const lastUpdated = 'May 6, 2026';
   .dsr-steps li {
     margin-bottom: 0.4rem;
     line-height: 1.6;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .dsr-choice {
+      transition: none;
+    }
+    .dsr-choice:hover {
+      transform: none;
+    }
   }
 </style>

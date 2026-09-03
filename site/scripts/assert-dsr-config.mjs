@@ -87,10 +87,27 @@ if (!existsSync(PAGE)) {
 
 const pageSource = readFileSync(PAGE, 'utf8');
 
-// Fail closed: EITHER a form element OR a reference to the compliance endpoint
-// path is enough to require the variable. Only a page with neither is exempt.
-const hasForm = pageSource.includes('id="dsr-form"');
-const hasSubmitEndpoint = pageSource.includes('/dsr-submit');
+/**
+ * Strip comments so a page that merely *documents* the endpoint (as the
+ * taken-down version does) is not mistaken for one that submits to it.
+ * Line comments are only stripped when they start the line, so URLs like
+ * https://example.com survive.
+ */
+function stripComments(source) {
+  return source
+    .replace(/<!--[\s\S]*?-->/g, '')
+    .replace(/\/\*[\s\S]*?\*\//g, '')
+    .split('\n')
+    .filter((line) => !line.trim().startsWith('//'))
+    .join('\n');
+}
+
+const code = stripComments(pageSource);
+
+// Fail closed: EITHER a live form element OR live code reading the variable is
+// enough to require it. Only a page with neither is exempt.
+const hasForm = code.includes('id="dsr-form"');
+const hasSubmitEndpoint = code.includes('/dsr-submit') || code.includes(`env.${VAR}`);
 
 if (!hasForm && !hasSubmitEndpoint) {
   console.log(
