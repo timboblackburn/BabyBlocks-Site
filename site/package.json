@@ -4,7 +4,8 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "npm run check:dsr-config && astro build",
+    "check:dsr-config": "node scripts/assert-dsr-config.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "og": "node scripts/generate-og.mjs"
