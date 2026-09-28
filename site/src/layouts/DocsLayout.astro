@@ -467,13 +467,14 @@ function isActive(href: string): boolean {
   :global(.docs-content em) { font-style: italic; }
 
   :global(.docs-content code) {
-    font-family: var(--font-mono);
-    font-size: 0.875em;
+    font-family: var(--font-sans);
+    font-variant-numeric: tabular-nums;
+    font-size: 0.9em;
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
     border-radius: 4px;
-    padding: 1px 5px;
-    color: var(--purple-300, var(--accent-light));
+    padding: 1px 6px;
+    color: var(--accent-deep);
   }
 
   /* Doc-specific components */
@@ -509,9 +510,10 @@ function isActive(href: string): boolean {
     border-radius: var(--radius-md);
     padding: var(--space-4) var(--space-5);
     margin-block: var(--space-4);
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
+    font-variant-numeric: tabular-nums;
     font-size: var(--text-sm);
-    color: var(--purple-300, var(--accent-light));
+    color: var(--accent-deep);
     overflow-x: auto;
   }
 

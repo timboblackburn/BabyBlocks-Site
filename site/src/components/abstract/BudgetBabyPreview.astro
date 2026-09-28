@@ -6,7 +6,7 @@
  * BudgetBabyIndividual/BudgetBaby (HomeView, BudgetSummaryCard,
  * MoneyPoolsCard, ColorBucketCard, ContentView tab bar).
  *
- * The app is dark-mode primary with a purple accent (#7C3AED). Money
+ * The app is dark-mode primary with a coral accent (#F0563C). Money
  * Pools are Cash / Card / Savings (three, not four). The Home screen
  * shows colour buckets (Essentials / Variable / Fun / Unplanned), not
  * a list of bills. Tab bar is Home / Bills / Add / Insights / Settings.
@@ -193,7 +193,7 @@ const { variant = 'home' } = Astro.props;
         <div class="bb-ring" aria-hidden="true">
           <svg viewBox="0 0 80 80">
             <circle cx="40" cy="40" r="32" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="9" />
-            <circle cx="40" cy="40" r="32" fill="none" stroke="#7C3AED" stroke-width="9"
+            <circle cx="40" cy="40" r="32" fill="none" stroke="#F0563C" stroke-width="9"
                     stroke-linecap="round" stroke-dasharray="115 200" transform="rotate(-90 40 40)" />
           </svg>
           <span class="bb-ring-pct">57%</span>
@@ -274,8 +274,8 @@ const { variant = 'home' } = Astro.props;
     --bb-text:      #FFFFFF;
     --bb-text-2:    #9CA3AF;
     --bb-text-3:    #6B7280;
-    --bb-accent:    #7C3AED;
-    --bb-accent-2:  #A78BFA;
+    --bb-accent:    #F0563C;
+    --bb-accent-2:  #F2B44C;
     --bb-red:       #F87171;
     --bb-yellow:    #FBBF24;
     --bb-green:     #34D399;
@@ -336,9 +336,9 @@ const { variant = 'home' } = Astro.props;
   }
   .bb-card--hero {
     background:
-      radial-gradient(140% 100% at 100% 0%, rgba(124, 58, 237, 0.18) 0%, transparent 60%),
+      radial-gradient(140% 100% at 100% 0%, rgba(240, 86, 60, 0.18) 0%, transparent 60%),
       var(--bb-card-bg);
-    border-color: rgba(124, 58, 237, 0.22);
+    border-color: rgba(240, 86, 60, 0.22);
     padding: 8px 10px;
   }
   .bb-card-head {
@@ -460,7 +460,7 @@ const { variant = 'home' } = Astro.props;
   }
   .bb-pool-icon svg { width: 11px; height: 11px; }
   .bb-pool-icon--cash    { color: var(--bb-green);   background: rgba(52, 211, 153, 0.12); }
-  .bb-pool-icon--card    { color: var(--bb-accent-2); background: rgba(124, 58, 237, 0.16); }
+  .bb-pool-icon--card    { color: var(--bb-accent-2); background: rgba(242, 180, 76, 0.16); }
   .bb-pool-icon--savings { color: var(--bb-yellow);  background: rgba(251, 191, 36, 0.14); }
   .bb-pool-name { font-size: 7px; color: var(--bb-text-2); font-weight: 500; }
   .bb-pool-val { font-size: 8.5px; color: var(--bb-text); font-weight: 600; letter-spacing: -0.01em; }
@@ -590,13 +590,13 @@ const { variant = 'home' } = Astro.props;
   .bb-fab {
     width: 22px; height: 22px;
     border-radius: 999px;
-    background: linear-gradient(180deg, #8B5CF6 0%, #7C3AED 100%);
+    background: #F0563C;
     color: #fff;
     font-size: 13px;
     font-weight: 600;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 14px rgba(124, 58, 237, 0.45);
+    box-shadow: 0 4px 14px rgba(240, 86, 60, 0.40);
   }
 </style>

@@ -59,7 +59,7 @@ const orgJsonLd = JSON.stringify({
 });
 
 const isLight = theme === 'core' || theme === 'pantry';
-const themeColor = theme === 'pantry' ? '#F4F1EA' : theme === 'core' ? '#FFF7EF' : '#0B0A0F';
+const themeColor = theme === 'pantry' ? '#F1EEE4' : theme === 'core' ? '#F7F2EA' : '#1B1714';
 
 const pageTitle = title.includes('BabyBlocks') ? title : `${title} | BabyBlocks`;
 const ogT = ogTitle ?? pageTitle;
@@ -113,13 +113,14 @@ const canonicalURL = canonical ? `${siteURL}${canonical}` : null;
     <meta name="color-scheme" content={isLight ? 'light' : 'dark'} />
     <meta name="theme-color" content={themeColor} />
 
-    <!-- Editorial type pairing. Fraunces is the family touchpoint shared with
-         intriguemmc.com and intriguinginsight.com (used on display headlines).
-         Inter is the body / UI face, calm, modern, highly legible at small sizes. -->
+    <!-- Calm & Premium type system. Arial carries the display
+         headlines (refined, grown-up). Hanken Grotesk is the body / UI face,
+         calm and highly legible at small sizes. Numbers use the body sans
+         with tabular figures; there is no monospace face. -->
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,450;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
 

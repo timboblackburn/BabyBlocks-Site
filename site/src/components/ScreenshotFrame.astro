@@ -28,10 +28,10 @@ const { caption, label } = Astro.props;
 
   .screenshot-label {
     font-size: var(--text-xs);
-    font-weight: var(--weight-semibold);
+    font-weight: var(--weight-bold);
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--accent-light);
+    color: var(--accent-deep);
   }
 
   .screenshot-device {
@@ -39,12 +39,8 @@ const { caption, label } = Astro.props;
     height: 420px;
     background: #131217;
     border-radius: 36px;
-    border: 1.5px solid rgba(255, 247, 239, 0.06);
-    box-shadow:
-      0 0 0 6px #0F0E14,
-      0 0 0 7px rgba(21, 17, 13, 0.10),
-      0 28px 60px rgba(60, 30, 20, 0.22),
-      0 0 40px rgba(242, 94, 114, 0.08);
+    border: 1px solid rgba(38, 33, 28, 0.12);
+    box-shadow: var(--shadow-card-lg);
     overflow: hidden;
     display: flex;
     flex-direction: column;

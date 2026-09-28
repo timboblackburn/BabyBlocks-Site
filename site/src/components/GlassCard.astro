@@ -25,28 +25,24 @@ const {
 </div>
 
 <style>
+  /* Calm card: white surface, hairline border, soft layered shadow, gentle
+     radius. The `glow` prop now means an interactive panel that lifts
+     gently on hover. */
   .glass-card {
-    background: var(--glass-bg);
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
-    border: 1px solid var(--glass-border);
+    background: var(--surface);
+    border: var(--border-w) solid var(--hairline);
     border-radius: var(--radius-xl);
-    transition: border-color 0.2s ease, transform 0.2s ease;
+    box-shadow: var(--shadow-card);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
   }
 
   .glass-card--accent {
-    background: var(--accent-dim);
-    border-color: var(--accent-border);
-  }
-
-  .glass-card--glow {
-    box-shadow: var(--glow-sm);
+    background: var(--tint-soft);
   }
 
   .glass-card--glow:hover {
-    box-shadow: var(--glow-md);
-    border-color: var(--glass-border-accent);
     transform: translateY(-2px);
+    box-shadow: var(--shadow-card-lg);
   }
 
   .glass-card--pad-sm { padding: var(--space-4); }

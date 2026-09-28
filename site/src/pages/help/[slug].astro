@@ -74,19 +74,45 @@ const { article, allArticles } = Astro.props as Props;
 
 // Tiny Markdown-to-HTML renderer, handles the subset our KB articles use:
 // # / ## / ### headings, paragraphs, **bold**, *italic*, `inline code`,
-// - / 1. lists, [text](url) links. No HTML escape because content is
-// operator-authored.
+// - / 1. lists, [text](url) links.
+//
+// Defense in depth: although the KB content is operator-authored markdown
+// served from api.babyblocks.io, we HTML-escape the input string BEFORE
+// applying the inline patterns. This guarantees that any raw `<`, `>`, `&`,
+// `"`, or `'` in article bodies (intentional or compromised upstream) cannot
+// inject executable HTML — only the patterns below produce live tags, and
+// they emit a fixed safe set (strong, em, code, a). Link URLs are escaped
+// too so href values cannot break out of the attribute quote.
+function escapeHtml(s: string): string {
+  return s.replace(/[&<>"']/g, (c) => {
+    switch (c) {
+      case '&': return '&amp;';
+      case '<': return '&lt;';
+      case '>': return '&gt;';
+      case '"': return '&quot;';
+      case "'": return '&#39;';
+      default: return c;
+    }
+  });
+}
+
 function renderMarkdown(md: string): string {
-  const lines = md.split('\n');
+  const lines = escapeHtml(md).split('\n');
   const out: string[] = [];
   let inList: 'ul' | 'ol' | null = null;
 
   function inline(text: string): string {
+    // `text` is already HTML-escaped, so the only live tags produced here
+    // come from these explicit patterns.
     return text
       .replace(/`([^`]+)`/g, '<code>$1</code>')
       .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
       .replace(/(?<![\*])\*([^*]+)\*(?![\*])/g, '<em>$1</em>')
-      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_match, text, url) => {
+        // URL was already escaped by escapeHtml; allow only safe schemes.
+        const safe = /^(https?:|mailto:|\/|#|\.\/)/i.test(url);
+        return safe ? `<a href="${url}">${text}</a>` : text;
+      });
   }
 
   function closeList() {

@@ -1,5 +1,4 @@
 ---
-import AbstractGlow from './abstract/AbstractGlow.astro';
 import { BUDGETBABY_APP_STORE_URL } from '../data/appStore';
 
 interface Props {
@@ -24,8 +23,6 @@ const {
 <section class="cta-section section-sm">
   <div class="container">
     <div class="cta-card glass-accent">
-      <AbstractGlow tone="coral" size="lg" opacity={0.22}
-                    position="top:50%;left:50%;transform:translate(-50%,-50%);" />
       <div class="cta-content">
         <h2>{heading}</h2>
         <p>{subheading}</p>
@@ -50,7 +47,6 @@ const {
 
   .cta-card {
     position: relative;
-    overflow: hidden;
     padding: var(--space-16) var(--space-12);
     text-align: center;
     border-radius: var(--radius-2xl);

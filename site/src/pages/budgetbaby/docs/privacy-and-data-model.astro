@@ -8,6 +8,7 @@ const headings = [
   { id: 'what-we-never-do',  text: 'What we never do' },
   { id: 'controls',           text: 'Your in-app controls' },
   { id: 'third-party',        text: 'Third-party services' },
+  { id: 'account-separation', text: 'Data and account separation' },
   { id: 'your-rights',        text: 'Your rights' },
 ];
 ---
@@ -158,7 +159,7 @@ const headings = [
       <DocMock label="Activity log" caption="Every save, edit, and delete is timestamped and undoable.">
         <div class="dm-bar"><span class="dm-back">Settings</span><span class="dm-bar-title">Activity</span><span></span></div>
         <div class="dm-list">
-          <div class="dm-row" style="background:rgba(139,92,246,0.12); border-color:rgba(167,139,250,0.4);">
+          <div class="dm-row" style="background:rgba(240, 86, 60, 0.12); border-color:rgba(240, 86, 60, 0.4);">
             <span class="dm-icon target">T</span>
             <span class="dm-row-label">Logged $42.18 · Groceries<div class="dm-row-meta" style="font-size:8px;">Today, 6:14 PM</div></span>
             <span class="dm-pill purple">Undo</span>
@@ -274,6 +275,31 @@ const headings = [
         <div class="dm-help">Full disclosures live in the Privacy Policy.</div>
       </DocMock>
     </div>
+
+    <h2 id="account-separation">Data and account separation</h2>
+    <p>
+      BudgetBaby (and our companion app PantryBaby) store data per device, not per
+      Apple account. If two people share a single iPhone or iPad and sign in with
+      different Apple IDs, the app will detect the mismatch on next launch and
+      surface a sign-in prompt rather than silently merging or wiping data. This
+      is a deliberate safety layer, not an oversight: it stops a roommate, partner,
+      or returning user from accidentally overwriting another person's records.
+    </p>
+    <p>
+      Backup encryption keys live in the iOS Keychain with iCloud Keychain sync
+      enabled. That means when you replace or restore a device, your existing
+      cloud backups remain decryptable without any extra step. The tradeoff is
+      that the key travels with your Apple account inside iCloud Keychain (which
+      is end-to-end encrypted by Apple) instead of staying pinned to a single
+      device. We believe sync-enabled keys are the right default because the most
+      common backup failure we see is "I got a new phone and lost my key."
+    </p>
+    <p>
+      A device-only backup key option is on the roadmap for operators who prefer
+      keys that never leave the originating device. When released it will live at
+      Settings &rarr; Security &rarr; "Device-only backup key" and is purely opt-in;
+      the default will remain iCloud Keychain sync.
+    </p>
 
     <h2 id="your-rights">Your rights</h2>
     <ul>

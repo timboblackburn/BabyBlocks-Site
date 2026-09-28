@@ -89,7 +89,7 @@ import AppIcon from '../components/AppIcon.astro';
             <p>
               Each app answers one question. BudgetBaby answers "what is safe to spend today?"
               PantryBaby will answer "what do I need at the store?" If a feature does not help answer the
-              one question, it does not ship.
+              one question, it does not go in.
             </p>
             <p>
               That is the only reason there are not more apps yet.
@@ -202,23 +202,21 @@ import AppIcon from '../components/AppIcon.astro';
     gap: var(--space-4);
     text-decoration: none;
     color: inherit;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.16s ease-out, box-shadow 0.16s ease-out;
   }
 
   .pipeline-card--pantry {
-    border-color: rgba(74, 123, 110, 0.22);
-    background: rgba(74, 123, 110, 0.07);
+    background: rgba(74, 123, 110, 0.10);
   }
 
   .pipeline-card--core {
-    border-color: var(--glass-border-accent);
     background: var(--accent-dim);
-    opacity: 0.88;
+    opacity: 0.92;
   }
 
   .pipeline-card:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--glow-md);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card-lg);
     opacity: 1;
   }
 
@@ -244,9 +242,9 @@ import AppIcon from '../components/AppIcon.astro';
   }
 
   .status-planning {
-    background: rgba(107, 95, 199, 0.1);
-    color: var(--accent);
-    border: 1px solid rgba(107, 95, 199, 0.2);
+    background: var(--accent-dim);
+    color: var(--accent-deep);
+    border: 1px solid var(--accent-border);
   }
 
   .pipeline-card h2 {

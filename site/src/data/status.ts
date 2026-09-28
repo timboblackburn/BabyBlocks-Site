@@ -19,7 +19,7 @@ export const STATUS: Record<StatusKey, StatusDef> = {
     key: 'live',
     label: 'Live',
     dot: '#047857',
-    description: 'Shipping. Available to use today.',
+    description: 'In use. Available today.',
   },
   appReview: {
     key: 'appReview',

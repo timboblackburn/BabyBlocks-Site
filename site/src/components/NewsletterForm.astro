@@ -21,7 +21,7 @@ const formId = `newsletter-form-${list}`;
 // header required; IP-rate-limited (5/min) on the server side. Body
 // shape is { email, name?, list? } where list ∈ {general, product, changelog}.
 //
-// BabyBlocks has its own CRM stack — bb-ticket-service on Cloudflare
+// BabyBlocks has its own CRM stack. bb-ticket-service on Cloudflare
 // at api.babyblocks.io. Do not route this to FoundryDesk.
 const newsletterUrl =
   import.meta.env.PUBLIC_CRM_LEAD_URL ??
@@ -123,7 +123,9 @@ const renderedAt = Date.now();
         if (!res.ok) throw new Error('HTTP ' + res.status);
 
         form.reset();
-        status.textContent = 'Subscribed. Watch your inbox for updates.';
+        // Double opt-in: server now sends a confirmation email instead of
+        // subscribing immediately. UI copy reflects the pending state.
+        status.textContent = 'Almost there. Check your inbox for a confirmation link to finish subscribing.';
         status.classList.add('newsletter-status--success');
         try {
           if (typeof window.plausible === 'function') {
