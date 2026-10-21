@@ -6,4 +6,8 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://babyblocks.io',
   integrations: [sitemap()],
+  // The PantryBaby product page moved from its pre-launch address (2026-10-20).
+  redirects: {
+    '/coming-soon/pantrybaby': '/pantrybaby/',
+  },
 });

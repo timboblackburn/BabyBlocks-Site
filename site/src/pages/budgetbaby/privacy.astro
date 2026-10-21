@@ -1,7 +1,10 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 
-const lastUpdated = 'May 6, 2026';
+import { PRIVACY_EMAIL } from '../../data/pantrybaby';
+
+// Facts verified against the BudgetBaby source on 2026-10-20 (CRM launch validation, D-10).
+const lastUpdated = 'October 20, 2026';
 ---
 
 <Layout
@@ -21,11 +24,11 @@ const lastUpdated = 'May 6, 2026';
       <div class="policy-summary glass">
         <h2>The short version</h2>
         <ul>
-          <li>Your budget data lives on your device. We cannot access it unless you enable cloud backup.</li>
-          <li>Cloud backups are encrypted before leaving your device. We cannot read them.</li>
-          <li>We collect anonymous crash reports and basic analytics. Opt out via iOS App Tracking Transparency.</li>
+          <li>Your budget data lives on your device. Cloud Sync is off unless you turn it on.</li>
+          <li>Backups are encrypted on your device before they are saved or uploaded. We cannot read them.</li>
+          <li>Crash reports and usage data help us fix and improve the app. Turn them off in Settings, then Privacy, then Analytics &amp; Crash Reports. We never track you across other apps.</li>
           <li>We don't sell data, serve ads, or connect to your bank.</li>
-          <li>Delete everything: Settings → About → Reset All Data.</li>
+          <li>Delete your data or account in Settings, then Account, then Danger Zone.</li>
         </ul>
         <p class="policy-updated">Last updated: {lastUpdated}</p>
       </div>
@@ -38,11 +41,12 @@ const lastUpdated = 'May 6, 2026';
           <p>When you create an account or use cloud features, we collect:</p>
           <ul>
             <li><strong>Account information.</strong> Your email address and display name. If you use Sign in with Apple, Apple may provide a relay email. We never see your real email unless you choose to share it.</li>
-            <li><strong>Cloud backup data.</strong> Your budget data, encrypted with AES-256-GCM before it leaves your device. We cannot decrypt or read your backup data.</li>
+            <li><strong>Cloud backup data.</strong> If you create a cloud backup, your budget data, encrypted with AES-256-GCM before it leaves your device. We cannot decrypt or read your backup data.</li>
+            <li><strong>Synced data.</strong> If you turn on Cloud Sync (Settings, then Account), your budget data is stored in your account so it appears on your other devices. Synced data is encrypted in transit and at rest by Google, but it is not end-to-end encrypted.</li>
             <li><strong>Authentication tokens.</strong> Secure tokens used to verify your identity with Firebase Auth. These are stored in the iOS Keychain.</li>
             <li><strong>Subscription status.</strong> Whether your account has an active Premium subscription, as verified by RevenueCat. We store this in the iOS Keychain, not on our servers.</li>
-            <li><strong>Crash and performance data.</strong> Anonymous crash reports via Firebase Crashlytics to help us fix bugs. This data contains no personal financial information.</li>
-            <li><strong>Basic analytics.</strong> Anonymized event data via Firebase Analytics (for example, which features are used and how often). No personal or financial data is included.</li>
+            <li><strong>Crash reports.</strong> Crash reports via Firebase Crashlytics to help us fix bugs. They contain technical details about the crash and your device, never your financial data. If you are signed in, they are linked to your account ID. On by default; turn off with Analytics &amp; Crash Reports.</li>
+            <li><strong>Usage data.</strong> Which features you use (for example "logged a transaction", with the category you chose), sent to our own servers. If you are signed in it is linked to your BabyBlocks account. No amounts or account numbers. On by default; turn off with Analytics &amp; Crash Reports.</li>
           </ul>
         </section>
 
@@ -54,7 +58,7 @@ const lastUpdated = 'May 6, 2026';
             <li>Location data.</li>
             <li>Contacts or calendar data, except when you use the optional Calendar Sync feature, which reads and writes only to your iOS Calendar with your explicit permission.</li>
             <li>Your name or personal identity beyond what you provide during account creation.</li>
-            <li>Any data about your device beyond what Firebase anonymously collects for crash reporting.</li>
+            <li>Advertising identifiers. BudgetBaby does not track you across other companies' apps or websites.</li>
           </ul>
         </section>
 
@@ -116,10 +120,12 @@ const lastUpdated = 'May 6, 2026';
 
           <h3>Support contact</h3>
           <p>
-            Support is handled by email at <a href="mailto:support@babyblocks.io">support@babyblocks.io</a>.
-            There is no in-app form. When you email us, we receive your email address and the contents of your message.
-            We use this only to respond to your request. We do not add you to any mailing list and we do not
-            share your email with third parties.
+            You can contact support in the app (Settings, then Support) or by email at
+            <a href="mailto:budgetbaby@babyblocks.io">budgetbaby@babyblocks.io</a>. With a request we receive what you
+            write, your email (or an anonymous identifier made from your device if you are not signed in), and your
+            device model and iOS and app versions. If you attach a diagnostics report it contains technical logs and
+            device details such as locale, time zone and currency. Screenshots or recordings you attach are sent as you
+            chose them. We use this only to help you. We do not add you to any mailing list.
           </p>
 
           <h3>Notification waitlists (coming soon pages)</h3>
@@ -171,12 +177,17 @@ const lastUpdated = 'May 6, 2026';
                 <tr>
                   <td>Firebase Crashlytics (Google)</td>
                   <td>Crash reporting and stability monitoring</td>
-                  <td>Anonymous crash logs, device OS version, app version</td>
+                  <td>Crash logs, device model, iOS and app version, account ID if signed in</td>
                 </tr>
                 <tr>
-                  <td>Firebase Analytics (Google)</td>
-                  <td>Anonymized feature usage analytics</td>
-                  <td>Anonymous usage events. No financial data, no personal data</td>
+                  <td>Cloudflare (our servers at babyblocks.io)</td>
+                  <td>Support requests and usage data</td>
+                  <td>Support messages and diagnostics, usage events</td>
+                </tr>
+                <tr>
+                  <td>Microsoft 365</td>
+                  <td>Support email</td>
+                  <td>Emails you send us and our replies</td>
                 </tr>
                 <tr>
                   <td>RevenueCat</td>
@@ -203,10 +214,9 @@ const lastUpdated = 'May 6, 2026';
           </div>
           <p>We do not sell your data to third parties. We do not use your data for advertising.</p>
           <p>
-            We chose Firebase because it lets us implement strong encryption and access controls that work
-            well with the iOS Keychain model. The tradeoff is that your encrypted data is stored on Google
-            infrastructure. The encryption means Google cannot read your budget data. But if that tradeoff
-            is a concern for you, local-only mode with no account is always available.
+            Backups are encrypted on your device, so Google cannot read them. Synced data is protected by Google's
+            encryption but is not end-to-end encrypted. If that is a concern, leave Cloud Sync off or use BudgetBaby
+            without an account.
           </p>
 
           <h3>Data Processing Agreements</h3>
@@ -222,8 +232,8 @@ const lastUpdated = 'May 6, 2026';
           <h2>6. Your rights and choices</h2>
           <ul>
             <li><strong>Access.</strong> You can export all your budget data in CSV or PDF format (Premium) at any time from within the app.</li>
-            <li><strong>Deletion.</strong> You can delete all local data via Settings, then About, then Reset All Data. To delete your account and cloud data, go to Settings, then Account, then Delete Account. When you delete your account, all cloud data (including backups) is permanently removed within 30 days.</li>
-            <li><strong>Analytics opt-out.</strong> If you turn off "Allow Apps to Request to Track" in iOS, we honour it. Analytics collection drops accordingly.</li>
+            <li><strong>Deletion.</strong> In Settings, then Account, then Danger Zone: "Delete All Data" removes your cloud data and the data on this device and keeps your account; "Delete Account" removes your cloud data, your BabyBlocks account (which PantryBaby also uses) and the data on this device. Deleting does not cancel a subscription; cancel in your Apple ID settings. In-app deletion does not remove support requests, usage data or subscription records on our servers or at RevenueCat; email <a href={`mailto:${PRIVACY_EMAIL}`}>{PRIVACY_EMAIL}</a> to have those deleted.</li>
+            <li><strong>Crash reports and usage data.</strong> Turn them off in Settings, then Privacy, then Analytics &amp; Crash Reports.</li>
             <li><strong>Portability.</strong> Your exported CSV data is in standard human-readable format compatible with any spreadsheet application.</li>
           </ul>
 
@@ -232,7 +242,7 @@ const lastUpdated = 'May 6, 2026';
             If you are located in the EEA, you have additional rights under the General Data Protection Regulation (GDPR), including the right to access, rectify, erase, restrict processing of, and port your personal data. You also have the right to withdraw consent at any time and to lodge a complaint with your local supervisory authority.
           </p>
           <p>
-            Our legal basis for processing your data is: consent (for optional cloud features and analytics), contractual necessity (for account creation and subscription management), and legitimate interest (for crash reporting and app stability).
+            Our legal bases are contract (your account, Cloud Sync, backups and subscription) and legitimate interest (crash reports, usage data and answering support requests), which you can object to at any time by turning off Analytics &amp; Crash Reports or emailing us.
           </p>
 
           <h3 id="ccpa-do-not-sell">For users in California</h3>
@@ -240,7 +250,7 @@ const lastUpdated = 'May 6, 2026';
             If you are a California resident, you have rights under the California Consumer Privacy Act (CCPA), including the right to know what personal information we collect, the right to request deletion, and the right to opt out of the sale or sharing of personal information.
           </p>
           <p>
-            <strong>Do Not Sell or Share My Personal Information.</strong> We do not sell or share personal information for cross-context behavioral advertising, and we have not done so in the preceding twelve months. The CCPA requires us to make this disclosure clear and conspicuous, which is why this section exists and why a permanent link to it lives in the site footer. To exercise any privacy right (access, correction, deletion, portability, or opt-out), use the <a href="/data-request">data request form</a> or email <a href="mailto:support@babyblocks.io">support@babyblocks.io</a>. We respond within 30 days and do not require an account to make a request.
+            <strong>Do Not Sell or Share My Personal Information.</strong> We do not sell or share personal information for cross-context behavioral advertising, and we have not done so in the preceding twelve months. The CCPA requires us to make this disclosure clear and conspicuous, which is why this section exists and why a permanent link to it lives in the site footer. To exercise any privacy right (access, correction, deletion, portability, or opt-out), email <a href={`mailto:${PRIVACY_EMAIL}`}>{PRIVACY_EMAIL}</a>. We respond within 30 days and do not require an account to make a request.
           </p>
 
           <h3>Cookies</h3>
@@ -250,13 +260,13 @@ const lastUpdated = 'May 6, 2026';
 
           <h3>Data retention</h3>
           <p>
-            Local data remains on your device until you delete it. Cloud backups are retained as long as your account is active. When you delete your account, all associated cloud data (backups, authentication records, and subscription metadata) is permanently deleted within 30 days. Anonymous crash reports and analytics data are retained for up to 90 days.
+            Local data remains on your device until you delete it. Synced data and cloud backups stay while your account exists and are deleted when you delete them in the app. Crash reports are kept by Firebase Crashlytics for up to 90 days. Support requests and usage data are kept until you ask us to delete them. Support reports saved on your device are removed after 90 days.
           </p>
         </section>
 
         <section class="policy-section">
           <h2>7. Children's privacy</h2>
-          <p>BudgetBaby is not directed at children under 13. We do not knowingly collect personal information from children. If you believe a child has provided personal information, contact us at <a href="mailto:support@babyblocks.io">support@babyblocks.io</a>.</p>
+          <p>BudgetBaby is not directed at children under 13. We do not knowingly collect personal information from children. If you believe a child has provided personal information, email <a href={`mailto:${PRIVACY_EMAIL}`}>{PRIVACY_EMAIL}</a>.</p>
         </section>
 
         <section class="policy-section">
@@ -268,13 +278,12 @@ const lastUpdated = 'May 6, 2026';
           <h2>9. Contact</h2>
           <p>
             For privacy-related questions, data access requests, or to exercise any of your rights described above,
-            email us at <a href="mailto:support@babyblocks.io">support@babyblocks.io</a>. Please include "Privacy" in the subject line
-            so we can route your request appropriately.
+            email us at <a href={`mailto:${PRIVACY_EMAIL}`}>{PRIVACY_EMAIL}</a>.
           </p>
           <p>
             <strong>Data Controller:</strong><br />
             Intrigue MMC LLC, operating as Intriguing Insight<br />
-            Privacy contact: <a href="mailto:support@babyblocks.io">support@babyblocks.io</a>
+            Privacy contact: <a href={`mailto:${PRIVACY_EMAIL}`}>{PRIVACY_EMAIL}</a>
           </p>
         </section>
 

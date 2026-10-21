@@ -19,6 +19,9 @@ interface Props {
   /** When true, emits <meta name="robots" content="noindex,nofollow"> so crawlers
    *  do not index this page. Use for 404, search, draft, or auth pages. */
   noindex?: boolean;
+  /** Which product's header, footer and legal links to show. Defaults to
+   *  BudgetBaby. PantryBaby pages pass 'pantrybaby' (D-07). */
+  product?: 'budgetbaby' | 'pantrybaby';
 }
 
 const {
@@ -31,6 +34,7 @@ const {
   theme = 'core',
   structuredData,
   noindex = false,
+  product = 'budgetbaby',
 } = Astro.props;
 
 // Default Organization JSON-LD with parentOrganization back to Intrigue MMC.
@@ -103,8 +107,9 @@ const ogImageURL = `${siteURL}${ogImage}`;
     <meta name="twitter:description" content={ogD} />
     <meta name="twitter:image" content={ogImageURL} />
 
-    <!-- Smart App Banner: offers BudgetBaby to Safari visitors on iPhone -->
-    <meta name="apple-itunes-app" content="app-id=6764697339" />
+    <!-- Smart App Banner: offers BudgetBaby to Safari visitors on iPhone.
+         Not shown on PantryBaby pages, where it would advertise the wrong app. -->
+    {product !== 'pantrybaby' && <meta name="apple-itunes-app" content="app-id=6764697339" />}
 
     <!-- PWA manifest -->
     <link rel="manifest" href="/manifest.json" />
@@ -174,10 +179,10 @@ const ogImageURL = `${siteURL}${ogImage}`;
   </head>
   <body>
     <a href="#main-content" class="skip-link">Skip to content</a>
-    <Header />
+    <Header product={product} />
     <main id="main-content" class="page-content">
       <slot />
     </main>
-    <Footer />
+    <Footer product={product} />
   </body>
 </html>

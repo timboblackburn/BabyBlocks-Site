@@ -7,16 +7,17 @@ import WaitlistForm from '../../components/WaitlistForm.astro';
 ---
 
 <Layout
-  title="PantryBaby: Coming Soon | BabyBlocks"
-  description="PantryBaby is coming soon from BabyBlocks: your grocery list and pantry memory. Track what you have, what's running low, and what you need. Get notified when it launches."
-  canonical="/coming-soon/pantrybaby"
+  title="PantryBaby: Pantry and Grocery List App | BabyBlocks"
+  description="PantryBaby from BabyBlocks: your grocery list and pantry memory. Track what you have, what's running low and what's expiring. Coming soon to the App Store."
+  canonical="/pantrybaby"
   theme="pantry"
+  product="pantrybaby"
 >
   <section class="coming-hero section">
     <div class="container">
       <div class="coming-inner">
         <div class="coming-copy">
-          <div class="label-chip">Coming Soon</div>
+          <div class="label-chip">Coming soon to the App Store</div>
           <h1>PantryBaby</h1>
           <p class="coming-tagline">Your grocery list + pantry memory.</p>
           <p class="coming-desc">
@@ -26,7 +27,7 @@ import WaitlistForm from '../../components/WaitlistForm.astro';
           </p>
 
           <!-- Notify CTA -->
-          <div class="notify-section">
+          <div class="notify-section" id="notify">
             <WaitlistForm
               app="pantrybaby"
               heading="Get notified at launch."
@@ -94,7 +95,7 @@ import WaitlistForm from '../../components/WaitlistForm.astro';
       <div class="section-header centered">
         <span class="eyebrow">What to expect</span>
         <h2>Built for real kitchens.</h2>
-        <p>PantryBaby tracks your inventory across 14 home storage areas, helps you build smarter shopping lists, and reduces the food you waste.</p>
+        <p>PantryBaby keeps track of what you have, tells you what is running low or about to expire, and turns that into your shopping list.</p>
       </div>
 
       <div class="coming-features">
@@ -102,23 +103,15 @@ import WaitlistForm from '../../components/WaitlistForm.astro';
           <div class="cf-item">
             <div class="cf-icon"><Icon name="box" size={28} /></div>
             <h3>Pantry inventory</h3>
-            <p>Track every item in your kitchen, pantry, fridge, freezer, and more with In Stock / Low / Out status at a glance. Expiration date tracking and alerts included.</p>
+            <p>Track what is in your pantry, fridge and freezer with In Stock, Low and Out at a glance, plus expiry dates and reminders before things go off.</p>
           </div>
         </GlassCard>
 
         <GlassCard glow>
           <div class="cf-item">
             <div class="cf-icon"><Icon name="shopping-cart" size={28} /></div>
-            <h3>Smart shopping lists</h3>
-            <p>Build a list manually or let PantryBaby generate one from your low-stock and out-of-stock items. Per-item store preferences included.</p>
-          </div>
-        </GlassCard>
-
-        <GlassCard glow>
-          <div class="cf-item">
-            <div class="cf-icon"><Icon name="map-pin" size={28} /></div>
-            <h3>Store-sorted shopping</h3>
-            <p>Map aisles as you shop, and your list auto-sorts by aisle next time. Shop faster, backtrack less. (Premium feature.)</p>
+            <h3>Shopping list</h3>
+            <p>Add items yourself or from what is running low. Check them off as you shop and they go back into your pantry.</p>
           </div>
         </GlassCard>
 
@@ -126,26 +119,32 @@ import WaitlistForm from '../../components/WaitlistForm.astro';
           <div class="cf-item">
             <div class="cf-icon"><Icon name="refresh-cw" size={28} /></div>
             <h3>Recurring items</h3>
-            <p>Set weekly milk and monthly cleaning supplies to auto-add to your list on schedule. Never forget the basics again.</p>
+            <p>Set the things you buy every week or month to add themselves to your list on schedule.</p>
           </div>
         </GlassCard>
 
         <GlassCard glow>
           <div class="cf-item">
-            <div class="cf-icon"><Icon name="globe" size={28} /></div>
-            <h3>18-region store support</h3>
-            <p>Pre-loaded with region-specific store lists for 18 regions worldwide, from the UAE to the USA to Australia. Local shopping, simplified.</p>
+            <div class="cf-icon"><Icon name="shield" size={28} /></div>
+            <h3>Sync and encrypted backups</h3>
+            <p>Sign in with Apple or Google to keep your devices in step, or use PantryBaby without an account. Backups are encrypted on your phone before they are saved.</p>
           </div>
         </GlassCard>
 
         <GlassCard glow>
           <div class="cf-item">
-            <div class="cf-icon"><Icon name="zap" size={28} /></div>
-            <h3>Smart suggestions</h3>
-            <p>Based on your purchase history, PantryBaby notices when you're overdue for something you usually buy and adds it to your list automatically. (Premium feature.)</p>
+            <div class="cf-icon"><Icon name="lock" size={28} /></div>
+            <h3>Private by default</h3>
+            <p>No ads, no tracking, and usage data stays off unless you turn it on. Read the <a href="/pantrybaby/privacy">privacy policy</a>.</p>
           </div>
         </GlassCard>
       </div>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="container-sm" style="text-align:center;">
+      <p>Questions? Visit <a href="https://support.babyblocks.io/?app=pantrybaby">PantryBaby support</a> or read the <a href="/pantrybaby/terms">terms</a> and <a href="/pantrybaby/privacy">privacy policy</a>.</p>
     </div>
   </section>
 

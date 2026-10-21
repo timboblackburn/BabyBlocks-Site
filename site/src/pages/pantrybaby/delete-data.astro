@@ -1,0 +1,208 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { PANTRYBABY_SUPPORT_EMAIL, PRIVACY_EMAIL } from '../../data/pantrybaby';
+
+// Menu paths verified against PantryBaby v1: SettingsView "About PantryBaby",
+// AboutView "Delete Data or Account", DeleteDataView (two scopes).
+const lastUpdated = 'October 20, 2026';
+---
+
+<Layout
+  title="Delete Your Data | PantryBaby"
+  description="How to delete your PantryBaby data or your whole BabyBlocks account, what each option removes, and how to ask us to delete server records."
+  canonical="/pantrybaby/delete-data"
+  theme="pantry"
+  product="pantrybaby"
+>
+  <div class="policy-layout">
+    <div class="container-sm">
+      <div class="policy-header">
+        <a href="/pantrybaby" class="policy-back">← PantryBaby</a>
+        <div class="label-chip" style="margin-top: var(--space-4);">Data control</div>
+        <h1>Delete your data</h1>
+        <p class="policy-meta">Last updated: {lastUpdated} · Applies to PantryBaby for iOS</p>
+      </div>
+
+      <div class="policy-content">
+
+        <section class="policy-section">
+          <h2>In the app</h2>
+          <ol class="policy-steps">
+            <li>Open PantryBaby and go to <strong>Settings</strong>.</li>
+            <li>Tap <strong>About PantryBaby</strong>.</li>
+            <li>Tap <strong>Delete Data or Account</strong> and choose one of the options below.</li>
+          </ol>
+        </section>
+
+        <section class="policy-section">
+          <h2>What each option removes</h2>
+          <h3>Delete PantryBaby data</h3>
+          <p>
+            Removes your PantryBaby cloud data and cloud backups, and the PantryBaby data on this device. Your BabyBlocks
+            account stays, and so does your BudgetBaby data. If you are not signed in, this deletes the PantryBaby data on
+            this device.
+          </p>
+          <h3>Delete BabyBlocks account</h3>
+          <p>
+            PantryBaby and BudgetBaby share one BabyBlocks account. Deleting it removes the account itself, which also ends
+            your access to BudgetBaby and deletes its cloud data, along with all PantryBaby data. You may be asked to sign in
+            again to confirm.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h2>Your subscription</h2>
+          <p>
+            Deleting data, your account or the app does not cancel PantryBaby Premium. Apple bills the subscription, so
+            cancel it in your Apple ID settings under Subscriptions, or from Settings, then Subscription, in the app.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h2>Records on our servers</h2>
+          <p>
+            In-app deletion does not remove support requests, usage data (if you turned it on) or subscription records held on
+            our servers or by RevenueCat. To have those deleted too, email
+            <a href={`mailto:${PRIVACY_EMAIL}`}>{PRIVACY_EMAIL}</a> from the address on your account and tell us what you
+            would like removed. You don't need an account to ask. We respond within 30 days.
+          </p>
+          <p>
+            Need help? Email <a href={`mailto:${PANTRYBABY_SUPPORT_EMAIL}`}>{PANTRYBABY_SUPPORT_EMAIL}</a>. Read more in the
+            <a href="/pantrybaby/privacy#deletion">privacy policy</a>.
+          </p>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .policy-layout {
+    padding-top: calc(var(--nav-height) + var(--space-12));
+    padding-bottom: var(--space-24);
+  }
+
+  .policy-back {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    text-decoration: none;
+    display: inline-block;
+    transition: color 0.15s;
+  }
+  .policy-back:hover { color: var(--text-secondary); }
+
+  .policy-header {
+    margin-bottom: var(--space-12);
+    padding-bottom: var(--space-8);
+    border-bottom: 1px solid var(--glass-border);
+  }
+
+  .policy-header h1 {
+    font-size: clamp(var(--text-3xl), 5vw, var(--text-5xl));
+    letter-spacing: -0.02em;
+    margin-top: var(--space-4);
+    margin-bottom: var(--space-2);
+  }
+
+  .policy-meta {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    margin-bottom: var(--space-4);
+  }
+
+  .policy-summary {
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    max-width: 64ch;
+  }
+
+  .policy-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-10);
+  }
+
+  .policy-section h2 {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-4);
+  }
+
+  .policy-section h3 {
+    font-size: var(--text-base);
+    font-weight: var(--weight-semibold);
+    margin-top: var(--space-5);
+    margin-bottom: var(--space-3);
+    color: var(--text-primary);
+  }
+
+  .policy-section p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-3);
+  }
+
+  .policy-section p:last-child { margin-bottom: 0; }
+
+  .policy-section ul {
+    list-style: disc;
+    padding-left: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  .policy-steps {
+    list-style: decimal;
+    padding-left: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin-block: var(--space-4);
+  }
+
+  .policy-steps li { padding-left: var(--space-2); }
+
+  .policy-table-wrap {
+    overflow-x: auto;
+    margin-block: var(--space-4);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--glass-border);
+  }
+
+  .policy-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-xs);
+  }
+
+  .policy-table th {
+    padding: var(--space-3) var(--space-4);
+    text-align: left;
+    font-weight: var(--weight-semibold);
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    background: var(--glass-bg);
+    border-bottom: 1px solid var(--glass-border);
+    white-space: nowrap;
+  }
+
+  .policy-table td {
+    padding: var(--space-3) var(--space-4);
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--glass-border);
+    vertical-align: top;
+    line-height: var(--leading-relaxed);
+  }
+
+  .policy-table tr:last-child td { border-bottom: none; }
+</style>

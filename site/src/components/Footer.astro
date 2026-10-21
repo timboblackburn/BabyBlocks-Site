@@ -1,4 +1,15 @@
 ---
+import { PANTRYBABY_SUPPORT_URL } from '../data/pantrybaby';
+
+interface Props {
+  /** PantryBaby pages pass 'pantrybaby' so the product column and the legal
+   *  links point at PantryBaby's own pages (D-04 / D-07). */
+  product?: 'budgetbaby' | 'pantrybaby';
+}
+
+const { product = 'budgetbaby' } = Astro.props;
+const isPantry = product === 'pantrybaby';
+const legalBase = isPantry ? '/pantrybaby' : '/budgetbaby';
 const year = new Date().getFullYear();
 ---
 
@@ -17,28 +28,43 @@ const year = new Date().getFullYear();
       </div>
 
       <nav class="footer-nav" aria-label="Footer navigation">
-        <div class="footer-col">
-          <h3 class="footer-col-title">BudgetBaby</h3>
-          <ul class="footer-links">
-            <li><a href="/budgetbaby">Overview</a></li>
-            <li><a href="/budgetbaby/features">Features</a></li>
-            <li><a href="/budgetbaby/docs">Documentation</a></li>
-            <li><a href="/budgetbaby/support">Support</a></li>
-            <li><a href="/budgetbaby/trust">Trust &amp; Privacy</a></li>
-            <li><a href="/budgetbaby/privacy">Privacy Policy</a></li>
-            <li><a href="/budgetbaby/terms">Terms of Use</a></li>
-            <li><a href="/budgetbaby/delete-data">Delete Your Data</a></li>
-          </ul>
-        </div>
+        {isPantry ? (
+          <div class="footer-col">
+            <h3 class="footer-col-title">PantryBaby</h3>
+            <ul class="footer-links">
+              <li><a href="/pantrybaby">Overview</a></li>
+              <li><a href={PANTRYBABY_SUPPORT_URL} target="_blank" rel="noopener noreferrer">Support</a></li>
+              <li><a href="/pantrybaby/privacy">Privacy Policy</a></li>
+              <li><a href="/pantrybaby/terms">Terms of Use</a></li>
+              <li><a href="/pantrybaby/delete-data">Delete Your Data</a></li>
+            </ul>
+          </div>
+        ) : (
+          <div class="footer-col">
+            <h3 class="footer-col-title">BudgetBaby</h3>
+            <ul class="footer-links">
+              <li><a href="/budgetbaby">Overview</a></li>
+              <li><a href="/budgetbaby/features">Features</a></li>
+              <li><a href="/budgetbaby/docs">Documentation</a></li>
+              <li><a href="/budgetbaby/support">Support</a></li>
+              <li><a href="/budgetbaby/trust">Trust &amp; Privacy</a></li>
+              <li><a href="/budgetbaby/privacy">Privacy Policy</a></li>
+              <li><a href="/budgetbaby/terms">Terms of Use</a></li>
+              <li><a href="/budgetbaby/delete-data">Delete Your Data</a></li>
+            </ul>
+          </div>
+        )}
 
         <div class="footer-col">
           <h3 class="footer-col-title">Ecosystem</h3>
           <ul class="footer-links">
+            {isPantry ? <li><a href="/budgetbaby">BudgetBaby</a></li> : <li><a href="/pantrybaby">PantryBaby</a></li>}
             <li><a href="/coming-soon">Coming Soon</a></li>
             <li><a href="/coming-soon/roadmap">Roadmap</a></li>
             <li><a href="/changelog">Changelog</a></li>
             <li><a href="/status">Status</a></li>
             <li><a href="/security">Security</a></li>
+            <li><a href="/privacy">Privacy at BabyBlocks</a></li>
             <li><a href="/data-request">Data request</a></li>
             <li><a href="/about">About BabyBlocks</a></li>
           </ul>
@@ -48,6 +74,7 @@ const year = new Date().getFullYear();
           <h3 class="footer-col-title">Contact</h3>
           <ul class="footer-links">
             <li><a href="mailto:support@babyblocks.io">support@babyblocks.io</a></li>
+            <li><a href="mailto:privacy@babyblocks.io">privacy@babyblocks.io</a></li>
           </ul>
         </div>
       </nav>
@@ -78,11 +105,11 @@ const year = new Date().getFullYear();
         &copy; {year} Intrigue MMC LLC. All rights reserved. Illinois LLC. Founded 2024.
       </p>
       <div class="footer-legal-links">
-        <a href="/budgetbaby/privacy">Privacy</a>
+        <a href={`${legalBase}/privacy`}>Privacy</a>
         <span aria-hidden="true">·</span>
-        <a href="/budgetbaby/terms">Terms</a>
+        <a href={`${legalBase}/terms`}>Terms</a>
         <span aria-hidden="true">·</span>
-        <a href="/budgetbaby/privacy#ccpa-do-not-sell">Do Not Sell or Share My Personal Information</a>
+        <a href={`${legalBase}/privacy#ccpa-do-not-sell`}>Do Not Sell or Share My Personal Information</a>
       </div>
     </div>
   </div>

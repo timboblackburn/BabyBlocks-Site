@@ -1,0 +1,179 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { PRIVACY_EMAIL } from '../data/pantrybaby';
+import { COMPANY_LEGAL_NAME, COMPANY_DBA } from '../data/legal';
+---
+
+<Layout
+  title="Privacy | BabyBlocks"
+  description="Privacy policies for BabyBlocks apps, and how to make a privacy request."
+  canonical="/privacy"
+>
+  <div class="policy-layout">
+    <div class="container-sm">
+      <div class="policy-header">
+        <div class="label-chip">Legal</div>
+        <h1>Privacy at BabyBlocks</h1>
+        <p class="policy-meta">Each BabyBlocks app has its own privacy policy, because each app handles different data.</p>
+      </div>
+
+      <div class="policy-content">
+        <section class="policy-section">
+          <h2>App privacy policies</h2>
+          <ul>
+            <li><a href="/budgetbaby/privacy">BudgetBaby privacy policy</a></li>
+            <li><a href="/pantrybaby/privacy">PantryBaby privacy policy</a></li>
+          </ul>
+        </section>
+
+        <section class="policy-section">
+          <h2>Your BabyBlocks account</h2>
+          <p>
+            BudgetBaby and PantryBaby share one BabyBlocks account. Each app keeps its own data. Deleting your BabyBlocks
+            account in either app removes the account for both.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h2>Privacy requests</h2>
+          <p>
+            To access, correct or delete your data, or for any privacy question, email
+            <a href={`mailto:${PRIVACY_EMAIL}`}>{PRIVACY_EMAIL}</a>. You don't need an account to make a request. We
+            respond within 30 days.
+          </p>
+          <p><strong>Data controller:</strong> {COMPANY_LEGAL_NAME}, operating as {COMPANY_DBA}.</p>
+        </section>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .policy-layout {
+    padding-top: calc(var(--nav-height) + var(--space-12));
+    padding-bottom: var(--space-24);
+  }
+
+  .policy-back {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    text-decoration: none;
+    display: inline-block;
+    transition: color 0.15s;
+  }
+  .policy-back:hover { color: var(--text-secondary); }
+
+  .policy-header {
+    margin-bottom: var(--space-12);
+    padding-bottom: var(--space-8);
+    border-bottom: 1px solid var(--glass-border);
+  }
+
+  .policy-header h1 {
+    font-size: clamp(var(--text-3xl), 5vw, var(--text-5xl));
+    letter-spacing: -0.02em;
+    margin-top: var(--space-4);
+    margin-bottom: var(--space-2);
+  }
+
+  .policy-meta {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    margin-bottom: var(--space-4);
+  }
+
+  .policy-summary {
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    max-width: 64ch;
+  }
+
+  .policy-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-10);
+  }
+
+  .policy-section h2 {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-4);
+  }
+
+  .policy-section h3 {
+    font-size: var(--text-base);
+    font-weight: var(--weight-semibold);
+    margin-top: var(--space-5);
+    margin-bottom: var(--space-3);
+    color: var(--text-primary);
+  }
+
+  .policy-section p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-3);
+  }
+
+  .policy-section p:last-child { margin-bottom: 0; }
+
+  .policy-section ul {
+    list-style: disc;
+    padding-left: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  .policy-steps {
+    list-style: decimal;
+    padding-left: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin-block: var(--space-4);
+  }
+
+  .policy-steps li { padding-left: var(--space-2); }
+
+  .policy-table-wrap {
+    overflow-x: auto;
+    margin-block: var(--space-4);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--glass-border);
+  }
+
+  .policy-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-xs);
+  }
+
+  .policy-table th {
+    padding: var(--space-3) var(--space-4);
+    text-align: left;
+    font-weight: var(--weight-semibold);
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    background: var(--glass-bg);
+    border-bottom: 1px solid var(--glass-border);
+    white-space: nowrap;
+  }
+
+  .policy-table td {
+    padding: var(--space-3) var(--space-4);
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--glass-border);
+    vertical-align: top;
+    line-height: var(--leading-relaxed);
+  }
+
+  .policy-table tr:last-child td { border-bottom: none; }
+</style>

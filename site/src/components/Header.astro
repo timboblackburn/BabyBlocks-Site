@@ -1,7 +1,20 @@
 ---
 import { BUDGETBABY_APP_STORE_URL } from '../data/appStore';
+import { PANTRYBABY_SUPPORT_URL } from '../data/pantrybaby';
 
-const navLinks = [
+interface Props {
+  /** Which product's navigation to show. PantryBaby pages pass 'pantrybaby' so
+   *  their header names PantryBaby, not BudgetBaby (D-07). */
+  product?: 'budgetbaby' | 'pantrybaby';
+}
+
+const { product = 'budgetbaby' } = Astro.props;
+const isPantry = product === 'pantrybaby';
+
+type NavSub = { label: string; href: string; external?: boolean };
+type NavLink = { label: string; href: string; sub?: NavSub[] };
+
+const budgetBabyNav: NavLink[] = [
   {
     label: 'BudgetBaby',
     href: '/budgetbaby',
@@ -16,13 +29,53 @@ const navLinks = [
     label: 'Coming Soon',
     href: '/coming-soon',
     sub: [
-      { label: 'PantryBaby', href: '/coming-soon/pantrybaby' },
+      { label: 'PantryBaby', href: '/pantrybaby' },
       { label: 'BabyBlocks Core', href: '/coming-soon/babyblocks-core' },
       { label: 'Roadmap', href: '/coming-soon/roadmap' },
     ],
   },
   { label: 'About', href: '/about' },
 ];
+
+const pantryBabyNav: NavLink[] = [
+  {
+    label: 'PantryBaby',
+    href: '/pantrybaby',
+    sub: [
+      { label: 'Overview', href: '/pantrybaby' },
+      { label: 'Support', href: PANTRYBABY_SUPPORT_URL, external: true },
+      { label: 'Privacy Policy', href: '/pantrybaby/privacy' },
+      { label: 'Terms of Use', href: '/pantrybaby/terms' },
+      { label: 'Delete Your Data', href: '/pantrybaby/delete-data' },
+    ],
+  },
+  { label: 'BudgetBaby', href: '/budgetbaby' },
+  { label: 'About', href: '/about' },
+];
+
+const navLinks = isPantry ? pantryBabyNav : budgetBabyNav;
+
+const mobileLinks: { label: string; href: string; sub?: boolean; external?: boolean }[] = isPantry
+  ? [
+      { label: 'PantryBaby', href: '/pantrybaby' },
+      { label: 'Support', href: PANTRYBABY_SUPPORT_URL, sub: true, external: true },
+      { label: 'Privacy Policy', href: '/pantrybaby/privacy', sub: true },
+      { label: 'Terms of Use', href: '/pantrybaby/terms', sub: true },
+      { label: 'Delete Your Data', href: '/pantrybaby/delete-data', sub: true },
+      { label: 'BudgetBaby', href: '/budgetbaby' },
+      { label: 'About', href: '/about' },
+    ]
+  : [
+      { label: 'BudgetBaby', href: '/budgetbaby' },
+      { label: 'Features', href: '/budgetbaby/features', sub: true },
+      { label: 'Documentation', href: '/budgetbaby/docs', sub: true },
+      { label: 'Support', href: '/budgetbaby/support', sub: true },
+      { label: 'Coming Soon', href: '/coming-soon' },
+      { label: 'PantryBaby', href: '/pantrybaby', sub: true },
+      { label: 'BabyBlocks Core', href: '/coming-soon/babyblocks-core', sub: true },
+      { label: 'Roadmap', href: '/coming-soon/roadmap', sub: true },
+      { label: 'About', href: '/about' },
+    ];
 
 const currentPath = Astro.url.pathname;
 ---
@@ -56,6 +109,7 @@ const currentPath = Astro.url.pathname;
                       href={sub.href}
                       class={`dropdown-link ${currentPath === sub.href ? 'active' : ''}`}
                       role="menuitem"
+                      {...(sub.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                     >
                       {sub.label}
                     </a>
@@ -76,9 +130,15 @@ const currentPath = Astro.url.pathname;
     </nav>
 
     <div class="header-cta">
-      <a href={BUDGETBABY_APP_STORE_URL} class="btn btn-primary" aria-label="Get BudgetBaby on the App Store" target="_blank" rel="noopener" data-event="app_store_click">
-        Get BudgetBaby
-      </a>
+      {isPantry ? (
+        <a href="/pantrybaby#notify" class="btn btn-primary" data-event="pantrybaby_notify_click">
+          Get notified at launch
+        </a>
+      ) : (
+        <a href={BUDGETBABY_APP_STORE_URL} class="btn btn-primary" aria-label="Get BudgetBaby on the App Store" target="_blank" rel="noopener" data-event="app_store_click">
+          Get BudgetBaby
+        </a>
+      )}
     </div>
 
     <button class="mobile-menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-nav">
@@ -91,19 +151,27 @@ const currentPath = Astro.url.pathname;
   <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden>
     <div class="mobile-nav-inner">
       <ul class="mobile-nav-list">
-        <li><a href="/budgetbaby" class="mobile-nav-link">BudgetBaby</a></li>
-        <li><a href="/budgetbaby/features" class="mobile-nav-link mobile-sub">Features</a></li>
-        <li><a href="/budgetbaby/documentation" class="mobile-nav-link mobile-sub">Documentation</a></li>
-        <li><a href="/budgetbaby/support" class="mobile-nav-link mobile-sub">Support</a></li>
-        <li><a href="/coming-soon" class="mobile-nav-link">Coming Soon</a></li>
-        <li><a href="/coming-soon/pantrybaby" class="mobile-nav-link mobile-sub">PantryBaby</a></li>
-        <li><a href="/coming-soon/babyblocks-core" class="mobile-nav-link mobile-sub">BabyBlocks Core</a></li>
-        <li><a href="/coming-soon/roadmap" class="mobile-nav-link mobile-sub">Roadmap</a></li>
-        <li><a href="/about" class="mobile-nav-link">About</a></li>
+        {mobileLinks.map((m) => (
+          <li>
+            <a
+              href={m.href}
+              class={`mobile-nav-link ${m.sub ? 'mobile-sub' : ''}`}
+              {...(m.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+            >
+              {m.label}
+            </a>
+          </li>
+        ))}
         <li class="mobile-cta">
-          <a href={BUDGETBABY_APP_STORE_URL} class="btn btn-primary" style="width:100%; justify-content:center;" target="_blank" rel="noopener" data-event="app_store_click">
-            Download on the App Store
-          </a>
+          {isPantry ? (
+            <a href="/pantrybaby#notify" class="btn btn-primary" style="width:100%; justify-content:center;" data-event="pantrybaby_notify_click">
+              Get notified at launch
+            </a>
+          ) : (
+            <a href={BUDGETBABY_APP_STORE_URL} class="btn btn-primary" style="width:100%; justify-content:center;" target="_blank" rel="noopener" data-event="app_store_click">
+              Download on the App Store
+            </a>
+          )}
         </li>
       </ul>
     </div>

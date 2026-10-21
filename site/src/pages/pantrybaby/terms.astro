@@ -1,14 +1,17 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { PANTRYBABY_SUPPORT_EMAIL, PRIVACY_EMAIL } from '../../data/pantrybaby';
+import { COMPANY_LEGAL_NAME, COMPANY_DBA, GOVERNING_LAW_STATE } from '../../data/legal';
 
-const lastUpdated = 'May 6, 2026';
+const lastUpdated = 'October 20, 2026';
 ---
 
 <Layout
   title="PantryBaby Terms of Use"
-  description="PantryBaby Terms of Use: usage, subscriptions, limitations, and contact information."
+  description="PantryBaby Terms of Use: acceptable use, auto-renewing subscriptions and free trials, food-safety notice, limitations, and contact information."
   canonical="/pantrybaby/terms"
-  noindex={true}
+  theme="pantry"
+  product="pantrybaby"
 >
   <div class="policy-layout">
     <div class="container-sm">
@@ -22,10 +25,10 @@ const lastUpdated = 'May 6, 2026';
       <div class="policy-summary glass">
         <h2>The short version</h2>
         <ul>
-          <li>PantryBaby is a personal pantry and grocery tracking tool.</li>
-          <li>Your data is yours. We cannot read your encrypted cloud backups.</li>
-          <li>Premium is a subscription billed by Apple. Cancel anytime in iOS Settings.</li>
-          <li>We are not liable for shopping or household decisions made based on app data.</li>
+          <li>PantryBaby is a personal pantry, shopping list and expiry reminder app for your household.</li>
+          <li>Premium is an auto-renewing subscription billed by Apple. A free trial, if offered, turns into a paid subscription unless you cancel at least 24 hours before it ends.</li>
+          <li>Manage or cancel Premium in your Apple ID settings. Deleting the app or your data does not cancel it.</li>
+          <li>Expiry dates and "Use It Up" suggestions are reminders, not food-safety advice. Always check the food itself.</li>
         </ul>
         <p class="policy-updated">Last updated: {lastUpdated}</p>
       </div>
@@ -35,93 +38,160 @@ const lastUpdated = 'May 6, 2026';
         <section class="policy-section">
           <h2>1. About PantryBaby</h2>
           <p>
-            PantryBaby is a personal pantry and grocery tracking app published by <strong>Intrigue MMC LLC</strong>,
-            operating as Intriguing Insight ("we," "us," "our"). The app is available for iOS 17.0 and later.
+            PantryBaby is a personal pantry and grocery list app published by <strong>{COMPANY_LEGAL_NAME}</strong>,
+            operating as {COMPANY_DBA} ("we," "us," "our"). The app is available for iPhone on iOS 17.0 and later.
           </p>
           <p>
-            PantryBaby helps you keep track of what is in your pantry and what to buy. It is not a nutrition,
-            health, or financial adviser, and nothing in the app or on this site is professional advice.
+            PantryBaby helps you keep track of what is in your kitchen, what is running low, what to buy, and
+            what to use before it expires. It is not a nutrition, dietary, medical, or food-safety service, and
+            nothing in the app or on this site is professional advice.
+          </p>
+          <p>
+            PantryBaby is part of the BabyBlocks family of apps. If you create an account, it is a BabyBlocks
+            account that also works with our other apps, such as BudgetBaby. See the
+            <a href="/pantrybaby/privacy#shared-account">Privacy Policy</a> for what that means for your data.
           </p>
         </section>
 
         <section class="policy-section">
           <h2>2. Acceptable use</h2>
-          <p>You may use PantryBaby for your personal, non-commercial budget tracking. You agree not to:</p>
+          <p>You may use PantryBaby for your personal and household, non-commercial use. You agree not to:</p>
           <ul>
-            <li>Reverse engineer, decompile, or disassemble the app.</li>
+            <li>Reverse engineer, decompile, or disassemble the app, except where the law allows it.</li>
             <li>Use the app in any unlawful manner or for any unlawful purpose.</li>
-            <li>Attempt to circumvent or disable any security features, including premium access controls.</li>
-            <li>Share your account credentials with others or allow others to use your account.</li>
-            <li>Use the app to process data on behalf of others as a service without our written consent.</li>
+            <li>Attempt to circumvent or disable any security features, including Premium access controls.</li>
+            <li>Share your account credentials with others or allow others to sign in to your account.</li>
+            <li>Use the app to provide a service to others, or to process other people's data as a business, without our written consent.</li>
+            <li>Send abusive, unlawful, or misleading content through support tickets or feature requests.</li>
           </ul>
         </section>
 
         <section class="policy-section">
-          <h2>3. Subscriptions</h2>
-          <h3>Premium subscription</h3>
+          <h2>3. Food-safety notice</h2>
           <p>
-            PantryBaby Premium is available as a monthly ($7.99/month) or annual ($69.99/year) auto-renewing subscription,
-            purchased through the Apple App Store.
+            PantryBaby shows expiry dates that you enter, reminders based on those dates, and suggestions such as
+            "Use It Up" that point at items you may want to use soon. These are reminders to help you plan. They
+            are not food-safety advice.
           </p>
           <ul>
-            <li>Subscriptions automatically renew unless cancelled at least 24 hours before the end of the current period.</li>
-            <li>You can manage and cancel your subscription in iOS Settings → [Your Name] → Subscriptions.</li>
-            <li>Cancellation takes effect at the end of the current billing period. No refunds are issued for unused portions of a subscription period unless required by applicable law.</li>
-            <li>Prices are stated in USD and may vary by region according to App Store pricing.</li>
+            <li>A date in PantryBaby is only as accurate as what was entered. It is not a guarantee that food is safe, or unsafe, to eat.</li>
+            <li>Always check the food itself, its packaging and its storage instructions, and follow official food-safety guidance where you live.</li>
+            <li>PantryBaby does not know about allergies, recalls, or how an item has been stored, and its suggestions do not account for them.</li>
+            <li>A missed, late, or incorrect reminder (for example, because notifications are turned off) is not a statement that food is safe.</li>
+          </ul>
+        </section>
+
+        <section class="policy-section">
+          <h2>4. Subscriptions and free trials</h2>
+
+          <h3>PantryBaby Premium</h3>
+          <p>
+            PantryBaby Premium is an optional, auto-renewing subscription, offered monthly or annually and
+            purchased through the Apple App Store. The price, billing period, and any introductory offer are
+            shown in the app and on the App Store purchase sheet before you confirm. The price you see there,
+            in your local currency, is the price you pay. Prices can differ by country and can change; a price
+            change does not affect a period you have already paid for, and Apple tells you before a higher price
+            applies to a renewal.
+          </p>
+          <ul>
+            <li><strong>Auto-renewal.</strong> Your subscription renews automatically at the end of each period, at the then-current price, unless you cancel at least 24 hours before the current period ends.</li>
+            <li><strong>Billing.</strong> Payment is charged to your Apple ID account when you confirm the purchase, or, if you start a free trial, when the trial ends. Renewals are charged within the 24 hours before the current period ends.</li>
+            <li><strong>Manage or cancel.</strong> Open the iOS Settings app, tap your name, then Subscriptions, then PantryBaby. You can also reach this from PantryBaby's subscription screen. Cancelling stops the next renewal; you keep Premium until the end of the period you have paid for.</li>
+            <li><strong>Deleting is not cancelling.</strong> Deleting PantryBaby, deleting your PantryBaby data, or deleting your BabyBlocks account does not cancel an Apple subscription. It keeps renewing until you cancel it in your Apple ID settings.</li>
           </ul>
 
-          <h3>Free tier</h3>
+          <h3>Free trials</h3>
           <p>
-            The free tier of PantryBaby is fully functional for core pantry and grocery list use.
-            Free tier limits are documented in the app. We reserve the right to adjust free tier limits
-            with reasonable notice.
+            We may offer a free trial of Premium, for example a 7-day free trial. Whether a trial is offered, and
+            how long it lasts, is shown before you confirm.
+          </p>
+          <ul>
+            <li>When the trial ends, it converts automatically to a paid subscription at the price shown, unless you cancel at least 24 hours before the trial ends.</li>
+            <li>If you buy a subscription during a free trial, any unused portion of the trial is forfeited when the purchase takes effect.</li>
+            <li>Free trials are generally limited to one per Apple ID, as determined by Apple.</li>
+          </ul>
+
+          <h3>Paid introductory offers</h3>
+          <p>
+            We may also offer a paid introductory price, for example a reduced price for the first period, or a
+            single up-front payment for an introductory period. The offer's price, length, and what you pay
+            afterwards are shown before you confirm. When the introductory period ends, the subscription renews
+            at the regular price unless you cancel at least 24 hours before the introductory period ends.
+          </p>
+
+          <h3>Free features</h3>
+          <p>
+            You can use PantryBaby's core pantry and shopping list features without paying. The free limits are
+            shown in the app. We may adjust free limits or which features are Premium with reasonable notice, and
+            we will not take away Premium features you have already paid for within a current billing period.
           </p>
 
           <h3>Refunds</h3>
           <p>
-            Subscription purchases are processed by Apple. Refund requests must be submitted to Apple directly
-            at <a href="https://reportaproblem.apple.com" target="_blank" rel="noopener noreferrer">reportaproblem.apple.com</a>.
-            We cannot issue refunds directly.
+            Purchases are processed by Apple, and Apple decides refunds. Request one at
+            <a href="https://reportaproblem.apple.com" target="_blank" rel="noopener noreferrer">reportaproblem.apple.com</a>.
+            We cannot issue refunds for App Store purchases ourselves.
           </p>
         </section>
 
         <section class="policy-section">
-          <h2>4. Your data</h2>
-          <p>You own your data. We do not claim any rights to your budget data, transactions, or financial information.</p>
+          <h2>5. Accounts</h2>
           <p>
-            Local data stored on your device is yours entirely. Cloud backup data is encrypted on your device
-            before upload and we cannot read it. For full details, see our <a href="/pantrybaby/privacy">Privacy Policy</a>.
+            You can use PantryBaby without an account. Signing in (with Apple, Google, or an email and password)
+            is needed for cloud sync and cloud backup. You are responsible for keeping your sign-in details secure
+            and for activity on your account.
           </p>
           <p>
-            You are responsible for maintaining backups of your data. We are not liable for data loss caused by
-            device failure, app uninstallation, or other circumstances outside our control.
+            Your BabyBlocks account is shared across BabyBlocks apps. Deleting it from PantryBaby deletes it for
+            BudgetBaby too. PantryBaby offers a separate option that deletes only PantryBaby's data and keeps your
+            account. See <a href="/pantrybaby/delete-data">Delete your data</a>.
           </p>
         </section>
 
         <section class="policy-section">
-          <h2>5. Limitation of liability</h2>
+          <h2>6. Your data</h2>
           <p>
-            PantryBaby is provided "as is" and "as available" without warranties of any kind, either express or implied.
-            We do not warrant that the app will be uninterrupted, error-free, or completely accurate.
+            You own the content you put into PantryBaby: your items, lists, stores, notes, and photos. We do not
+            claim ownership of it. You give us only the permission we need to store, sync, and back it up for you
+            when you use those features, and to look at what you send us when you ask for support.
           </p>
           <p>
-            To the maximum extent permitted by applicable law, Intrigue MMC LLC is not liable for:
+            How we handle your data is described in our <a href="/pantrybaby/privacy">Privacy Policy</a>.
+          </p>
+          <p>
+            Please keep your own backups of anything important. We are not liable for data loss caused by device
+            failure, uninstalling the app, a lost encryption key, or other circumstances outside our reasonable
+            control.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h2>7. Limitation of liability</h2>
+          <p>
+            PantryBaby is provided "as is" and "as available" without warranties of any kind, either express or implied,
+            to the maximum extent permitted by law. We do not warrant that the app will be uninterrupted, error-free,
+            or that reminders and suggestions will always be accurate or on time.
+          </p>
+          <p>
+            To the maximum extent permitted by applicable law, {COMPANY_LEGAL_NAME} is not liable for:
           </p>
           <ul>
-            <li>Any financial decisions made based on information displayed in the app.</li>
+            <li>Illness, injury, or loss arising from eating, using, keeping, or throwing away food or household items, including decisions based on dates, reminders, or suggestions shown in the app.</li>
+            <li>Shopping, spending, or household decisions made based on information in the app.</li>
             <li>Loss of data due to device failure, app bugs, or user error.</li>
             <li>Any indirect, incidental, special, or consequential damages arising from your use of the app.</li>
           </ul>
           <p>
-            If you are dissatisfied with the app, your sole remedy is to discontinue use.
+            Some places do not allow some of these limitations, so they may not all apply to you. Nothing in these
+            Terms limits rights you have under consumer law that cannot be waived.
           </p>
         </section>
 
         <section class="policy-section">
-          <h2>6. Intellectual property</h2>
+          <h2>8. Intellectual property</h2>
           <p>
-            PantryBaby, including its design, code, and content, is owned by Intrigue MMC LLC.
-            All rights reserved. The BabyBlocks name and related marks are trademarks of Intrigue MMC LLC.
+            PantryBaby, including its design, code, and content, is owned by {COMPANY_LEGAL_NAME}.
+            All rights reserved. The BabyBlocks and PantryBaby names and related marks are trademarks of {COMPANY_LEGAL_NAME}.
           </p>
           <p>
             Nothing in these Terms grants you any right to use our trademarks, logos, or brand assets
@@ -130,30 +200,44 @@ const lastUpdated = 'May 6, 2026';
         </section>
 
         <section class="policy-section">
-          <h2>7. Changes to the app and terms</h2>
+          <h2>9. Apple</h2>
           <p>
-            We may update PantryBaby and these Terms from time to time. Material changes to Terms will be
-            communicated via an in-app notice. Your continued use after changes constitutes acceptance.
-          </p>
-          <p>
-            We may discontinue features, change pricing, or modify the free tier limits with reasonable advance notice.
-            We will not retroactively revoke access to features you have already paid for within a current billing period.
-          </p>
-        </section>
-
-        <section class="policy-section">
-          <h2>8. Governing law</h2>
-          <p>
-            These Terms are governed by the laws of the State of Delaware, United States, applicable to contracts
-            made and performed entirely within that jurisdiction, without regard to conflict of law principles.
+            These Terms are between you and {COMPANY_LEGAL_NAME}, not Apple. Apple is not responsible for PantryBaby
+            or its content, has no obligation to provide maintenance or support for it, and is not responsible for
+            any claims relating to it. Apple and its subsidiaries are third-party beneficiaries of these Terms and
+            may enforce them against you. Your use of the app must also follow the App Store's
+            <a href="https://www.apple.com/legal/internet-services/itunes/" target="_blank" rel="noopener noreferrer">Usage Rules</a>.
           </p>
         </section>
 
         <section class="policy-section">
-          <h2>9. Contact</h2>
+          <h2>10. Changes to the app and terms</h2>
           <p>
-            Questions about these Terms? Contact us at <a href="mailto:support@babyblocks.io">support@babyblocks.io</a>.<br />
-            <strong>Intrigue MMC LLC</strong> · operating as Intriguing Insight
+            We may update PantryBaby and these Terms from time to time. We will tell you about material changes to
+            these Terms in the app or on this page, and update the "last updated" date. Your continued use after a
+            change takes effect means you accept it.
+          </p>
+          <p>
+            We may add, change, or remove features. We will not retroactively take away Premium features you have
+            already paid for within a current billing period.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h2>11. Governing law</h2>
+          <p>
+            These Terms are governed by the laws of the State of {GOVERNING_LAW_STATE}, United States, without regard to
+            conflict of law principles, except where the law of the place you live requires otherwise.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h2>12. Contact</h2>
+          <p>
+            Questions about these Terms? Email us at <a href={`mailto:${PANTRYBABY_SUPPORT_EMAIL}`}>{PANTRYBABY_SUPPORT_EMAIL}</a>
+            or <a href="mailto:support@babyblocks.io">support@babyblocks.io</a>. For privacy requests, email
+            <a href={`mailto:${PRIVACY_EMAIL}`}>{PRIVACY_EMAIL}</a>.<br />
+            <strong>{COMPANY_LEGAL_NAME}</strong> · operating as {COMPANY_DBA}
           </p>
         </section>
 

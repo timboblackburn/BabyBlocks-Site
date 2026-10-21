@@ -1,7 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { GOVERNING_LAW_STATE } from '../../data/legal';
 
-const lastUpdated = 'May 6, 2026';
+const lastUpdated = 'October 20, 2026';
 ---
 
 <Layout
@@ -59,14 +60,15 @@ const lastUpdated = 'May 6, 2026';
           <h2>3. Subscriptions</h2>
           <h3>Premium subscription</h3>
           <p>
-            BudgetBaby Premium is available as a monthly ($7.99/month) or annual ($69.99/year) auto-renewing subscription,
-            purchased through the Apple App Store.
+            BudgetBaby Premium is available as a monthly or annual auto-renewing subscription, purchased through the
+            Apple App Store. The price and billing period are shown in the app and by Apple before you buy.
           </p>
           <ul>
             <li>Subscriptions automatically renew unless cancelled at least 24 hours before the end of the current period.</li>
             <li>You can manage and cancel your subscription in iOS Settings → [Your Name] → Subscriptions.</li>
             <li>Cancellation takes effect at the end of the current billing period. No refunds are issued for unused portions of a subscription period unless required by applicable law.</li>
-            <li>Prices are stated in USD and may vary by region according to App Store pricing.</li>
+            <li>Prices vary by region according to App Store pricing.</li>
+            <li><strong>Free trial.</strong> The annual plan may include a free trial for eligible new subscribers. When the trial ends, the subscription renews at the annual price unless you cancel at least 24 hours before the trial ends. If you buy a subscription during a trial, any unused part of the trial is forfeited.</li>
           </ul>
 
           <h3>Free tier</h3>
@@ -143,7 +145,7 @@ const lastUpdated = 'May 6, 2026';
         <section class="policy-section">
           <h2>8. Governing law</h2>
           <p>
-            These Terms are governed by the laws of the State of Delaware, United States, applicable to contracts
+            These Terms are governed by the laws of the State of {GOVERNING_LAW_STATE}, United States, applicable to contracts
             made and performed entirely within that jurisdiction, without regard to conflict of law principles.
           </p>
         </section>
